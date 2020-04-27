@@ -15,11 +15,11 @@ function updateMousePress.update(x, y, button)
         and love.mouse.getX() >= 52 * g.scale.x and love.mouse.getX() <= (52+59) * g.scale.x
         and love.mouse.getY() >= 128 * g.scale.y and love.mouse.getY() <= (128+6) * g.scale.y) then
         g.writeToTextDisplay( 
-                              {
+                                {
                                   "You are in a small dark room.",
                                   "You can barely just make out",
                                   "the door opposite your bed.",
-                              }
+                                }
                             )
         g.state = "game"
         return
@@ -27,7 +27,10 @@ function updateMousePress.update(x, y, button)
     
     -- if we are in the game
     if(g.state == "game") then
-        
+        -- Handle game mouse clicks
+        if(button == 1) then
+            updateRoom.update()
+        end
     end
     
 end

@@ -6,6 +6,7 @@ loadImages.rocStudiosLogo = love.graphics.newImage("Images/Intro Screens/Roc Stu
 
 -- User interface
 loadImages.cursor = love.graphics.newImage("Images/User Interface/Cursor.png")
+loadImages.cursorHand = love.graphics.newImage("Images/User Interface/Cursor Hand.png")
 loadImages.userInterfaceText = love.graphics.newImage("Images/User Interface/User Interface (Text).png")
 
 -- Location background images

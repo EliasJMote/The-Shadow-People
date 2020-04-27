@@ -22,6 +22,9 @@ function love.load()
     --loadLocations = require("loadLocations")
     --loadItems = require("loadItems")
     
+    -- Update helper functions
+    updateRoom = require("Helper Functions/Update/updateRoom")
+    
     font = love.graphics.newFont("Font/prstart.ttf")
     love.graphics.setFont(font)
     

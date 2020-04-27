@@ -60,38 +60,69 @@ function drawManager.draw()
         love.graphics.print("Start Game", 52, 128, 0, 0.5, 0.5)
   
     elseif(g.state == "game") then
-        
-      -- draw the user interface
-      love.graphics.draw(loadImages.userInterfaceText,0,0)
-      
-      -- draw text
-      love.graphics.setColor(g.colors.darkest_green.r, g.colors.darkest_green.g, g.colors.darkest_green.b, 1)
-      
-      -- draw the item title text
-      love.graphics.print("Items", 118, 9, 0, 0.4, 0.4)
-      
-      -- draw the game's text
-      for k,v in ipairs(g.curText) do
-          love.graphics.print(v, 6, 80 + 13 * (k-1), 0, 0.4, 0.4)
-      end
-      
-      love.graphics.setColor(g.colors.lightest_green.r, g.colors.lightest_green.g, g.colors.lightest_green.b, 1)
-      
-      -- draw room
-      love.graphics.draw(loadImages.bedroomDark, 3, 3)
-      
-      -- draw map screen
-      --love.graphics.rectangle("line", 440, 20, 100, 150, 10)
-      
-      -- draw item text
-      --love.graphics.print("[I]tems", 568, 30)
-      
-  elseif(g.state == "ending") then
-  end
 
-  local mouseX, mouseY = love.mouse.getPosition()
-  love.graphics.setColor(g.colors.lightest_green.r, g.colors.lightest_green.g, g.colors.lightest_green.b, 1)
-  love.graphics.draw(loadImages.cursor, mouseX / g.scale.x, mouseY / g.scale.y)
+        -- draw the user interface
+        love.graphics.draw(loadImages.userInterfaceText,0,0)
+
+        -- draw text
+        love.graphics.setColor(g.colors.darkest_green.r, g.colors.darkest_green.g, g.colors.darkest_green.b, 1)
+
+        -- draw the item title text
+        love.graphics.print("Items", 118, 9, 0, 0.4, 0.4)
+
+        -- draw the game's text
+        for k,v in ipairs(g.curText) do
+          love.graphics.print(v, 6, 93 + 13 * (k-1), 0, 0.4, 0.4)
+        end
+
+        love.graphics.setColor(g.colors.lightest_green.r, g.colors.lightest_green.g, g.colors.lightest_green.b, 1)
+
+        -- draw room
+        love.graphics.draw(loadImages.bedroomDark, 3, 3)
+
+        -- draw map screen
+        --love.graphics.rectangle("line", 440, 20, 100, 150, 10)
+
+        -- draw item text
+        --love.graphics.print("[I]tems", 568, 30)
+        
+        love.graphics.setColor(1, 0, 0, 1)
+        if(debug) then
+            if(g.objectPointedAt ~= nil) then
+                love.graphics.print("Object pointed at = " .. g.objectPointedAt, 0, 0, 0, 0.3, 0.3)
+            else
+                love.graphics.print("Object pointed at = nothing", 0, 0, 0, 0.3, 0.3)
+            end
+        end
+        cursorOverObject = false
+        local mouseX, mouseY = love.mouse.getPosition()
+        g.objectPointedAt = nil
+        for k,v in ipairs(g.curLocation.objects) do
+            if(debug) then
+                love.graphics.rectangle("line", v.x, v.y, v.w, v.h) -- draw red rectangles over clickable objects
+            end
+            if(g.doesCursorPointToObject(mouseX/g.scale.x, mouseY/g.scale.y, v)) then
+                cursorOverObject = true
+                g.objectPointedAt = v
+            end
+        end
+        love.graphics.setColor(g.colors.lightest_green.r, g.colors.lightest_green.g, g.colors.lightest_green.b, 1)
+      
+    elseif(g.state == "ending") then
+    end
+
+    
+
+    -- Draw the mouse cursor
+    local mouseX, mouseY = love.mouse.getPosition()
+    love.graphics.setColor(g.colors.lightest_green.r, g.colors.lightest_green.g, g.colors.lightest_green.b, 1)
+    if(cursorOverObject) then
+        love.graphics.draw(loadImages.cursorHand, mouseX / g.scale.x - 4, mouseY / g.scale.y)
+    else
+        love.graphics.draw(loadImages.cursor, mouseX / g.scale.x, mouseY / g.scale.y)
+    end
+    
+    
 end
 
 return drawManager
