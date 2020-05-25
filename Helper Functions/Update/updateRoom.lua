@@ -2,25 +2,32 @@ local updateRoom = {}
 
     local g = GLOBALS
 
-    function updateRoom.update()
-        if(g.curLocation ~= nil) then
-            if(g.curLocation.name == "Bedroom") then
-                if(g.curLocation.state == "Dark") then
-                    if(g.objectPointedAt ~= nil) then
-                        if(g.objectPointedAt.name ~= "Light Switch") then
-                            g.writeToTextDisplay({"It's too dark to see!"})
-                        else
-                            g.writeToTextDisplay({"You turn the light switch on."})
-                            g.curLocation.state = "Light"
-                        end
-                    end
-                else
-                    if(g.objectPointedAt ~= nil) then
-                        g.writeToTextDisplay(g.objectPointedAt.text)
-                    end
-                end
+    function updateRoom.transition(roomName)
+        for k,v in pairs(loadRooms) do
+            if(v.name == roomName) then
+                g.curLocation = v
+                break
             end
         end
+        g.textBuffer = {}
     end
+    
+    function updateRoom.update()
+        if(g.cursorOverMap ~= nil) then
+
+            if(g.cursorOverMap == "North") then
+                updateRoom.transition(g.curLocation.exits.north)
+            elseif(g.cursorOverMap == "West") then
+                updateRoom.transition(g.curLocation.exits.west)
+            elseif(g.cursorOverMap == "South") then
+                updateRoom.transition(g.curLocation.exits.south)
+            elseif(g.cursorOverMap == "East") then
+                updateRoom.transition(g.curLocation.exits.east)
+            end
+            
+        end
+    end
+    
+    
 
 return updateRoom

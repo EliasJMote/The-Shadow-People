@@ -2,12 +2,17 @@ function love.load()
   
     -- Global space
     GLOBALS = {}
-  
+    local g = GLOBALS
+
     -- External functions
     createGame = require("Helper Functions/Create/createGame")
     updateGame = require("Helper Functions/Update/updateGame")
     updateMousePress = require("Helper Functions/Update/updateMousePress")
     drawManager = require("Helper Functions/Draw/drawManager")
+    drawTitleScreen = require("Helper Functions/Draw/drawTitleScreen")
+    drawInstructionsScreen = require("Helper Functions/Draw/drawInstructionsScreen")
+    drawUserInterface = require("Helper Functions/Draw/drawUserInterface")
+    drawGame = require("Helper Functions/Draw/drawGame")
     
     -- Set the scaler to use the nearest neighbor filter
     love.graphics.setDefaultFilter("nearest", "nearest", 0)
@@ -18,11 +23,13 @@ function love.load()
     -- Load helper functions
     loadImages = require("Helper Functions/Load/loadImages")
     loadHelperFunctions = require("Helper Functions/Load/loadHelperFunctions")
+    loadRooms = require("Helper Functions/Load/loadRooms")
     --loadGameText = require("loadGameText")
     --loadLocations = require("loadLocations")
     --loadItems = require("loadItems")
     
     -- Update helper functions
+    updateRoomObjects = require("Helper Functions/Update/updateRoomObjects")
     updateRoom = require("Helper Functions/Update/updateRoom")
     
     font = love.graphics.newFont("Font/prstart.ttf")
@@ -30,9 +37,10 @@ function love.load()
     
     love.mouse.setVisible(false)
     
+    g.mouse = {}
+    g.mouse.x, g.mouse.y = love.mouse.getPosition()
+    
     createGame.create()
-
-    local g = GLOBALS
 end
 
 function love.update(dt)

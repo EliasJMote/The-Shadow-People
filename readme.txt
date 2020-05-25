@@ -1,5 +1,5 @@
 ﻿The Shadow People
-Version 0.1.1
+Version 0.2.0
 
 Copyright © 2020 Elias Mote
 Copyright © 2020 Roc Studios
@@ -21,7 +21,16 @@ strictly prohibited, and a violation of copyright.
 II. Version History
 
 ------------------------
-V0.1.1 - Current Version
+V0.2.0 - Current Version
+------------------------
+-- Added map navigation
+-- Added items
+-- Added dialogue
+-- Added actions
+-- Added rooms
+
+------------------------
+V0.1.1
 ------------------------
 -- Mouse cursor changes when hovering over objects
 -- Objects are selectable

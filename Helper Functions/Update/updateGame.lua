@@ -13,7 +13,9 @@ local updateGame = {}
       --g.timer = 0
     --end
     
-    
+    g.mouse.x, g.mouse.y = love.mouse.getPosition()
+    g.mouse.x = g.mouse.x / g.scale.x
+    g.mouse.y = g.mouse.y / g.scale.y
     
   end
 
