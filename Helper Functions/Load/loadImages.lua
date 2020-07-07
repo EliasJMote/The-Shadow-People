@@ -20,7 +20,8 @@ loadImages.gasStationBathroom = love.graphics.newImage("Images/Backgrounds/Gas S
 loadImages.gasStationOutside = love.graphics.newImage("Images/Backgrounds/Gas Station Outside.png")
 loadImages.kitchen = love.graphics.newImage("Images/Backgrounds/Kitchen.png")
 loadImages.livingRoom = love.graphics.newImage("Images/Backgrounds/Living Room.png")
-loadImages.patio = love.graphics.newImage("Images/Backgrounds/Patio.png")
+loadImages.patioLight = love.graphics.newImage("Images/Backgrounds/Patio (Light).png")
+loadImages.patioDark = love.graphics.newImage("Images/Backgrounds/Patio (Dark).png")
 loadImages.shed = love.graphics.newImage("Images/Backgrounds/Shed.png")
 
 -- Game background objects

@@ -1,5 +1,5 @@
 ﻿The Shadow People
-Version 0.2.0
+Version 0.2.1
 
 Copyright © 2020 Elias Mote
 Copyright © 2020 Roc Studios
@@ -21,7 +21,16 @@ strictly prohibited, and a violation of copyright.
 II. Version History
 
 ------------------------
-V0.2.0 - Current Version
+V0.2.1 - Current Version
+------------------------
+-- Added music for the main house (from Taylor)
+-- Added room transitions
+-- Highlighting action text
+-- Changed some in-game text
+-- Updated some object, map and background images
+
+------------------------
+V0.2.0
 ------------------------
 -- Added map navigation
 -- Added items
@@ -50,7 +59,7 @@ III. Story
 
 
 IV. Controls
-- Use the mouse
+- Use the mouse to click on objects, the map or action text
 
 V. Contact
 Contact me with questions or comments at rulerofchaosstudios@gmail.com
@@ -62,10 +71,15 @@ Game jolt page: gamejolt.com/@Roc_Studios
 
 
 VI. Credits
+
+Contributors:
 Created by: Elias Mote
 Tested by: Alfred Netz
+Music written by: Taylor Fielder
+
+Software:
 Engine: Love2d
 Programming language: Lua
-Music: Famitracker
+Music: 
 Sound effects:
 Font: "Press Start" font by codeman38 http://www.zone38.net/

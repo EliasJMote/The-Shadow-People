@@ -14,7 +14,11 @@ local updateRoom = {}
     
     function updateRoom.update()
         if(g.cursorOverMap ~= nil) then
-
+            
+            -- Start the screen transition
+            createEvent.create(createEvent.create{name="Start Screen Transition", x=3, y=3, w=94, h=77})
+            
+            
             if(g.cursorOverMap == "North") then
                 updateRoom.transition(g.curLocation.exits.north)
             elseif(g.cursorOverMap == "West") then

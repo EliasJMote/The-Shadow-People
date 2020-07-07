@@ -62,7 +62,7 @@ local drawGame = {}
         g.cursorOverMap = nil
 
         -- If the cursor is hovering over the map
-        --if(g.mouse.x >= 7 and g.mouse.x <= 42 and g.mouse.y >= 101 and g.mouse.y <= 136) then
+        if(g.mouse.x >= 7 and g.mouse.x <= 42 and g.mouse.y >= 101 and g.mouse.y <= 137) then
             for k,v in pairs(g.curLocation.exits) do
                 if(k=="north") then
                     if(g.mouse.x >= 20 and g.mouse.x <= 20+11 and g.mouse.y >= 101 and g.mouse.y <= 101+9) then
@@ -82,7 +82,7 @@ local drawGame = {}
                     end
                 end
             end
-        --end
+        end
 
         love.graphics.setColor(g.colors.lightest_green.r, g.colors.lightest_green.g, g.colors.lightest_green.b, 1)
         

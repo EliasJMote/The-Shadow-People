@@ -4,23 +4,31 @@ local createGame = {}
 
         local g = GLOBALS
         
+        -- Initialize scale of the game
+        g.scale = {}
+        
+        -- Initialize game state
         g.state = "title"
         
-        -- Locations:
+        -- Initialize events table
+        g.events = {}
+        
+        -- Initialize current location
         g.curLocation = loadRooms.bedroom
         
+        -- Initialize items currently held
         g.items =   {}
                   
         g.displayText = true
         g.objectPointedAt = nil
         
-        g.scale = {}
-        
         -- current text onscreen
         g.curText = {}
         
-        -- timer for game actions
-        g.timer = 0
+        -- timers for game actions
+        g.timers = {}
+        g.timers.global = 0
+        g.timers.screenTransition = 0
         
         -- game boy studio palette
         g.colors = {
@@ -38,8 +46,14 @@ local createGame = {}
         -- Which action is selected
         g.actionSelected = nil
         
-        g.isPlayerTransitioningRooms = false
-        g.roomTransitionTimer = 0
+        g.screenTransition = {}
+        g.screenTransition.active = false
+        g.screenTransition.x = 0
+        g.screenTransition.y = 0
+        g.screenTransition.w = 160
+        g.screenTransition.h = 144
+        
+        g.textButtons = {}
     end
 
 return createGame

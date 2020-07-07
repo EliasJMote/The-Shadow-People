@@ -5,9 +5,15 @@ function love.load()
     local g = GLOBALS
 
     -- External functions
+    createEvent = require("Helper Functions/Create/createEvent")
     createGame = require("Helper Functions/Create/createGame")
+    
+    updateEvents = require("Helper Functions/Update/updateEvents")
     updateGame = require("Helper Functions/Update/updateGame")
     updateMousePress = require("Helper Functions/Update/updateMousePress")
+    updateTitleScreen = require("Helper Functions/Update/updateTitleScreen")
+    
+    drawScreenTransition = require("Helper Functions/Draw/drawScreenTransition")
     drawManager = require("Helper Functions/Draw/drawManager")
     drawTitleScreen = require("Helper Functions/Draw/drawTitleScreen")
     drawInstructionsScreen = require("Helper Functions/Draw/drawInstructionsScreen")
@@ -23,14 +29,18 @@ function love.load()
     -- Load helper functions
     loadImages = require("Helper Functions/Load/loadImages")
     loadHelperFunctions = require("Helper Functions/Load/loadHelperFunctions")
+    
+    loadSFX = require("Helper Functions/Load/loadSFX")
+    loadGameText = require("Helper Functions/Load/loadGameText")
     loadRooms = require("Helper Functions/Load/loadRooms")
-    --loadGameText = require("loadGameText")
     --loadLocations = require("loadLocations")
     --loadItems = require("loadItems")
+    loadMusic = require("Helper Functions/Load/loadMusic")
     
     -- Update helper functions
     updateRoomObjects = require("Helper Functions/Update/updateRoomObjects")
     updateRoom = require("Helper Functions/Update/updateRoom")
+    updatePlayerAction = require("Helper Functions/Update/updatePlayerAction")
     
     font = love.graphics.newFont("Font/prstart.ttf")
     love.graphics.setFont(font)

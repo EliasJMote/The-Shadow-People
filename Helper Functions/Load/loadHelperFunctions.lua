@@ -30,4 +30,24 @@ function g.doesCursorPointToObject(mouseX, mouseY,obj)
     end
 end
 
+function g.clickableText(text,event)
+    
+end
+
+function g.highlightText(x1,x2,y1,y2,text,textSize)
+    if(g.mouse.x >= x1 and g.mouse.x <= x2 and g.mouse.y >= y1 and g.mouse.y <= y2) then
+        love.graphics.setColor(g.colors.light_green.r, g.colors.light_green.g, g.colors.light_green.b, 1)
+    end
+    --else
+        --love.graphics.setColor(g.colors.dark_green.r, g.colors.dark_green.g, g.colors.dark_green.b, 1)
+    --end
+    love.graphics.print(text, x1, y1, 0, textSize or 0.5, textSize or 0.5)
+    love.graphics.setColor(g.colors.darkest_green.r, g.colors.darkest_green.g, g.colors.darkest_green.b, 1)
+end
+
+
+function g.createTextButton()
+    
+end
+
 return loadHelperFunctions
