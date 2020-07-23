@@ -1,5 +1,5 @@
 ﻿The Shadow People
-Version 0.2.1
+Version 0.3.0
 
 Copyright © 2020 Elias Mote
 Copyright © 2020 Roc Studios
@@ -82,7 +82,7 @@ VI. Credits
 
 Contributors:
 Created by: Elias Mote
-Tested by: Alfred Netz
+Tested by: Dred4170
 Music written by: Taylor Fielder
 
 Software:
