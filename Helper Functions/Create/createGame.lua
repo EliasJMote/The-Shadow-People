@@ -53,7 +53,16 @@ local createGame = {}
         g.screenTransition.w = 160
         g.screenTransition.h = 144
         
-        g.textButtons = {}
+        g.actionButtons =   {
+                                close={},
+                                look={},
+                                open={},
+                                push={},
+                                put={},
+                                take={},
+                                talk={},
+                                use={},
+                            }
     end
 
 return createGame

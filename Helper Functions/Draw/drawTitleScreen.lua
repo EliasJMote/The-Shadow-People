@@ -23,7 +23,7 @@ function drawTitleScreen.draw()
         end
         love.graphics.print("Start Game", 52, 96, 0, 0.5, 0.5)
         love.graphics.setColor(g.colors.lightest_green.r, g.colors.lightest_green.g, g.colors.lightest_green.b, 1)
-        love.graphics.print(gameVersion, 112, 130, 0, 0.5, 0.5)
+        love.graphics.print("V" .. gameVersion, 112, 130, 0, 0.5, 0.5)
     end
 end
 

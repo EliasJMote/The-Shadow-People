@@ -37,6 +37,13 @@ end
 function g.highlightText(x1,x2,y1,y2,text,textSize)
     if(g.mouse.x >= x1 and g.mouse.x <= x2 and g.mouse.y >= y1 and g.mouse.y <= y2) then
         love.graphics.setColor(g.colors.light_green.r, g.colors.light_green.g, g.colors.light_green.b, 1)
+        
+        -- If we are highlighting an action, mark as such
+        if(text == "Put" or text == "Take" or text == "Open" or text == "Close" or text == "Use" or text == "Look"
+            or text == "Talk" or text == "Push") then
+                g.cursorOverAction = true
+                g.actionPointedAt = text
+        end
     end
     --else
         --love.graphics.setColor(g.colors.dark_green.r, g.colors.dark_green.g, g.colors.dark_green.b, 1)

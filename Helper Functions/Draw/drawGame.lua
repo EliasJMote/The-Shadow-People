@@ -58,6 +58,7 @@ local drawGame = {}
                 g.objectPointedAt = v
             end
         end
+            
         
         g.cursorOverMap = nil
 

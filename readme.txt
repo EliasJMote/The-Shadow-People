@@ -21,7 +21,15 @@ strictly prohibited, and a violation of copyright.
 II. Version History
 
 ------------------------
-V0.2.1 - Current Version
+V0.3.0 - Current Version
+------------------------
+-- Changed UI: added text description for each area
+-- Added in boilerplate locations that can be traveled to be the player
+-- Added highway image
+-- Added church image
+
+------------------------
+V0.2.1
 ------------------------
 -- Added music for the main house (from Taylor)
 -- Added room transitions

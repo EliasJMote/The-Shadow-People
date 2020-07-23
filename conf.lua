@@ -1,6 +1,6 @@
 function love.conf(t)
     debug = false
-    gameVersion = "0.2.1"
+    gameVersion = "0.3.0"
     local scale = 5
     t.title = "The Shadow People V" .. gameVersion
     t.version = "11.1"
