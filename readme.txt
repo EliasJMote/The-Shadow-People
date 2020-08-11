@@ -1,5 +1,5 @@
 ﻿The Shadow People
-Version 0.3.0
+Version 0.4.0
 
 Copyright © 2020 Elias Mote
 Copyright © 2020 Roc Studios
@@ -21,7 +21,18 @@ strictly prohibited, and a violation of copyright.
 II. Version History
 
 ------------------------
-V0.3.0 - Current Version
+V0.4.0 - Current Version
+------------------------
+-- Code refactoring
+-- Move action is selectable; objects in the environment can be selected to move through.
+-- Actions are now required for interacting with the background
+-- Clicking no longer deselects a selected action
+-- Actions can be deselected
+-- Fixed a bug where bedroom objects were selectable on the title screen, changing the mouse to a hand cursor
+-- Decoupled some update code from draw functions
+
+------------------------
+V0.3.0
 ------------------------
 -- Changed UI: added text description for each area
 -- Added in boilerplate locations that can be traveled to be the player
@@ -72,8 +83,6 @@ IV. Controls
 V. Contact
 Contact me with questions or comments at rulerofchaosstudios@gmail.com
 Twitter: twitter.com/Roc_Studios
-Twitch:
-Facebook page:
 Itch.io page: rocstudios.itch.io
 Game jolt page: gamejolt.com/@Roc_Studios
 

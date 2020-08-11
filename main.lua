@@ -12,6 +12,7 @@ function love.load()
     updateGame = require("Helper Functions/Update/updateGame")
     updateMousePress = require("Helper Functions/Update/updateMousePress")
     updateTitleScreen = require("Helper Functions/Update/updateTitleScreen")
+    updateRoomLocks = require("Helper Functions/Update/updateRoomLocks")
     
     drawScreenTransition = require("Helper Functions/Draw/drawScreenTransition")
     drawManager = require("Helper Functions/Draw/drawManager")
@@ -28,14 +29,13 @@ function love.load()
     
     -- Load helper functions
     loadImages = require("Helper Functions/Load/loadImages")
-    loadHelperFunctions = require("Helper Functions/Load/loadHelperFunctions")
-    
-    loadSFX = require("Helper Functions/Load/loadSFX")
     loadGameText = require("Helper Functions/Load/loadGameText")
+    loadObjects = require("Helper Functions/Load/loadObjects")
+    loadHelperFunctions = require("Helper Functions/Load/loadHelperFunctions")
+    loadSFX = require("Helper Functions/Load/loadSFX")
     loadRooms = require("Helper Functions/Load/loadRooms")
-    --loadLocations = require("loadLocations")
-    --loadItems = require("loadItems")
     loadMusic = require("Helper Functions/Load/loadMusic")
+    
     
     -- Update helper functions
     updateRoomObjects = require("Helper Functions/Update/updateRoomObjects")
@@ -60,10 +60,6 @@ end
 function love.draw()
     drawManager.draw()
 end
-
---function love.keypressed(key, scancode, isrepeat)
-  --updateKeyPress.update(key, scancode, isrepeat)
---end
 
 function love.mousepressed(x, y, button, istouch, presses)
     updateMousePress.update(x,y,button)

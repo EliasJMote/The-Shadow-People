@@ -12,28 +12,37 @@ updateEvents.update = function()
         
         if(event.name == "Left Click") then
         
+            -- On the title screen
             if(event.state == "title") then
+                -- Skip the opening credits
                 if(g.timers.global < 90) then
                     g.timers.global = 90
                 end
-                if(g.timers.global >= 175
-                    and event.mouse.x >= 50 and event.mouse.x <= 109
-                    and event.mouse.y >= 96 and event.mouse.y <= 102) then
+                
+                -- Start the game
+                if(g.timers.global >= 175 and g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.titleScreen.startGame)) then
                     g.state = "instructions"
                 end
                 
-            elseif(event.state == "instructions"
-                and event.mouse.x >= 52 and event.mouse.x <= (52+59)
-                and event.mouse.y >= 128 and event.mouse.y <= (128+6)) then
-                g.writeToTextDisplay(loadGameText.opening)
-                g.state = "game"
-                loadMusic.house:play()
+            -- On the instructions screen
+            elseif(event.state == "instructions") then
+                if(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.instructionsScreen.startGame)) then
+                    if(g.curLocation == loadRooms.bedroom) then
+                        g.writeToTextDisplay(loadGameText.opening)
+                    else
+                        g.showMessageBox = false
+                    end
+                    g.state = "game"
+                    loadMusic.house:play()
+                end
             
-            -- if we are in the game
+            -- If we are in the game
             elseif(event.state == "game") then
 
-                -- first, advance the text box until no text is left in the buffer
-                if(g.showTextBox) then
+                g.movementDirection = nil
+
+                -- First, advance the text box until no text is left in the buffer
+                if(g.showMessageBox) then
                     -- If there are more than 4 lines of text currently in the buffer
                     if(#g.textBuffer > 4) then
                         -- Clear those 4 lines from the buffer
@@ -41,13 +50,18 @@ updateEvents.update = function()
                             table.remove(g.textBuffer,1)
                         end
                     else
-                        g.showTextBox = false
+                        -- The message box goes away once the text is done
+                        g.showMessageBox = false
                         g.textBuffer = {}
-                        -- afterwards, the player can check the room
-                        updateRoomObjects.update()
                     end
                 else
-                    -- afterwards, the player can check the room
+                    
+                    -- If we have clicked on the map in a legal direction, set the direction to move
+                    if(g.mouse.mapHover ~= nil) then
+                        g.movementDirection = g.mouse.mapHover
+                    end
+                    
+                    -- If the message box is closed, the player can check the room
                     updateRoomObjects.update()
                     
                     -- check if the player is selecting an action
@@ -73,9 +87,93 @@ updateEvents.update = function()
             g.screenTransition.active = false
             g.timers.screenTransition = 0
             
-        -- Text that can be clicked
-        elseif(event.name == "Mouseover") then
-            event.mouseover()
+        -- Check the current position of the mouse
+        elseif(event.name == "Check Mouse Position") then
+            g.mouse.textHover = false
+            if(g.state == "title") then
+                if(g.timers.global >= 175) then
+                    for k,v in pairs(g.textBoxes.titleScreen) do
+                        if(g.mouseCollision(g.mouse.x,g.mouse.y,v)) then
+                            g.mouse.textHover = true
+                        end
+                    end
+                end
+            
+            elseif(g.state == "instructions") then
+                for k,v in pairs(g.textBoxes.instructionsScreen) do
+                    if(g.mouseCollision(g.mouse.x,g.mouse.y,v)) then
+                        g.mouse.textHover = true
+                    end
+                end
+            
+            elseif(g.state == "game") then
+                g.mouse.objectHover = false
+                g.mouse.objectPointedAt = nil
+                
+                -- Check if the cursor is over an object
+                for k,v in ipairs(g.curLocation.objects) do
+                    
+                    if(g.mouseCollision(g.mouse.x, g.mouse.y, v)) then
+                        g.mouse.objectHover = true
+                        g.mouse.objectPointedAt = v
+                    end
+                end
+                
+                g.mouse.mapHover = nil
+
+                -- Check if the cursor is over the map
+                if(g.mouse.x >= 7 and g.mouse.x <= 42 and g.mouse.y >= 101 and g.mouse.y <= 137) then
+                    for k,v in pairs(g.curLocation.exits) do
+                        if(k=="north") then
+                            if(g.mouse.x >= 20 and g.mouse.x <= 20+11 and g.mouse.y >= 101 and g.mouse.y <= 101+9) then
+                                g.mouse.mapHover = "North"
+                            end
+                        elseif(k=="south") then
+                            if(g.mouse.x >= 20 and g.mouse.x <= 20+11 and g.mouse.y >= 128 and g.mouse.y <= 128+9) then
+                                g.mouse.mapHover = "South"
+                            end
+                        elseif(k=="west") then
+                            if(g.mouse.x >= 7 and g.mouse.x <= 7+11 and g.mouse.y >= 114 and g.mouse.y <= 114+9) then
+                                g.mouse.mapHover = "West"
+                            end
+                        elseif(k=="east") then
+                            if(g.mouse.x >= 31 and g.mouse.x <= 31+11 and g.mouse.y >= 114 and g.mouse.y <= 114+9) then
+                                g.mouse.mapHover = "East"
+                            end
+                        end
+                    end
+                end
+                
+                g.cursorOverAction = nil
+                g.actionPointedAt = nil
+                
+                -- If the text box is closed
+                if not(g.showMessageBox) then
+                
+                    g.mouse.actionHover = false
+                    g.mouse.actionText = nil
+                
+                    -- Check if the cursor is over an action
+                    for k,v in ipairs(g.actionButtons) do
+                        if(g.mouseCollision(g.mouse.x, g.mouse.y, v)) then
+                            g.mouse.actionHover = true
+                            g.mouse.actionText = v.text
+                        end
+                    end
+                end
+                
+                g.mouse.itemMenuHover = false
+                g.mouse.itemMenuHoverItem = nil
+                
+                for k,v in ipairs(g.items) do
+                    v.x = 105
+                    v.y = 22 + 13 * (k-1)
+                    if(g.mouseCollision(g.mouse.x, g.mouse.y, v)) then
+                        g.mouse.itemMenuHover = true
+                        g.mouse.itemMenuHoverItem = v
+                    end
+                end
+            end
         end
         
         -- First in, first out

@@ -31,9 +31,13 @@ loadImages.shed = love.graphics.newImage("Images/Backgrounds/Shed.png")
 loadImages.street = love.graphics.newImage("Images/Backgrounds/Street.png")
 
 -- Game background objects
+loadImages.bedroomDoorClosed = love.graphics.newImage("Images/Objects/Bedroom/Bedroom Door Closed.png")
+loadImages.bedroomDoorOpen = love.graphics.newImage("Images/Objects/Bedroom/Bedroom Door Open.png")
 loadImages.carKey = love.graphics.newImage("Images/Objects/Living Room/Car Key.png")
+loadImages.churchDoorOutsideClosed = love.graphics.newImage("Images/Objects/Church Outside/Church Outside Door Closed.png")
+loadImages.churchDoorOutsideOpen = love.graphics.newImage("Images/Objects/Church Outside/Church Outside Door Open.png")
 loadImages.flashlight = love.graphics.newImage("Images/Objects/Patio/Flashlight.png")
-loadImages.knife = love.graphics.newImage("Images/Objects/Kitchen/Knife.png")
+--loadImages.knife = love.graphics.newImage("Images/Objects/Kitchen/Knife.png")
 
 -- Map objects
 loadImages.bedroomMap = love.graphics.newImage("Images/Maps/Bedroom Map.png")
@@ -58,6 +62,8 @@ loadImages.townHub2Map = love.graphics.newImage("Images/Maps/Town Hub 2 Map.png"
 loadImages.townHub3Map = love.graphics.newImage("Images/Maps/Town Hub 3 Map.png")
 loadImages.townHub4Map = love.graphics.newImage("Images/Maps/Town Hub 4 Map.png")
 loadImages.townHub5Map = love.graphics.newImage("Images/Maps/Town Hub 5 Map.png")
+loadImages.townHub6Map = love.graphics.newImage("Images/Maps/Town Hub 6 Map.png")
+loadImages.townHub7Map = love.graphics.newImage("Images/Maps/Town Hub 7 Map.png")
 loadImages.kitchenMap = love.graphics.newImage("Images/Maps/Kitchen Map.png")
 loadImages.livingRoomMap = love.graphics.newImage("Images/Maps/Living Room Map.png")
 loadImages.patioMap = love.graphics.newImage("Images/Maps/Patio Map.png")

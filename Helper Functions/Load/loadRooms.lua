@@ -5,7 +5,7 @@ loadRooms.bedroom = {
                         name="Bedroom",
                         state="Dark",
                         objects={
-                                    {name="Door",x=60,y=17,w=24,h=36,text=loadGameText.bedroom.door},
+                                    loadObjects.bedroomDoor,
                                     {name="Light Switch",x=52,y=30,w=4,h=6,text=loadGameText.bedroom.lightSwitch,visibleInDark=true,lightSwitch=true},
                                     {name="Mirror",x=19,y=30,w=6,h=9,text=loadGameText.bedroom.mirror},
                                     {name="Mountain Picture",x=28,y=30,w=7,h=9,text=loadGameText.bedroom.mountainPicture},
@@ -61,7 +61,7 @@ loadRooms.car4 =    {
                     }
         
 -- Church (main room)
-loadRooms.churchInside =   {
+loadRooms.churchInside =    {
                                 name="Church Inside",
                                 state="Dark",
                                 map=loadImages.churchOutsideMap,
@@ -73,10 +73,15 @@ loadRooms.churchInside =   {
 -- Church (outside)
 loadRooms.churchOutside =   {
                                 name="Church Outside",
-                                state="Dark",
+                                state="Light",
+                                objects={
+                                            loadObjects.churchOutsideDoor,
+                                            {name="Bell Tower",x=50,y=21,w=12,h=16,text={look={"It looks to be a small bell","tower. It appears to have been", "out of service for a time."}}},
+                                            {name="Icon",x=52,y=3,w=8,h=8,text={look={"A small metal cross with upward", "curving arms circumscribed by a", "heavy iron ring sits atop the", "church. It appears to be some","kind of religious icon. It", "seems familiar, but you're", "aren't sure where you've seen", "it. Perhaps, in a dream...?"}}},
+                                            {name="Stained Glass Window",x=14,y=32,w=19,h=24,text={look={"A stained glass window."}}},
+                                        },
                                 map=loadImages.churchOutsideMap,
-                                backgrounds={dark=loadImages.churchOutside},
-                                objects={},
+                                backgrounds={light=loadImages.churchOutside},
                                 exits={north="Church Inside", south="Town Hub 4"},
                             }
 
@@ -91,10 +96,10 @@ loadRooms.classroom =   {
                         }
                         
 -- Clock Tower
-loadRooms.clockTower =    {
+loadRooms.clockTower =  {
                             name="Clock Tower",
                             state="Dark",
-                            map=loadImages.highwayMapEnd,
+                            map=loadImages.highwayNorthEndMap,
                             backgrounds={dark=loadImages.livingRoom},
                             objects={},
                             exits={south="Town Hub 1"},
@@ -103,9 +108,9 @@ loadRooms.clockTower =    {
 -- Gas Station Inside
 loadRooms.gasStationBathroom =  {
                                     name="Gas Station Bathroom",
-                                    state="Light",
+                                    state="Dark",
                                     map=loadImages.gasStationBathroomMap,
-                                    backgrounds={light=loadImages.gasStationBathroom},
+                                    backgrounds={dark=loadImages.gasStationBathroom},
                                     objects={},
                                     exits={south="Gas Station Outside"},
                                 }
@@ -116,9 +121,21 @@ loadRooms.gasStationOutside =   {
                                     state="Light",
                                     map=loadImages.gasStationOutsideMap,
                                     backgrounds={light=loadImages.gasStationOutside},
-                                    objects={},
-                                    exits={south="Car 4",north="Gas Station Bathroom"},
+                                    objects={
+                                                {name="Door",x=75,y=57,w=7,h=7,text={look={"It's a double glass door. It's", "dark on the inside."},open={"The door is locked."}}},
+                                            },
+                                    exits={south="Car 4",east="Gas Station Bathroom"},
                                 }
+
+-- General Store Outside
+loadRooms.generalStore =    {
+                                name="General Store",
+                                state="Light",
+                                map=loadImages.highwayNorthEndMap,
+                                backgrounds={light=loadImages.gasStationOutside},
+                                objects={},
+                                exits={south="Town Hub 2"},
+                            }
 
 -- Highway 1
 loadRooms.highway1 =    {
@@ -189,7 +206,7 @@ loadRooms.livingRoom =  {
                             map=loadImages.livingRoomMap,
                             backgrounds={light=loadImages.livingRoom},
                             objects={
-                                        {name="Car Key",x=60,y=17,w=13,h=5,text={"You take the car key."},img=loadImages.carKey,item="Car Key"}
+                                        loadObjects.carKey,
                                     },
                             exits={north="Car", west="Kitchen", south="Bedroom"},
                             introText={"You enter the living room."}
@@ -205,17 +222,49 @@ loadRooms.mirrorRoom =  {
                             exits={south="Church Inside"},
                         }
 
+-- Park
+loadRooms.park =    {
+                        name="Park",
+                        state="Dark",
+                        map=loadImages.highwayNorthEndMap,
+                        backgrounds={dark=loadImages.gasStationOutside},
+                        objects={},
+                        exits={south="Town Hub 3"},
+                    }
+
 -- House patio
 loadRooms.patio =   {
                         name="Patio",
                         state="Light",
                         objects={
-                                    {name="Flashlight",x=60,y=45,w=13,h=5,text={"You take the flashlight."},img=loadImages.flashlight,item="Flashlight"}
+                                    --loadObjects.flashlight,
+                                    {name="Forest",x=2,y=12,w=96,h=38,text={look={"It's a dead forest."}}},
+                                    {name="Sun",x=84,y=6,w=5,h=5,text={look={"It's the sun. Don't stare", "directly at it!"},take={"It's too hot to handle!"}}},
                                 },
                         backgrounds={light=loadImages.patioLight},
                         map=loadImages.patioMap,
                         exits={east="Kitchen"},
                     }
+
+-- Park
+loadRooms.park =    {
+                        name="Park",
+                        state="Dark",
+                        map=loadImages.highwayNorthEndMap,
+                        backgrounds={dark=loadImages.gasStationOutside},
+                        objects={},
+                        exits={south="Town Hub 3"},
+                    }
+                    
+-- Railroad station
+loadRooms.railroadStation =     {
+                                    name="Railroad Station",
+                                    state="Dark",
+                                    map=loadImages.highwayNorthEndMap,
+                                    backgrounds={dark=loadImages.gasStationOutside},
+                                    objects={},
+                                    exits={south="Town Hub 5"},
+                                }
 
 -- Shed
 loadRooms.sewer1 =  {  
@@ -227,6 +276,16 @@ loadRooms.sewer1 =  {
                         exits={north="Sewer 2"},
                     }
                     
+-- Shadow Lands
+loadRooms.shadowLands1 =    {  
+                                name="Shadow Lands 1",
+                                state="Dark",
+                                backgrounds={dark=loadImages.livingRoom},
+                                map=loadImages.sewer1Map,
+                                objects={},
+                                exits={north="Shadow Lands 1"},
+                            }
+                    
 -- Town Hub 1
 loadRooms.townHub1 =    {  
                             name="Town Hub 1",
@@ -234,7 +293,7 @@ loadRooms.townHub1 =    {
                             backgrounds={dark=loadImages.street},
                             map=loadImages.townHub1Map,
                             objects={},
-                            exits={east="Town Hub 2", --[[north="Clock Tower"]]},
+                            exits={east="Town Hub 2", north="Clock Tower"},
                         }
 
 -- Town Hub 2
@@ -244,19 +303,18 @@ loadRooms.townHub2 =    {
                             backgrounds={dark=loadImages.street},
                             map=loadImages.townHub2Map,
                             objects={},
-                            exits={west="Town Hub 1", east="Town Hub 3", --[[north="General Store"]]},
+                            exits={west="Town Hub 1", east="Town Hub 3", north="General Store"},
                         }
                         
 -- Town Hub 3
-loadRooms.townHub3 =    {  
+loadRooms.townHub3 =    {
                             name="Town Hub 3",
                             state="Dark",
                             backgrounds={dark=loadImages.street},
                             map=loadImages.townHub3Map,
                             objects={},
-                            exits={west="Town Hub 2", east="Town Hub 4", --[[north="Park"]]},
+                            exits={west="Town Hub 2", east="Town Hub 4", north="Park"},
                         }
-    
 
 -- Town Hub 4
 loadRooms.townHub4 =    {  
@@ -275,7 +333,25 @@ loadRooms.townHub5 =    {
                             backgrounds={dark=loadImages.street},
                             map=loadImages.townHub5Map,
                             objects={},
-                            exits={west="Town Hub 4", --[[north="Railroad Station"]]},
+                            exits={west="Town Hub 4", east="Town Hub 6", north="Railroad Station"},
+                        }
+                        
+loadRooms.townHub6 =    {  
+                            name="Town Hub 6",
+                            state="Dark",
+                            backgrounds={dark=loadImages.street},
+                            map=loadImages.townHub6Map,
+                            objects={},
+                            exits={west="Town Hub 5", east="Town Hub 7"},
+                        }
+                        
+loadRooms.townHub7 =    {  
+                            name="Town Hub 7",
+                            state="Dark",
+                            backgrounds={dark=loadImages.street},
+                            map=loadImages.townHub7Map,
+                            objects={},
+                            exits={west="Town Hub 6"},
                         }
 
 return loadRooms

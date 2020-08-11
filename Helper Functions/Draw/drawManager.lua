@@ -25,8 +25,8 @@ function drawManager.draw()
     end
 
     -- Draw the mouse cursor
-    love.graphics.setColor(g.colors.lightest_green.r, g.colors.lightest_green.g, g.colors.lightest_green.b, 1)
-    if(g.cursorOverObject or g.cursorOverMap or g.cursorOverAction) then
+    love.graphics.setColor(g.colors.lightestGreen.r, g.colors.lightestGreen.g, g.colors.lightestGreen.b, 1)
+    if(g.mouse.objectHover or g.mouse.mapHover or g.mouse.actionHover or g.mouse.textHover or g.mouse.itemMenuHover) then
         love.graphics.draw(loadImages.cursorHand, g.mouse.x - 4, g.mouse.y)
     else
         love.graphics.draw(loadImages.cursor, g.mouse.x, g.mouse.y)

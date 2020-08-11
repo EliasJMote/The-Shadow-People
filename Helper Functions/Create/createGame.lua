@@ -14,10 +14,11 @@ local createGame = {}
         g.events = {}
         
         -- Initialize current location
-        g.curLocation = loadRooms.bedroom
+        g.curLocation = loadRooms.gasStationOutside
+        --g.curLocation = loadRooms.bedroom
         
         -- Initialize items currently held
-        g.items =   {}
+        g.items = {}
                   
         g.displayText = true
         g.objectPointedAt = nil
@@ -32,37 +33,49 @@ local createGame = {}
         
         -- game boy studio palette
         g.colors = {
-            darkest_green = {r=7/255, g=24/255, b=33/255},
-            dark_green = {r=48/255, g=104/255, b=80/255},
-            light_green = {r=134/255, g=192/255, b=108/255},
-            lightest_green = {r=224/255, g=248/255, b=207/255},
+            darkestGreen = {r=7/255, g=24/255, b=33/255},
+            darkGreen = {r=48/255, g=104/255, b=80/255},
+            lightGreen = {r=134/255, g=192/255, b=108/255},
+            lightestGreen = {r=224/255, g=248/255, b=207/255},
         }
         
-        love.graphics.setColor(g.colors.darkest_green.r, g.colors.darkest_green.g, g.colors.darkest_green.b, 1)
+        love.graphics.setColor(g.colors.darkestGreen.r, g.colors.darkestGreen.g, g.colors.darkestGreen.b, 1)
         
-        -- Show the text box
-        g.showTextBox = true
+        -- Show the message box
+        g.showMessageBox = true
+        
+        -- Miscellaneous text boxes (start game, options, etc.)
+        g.textBoxes =   {
+                            instructionsScreen =    {
+                                                        startGame = {x=52,y=128,w=59,h=6,text="Start Game"},
+                                                    },
+                            titleScreen =   {
+                                                startGame = {x=52,y=96,w=59,h=6,text="Start Game"},
+                                            },
+                            
+                            
+                        }
         
         -- Which action is selected
-        g.actionSelected = nil
-        
-        g.screenTransition = {}
-        g.screenTransition.active = false
-        g.screenTransition.x = 0
-        g.screenTransition.y = 0
-        g.screenTransition.w = 160
-        g.screenTransition.h = 144
+        g.selectedAction = nil
+        g.screenTransition = {x=0,y=0,w=160,h=144,active=false}
         
         g.actionButtons =   {
-                                close={},
-                                look={},
-                                open={},
-                                push={},
-                                put={},
-                                take={},
-                                talk={},
-                                use={},
+                                {text="Close",x=54,y=103,w=23,h=4},
+                                {text="Look",x=120,y=103,w=18,h=4},
+                                {text="Move",x=15,y=90,w=18,h=4},
+                                {text="Open",x=120,y=90,w=18,h=4},
+                                {text="Push",x=87,y=116,w=18,h=4},
+                                {text="Put",x=54,y=90,w=13,h=4},
+                                {text="Take",x=87,y=90,w=18,h=4},
+                                {text="Talk",x=54,y=116,w=18,h=4},
+                                {text="Use",x=87,y=103,w=13,h=4},
                             }
+                            
+        g.mapTransitionIsLegal = false
+        g.movementDirection = nil
+        
+        g.textBuffer = {}
     end
 
 return createGame

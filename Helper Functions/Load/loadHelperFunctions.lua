@@ -6,7 +6,7 @@ local g = GLOBALS
 function g.writeToTextDisplay(text)
 
     -- Show the text box
-    g.showTextBox = true
+    g.showMessageBox = true
 
     -- Clear the current text
     g.textBuffer = {}
@@ -20,8 +20,7 @@ end
 
 function g.stateTransition(state1, state2)
 end
-
-function g.doesCursorPointToObject(mouseX, mouseY,obj)
+function g.mouseCollision(mouseX, mouseY,obj)
     if(mouseX >= obj.x and mouseX <= obj.x + obj.w
         and mouseY >= obj.y and mouseY <= obj.y + obj.h) then
         return true
@@ -30,31 +29,14 @@ function g.doesCursorPointToObject(mouseX, mouseY,obj)
     end
 end
 
-function g.clickableText(text,event)
-    
-end
-
-function g.highlightText(x1,x2,y1,y2,text,textSize)
-    if(g.mouse.x >= x1 and g.mouse.x <= x2 and g.mouse.y >= y1 and g.mouse.y <= y2) then
-        love.graphics.setColor(g.colors.light_green.r, g.colors.light_green.g, g.colors.light_green.b, 1)
-        
-        -- If we are highlighting an action, mark as such
-        if(text == "Put" or text == "Take" or text == "Open" or text == "Close" or text == "Use" or text == "Look"
-            or text == "Talk" or text == "Push") then
-                g.cursorOverAction = true
-                g.actionPointedAt = text
-        end
+function g.highlightText(textBox,textSize)
+    -- Highlight moused-over text or selected actions
+    if(g.mouseCollision(g.mouse.x, g.mouse.y,textBox) or g.selectedAction == textBox.text) then
+        love.graphics.setColor(g.colors.lightGreen.r, g.colors.lightGreen.g, g.colors.lightGreen.b, 1)
     end
-    --else
-        --love.graphics.setColor(g.colors.dark_green.r, g.colors.dark_green.g, g.colors.dark_green.b, 1)
-    --end
-    love.graphics.print(text, x1, y1, 0, textSize or 0.5, textSize or 0.5)
-    love.graphics.setColor(g.colors.darkest_green.r, g.colors.darkest_green.g, g.colors.darkest_green.b, 1)
-end
 
-
-function g.createTextButton()
-    
+    love.graphics.print(textBox.text, textBox.x, textBox.y, 0, textSize or 0.5, textSize or 0.5)
+    love.graphics.setColor(g.colors.darkestGreen.r, g.colors.darkestGreen.g, g.colors.darkestGreen.b, 1)
 end
 
 return loadHelperFunctions
