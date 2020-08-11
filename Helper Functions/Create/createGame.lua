@@ -14,8 +14,7 @@ local createGame = {}
         g.events = {}
         
         -- Initialize current location
-        g.curLocation = loadRooms.gasStationOutside
-        --g.curLocation = loadRooms.bedroom
+        g.curLocation = loadRooms.bedroom
         
         -- Initialize items currently held
         g.items = {}
