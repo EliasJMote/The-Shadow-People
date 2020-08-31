@@ -20,11 +20,11 @@ loadGameText.bedroom =  {
                                     },
                                         
                             lightSwitch = {look={"It's a light switch."},use={"You activated the light switch."}},
-                            mirror = {look={"You look in the mirror. You", "instantly regretted doing so.", "Your hair is messed up after", "tossing and turning so much", "last night."}},
+                            mirror = {look={"You look in the mirror. You", "instantly regretted doing so.", "Your hair is messed up after", "tossing and turning so much", "last night. Will you ever get a", "good night's sleep?"},talk={"You're not sure that's such a", "good idea..."},take={"You take the mirror."}},
                             mountainPicture = {look={"You examine the picture. It's","Mt. Fuji, you scaled it last", "year with some friends."}},
                             portraitPicture = {look={"You examine the portrait. It's", "a friend of yours, a tall man", "with light brown hair and a", "woodcutter axe slung over his", "shoulder."}},
-                            textBook = {look={"You open the book. It's a", "research book on the effects of", "insomnia on the human body. You", "read a passage from the book:", "Insomnia is a condition where", "the person cannot go to sleep,", "even when they want to. It", "affects millions of people each", "year for various reasons. Some", "side effects of sleep", "deprivation include dizziness,", "nausea, migraines and", "hallucinations."}},
-                            window = {look={"You look at the day sky. While", "the sun is shining, the light", "doesn't feel particularly warm."}},
+                            textBook = {look={"You open the book. It's a", "research book on the effects of", "insomnia on the human body. You", "read a passage from the book:", "Insomnia is a condition where", "the person cannot go to sleep,", "even when they want to. It", "affects millions of people each", "year for various reasons. Some", "side effects of sleep", "deprivation include dizziness,", "nausea, migraines and", "hallucinations."},take={"You don't need that textbook", "today."}},
+                            window = {look={"You look at the day sky. While", "the sun is shining, the light", "doesn't feel particularly warm."},talk={"You try talking to the window,", "but your words simply pass from", "one side to the other."}},
                         }
                         
 loadGameText.churchOutside =    {

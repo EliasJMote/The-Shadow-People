@@ -48,11 +48,13 @@ local createGame = {}
                             instructionsScreen =    {
                                                         startGame = {x=52,y=128,w=59,h=6,text="Start Game"},
                                                     },
+                            titleCreditsScreen =    {
+                                                        titleScreen = {x=20,y=128,w=30,h=6,text="Back"}
+                                                    },
                             titleScreen =   {
                                                 startGame = {x=52,y=96,w=59,h=6,text="Start Game"},
+                                                credits = {x=52,y=110,w=59,h=6,text="Credits"},
                                             },
-                            
-                            
                         }
         
         -- Which action is selected

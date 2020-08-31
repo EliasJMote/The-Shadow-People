@@ -20,21 +20,45 @@ updateEvents.update = function()
                 end
                 
                 -- Start the game
-                if(g.timers.global >= 175 and g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.titleScreen.startGame)) then
-                    g.state = "instructions"
+                if(g.timers.global >= 175) then
+                    if(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.titleScreen.startGame)) then
+                        g.state = "instructions"
+                        createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144})
+                    elseif(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.titleScreen.credits)) then
+                        g.state = "title credits"
+                        createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144})
+                    end
+                end
+                
+            elseif(event.state == "title credits") then
+                if(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.titleCreditsScreen.titleScreen)) then
+                    g.state = "title"
+                    createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144})
                 end
                 
             -- On the instructions screen
             elseif(event.state == "instructions") then
                 if(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.instructionsScreen.startGame)) then
+                    createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="Play Music", music=loadMusic.house}})
                     if(g.curLocation == loadRooms.bedroom) then
                         g.writeToTextDisplay(loadGameText.opening)
                     else
                         g.showMessageBox = false
                     end
                     g.state = "game"
-                    loadMusic.house:play()
                 end
+            
+            elseif(event.state == "car transition 1") then
+                createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="game"}})
+                g.curLocation = loadRooms.car2
+                
+            elseif(event.state == "car transition 2") then
+                createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="game"}})
+                g.curLocation = loadRooms.car3
+                
+            elseif(event.state == "car transition 3") then
+                createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="game"}})
+                g.curLocation = loadRooms.car4
             
             -- If we are in the game
             elseif(event.state == "game") then
@@ -81,11 +105,23 @@ updateEvents.update = function()
             g.screenTransition.y = event.y or 0
             g.screenTransition.w = event.w or 160
             g.screenTransition.h = event.h or 144
+            g.screenTransition.event = event.event
             
         -- Stop the screen transition
         elseif(event.name == "Stop Screen Transition") then
             g.screenTransition.active = false
             g.timers.screenTransition = 0
+            if(g.screenTransition.event ~= nil) then
+                createEvent.create(g.screenTransition.event)
+                g.screenTransition.event = nil
+            end
+            
+        elseif(event.name == "Play Music") then
+            if(event.music ~= nil and event.music ~= g.music) then
+                if(g.music ~= nil) then g.music:stop() end
+                g.music = event.music
+                g.music:play()
+            end
             
         -- Check the current position of the mouse
         elseif(event.name == "Check Mouse Position") then
@@ -101,6 +137,13 @@ updateEvents.update = function()
             
             elseif(g.state == "instructions") then
                 for k,v in pairs(g.textBoxes.instructionsScreen) do
+                    if(g.mouseCollision(g.mouse.x,g.mouse.y,v)) then
+                        g.mouse.textHover = true
+                    end
+                end
+                
+            elseif(g.state == "title credits") then
+                for k,v in pairs(g.textBoxes.titleCreditsScreen) do
                     if(g.mouseCollision(g.mouse.x,g.mouse.y,v)) then
                         g.mouse.textHover = true
                     end
@@ -174,6 +217,10 @@ updateEvents.update = function()
                     end
                 end
             end
+            
+        elseif(event.name == "State Transition") then
+            
+            g.state = event.state
         end
         
         -- First in, first out

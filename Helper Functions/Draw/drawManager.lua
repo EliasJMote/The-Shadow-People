@@ -11,6 +11,9 @@ function drawManager.draw()
     if(g.state == "title") then
     
         drawTitleScreen.draw()
+        
+    elseif(g.state == "title credits") then
+        drawTitleCreditsScreen.draw()
   
     -- draw the instructions screen
     elseif(g.state == "instructions") then
@@ -20,7 +23,10 @@ function drawManager.draw()
     elseif(g.state == "game") then
 
         drawGame.draw()
-      
+    
+    elseif(g.state == "car transition 1" or g.state == "car transition 2" or g.state == "car transition 3") then
+        drawCarTransitions.draw()
+    
     elseif(g.state == "ending") then
     end
 

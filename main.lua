@@ -17,9 +17,11 @@ function love.load()
     drawScreenTransition = require("Helper Functions/Draw/drawScreenTransition")
     drawManager = require("Helper Functions/Draw/drawManager")
     drawTitleScreen = require("Helper Functions/Draw/drawTitleScreen")
+    drawTitleCreditsScreen = require("Helper Functions/Draw/drawTitleCreditsScreen")
     drawInstructionsScreen = require("Helper Functions/Draw/drawInstructionsScreen")
     drawUserInterface = require("Helper Functions/Draw/drawUserInterface")
     drawGame = require("Helper Functions/Draw/drawGame")
+    drawCarTransitions = require("Helper Functions/Draw/drawCarTransitions")
     
     -- Set the scaler to use the nearest neighbor filter
     love.graphics.setDefaultFilter("nearest", "nearest", 0)
@@ -33,9 +35,8 @@ function love.load()
     loadObjects = require("Helper Functions/Load/loadObjects")
     loadHelperFunctions = require("Helper Functions/Load/loadHelperFunctions")
     loadSFX = require("Helper Functions/Load/loadSFX")
-    loadRooms = require("Helper Functions/Load/loadRooms")
     loadMusic = require("Helper Functions/Load/loadMusic")
-    
+    loadRooms = require("Helper Functions/Load/loadRooms")
     
     -- Update helper functions
     updateRoomObjects = require("Helper Functions/Update/updateRoomObjects")

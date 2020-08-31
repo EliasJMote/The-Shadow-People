@@ -1,5 +1,5 @@
 ﻿The Shadow People
-Version 0.4.0
+Version 0.5.0
 
 Copyright © 2020 Elias Mote
 Copyright © 2020 Roc Studios
@@ -21,7 +21,13 @@ strictly prohibited, and a violation of copyright.
 II. Version History
 
 ------------------------
-V0.4.0 - Current Version
+V0.5.0 - Current Version
+------------------------
+-- Worked on backgrounds, objects
+-- Added car transitions, rooms
+
+------------------------
+V0.4.0
 ------------------------
 -- Code refactoring
 -- Move action is selectable; objects in the environment can be selected to move through.

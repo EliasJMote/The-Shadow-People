@@ -7,7 +7,7 @@ local drawInstructionsScreen = {}
         -- draw the background screen
         love.graphics.setColor(g.colors.darkestGreen.r, g.colors.darkestGreen.g, g.colors.darkestGreen.b, 1)
         love.graphics.rectangle("fill", 0, 0, 160, 144)
-        love.graphics.setColor(g.colors.lightestGreen.r, g.colors.lightestGreen.g, g.colors.lightestGreen.b, 1)
+        love.graphics.setColor(g.colors.lightGreen.r, g.colors.lightGreen.g, g.colors.lightGreen.b, 1)
         
         -- Print the "Instructions" title
         love.graphics.print("Instructions", 48, 8, 0, 0.5, 0.5)

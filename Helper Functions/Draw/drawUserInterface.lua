@@ -21,7 +21,11 @@ local drawUserInterface = {}
             
             -- Draw the room's name
             love.graphics.setColor(g.colors.darkestGreen.r, g.colors.darkestGreen.g, g.colors.darkestGreen.b, 1)
-            love.graphics.print(g.curLocation.name, 54, 133, 0, 0.4, 0.4)
+            if(g.curLocation.displayName ~= nil) then
+                love.graphics.print(g.curLocation.displayName, 54, 133, 0, 0.4, 0.4)
+            else
+                love.graphics.print(g.curLocation.name, 54, 133, 0, 0.4, 0.4)
+            end
         end
         
     end

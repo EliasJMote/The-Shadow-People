@@ -15,15 +15,12 @@ local updateRoom = {}
     function updateRoom.update()
         
         -- Make sure the cursor is over the map and we aren't currently in a screen transition
-        if(g.selectedAction == "Move" and g.movementDirection ~= nil and (g.screenTransition.active == false or debug)) then
+        if((g.selectedAction == "Move" or g.mouse.mapHover ~= nil) and g.movementDirection ~= nil and (g.screenTransition.active == false or debug)) then
             
             -- Check locks in the room
             updateRoomLocks.update()
             
             if(g.mapTransitionIsLegal) then
-            
-                -- Start the screen transition
-                createEvent.create(createEvent.create{name="Start Screen Transition", x=3, y=3, w=94, h=77})
                 
                 -- Move in a given direction based on mouse cursor
                 if(g.movementDirection == "North") then
@@ -35,6 +32,9 @@ local updateRoom = {}
                 elseif(g.movementDirection == "East") then
                     updateRoom.transition(g.curLocation.exits.east)
                 end
+                
+                -- Start the screen transition
+                createEvent.create({name="Start Screen Transition", x=3, y=3, w=94, h=77,event={name="Play Music", music=g.curLocation.music}})
             end
             
         end

@@ -47,22 +47,25 @@ local updateRoomObjects = {}
                             
                         -- If the player is currently in the light
                         else
+                        
                             if(g.selectedAction ~= "Move") then
                                 g.writeToTextDisplay(g.mouse.objectPointedAt.text[g.selectedAction:lower()])
                             end
                             
                             -- Try to open the object if possible
-                            if(g.selectedAction == "Open") then
+                            if(g.selectedAction == "Open" and g.mouse.objectPointedAt.state ~= "Locked") then
                                 g.mouse.objectPointedAt.state = "Open"
+                                loadSFX.pickup:play()
                             end
                             
                             -- Try to close the object if possible
-                            if(g.selectedAction == "Close") then
+                            if(g.selectedAction == "Close" and g.mouse.objectPointedAt.state == "Open") then
                                 g.mouse.objectPointedAt.state = "Closed"
                             end
                             
                             -- Turn off the light switch
                             if(g.selectedAction == "Use" and g.mouse.objectPointedAt.lightSwitch) then
+                                loadSFX.pickup:play()
                                 if(g.curLocation.state == "Light") then
                                     g.curLocation.state = "Dark"
                                 else

@@ -21,8 +21,6 @@ function updateGame.update()
         updateTitleScreen.update()
     end
     
-    
-    
     -- Update the event table
     updateEvents.update()
     

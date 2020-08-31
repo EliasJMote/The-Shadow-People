@@ -44,14 +44,14 @@ local drawGame = {}
         end
         
         -- Draw the debug menu
-        if(debug) then
+        --[[if(debug) then
             love.graphics.setColor(1, 0, 0, 1)
             if(g.objectPointedAt ~= nil) then
                 love.graphics.print("Object pointed at = " .. g.objectPointedAt.name, 0, 0, 0, 0.3, 0.3)
             else
                 love.graphics.print("Object pointed at = nothing", 0, 0, 0, 0.3, 0.3)
             end
-        end
+        end]]
         
         love.graphics.setColor(g.colors.lightestGreen.r, g.colors.lightestGreen.g, g.colors.lightestGreen.b, 1)
         
