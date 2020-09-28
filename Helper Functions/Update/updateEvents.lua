@@ -15,12 +15,12 @@ updateEvents.update = function()
             -- On the title screen
             if(event.state == "title") then
                 -- Skip the opening credits
-                if(g.timers.global < 90) then
-                    g.timers.global = 90
+                if(g.timers.global < g.timers.titleScreenLogo-70) then
+                    g.timers.global = g.timers.titleScreenLogo-70
                 end
                 
                 -- Start the game
-                if(g.timers.global >= 175) then
+                if(g.timers.global >= g.timers.titleScreenLogo+35) then
                     if(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.titleScreen.startGame)) then
                         g.state = "instructions"
                         createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144})

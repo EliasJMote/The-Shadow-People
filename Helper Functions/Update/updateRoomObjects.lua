@@ -13,7 +13,7 @@ local updateRoomObjects = {}
                 if(g.selectedAction ~= nil) then
 
                     -- If it's an illegal action
-                    if(g.selectedAction ~= "Move" and g.mouse.objectPointedAt.text[g.selectedAction:lower()] == nil) then
+                    if(g.mouse.objectPointedAt.text[g.selectedAction:lower()] == nil) then
                         if(g.curLocation.state == "Dark" and not g.mouse.objectPointedAt.visibleInDark) then
                             g.writeToTextDisplay({"It's too dark to see!"})
                         else
@@ -21,6 +21,8 @@ local updateRoomObjects = {}
                                 g.writeToTextDisplay({"You can't close that!"})
                             elseif(g.selectedAction == "Look") then
                                 g.writeToTextDisplay({"You can't look at that!"})
+                            elseif(g.selectedAction == "Move") then
+                                g.writeToTextDisplay({"You can't move there!"})
                             elseif(g.selectedAction == "Open") then
                                 g.writeToTextDisplay({"You can't open that!"})
                             elseif(g.selectedAction == "Push") then
@@ -41,7 +43,7 @@ local updateRoomObjects = {}
                     -- If it's an legal action
                     else
 
-                        -- If the player is currently in the dark
+                        -- If the player is currently in the dark or the object is not visible in the dark
                         if(g.curLocation.state == "Dark" and not g.mouse.objectPointedAt.visibleInDark) then
                             g.writeToTextDisplay({"It's too dark to see!"})
                             
@@ -49,11 +51,17 @@ local updateRoomObjects = {}
                         else
                         
                             if(g.selectedAction ~= "Move") then
-                                g.writeToTextDisplay(g.mouse.objectPointedAt.text[g.selectedAction:lower()])
+                                if (g.selectedAction == "Open" and g.mouse.objectPointedAt.state == "Open") then
+                                    g.writeToTextDisplay({"It's already open!"})
+                                elseif (g.selectedAction == "Close" and g.mouse.objectPointedAt.state == "Closed") then
+                                    g.writeToTextDisplay({"It's already closed!"})
+                                else
+                                    g.writeToTextDisplay(g.mouse.objectPointedAt.text[g.selectedAction:lower()])
+                                end
                             end
                             
                             -- Try to open the object if possible
-                            if(g.selectedAction == "Open" and g.mouse.objectPointedAt.state ~= "Locked") then
+                            if(g.selectedAction == "Open" and g.mouse.objectPointedAt.state == "Closed" and g.mouse.objectPointedAt.state ~= "Locked") then
                                 g.mouse.objectPointedAt.state = "Open"
                                 loadSFX.pickup:play()
                             end

@@ -29,6 +29,7 @@ local createGame = {}
         g.timers = {}
         g.timers.global = 0
         g.timers.screenTransition = 0
+        g.timers.titleScreenLogo = 210
         
         -- game boy studio palette
         g.colors = {
@@ -66,6 +67,7 @@ local createGame = {}
                                 {text="Look",x=120,y=103,w=18,h=4},
                                 {text="Move",x=15,y=90,w=18,h=4},
                                 {text="Open",x=120,y=90,w=18,h=4},
+                                {text="Pull",x=120,y=116,w=18,h=4},
                                 {text="Push",x=87,y=116,w=18,h=4},
                                 {text="Put",x=54,y=90,w=13,h=4},
                                 {text="Take",x=87,y=90,w=18,h=4},

@@ -16,6 +16,18 @@ function updateRoomLocks.update()
                 g.mapTransitionIsLegal = true
             end
             
+        elseif(g.curLocation.name == "Living Room") then
+            if(g.movementDirection == "North") then
+                if(g.curLocation.objects[3].state == "Closed") then
+                    g.mapTransitionIsLegal = false
+                    g.writeToTextDisplay({"The door is closed!"})
+                elseif(g.curLocation.objects[3].state == "Open") then
+                    g.mapTransitionIsLegal = true
+                end
+            elseif(g.movementDirection == "West") then
+                g.mapTransitionIsLegal = true
+            end
+            
         elseif(g.curLocation.name == "Car 1" and g.movementDirection == "North") then
             g.mapTransitionIsLegal = false
             createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="car transition 1"}})

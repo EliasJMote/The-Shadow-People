@@ -17,9 +17,10 @@ loadGameText.bedroom =  {
                                         close={"You close the door."},
                                         open={"You open the door."},
                                         look={"It's your bedroom door."},
+                                        move="North"
                                     },
                                         
-                            lightSwitch = {look={"It's a light switch."},use={"You activated the light switch."}},
+                            lightSwitch = {look={"It's a light switch."},use={"You flipped the light switch."}},
                             mirror = {look={"You look in the mirror. You", "instantly regretted doing so.", "Your hair is messed up after", "tossing and turning so much", "last night. Will you ever get a", "good night's sleep?"},talk={"You're not sure that's such a", "good idea..."},take={"You take the mirror."}},
                             mountainPicture = {look={"You examine the picture. It's","Mt. Fuji, you scaled it last", "year with some friends."}},
                             portraitPicture = {look={"You examine the portrait. It's", "a friend of yours, a tall man", "with light brown hair and a", "woodcutter axe slung over his", "shoulder."}},

@@ -62,7 +62,7 @@ loadRooms.car4 =    {
                         displayName = "Car",
                         state="Light",
                         map=loadImages.car4Map,
-                        backgrounds={light=loadImages.carNight},
+                        backgrounds={light=loadImages.carNightCollision},
                         objects={},
                         exits={west="Highway 1"},
                     }
@@ -70,10 +70,12 @@ loadRooms.car4 =    {
 -- Church (main room)
 loadRooms.churchInside =    {
                                 name="Church Inside",
-                                state="Dark",
+                                state="Light",
                                 map=loadImages.churchOutsideMap,
-                                backgrounds={dark=loadImages.churchInside},
-                                objects={},
+                                backgrounds={light=loadImages.churchInside},
+                                objects={
+                                            {name="Door",x=27,y=31,w=9,h=35,text={look={"It's a narrow door hidden in", "the wall."},open={"You open the door."}}},
+                                        },
                                 exits={north="Mirror Room", south="Church Outside"},
                             }
 
@@ -103,11 +105,11 @@ loadRooms.classroom =   {
                         }
                         
 -- Clock Tower
-loadRooms.clockTower =  {
-                            name="Clock Tower",
+loadRooms.clockTowerOutside =  {
+                            name="Clock Tower Outside",
                             state="Dark",
                             map=loadImages.highwayNorthEndMap,
-                            backgrounds={dark=loadImages.empty},
+                            backgrounds={dark=loadImages.clockTowerOutside},
                             objects={},
                             exits={south="Street 1"},
                         }
@@ -122,14 +124,28 @@ loadRooms.floodedLabyrinth1 =   {
                                     objects={},
                                     exits={north="Flooded Labyrinth 2", south="Sewer 7"},
                                 }
+                                
+loadRooms.floodedLabyrinth2 =   {  
+                                    name="Flooded Labyrinth 2",
+                                    displayName = "Flooded Labyrinth",
+                                    state="Dark",
+                                    backgrounds={dark=loadImages.emptyRoom},
+                                    map=loadImages.sewer1Map,
+                                    objects={},
+                                    exits={south="Flooded Labyrinth 1"},
+                                }
 
 -- Gas Station Bathroom
 loadRooms.gasStationBathroom =  {
                                     name="Gas Station Bathroom",
                                     state="Dark",
                                     map=loadImages.gasStationBathroomMap,
-                                    backgrounds={dark=loadImages.gasStationBathroom},
-                                    objects={},
+                                    backgrounds={dark=loadImages.gasStationBathroomDark,light=loadImages.gasStationBathroomLight},
+                                    objects={  
+                                                loadObjects.gasStationKey,
+                                                {name="Light Switch",x=44,y=33,w=4,h=6,text=loadGameText.bedroom.lightSwitch,visibleInDark=true,lightSwitch=true},
+                                                {name="Mirror",x=20,y=25,w=17,h=15,text={look={"It's a filthy gas station", "mirror."}}},
+                                            },
                                     exits={south="Gas Station Outside"},
                                 }
 
@@ -144,8 +160,8 @@ loadRooms.gasStationOutside =   {
                                                 {name="Light 1",x=15,y=44,w=4,h=2,text={look={"It's a light fixture."}}},
                                                 {name="Light 2",x=28,y=44,w=4,h=2,text={look={"It's a light fixture."}}},
                                                 {name="Light 3",x=42,y=44,w=4,h=2,text={look={"It's a light fixture."}}},
-                                                {name="Pump 1",x=13,y=59,w=7,h=10,text={look={"It's a gas pump."}}},
-                                                {name="Pump 2",x=40,y=59,w=7,h=10,text={look={"It's a gas pump."}}},
+                                                {name="Pump 1",x=13,y=59,w=7,h=10,text={look={"It's a gas pump.", use={"The pump doesn't work."}}}},
+                                                {name="Pump 2",x=40,y=59,w=7,h=10,text={look={"It's a gas pump.", use={"The pump doesn't work."}}}},
                                                 {name="Window 1",x=63,y=57,w=5,h=5,text={look={"It's a window. It's too dark to", "see inside."}}},
                                                 {name="Window 2",x=69,y=57,w=5,h=5,text={look={"It's a window. It's too dark to", "see inside."}}},
                                                 {name="Window 3",x=83,y=57,w=5,h=5,text={look={"It's a window. It's too dark to", "see inside."}}},
@@ -246,13 +262,18 @@ loadRooms.kitchen =     {
 -- Living Room
 loadRooms.livingRoom =  {
                             name="Living Room",
-                            state="Light",
+                            state="Dark",
                             map=loadImages.livingRoomMap,
-                            backgrounds={light=loadImages.livingRoom},
+                            backgrounds={light=loadImages.livingRoomLight,dark=loadImages.livingRoomDark},
                             objects={
                                         loadObjects.carKey,
+                                        --{name="Kitchen Entrance",x=4,y=22,w=11,h=40,text={look={"It's an opening to the kitchen."},move="West"},visibleInDark=true,move="West"},
+                                        {name="Patio Entrance",x=4,y=22,w=11,h=40,text={look={"It's an opening to the patio."},move="West"},visibleInDark=true,move="West"},
+                                        loadObjects.livingRoomDoor,
+                                        loadObjects.livingRoomLamp
                                     },
-                            exits={north="Car 1", west="Kitchen", south="Bedroom"},
+                            --exits={north="Car 1", west="Kitchen", south="Bedroom"},
+                            exits={north="Car 1", west="Patio", south="Bedroom"},
                             introText={"You enter the living room."}
                         }
 
@@ -287,7 +308,8 @@ loadRooms.patio =   {
                                 },
                         backgrounds={light=loadImages.patioLight},
                         map=loadImages.patioMap,
-                        exits={east="Kitchen"},
+                        --exits={east="Kitchen"},
+                        exits={east="Living Room"},
                     }
                     
 -- Railroad station
@@ -407,7 +429,7 @@ loadRooms.street1 =    {
                             backgrounds={light=loadImages.street1},
                             map=loadImages.street1Map,
                             objects={},
-                            exits={west="Highway 4", east="Street 2", north="Clock Tower"},
+                            exits={west="Highway 4", east="Street 2", north="Clock Tower Outside"},
                         }
 
 -- Street 2

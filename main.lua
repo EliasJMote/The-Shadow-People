@@ -22,6 +22,7 @@ function love.load()
     drawUserInterface = require("Helper Functions/Draw/drawUserInterface")
     drawGame = require("Helper Functions/Draw/drawGame")
     drawCarTransitions = require("Helper Functions/Draw/drawCarTransitions")
+    drawCursor = require("Helper Functions/Draw/drawCursor")
     
     -- Set the scaler to use the nearest neighbor filter
     love.graphics.setDefaultFilter("nearest", "nearest", 0)
