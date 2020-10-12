@@ -9,12 +9,17 @@ local createGame = {}
         
         -- Initialize game state
         g.state = "title"
+        if(debug) then g.state = "game" end
+        
         
         -- Initialize events table
         g.events = {}
         
         -- Initialize current location
         g.curLocation = loadRooms.bedroom
+        --if(debug) then
+            --g.curLocation = loadRooms.livingRoom
+        --end
         
         -- Initialize items currently held
         g.items = {}
@@ -43,6 +48,7 @@ local createGame = {}
         
         -- Show the message box
         g.showMessageBox = true
+        if(debug) then g.showMessageBox = false end
         
         -- Miscellaneous text boxes (start game, options, etc.)
         g.textBoxes =   {
@@ -77,6 +83,7 @@ local createGame = {}
                             
         g.mapTransitionIsLegal = false
         g.movementDirection = nil
+        --g.itemSelected = ""
         
         g.textBuffer = {}
     end

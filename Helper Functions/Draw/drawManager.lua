@@ -31,7 +31,9 @@ function drawManager.draw()
     end
 
     -- Draw the mouse cursor
-    drawCursor.draw()
+    if not(g.state == "title" and g.timers.global < g.timers.titleScreenLogo+35) then
+        drawCursor.draw()
+    end
     
     -- Draw the screen transition
     drawScreenTransition.draw()

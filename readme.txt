@@ -1,5 +1,5 @@
 ﻿The Shadow People
-Version 0.6.0
+Version 0.7.0
 
 Copyright © 2020 Elias Mote
 Copyright © 2020 Roc Studios
@@ -21,7 +21,16 @@ strictly prohibited, and a violation of copyright.
 II. Version History
 
 ------------------------
-V0.6.0 - Current Version
+V0.7.0 - Current Version
+------------------------
+-- Added new backgrounds
+-- Added to clock tower
+-- Added to park (the graveyard)
+-- Added the ability to select items.
+-- The car keys are now used to start the car and drive to campus.
+
+------------------------
+V0.6.0
 ------------------------
 -- Added new mouse icons for actions that have been selected
 -- Updated some backgrounds and objects (Living room, car, gas station bathroom, clock tower)
@@ -105,7 +114,7 @@ VI. Credits
 Producer: Elias Mote
 Programmer: Elias Mote
 Musician: Taylor Fielder
-Testers: Dred4170, Raistlarn, Taylor Fielder 
+Testers: Dred4170, Raistlarn, Taylor Fielder, Aluminati, BeanWagon
 
 Software:
 Engine: Love2d

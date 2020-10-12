@@ -36,7 +36,7 @@ function g.highlightText(textBox,textSize)
         love.graphics.setColor(g.colors.darkestGreen.r, g.colors.darkestGreen.g, g.colors.darkestGreen.b, 1)
     end
     -- Highlight moused-over text or selected actions
-    if(g.mouseCollision(g.mouse.x, g.mouse.y,textBox) or g.selectedAction == textBox.text) then
+    if(g.mouseCollision(g.mouse.x, g.mouse.y,textBox) or g.selectedAction == textBox.text or g.itemSelected == textBox.text) then
         if(g.state ~= "game") then
             love.graphics.setColor(g.colors.lightestGreen.r, g.colors.lightestGreen.g, g.colors.lightestGreen.b, 1)
         else

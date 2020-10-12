@@ -36,5 +36,18 @@ loadGameText.churchOutside =    {
                                                 move="North"
                                             },
                                 }
+                                
+loadGameText.graveyard =    {
+                                grave=  {
+                                            look={  "A decrept grave long worn down", "by the sands of time. It looks", "like it was moved recently.", 
+                                                    "You expect to read about", "whoever's grave this is, but", "instead something else is", "carved into the stone:", "",
+                                                    "ETERNAL SHADOWE IN THE TWILIGHT", "OF A DARK SUN.", "CREATURES THAT DANCE IN THE", "PERIPHERAL OF THE MIND.",
+                                                    "A FORGOTTEN LAND THAT EXISTS", "AMONG THE STARS.", "GIVE YOUR FLESH TO THE HOLY", "ALTAR AND BE REBORN WITH AN",
+                                                    "UNYIELDING IMMORTALITY."
+                                                },
+                                            pull={"It's too heavy to pull, but you", "may be able to push it."},
+                                            push={"You push the grave, revealing", "an underground stairwell."}
+                                        },
+                            }
 
 return loadGameText

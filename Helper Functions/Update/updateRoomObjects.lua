@@ -14,7 +14,7 @@ local updateRoomObjects = {}
 
                     -- If it's an illegal action
                     if(g.mouse.objectPointedAt.text[g.selectedAction:lower()] == nil) then
-                        if(g.curLocation.state == "Dark" and not g.mouse.objectPointedAt.visibleInDark) then
+                        if(g.curLocation.state == "Dark" and not g.mouse.objectPointedAt.visibleInDark and not debug) then
                             g.writeToTextDisplay({"It's too dark to see!"})
                         else
                             if(g.selectedAction == "Close") then
@@ -44,7 +44,7 @@ local updateRoomObjects = {}
                     else
 
                         -- If the player is currently in the dark or the object is not visible in the dark
-                        if(g.curLocation.state == "Dark" and not g.mouse.objectPointedAt.visibleInDark) then
+                        if(g.curLocation.state == "Dark" and not g.mouse.objectPointedAt.visibleInDark and not debug) then
                             g.writeToTextDisplay({"It's too dark to see!"})
                             
                         -- If the player is currently in the light
@@ -81,6 +81,18 @@ local updateRoomObjects = {}
                                 end
                             end
                             
+                            if(g.selectedAction == "Push") then
+                                if(g.curLocation == loadRooms.graveyard and g.mouse.objectPointedAt == loadRooms.graveyard.objects.grave) then
+                                    if(loadRooms.graveyard.objects.grave.state == "normal") then
+                                        loadRooms.graveyard.objects.stairs = {name="stairs",x=37,y=67,w=25,h=11,text={look={"Stairs. They lead down into the", "the earth. But what hides", "there?"},move=""},img=loadImages.graveStairs,move=""}
+                                        loadRooms.graveyard.objects.grave.state = "Pushed"
+                                        loadRooms.graveyard.objects.grave.y = loadRooms.graveyard.objects.grave.y - 12
+                                        loadGameText.graveyard.grave.pull = "It has already been moved!"
+                                        loadGameText.graveyard.grave.push = "It has already been moved!"
+                                    end
+                                end
+                            end
+                            
                             if(g.selectedAction == "Move") then
                                 g.movementDirection = g.mouse.objectPointedAt.move
                             end
@@ -94,7 +106,7 @@ local updateRoomObjects = {}
                                 loadSFX.pickup:play()
                                 
                                 -- Move the item offscreen
-                                for k,v in ipairs(g.curLocation.objects) do
+                                for k,v in pairs(g.curLocation.objects) do
                                     if(v.name == g.mouse.objectPointedAt.name) then
                                         
                                         v.x = -256

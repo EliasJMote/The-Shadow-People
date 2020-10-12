@@ -85,6 +85,26 @@ updateEvents.update = function()
                         g.movementDirection = g.mouse.mapHover
                     end
                     
+                    
+                    if(g.selectedAction == "Use") then
+                        
+                        -- Select/deselect an item to use
+                        if(g.mouse.itemMenuHoverItem) then
+                            if(g.itemSelected == nil) then
+                                g.itemSelected = g.mouse.itemMenuHoverItem
+                            else
+                                g.itemSelected = nil
+                            end
+                        end
+                    end
+                    
+                    -- Clear the item being selected if using an action besides "Use" or "Look"
+                    if(g.itemSelected ~= nil) then
+                        if(g.selectedAction ~= "Use" and g.selectedAction ~= "Look") then
+                            g.itemSelected = nil
+                        end
+                    end
+                    
                     -- If the message box is closed, the player can check the room
                     updateRoomObjects.update()
                     
@@ -154,7 +174,7 @@ updateEvents.update = function()
                 g.mouse.objectPointedAt = nil
                 
                 -- Check if the cursor is over an object
-                for k,v in ipairs(g.curLocation.objects) do
+                for k,v in pairs(g.curLocation.objects) do
                     
                     if(g.mouseCollision(g.mouse.x, g.mouse.y, v)) then
                         g.mouse.objectHover = true
@@ -205,15 +225,19 @@ updateEvents.update = function()
                     end
                 end
                 
+                
                 g.mouse.itemMenuHover = false
                 g.mouse.itemMenuHoverItem = nil
                 
+                -- Get the collision boxes for the item names
                 for k,v in ipairs(g.items) do
                     v.x = 105
                     v.y = 22 + 13 * (k-1)
+                    
+                    -- Check if the cursor is over an item
                     if(g.mouseCollision(g.mouse.x, g.mouse.y, v)) then
                         g.mouse.itemMenuHover = true
-                        g.mouse.itemMenuHoverItem = v
+                        g.mouse.itemMenuHoverItem = v.name
                     end
                 end
             end
