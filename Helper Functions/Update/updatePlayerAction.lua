@@ -4,10 +4,11 @@ function updatePlayerAction.update()
     local g = GLOBALS
     if(g.curLocation ~= nil) then
         if(g.mouse.actionText ~= nil) then
-            if(g.selectedAction == g.mouse.actionText) then
-                g.selectedAction = nil
+            if(g.actionSelected == g.mouse.actionText) then
+                g.actionSelected = nil
             else
-                g.selectedAction = g.mouse.actionText
+                g.actionSelected = g.mouse.actionText
+                g.itemSelected = nil
             end
         end
     end

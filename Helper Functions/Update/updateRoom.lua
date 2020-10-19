@@ -13,24 +13,32 @@ local updateRoom = {}
     end
     
     function updateRoom.update()
-        
-        if(g.selectedAction == "Use") then
-            if(g.curLocation.name == "Car 1") then
-                if(g.itemSelected == "Car Key") then
-                    if(g.mouse.objectPointedAt == loadRooms.car1.objects.steeringWheel) then
-                        g.mapTransitionIsLegal = false
-                        g.itemSelected = nil
-                        g.actionSelected = nil
-                        g.textBuffer = {}
-                        g.showMessageBox = false
-                        createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="car transition 1"}})
-                    end
+
+        if(g.curLocation.name == "Car 1") then
+            if(g.itemSelected == "Car Key") then
+                if(g.mouse.objectPointedAt == loadRooms.car1.objects.steeringWheel) then
+                    g.mapTransitionIsLegal = false
+                    g.itemSelected = nil
+                    g.actionSelected = nil
+                    g.textBuffer = {}
+                    g.showMessageBox = false
+                    createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="car transition 1"}})
                 end
             end
         end
         
+        if(g.curLocation.name == "House Outside") then
+            g.mapTransitionIsLegal = false
+            g.itemSelected = nil
+            g.actionSelected = nil
+            g.textBuffer = {}
+            g.showMessageBox = false
+            createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="good ending"}})
+            createEvent.create({name="Play Music", music=loadMusic.undertheStars})
+        end
+        
         -- Make sure the cursor is over the map and we aren't currently in a screen transition
-        if((g.selectedAction == "Move" or g.mouse.mapHover ~= nil) and g.movementDirection ~= nil and (g.screenTransition.active == false or debug)) then
+        if((g.actionSelected == "Move" or g.mouse.mapHover ~= nil) and g.movementDirection ~= nil and (g.screenTransition.active == false or debug)) then
             
             -- Check locks in the room (some locks like driving the car require a use action over a move action)
             updateRoomLocks.update()

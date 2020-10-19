@@ -39,7 +39,7 @@ updateEvents.update = function()
             -- On the instructions screen
             elseif(event.state == "instructions") then
                 if(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.instructionsScreen.startGame)) then
-                    createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="Play Music", music=loadMusic.house}})
+                    createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="Play Music", music=loadMusic.houseDark}})
                     if(g.curLocation == loadRooms.bedroom) then
                         g.writeToTextDisplay(loadGameText.opening)
                     else
@@ -84,31 +84,21 @@ updateEvents.update = function()
                     if(g.mouse.mapHover ~= nil) then
                         g.movementDirection = g.mouse.mapHover
                     end
-                    
-                    
-                    if(g.selectedAction == "Use") then
                         
-                        -- Select/deselect an item to use
-                        if(g.mouse.itemMenuHoverItem) then
-                            if(g.itemSelected == nil) then
-                                g.itemSelected = g.mouse.itemMenuHoverItem
-                            else
-                                g.itemSelected = nil
-                            end
-                        end
-                    end
-                    
-                    -- Clear the item being selected if using an action besides "Use" or "Look"
-                    if(g.itemSelected ~= nil) then
-                        if(g.selectedAction ~= "Use" and g.selectedAction ~= "Look") then
+                    -- Select/deselect an item to use
+                    if(g.mouse.itemMenuHoverItem) then
+                        if(g.itemSelected == nil) then
+                            g.itemSelected = g.mouse.itemMenuHoverItem
+                            g.actionSelected = nil
+                        else
                             g.itemSelected = nil
                         end
                     end
                     
                     -- If the message box is closed, the player can check the room
-                    updateRoomObjects.update()
+                    updateCheckAction.update()
                     
-                    -- check if the player is selecting an action
+                    -- Check if the player is selecting an action
                     updatePlayerAction.update()
                     
                     -- If the player clicks the mouse on the map, check if we should go to a new room

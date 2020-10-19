@@ -1,5 +1,5 @@
 ﻿The Shadow People
-Version 0.7.0
+Version 0.8.0
 
 Copyright © 2020 Elias Mote
 Copyright © 2020 Roc Studios
@@ -21,7 +21,17 @@ strictly prohibited, and a violation of copyright.
 II. Version History
 
 ------------------------
-V0.7.0 - Current Version
+V0.8.0 - Current Version
+------------------------
+-- Added new music (title screen, house light 8-bit, house dark 8-bit, highway, good ending)
+-- Added good ending credits sequence (temporarily accessible from the outside of the house just past the flooded labyrinth)
+-- Added easter egg credits sequence (accessed by looking at the sun 5 times)
+-- Added/improved some backgrounds
+-- Added bolt cutters object to cut the chain on the park gate
+-- Added the ability to push the grave at the park graveyard
+
+------------------------
+V0.7.0
 ------------------------
 -- Added new backgrounds
 -- Added to clock tower
@@ -113,7 +123,7 @@ VI. Credits
 
 Producer: Elias Mote
 Programmer: Elias Mote
-Musician: Taylor Fielder
+Musicians: Taylor Fielder, Elias Mote
 Testers: Dred4170, Raistlarn, Taylor Fielder, Aluminati, BeanWagon
 
 Software:

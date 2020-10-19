@@ -19,6 +19,8 @@ function updateGame.update()
     -- Poll the title screen
     if(g.state == "title") then
         updateTitleScreen.update()
+    elseif(g.state == "good ending" or g.state == "bad ending" or g.state == "alien ending" or g.state == "easter egg ending") then
+        updateEnding.update()
     end
     
     -- Update the event table

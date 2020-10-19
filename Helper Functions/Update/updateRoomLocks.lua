@@ -68,8 +68,21 @@ function updateRoomLocks.update()
                 g.mapTransitionIsLegal = true
             end
             
+        elseif(g.curLocation.name == "Park 1") then
+            
+            -- Check if the gate is locked
+            if(g.curLocation.objects.parkGate.state == "Locked" and g.movementDirection == "North") then
+                g.mapTransitionIsLegal = false
+                g.writeToTextDisplay({"The gate is locked!"})
+            elseif(g.curLocation.objects.parkGate.state == "Closed" and g.movementDirection == "North") then
+                g.mapTransitionIsLegal = false
+                g.writeToTextDisplay({"The gate is closed!"})
+            else
+                g.mapTransitionIsLegal = true
+            end
+            
         elseif(g.curLocation.name == "Graveyard") then
-            if(g.selectedAction == "Move" and loadRooms.graveyard.objects.stairs ~= nil and g.mouse.objectPointedAt == loadRooms.graveyard.objects.stairs) then
+            if(g.actionSelected == "Move" and loadRooms.graveyard.objects.stairs ~= nil and g.mouse.objectPointedAt == loadRooms.graveyard.objects.stairs) then
                 updateRoom.transition("Graveyard Underground")
                 createEvent.create({name="Start Screen Transition", x=3, y=3, w=94, h=77,event={name="Play Music", music=g.curLocation.music}})
             end

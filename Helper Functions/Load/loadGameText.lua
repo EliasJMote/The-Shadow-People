@@ -49,5 +49,11 @@ loadGameText.graveyard =    {
                                             push={"You push the grave, revealing", "an underground stairwell."}
                                         },
                             }
+                            
+loadGameText.goodCreditsText = {"It's been a long and harrowing", "day, but you finally make it", "back home to your bedroom. You", "stumble wildly to your bed as", 
+                "you slip in and out of", "consciousness. You slam down", "hard onto your mattress and", "pass out. When you awaken,", "the sun is shining", "magnificently in the azure sky,", "and all the blackness of the", "night has been banished to", "another day. You peaceably", "lie in your bed, and reflect on", "all the difficulties you just", "overcame. You vow to do your", "best to catch up on sleep, even", "if it means your grades suffer", "a bit. Because nothing is more", "important than a life."}
+            
+loadGameText.easterEggCreditsText = {"You have gone blind from", "looking at the sun too many", "times!"}
+                
 
 return loadGameText

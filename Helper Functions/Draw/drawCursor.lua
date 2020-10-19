@@ -6,31 +6,31 @@ function drawCursor.draw()
     
     love.graphics.setColor(g.colors.lightestGreen.r, g.colors.lightestGreen.g, g.colors.lightestGreen.b, 1)
     
-    if not (g.screenTransition.active) then
+    if((g.screenTransition.active ~= true or debug) and g.state ~= "good ending" and g.state ~= "bad ending" and g.state ~= "alien ending" and g.state ~= "easter egg ending") then
         if(g.mouse.actionHover or g.mouse.textHover or g.mouse.itemMenuHover) then
             love.graphics.draw(loadImages.cursorHand, g.mouse.x - 4, g.mouse.y)
         elseif(g.mouse.mapHover) then
             love.graphics.draw(loadImages.cursorMove, g.mouse.x - 4, g.mouse.y - 4)
         elseif(g.mouse.objectHover) then
-            if(g.selectedAction == "Close") then
+            if(g.actionSelected == "Close") then
                 love.graphics.draw(loadImages.cursorClose, g.mouse.x - 3, g.mouse.y - 3)
-            elseif(g.selectedAction == "Look") then
+            elseif(g.actionSelected == "Look") then
                 love.graphics.draw(loadImages.cursorEye, g.mouse.x - 4, g.mouse.y - 3)
-            elseif(g.selectedAction == "Move") then
+            elseif(g.actionSelected == "Move") then
                 love.graphics.draw(loadImages.cursorMove, g.mouse.x - 4, g.mouse.y - 4)
-            elseif(g.selectedAction == "Open") then
+            elseif(g.actionSelected == "Open") then
                 love.graphics.draw(loadImages.cursorOpen, g.mouse.x - 4, g.mouse.y - 4)
-            elseif(g.selectedAction == "Pull") then
+            elseif(g.actionSelected == "Pull") then
                 love.graphics.draw(loadImages.cursorPull, g.mouse.x - 4, g.mouse.y - 4)
-            elseif(g.selectedAction == "Push") then
+            elseif(g.actionSelected == "Push") then
                 love.graphics.draw(loadImages.cursorPush, g.mouse.x - 4, g.mouse.y - 4)
-            elseif(g.selectedAction == "Put") then
+            elseif(g.actionSelected == "Put") then
                 love.graphics.draw(loadImages.cursorPut, g.mouse.x - 6, g.mouse.y - 7)
-            elseif(g.selectedAction == "Talk") then
+            elseif(g.actionSelected == "Talk") then
                 love.graphics.draw(loadImages.cursorTalk, g.mouse.x - 4, g.mouse.y - 4)
-            elseif(g.selectedAction == "Take") then
+            elseif(g.actionSelected == "Take") then
                 love.graphics.draw(loadImages.cursorTake, g.mouse.x - 4, g.mouse.y - 4)
-            elseif(g.selectedAction == "Use") then
+            elseif(g.actionSelected == "Use") then
                 love.graphics.draw(loadImages.cursorUse, g.mouse.x - 6, g.mouse.y - 6)
             else
                 love.graphics.draw(loadImages.cursorHand, g.mouse.x - 4, g.mouse.y)

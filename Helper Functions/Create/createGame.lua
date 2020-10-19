@@ -11,15 +11,14 @@ local createGame = {}
         g.state = "title"
         if(debug) then g.state = "game" end
         
-        
         -- Initialize events table
         g.events = {}
         
         -- Initialize current location
         g.curLocation = loadRooms.bedroom
-        --if(debug) then
-            --g.curLocation = loadRooms.livingRoom
-        --end
+        if(debug) then
+            --g.curLocation = loadRooms.park1
+        end
         
         -- Initialize items currently held
         g.items = {}
@@ -35,6 +34,14 @@ local createGame = {}
         g.timers.global = 0
         g.timers.screenTransition = 0
         g.timers.titleScreenLogo = 210
+        g.timers.endingText = 0
+        g.timers.endingTextFadeOut = 60 * 9
+        g.timers.goodEnding = 5 * g.timers.endingTextFadeOut + 60 * 2
+        g.timers.easterEggEnding = 1 * g.timers.endingTextFadeOut + 60 * 2
+        
+        --g.endingTextFadeOutTime = 60 * 0.01
+        g.endingTextLine = 1
+        g.endingScreenMask = {x=0,y=0,w=160,h=144} 
         
         -- game boy studio palette
         g.colors = {
@@ -65,7 +72,7 @@ local createGame = {}
                         }
         
         -- Which action is selected
-        g.selectedAction = nil
+        g.actionSelected = nil
         g.screenTransition = {x=0,y=0,w=160,h=144,active=false}
         
         g.actionButtons =   {
@@ -86,6 +93,13 @@ local createGame = {}
         --g.itemSelected = ""
         
         g.textBuffer = {}
+        
+        g.playerState = {
+            classOver = false,
+            numOfTimesLookedAtSun = 0,
+        }
+        
+        
     end
 
 return createGame

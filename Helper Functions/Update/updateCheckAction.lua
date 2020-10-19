@@ -1,39 +1,39 @@
-local updateRoomObjects = {}
+local updateCheckAction = {}
 
     local g = GLOBALS
 
     -- If the player clicks on something in the room, perform a click update
-    function updateRoomObjects.update()
+    function updateCheckAction.update()
         if(g.curLocation ~= nil) then
 
             -- If the cursor is pointing to an object
             if(g.mouse.objectPointedAt ~= nil) then
 
-                -- Player must select an action first!
-                if(g.selectedAction ~= nil) then
+                -- Check if the player is selecting an action
+                if(g.actionSelected ~= nil) then
 
                     -- If it's an illegal action
-                    if(g.mouse.objectPointedAt.text[g.selectedAction:lower()] == nil) then
+                    if(g.mouse.objectPointedAt.text[g.actionSelected:lower()] == nil) then
                         if(g.curLocation.state == "Dark" and not g.mouse.objectPointedAt.visibleInDark and not debug) then
                             g.writeToTextDisplay({"It's too dark to see!"})
                         else
-                            if(g.selectedAction == "Close") then
+                            if(g.actionSelected == "Close") then
                                 g.writeToTextDisplay({"You can't close that!"})
-                            elseif(g.selectedAction == "Look") then
+                            elseif(g.actionSelected == "Look") then
                                 g.writeToTextDisplay({"You can't look at that!"})
-                            elseif(g.selectedAction == "Move") then
+                            elseif(g.actionSelected == "Move") then
                                 g.writeToTextDisplay({"You can't move there!"})
-                            elseif(g.selectedAction == "Open") then
+                            elseif(g.actionSelected == "Open") then
                                 g.writeToTextDisplay({"You can't open that!"})
-                            elseif(g.selectedAction == "Push") then
+                            elseif(g.actionSelected == "Push") then
                                 g.writeToTextDisplay({"You can't push that!"})
-                            elseif(g.selectedAction == "Put") then
+                            elseif(g.actionSelected == "Put") then
                                 g.writeToTextDisplay({"You can't put that there!"})
-                            elseif(g.selectedAction == "Take") then
+                            elseif(g.actionSelected == "Take") then
                                 g.writeToTextDisplay({"You can't take that!"})
-                            elseif(g.selectedAction == "Talk") then
+                            elseif(g.actionSelected == "Talk") then
                                 g.writeToTextDisplay({"You can't talk to that!"})
-                            elseif(g.selectedAction == "Use") then
+                            elseif(g.actionSelected == "Use") then
                                 g.writeToTextDisplay({"You can't use that!"})
                             else
                                 g.writeToTextDisplay({"You can't do that!"})
@@ -50,38 +50,46 @@ local updateRoomObjects = {}
                         -- If the player is currently in the light
                         else
                         
-                            if(g.selectedAction ~= "Move") then
-                                if (g.selectedAction == "Open" and g.mouse.objectPointedAt.state == "Open") then
-                                    g.writeToTextDisplay({"It's already open!"})
-                                elseif (g.selectedAction == "Close" and g.mouse.objectPointedAt.state == "Closed") then
+                            if(g.actionSelected ~= "Move") then
+                                if (g.actionSelected == "Open" and g.mouse.objectPointedAt.state ~= "Closed") then
+                                    if(g.mouse.objectPointedAt.state == "Open") then
+                                        g.writeToTextDisplay({"It's already open!"})
+                                    elseif(g.mouse.objectPointedAt.state == "Locked") then
+                                        g.writeToTextDisplay({"It's locked!"})
+                                    end
+                                elseif (g.actionSelected == "Close" and g.mouse.objectPointedAt.state == "Closed") then
                                     g.writeToTextDisplay({"It's already closed!"})
                                 else
-                                    g.writeToTextDisplay(g.mouse.objectPointedAt.text[g.selectedAction:lower()])
+                                    g.writeToTextDisplay(g.mouse.objectPointedAt.text[g.actionSelected:lower()])
                                 end
                             end
                             
                             -- Try to open the object if possible
-                            if(g.selectedAction == "Open" and g.mouse.objectPointedAt.state == "Closed" and g.mouse.objectPointedAt.state ~= "Locked") then
+                            if(g.actionSelected == "Open" and g.mouse.objectPointedAt.state == "Closed" and g.mouse.objectPointedAt.state ~= "Locked") then
                                 g.mouse.objectPointedAt.state = "Open"
                                 loadSFX.pickup:play()
                             end
                             
                             -- Try to close the object if possible
-                            if(g.selectedAction == "Close" and g.mouse.objectPointedAt.state == "Open") then
+                            if(g.actionSelected == "Close" and g.mouse.objectPointedAt.state == "Open") then
                                 g.mouse.objectPointedAt.state = "Closed"
                             end
                             
                             -- Turn off the light switch
-                            if(g.selectedAction == "Use" and g.mouse.objectPointedAt.lightSwitch) then
+                            if(g.actionSelected == "Use" and g.mouse.objectPointedAt.lightSwitch) then
                                 loadSFX.pickup:play()
                                 if(g.curLocation.state == "Light") then
                                     g.curLocation.state = "Dark"
+                                    g.curLocation.music=loadMusic.houseDark
+                                    createEvent.create({name="Play Music", music=loadMusic.houseDark})
                                 else
                                     g.curLocation.state = "Light"
+                                    g.curLocation.music=loadMusic.houseLight
+                                    createEvent.create({name="Play Music", music=loadMusic.houseLight})
                                 end
                             end
                             
-                            if(g.selectedAction == "Push") then
+                            if(g.actionSelected == "Push") then
                                 if(g.curLocation == loadRooms.graveyard and g.mouse.objectPointedAt == loadRooms.graveyard.objects.grave) then
                                     if(loadRooms.graveyard.objects.grave.state == "normal") then
                                         loadRooms.graveyard.objects.stairs = {name="stairs",x=37,y=67,w=25,h=11,text={look={"Stairs. They lead down into the", "the earth. But what hides", "there?"},move=""},img=loadImages.graveStairs,move=""}
@@ -93,12 +101,25 @@ local updateRoomObjects = {}
                                 end
                             end
                             
-                            if(g.selectedAction == "Move") then
+                            if(g.actionSelected == "Move") then
                                 g.movementDirection = g.mouse.objectPointedAt.move
                             end
                             
+                            -- Easter Egg Ending
+                            if(g.actionSelected == "Look" and g.curLocation == loadRooms.patio) then
+                                if(g.mouse.objectPointedAt == loadRooms.patio.objects.sun) then
+                                    g.playerState.numOfTimesLookedAtSun = g.playerState.numOfTimesLookedAtSun + 1
+                                    if(g.playerState.numOfTimesLookedAtSun >= 6) then
+                                        g.actionSelected = nil
+                                        g.textBuffer = {}
+                                        createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="easter egg ending"}})
+                                        createEvent.create({name="Play Music", music=loadMusic.darkStreets})
+                                    end
+                                end
+                            end
+                            
                             -- Pick up the item (if the selected item can be taken)
-                            if(g.selectedAction == "Take" and g.mouse.objectPointedAt.item ~= nil) then
+                            if(g.actionSelected == "Take" and g.mouse.objectPointedAt.item ~= nil) then
                                 
                                 -- Add the item to the player's inventory
                                 table.insert(g.items, g.mouse.objectPointedAt.item)
@@ -118,11 +139,29 @@ local updateRoomObjects = {}
                             end
                         end
                     end
+                
+                -- Check if the player is selecting an item
+                elseif(g.itemSelected ~= nil) then
+                    -- The bolt cutters are used to cut the chain at the park
+                    if(g.itemSelected == "B. Cutters") then
+                        if(g.curLocation == loadRooms.park1) then
+                            if(g.curLocation.objects.parkGate.state == "Locked" and g.mouse.objectPointedAt == g.curLocation.objects.parkGate) then
+                                g.curLocation.objects.parkGate.state = "Closed"
+                                g.writeToTextDisplay({"You cut the chain with the bolt", "cutters."})
+                            else
+                                g.writeToTextDisplay({"You can't use the bolt cutters", "here."})
+                            end
+                        else
+                            if(g.mouse.objectPointedAt ~= nil) then
+                                g.writeToTextDisplay({"You can't use the bolt cutters", "here."})
+                            end
+                        end
+                    end
                 else
-                    g.writeToTextDisplay({"You must select an action", "first!"})
+                    g.writeToTextDisplay({"You must select an action", "or item first!"})
                 end
             end
         end
     end
 
-return updateRoomObjects
+return updateCheckAction
