@@ -28,14 +28,25 @@ function updateRoomLocks.update()
                 g.mapTransitionIsLegal = true
             end
         
-        elseif(g.curLocation.name == "Car 2" and g.movementDirection == "South") then
-            g.mapTransitionIsLegal = false
-            createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="car transition 2"}})
+        elseif(g.curLocation.name == "School 2") then
+            if(g.movementDirection == "North") then
+                if(g.curLocation.objects.door.state == "Closed") then
+                    g.mapTransitionIsLegal = false
+                    g.writeToTextDisplay({"The door is closed!"})
+                elseif(g.curLocation.objects.door.state == "Open") then
+                    g.mapTransitionIsLegal = true
+                end
+            elseif(g.movementDirection == "South") then
+                g.mapTransitionIsLegal = true
+            end
             
         elseif(g.curLocation.name == "Gas Station Outside") then
-            if(g.curLocation.objects["door"].state == "Locked" and g.movementDirection == "North") then
+            if(g.curLocation.objects.door.state == "Locked" and g.movementDirection == "North") then
                 g.mapTransitionIsLegal = false
                 g.writeToTextDisplay({"The door is locked!"})
+            elseif(g.curLocation.objects.door.state == "Closed" and g.movementDirection == "North") then
+                g.mapTransitionIsLegal = false
+                g.writeToTextDisplay({"The door is closed!"})
             else
                 g.mapTransitionIsLegal = true
             end
@@ -60,8 +71,20 @@ function updateRoomLocks.update()
                 g.mapTransitionIsLegal = true
             end
             
-        elseif(g.curLocation.name == "Church Inside 2") then
+        elseif(g.curLocation.name == "Church Inside 1") then
             if(g.curLocation.objects["churchInsideDoor"].state == "Closed" and g.movementDirection == "North") then
+                g.mapTransitionIsLegal = false
+                g.writeToTextDisplay({"The door is closed!"})
+            else
+                g.mapTransitionIsLegal = true
+            end
+            
+        elseif(g.curLocation.name == "Mirror Room") then
+            if(g.actionSelected == "Move" and loadRooms.mirrorRoom.objects.mirror2.state == "Open" and g.mouse.objectPointedAt == loadRooms.mirrorRoom.objects.mirror2) then
+                g.mapTransitionIsLegal = true
+                updateRoom.transition("Church Inside Secret Room")
+                createEvent.create({name="Start Screen Transition", x=3, y=3, w=94, h=77,event={name="Play Music", music=g.curLocation.music}})
+            elseif(g.movementDirection ~= "South") then
                 g.mapTransitionIsLegal = false
                 g.writeToTextDisplay({"The door is closed!"})
             else
@@ -83,7 +106,7 @@ function updateRoomLocks.update()
             
         elseif(g.curLocation.name == "Graveyard") then
             if(g.actionSelected == "Move" and loadRooms.graveyard.objects.stairs ~= nil and g.mouse.objectPointedAt == loadRooms.graveyard.objects.stairs) then
-                updateRoom.transition("Graveyard Underground")
+                updateRoom.transition("Graveyard Underground 1")
                 createEvent.create({name="Start Screen Transition", x=3, y=3, w=94, h=77,event={name="Play Music", music=g.curLocation.music}})
             end
             

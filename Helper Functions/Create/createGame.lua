@@ -9,7 +9,9 @@ local createGame = {}
         
         -- Initialize game state
         g.state = "title"
-        if(debug) then g.state = "game" end
+        if(debug) then
+            g.state = "game"
+        end
         
         -- Initialize events table
         g.events = {}
@@ -17,11 +19,18 @@ local createGame = {}
         -- Initialize current location
         g.curLocation = loadRooms.bedroom
         if(debug) then
-            --g.curLocation = loadRooms.park1
+            g.curLocation = loadRooms.floodedLabyrinth1
         end
         
         -- Initialize items currently held
         g.items = {}
+        --[[g.items={
+                    {name="Item 1",w=28,h=4},
+                    {name="Item 2",w=28,h=4},
+                    {name="Item 3",w=28,h=4},
+                    {name="Item 4",w=28,h=4},
+                    {name="Item 5",w=28,h=4}
+                }]]
                   
         g.displayText = true
         g.objectPointedAt = nil
@@ -96,10 +105,20 @@ local createGame = {}
         
         g.playerState = {
             classOver = false,
+            hasGasCan = false,
             numOfTimesLookedAtSun = 0,
+            clockHour = 3,
+            clockMinute = 45,
         }
         
+        -- Which page of items are we on
+        g.itemPage = 1
+        g.itemCount = 0
+        g.scrollItemPageLeft = {x=104,y=70,w=4,h=8}
+        g.scrollItemPageRight = {x=150,y=70,w=4,h=8}
+        g.mouse.scrollPageArrowHover = nil
         
+        g.shadowPeople = {}
     end
 
 return createGame

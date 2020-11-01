@@ -12,18 +12,23 @@ local drawGame = {}
 
         -- draw the item text
         love.graphics.print("Items", 118, 9, 0, 0.4, 0.4)
-        for k,v in ipairs(g.items) do
-            local x = 105
-            local y = 22 + 13 * (k-1)
-            local textBox = {x=105,y=22 + 13 * (k-1),w=v.w,h=v.h,text=v.name}
-            g.highlightText(textBox,0.4)
-            
-            if(debug) then
-                love.graphics.setColor(1, 0, 0, 1)
-                love.graphics.rectangle("line", x, y, v.w, v.h) -- draw red rectangles over clickable objects
-                love.graphics.setColor(g.colors.darkestGreen.r, g.colors.darkestGreen.g, g.colors.darkestGreen.b, 1)
+        --for k,v in ipairs(g.items) do
+        for i=1+4*(g.itemPage-1),4*g.itemPage do
+            if(g.items[i] ~= nil) then
+                local x = 105
+                local y = 22 + 13 * ((i-1)%4)
+                local textBox = {x=x,y=y,w=g.items[i].w,h=g.items[i].h,text=g.items[i].name}
+                g.highlightText(textBox,0.4)
+                
+                if(debug) then
+                    love.graphics.setColor(1, 0, 0, 1)
+                    love.graphics.rectangle("line", x, y, g.items[i].w, g.items[i].h) -- draw red rectangles over clickable objects
+                    love.graphics.setColor(g.colors.darkestGreen.r, g.colors.darkestGreen.g, g.colors.darkestGreen.b, 1)
+                end
+            else
+                break
+                --if(k == 4) then break end
             end
-            if(k == 4) then break end
         end
 
         -- draw the game's text
@@ -52,16 +57,28 @@ local drawGame = {}
             
             if(v.img) then
                 if(v.state == nil) then
-                    love.graphics.draw(v.img, v.x, v.y)
+                    if(v.rot == nil) then
+                        love.graphics.draw(v.img, v.x, v.y)
+                    else
+                        love.graphics.draw(v.img, v.x+v.rot.ox, v.y+v.rot.oy, v.rot.r, 1, 1, v.rot.ox, v.rot.oy)
+                    end
                 else
                     love.graphics.draw(v.img[v.state:lower()], v.x, v.y)
                 end
             end
         end
         
-        if(debug and g.itemSelected ~= nil) then
+        --[[if(debug and g.itemSelected ~= nil) then
             love.graphics.setColor(1, 0, 0, 1)
             love.graphics.print(g.itemSelected, 0, 0, 0, 0.4, 0.4)
+            love.graphics.setColor(g.colors.darkestGreen.r, g.colors.darkestGreen.g, g.colors.darkestGreen.b, 1)
+        end]]
+        
+        -- Draw rectangles around the scroll item arrows
+        if(debug) then
+            love.graphics.setColor(1, 0, 0, 1)
+            love.graphics.rectangle("line",g.scrollItemPageLeft.x,g.scrollItemPageLeft.y,g.scrollItemPageLeft.w,g.scrollItemPageLeft.h)
+            love.graphics.rectangle("line",g.scrollItemPageRight.x,g.scrollItemPageRight.y,g.scrollItemPageRight.w,g.scrollItemPageRight.h)
             love.graphics.setColor(g.colors.darkestGreen.r, g.colors.darkestGreen.g, g.colors.darkestGreen.b, 1)
         end
         

@@ -21,17 +21,12 @@ function drawManager.draw()
     elseif(g.state == "game") then
         drawGame.draw()
     
-    elseif(g.state == "car transition 1" or g.state == "car transition 2" or g.state == "car transition 3") then
-        drawCarTransitions.draw()
+    elseif(g.state == "car transition 1" or g.state == "car transition 2" or g.state == "car transition 3" or g.state == "class transition") then
+        drawInGameTransitions.draw()
     
     elseif(g.state == "good ending" or g.state == "bad ending" or g.state == "alien ending" or g.state == "easter egg ending") then
         drawEnding.draw()
         
-    --[[elseif(g.state == "bad ending") then
-        drawBadEnding.draw()
-        
-    elseif(g.state == "alien ending") then
-        drawAlienEnding.draw()]]
     end
 
     -- Draw the mouse cursor

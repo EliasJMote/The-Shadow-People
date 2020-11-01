@@ -22,7 +22,7 @@ function love.load()
     drawInstructionsScreen = require("Helper Functions/Draw/drawInstructionsScreen")
     drawUserInterface = require("Helper Functions/Draw/drawUserInterface")
     drawGame = require("Helper Functions/Draw/drawGame")
-    drawCarTransitions = require("Helper Functions/Draw/drawCarTransitions")
+    drawInGameTransitions = require("Helper Functions/Draw/drawInGameTransitions")
     drawCursor = require("Helper Functions/Draw/drawCursor")
     drawEnding = require("Helper Functions/Draw/drawEnding")
     

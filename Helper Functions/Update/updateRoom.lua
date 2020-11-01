@@ -14,8 +14,9 @@ local updateRoom = {}
     
     function updateRoom.update()
 
-        if(g.curLocation.name == "Car 1") then
-            if(g.itemSelected == "Car Key") then
+        if(g.itemSelected == "Car Key") then
+            if(g.curLocation.name == "Car 1") then
+            
                 if(g.mouse.objectPointedAt == loadRooms.car1.objects.steeringWheel) then
                     g.mapTransitionIsLegal = false
                     g.itemSelected = nil
@@ -23,6 +24,34 @@ local updateRoom = {}
                     g.textBuffer = {}
                     g.showMessageBox = false
                     createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="car transition 1"}})
+                end
+                
+            elseif(g.curLocation.name == "Car 2") then
+                if(g.mouse.objectPointedAt == loadRooms.car2.objects.steeringWheel) then
+                    if(g.playerState.classOver) then
+                        g.mapTransitionIsLegal = false
+                        g.itemSelected = nil
+                        g.actionSelected = nil
+                        g.textBuffer = {}
+                        g.showMessageBox = false
+                        createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="car transition 2"}})
+                    else
+                        g.writeToTextDisplay({"You have to go to class first!"})
+                    end
+                end
+                
+            elseif(g.curLocation.name == "Car 3") then
+                if(g.mouse.objectPointedAt == loadRooms.car3.objects.steeringWheel) then
+                    if(g.playerState.hasGasCan) then
+                        g.mapTransitionIsLegal = false
+                        g.itemSelected = nil
+                        g.actionSelected = nil
+                        g.textBuffer = {}
+                        g.showMessageBox = false
+                        createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="car transition 3"}})
+                    else
+                        g.writeToTextDisplay({"You need to get gas first!"})
+                    end
                 end
             end
         end

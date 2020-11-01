@@ -75,29 +75,65 @@ local updateCheckAction = {}
                                 g.mouse.objectPointedAt.state = "Closed"
                             end
                             
-                            -- Turn off the light switch
-                            if(g.actionSelected == "Use" and g.mouse.objectPointedAt.lightSwitch) then
-                                loadSFX.pickup:play()
-                                if(g.curLocation.state == "Light") then
-                                    g.curLocation.state = "Dark"
-                                    g.curLocation.music=loadMusic.houseDark
-                                    createEvent.create({name="Play Music", music=loadMusic.houseDark})
+                            
+                            if(g.actionSelected == "Use") then
+                                -- Operate off the light switch
+                                if(g.mouse.objectPointedAt.lightSwitch) then
+                                    loadSFX.pickup:play()
+                                    if(g.curLocation.state == "Light") then
+                                        g.curLocation.state = "Dark"
+                                        g.curLocation.music=loadMusic.houseDark
+                                        createEvent.create({name="Play Music", music=loadMusic.houseDark})
+                                    else
+                                        g.curLocation.state = "Light"
+                                        g.curLocation.music=loadMusic.houseLight
+                                        createEvent.create({name="Play Music", music=loadMusic.houseLight})
+                                    end
                                 else
-                                    g.curLocation.state = "Light"
-                                    g.curLocation.music=loadMusic.houseLight
-                                    createEvent.create({name="Play Music", music=loadMusic.houseLight})
+                                    if(g.curLocation == loadRooms.clockTowerInsideSecondFloor) then
+                                        if(g.mouse.objectPointedAt == loadRooms.clockTowerInsideSecondFloor.objects.hourButton) then
+                                            local r = loadRooms.clockTowerInsideSecondFloor.objects.hourHand.rot.r
+                                            loadRooms.clockTowerInsideSecondFloor.objects.hourHand.rot.r = r + math.rad(360/12)
+                                        elseif(g.mouse.objectPointedAt == loadRooms.clockTowerInsideSecondFloor.objects.minuteButton) then
+                                            local r = loadRooms.clockTowerInsideSecondFloor.objects.minuteHand.rot.r
+                                            loadRooms.clockTowerInsideSecondFloor.objects.minuteHand.rot.r = r + math.rad(360/12)
+                                        end
+                                    end
                                 end
                             end
                             
+                            -- Push actions
                             if(g.actionSelected == "Push") then
-                                if(g.curLocation == loadRooms.graveyard and g.mouse.objectPointedAt == loadRooms.graveyard.objects.grave) then
-                                    if(loadRooms.graveyard.objects.grave.state == "normal") then
-                                        loadRooms.graveyard.objects.stairs = {name="stairs",x=37,y=67,w=25,h=11,text={look={"Stairs. They lead down into the", "the earth. But what hides", "there?"},move=""},img=loadImages.graveStairs,move=""}
-                                        loadRooms.graveyard.objects.grave.state = "Pushed"
-                                        loadRooms.graveyard.objects.grave.y = loadRooms.graveyard.objects.grave.y - 12
-                                        loadGameText.graveyard.grave.pull = "It has already been moved!"
-                                        loadGameText.graveyard.grave.push = "It has already been moved!"
+                                if(g.curLocation == loadRooms.graveyard) then
+                                    if(g.mouse.objectPointedAt == loadRooms.graveyard.objects.grave) then
+                                        if(loadRooms.graveyard.objects.grave.state == "normal") then
+                                            loadRooms.graveyard.objects.stairs = {name="stairs",x=37,y=67,w=25,h=11,text={look={"Stairs. They lead down into the", "the earth. But what hides", "there?"},move=""},img=loadImages.graveStairs,move=""}
+                                            loadRooms.graveyard.objects.grave.state = "Pushed"
+                                            loadRooms.graveyard.objects.grave.y = loadRooms.graveyard.objects.grave.y - 12
+                                            loadGameText.graveyard.grave.pull = {"It has already been moved!"}
+                                            loadGameText.graveyard.grave.push = {"It has already been moved!"}
+                                        end
                                     end
+                                elseif(g.curLocation == loadRooms.clockTowerInsideSecondFloor) then
+                                    if(g.mouse.objectPointedAt == loadRooms.clockTowerInsideSecondFloor.objects.hourButton) then
+                                        local r = loadRooms.clockTowerInsideSecondFloor.objects.hourHand.rot.r
+                                        loadRooms.clockTowerInsideSecondFloor.objects.hourHand.rot.r = r + math.rad(360/12)
+                                    elseif(g.mouse.objectPointedAt == loadRooms.clockTowerInsideSecondFloor.objects.minuteButton) then
+                                        local r = loadRooms.clockTowerInsideSecondFloor.objects.minuteHand.rot.r
+                                        loadRooms.clockTowerInsideSecondFloor.objects.minuteHand.rot.r = r + math.rad(360/12)
+                                    end
+                                end
+                            end
+                            
+                            --[[if(g.actionSelected == "Talk" and g.curLocation == loadRooms.classroom) then
+                                if(g.mouse.objectPointedAt == g.curLocation.objects.professor) then
+                                    g.playerState.classOver = true
+                                end
+                            end]]
+                            
+                            if(g.actionSelected == "Take" and g.curLocation == loadRooms.gasStationInside) then
+                                if(g.mouse.objectPointedAt == g.curLocation.objects.gasCanister) then
+                                    g.playerState.hasGasCan = true
                                 end
                             end
                             
@@ -106,14 +142,28 @@ local updateCheckAction = {}
                             end
                             
                             -- Easter Egg Ending
-                            if(g.actionSelected == "Look" and g.curLocation == loadRooms.patio) then
-                                if(g.mouse.objectPointedAt == loadRooms.patio.objects.sun) then
-                                    g.playerState.numOfTimesLookedAtSun = g.playerState.numOfTimesLookedAtSun + 1
-                                    if(g.playerState.numOfTimesLookedAtSun >= 6) then
+                            if(g.actionSelected == "Look") then
+                                if(g.curLocation == loadRooms.patio) then
+                                    if(g.mouse.objectPointedAt == loadRooms.patio.objects.sun) then
+                                        g.playerState.numOfTimesLookedAtSun = g.playerState.numOfTimesLookedAtSun + 1
+                                        if(g.playerState.numOfTimesLookedAtSun >= 6) then
+                                            g.actionSelected = nil
+                                            g.textBuffer = {}
+                                            createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="easter egg ending"}})
+                                            createEvent.create({name="Play Music", music=loadMusic.darkStreets})
+                                        end
+                                    end
+                                elseif(g.curLocation == loadRooms.classroom) then
+                                    if(g.mouse.objectPointedAt == loadRooms.classroom.objects.chalkboard1
+                                        or g.mouse.objectPointedAt == loadRooms.classroom.objects.chalkboard2
+                                        or g.mouse.objectPointedAt == loadRooms.classroom.objects.chalkboard3) then
                                         g.actionSelected = nil
                                         g.textBuffer = {}
-                                        createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="easter egg ending"}})
-                                        createEvent.create({name="Play Music", music=loadMusic.darkStreets})
+                                        g.showMessageBox = false
+                                        g.playerState.classOver = true
+                                        loadRooms.school1.backgrounds.light = loadImages.school1Night
+                                        loadRooms.car2.backgrounds.light = loadImages.carNight
+                                        createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="class transition"}})
                                     end
                                 end
                             end
@@ -123,7 +173,7 @@ local updateCheckAction = {}
                                 
                                 -- Add the item to the player's inventory
                                 table.insert(g.items, g.mouse.objectPointedAt.item)
-                                
+                                g.itemCount = g.itemCount + 1
                                 loadSFX.pickup:play()
                                 
                                 -- Move the item offscreen
@@ -148,12 +198,72 @@ local updateCheckAction = {}
                             if(g.curLocation.objects.parkGate.state == "Locked" and g.mouse.objectPointedAt == g.curLocation.objects.parkGate) then
                                 g.curLocation.objects.parkGate.state = "Closed"
                                 g.writeToTextDisplay({"You cut the chain with the bolt", "cutters."})
+                                loadSFX.pickup:play()
                             else
                                 g.writeToTextDisplay({"You can't use the bolt cutters", "here."})
                             end
                         else
                             if(g.mouse.objectPointedAt ~= nil) then
                                 g.writeToTextDisplay({"You can't use the bolt cutters", "here."})
+                            end
+                        end
+                        
+                    -- The gas station key unlocks the front door of the gas station
+                    elseif(g.itemSelected == "G.S. Key") then
+                        if(g.curLocation == loadRooms.gasStationOutside) then
+                            if(g.curLocation.objects.door.state == "Locked" and g.mouse.objectPointedAt == g.curLocation.objects.door) then
+                                g.curLocation.objects.door.state = "Closed"
+                                g.writeToTextDisplay({"You unlock the door with", "the key."})
+                                loadSFX.pickup:play()
+                            else
+                                g.writeToTextDisplay({"You can't use the gas station", "key here."})
+                            end
+                        else
+                            if(g.mouse.objectPointedAt ~= nil) then
+                                g.writeToTextDisplay({"You can't use the gas station", "key here."})
+                            end
+                        end
+                        
+                    -- The hammer is used to smash the mirrors in the mirror room
+                    elseif(g.itemSelected == "Hammer") then
+                        if(g.curLocation == loadRooms.mirrorRoom) then
+                            if(g.curLocation.objects.mirror1.state == "Unbroken" and g.mouse.objectPointedAt == g.curLocation.objects.mirror1) then
+                                g.curLocation.objects.mirror1.state = "Broken"
+                                g.writeToTextDisplay({"You smash the mirror to pieces."})
+                                loadSFX.glassShattering:play()
+                            elseif(g.curLocation.objects.mirror2.state == "Unbroken" and g.mouse.objectPointedAt == g.curLocation.objects.mirror2) then
+                                g.curLocation.objects.mirror2.state = "Closed"
+                                g.curLocation.objects.mirror2.text.close = {"You close the secret door."}
+                                g.curLocation.objects.mirror2.text.open = {"You open the secret door."}
+                                g.curLocation.objects.mirror2.text.move=""
+                                g.curLocation.objects.mirror2.move=""
+                                g.writeToTextDisplay({"You smash the mirror to pieces,", "revealing a hidden door behind", "it."})
+                                loadSFX.glassShattering:play()
+                            elseif(g.curLocation.objects.mirror3.state == "Unbroken" and g.mouse.objectPointedAt == g.curLocation.objects.mirror3) then
+                                g.curLocation.objects.mirror3.state = "Broken"
+                                g.writeToTextDisplay({"You smash the mirror to pieces."})
+                                loadSFX.glassShattering:play()
+                            else
+                                g.writeToTextDisplay({"You can't use the hammer here."})
+                            end
+                        else
+                            if(g.mouse.objectPointedAt ~= nil) then
+                                g.writeToTextDisplay({"You can't use the hammer here."})
+                            end
+                        end
+                        
+                    elseif(g.itemSelected == "Hacksaw") then
+                        if(g.curLocation == loadRooms.street7) then
+                            if(g.curLocation.objects.sewerGate.state == "Locked" and g.mouse.objectPointedAt == g.curLocation.objects.sewerGate) then
+                                g.curLocation.objects.sewerGate.state = "Broken"
+                                g.writeToTextDisplay({"You cut the bars with the", "hacksaw."})
+                                loadSFX.pickup:play()
+                            else
+                                g.writeToTextDisplay({"You can't use the hacksaw here."})
+                            end
+                        else
+                            if(g.mouse.objectPointedAt ~= nil) then
+                                g.writeToTextDisplay({"You can't use the hacksaw here."})
                             end
                         end
                     end

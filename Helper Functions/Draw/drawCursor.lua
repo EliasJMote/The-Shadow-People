@@ -6,8 +6,8 @@ function drawCursor.draw()
     
     love.graphics.setColor(g.colors.lightestGreen.r, g.colors.lightestGreen.g, g.colors.lightestGreen.b, 1)
     
-    if((g.screenTransition.active ~= true or debug) and g.state ~= "good ending" and g.state ~= "bad ending" and g.state ~= "alien ending" and g.state ~= "easter egg ending") then
-        if(g.mouse.actionHover or g.mouse.textHover or g.mouse.itemMenuHover) then
+    if((g.screenTransition.active ~= true or debug) and g.state ~= "good ending" and g.state ~= "bad ending" and g.state ~= "alien ending" and g.state ~= "easter egg ending" and g.state ~= "car transition 1" and g.state ~= "car transition 2" and g.state ~= "car transition 3" and g.state ~= "class transition") then
+        if(g.mouse.actionHover or g.mouse.textHover or g.mouse.itemMenuHover or g.mouse.scrollPageArrowHover) then
             love.graphics.draw(loadImages.cursorHand, g.mouse.x - 4, g.mouse.y)
         elseif(g.mouse.mapHover) then
             love.graphics.draw(loadImages.cursorMove, g.mouse.x - 4, g.mouse.y - 4)

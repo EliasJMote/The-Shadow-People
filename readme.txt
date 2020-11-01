@@ -1,5 +1,5 @@
 ﻿The Shadow People
-Version 0.8.0
+Version 0.9.0
 
 Copyright © 2020 Elias Mote
 Copyright © 2020 Roc Studios
@@ -21,7 +21,23 @@ strictly prohibited, and a violation of copyright.
 II. Version History
 
 ------------------------
-V0.8.0 - Current Version
+V0.9.0 - Current Version
+------------------------
+-- Added/changed backgrounds for inside the gas station, church, school, classroom, living room
+-- Added the gas canister, shadow orb, necklace, hacksaw and hammer as pickups
+-- Added the ability to scroll between item pages (if the player has more than 4 items)
+-- Added text to the 2nd and 3rd car transitions
+-- Added a sfx for smashing the mirrors
+-- The player must look at the chalkboard to transition to nighttime and leave the school
+-- Gas canister must now be picked up to leave the gas station
+-- The clock hands can be manipulated by nearby buttons
+-- The hammer can smash the central mirror in the mirror room to enter a secret room
+-- The gas station key allows access to the gas station inside
+-- The hacksaw can be used to cut open the entrance to the sewer gate
+-- Fixed a bug where action text highlighting was occuring during screen transitions if the mouse was over the action text
+
+------------------------
+V0.8.0
 ------------------------
 -- Added new music (title screen, house light 8-bit, house dark 8-bit, highway, good ending)
 -- Added good ending credits sequence (temporarily accessible from the outside of the house just past the flooded labyrinth)

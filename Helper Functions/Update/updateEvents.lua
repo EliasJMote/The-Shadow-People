@@ -59,6 +59,10 @@ updateEvents.update = function()
             elseif(event.state == "car transition 3") then
                 createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="game"}})
                 g.curLocation = loadRooms.car4
+                
+            elseif(event.state == "class transition") then
+                createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="game"}})
+                loadRooms.classroom.objects = {}
             
             -- If we are in the game
             elseif(event.state == "game") then
@@ -93,6 +97,20 @@ updateEvents.update = function()
                         else
                             g.itemSelected = nil
                         end
+                    end
+                    
+                    if(g.mouseCollision(g.mouse.x,g.mouse.y,g.scrollItemPageLeft)) then
+                        if(g.itemPage > 1) then
+                            g.itemPage = g.itemPage - 1
+                        end
+                        --g.mouse.scrollPageArrowHover = "Left"
+                    elseif(g.mouseCollision(g.mouse.x,g.mouse.y,g.scrollItemPageRight)) then
+                        if(g.itemPage < math.ceil(g.itemCount/4)) then
+                            g.itemPage = g.itemPage + 1
+                        end
+                        --g.mouse.scrollPageArrowHover = "Right"
+                    --else
+                        --g.mouse.scrollPageArrowHover = nil
                     end
                     
                     -- If the message box is closed, the player can check the room
@@ -165,10 +183,11 @@ updateEvents.update = function()
                 
                 -- Check if the cursor is over an object
                 for k,v in pairs(g.curLocation.objects) do
-                    
-                    if(g.mouseCollision(g.mouse.x, g.mouse.y, v)) then
-                        g.mouse.objectHover = true
-                        g.mouse.objectPointedAt = v
+                    if(v.w ~= 0 and v.h ~= 0) then
+                        if(g.mouseCollision(g.mouse.x, g.mouse.y, v)) then
+                            g.mouse.objectHover = true
+                            g.mouse.objectPointedAt = v
+                        end
                     end
                 end
                 
@@ -220,15 +239,25 @@ updateEvents.update = function()
                 g.mouse.itemMenuHoverItem = nil
                 
                 -- Get the collision boxes for the item names
-                for k,v in ipairs(g.items) do
-                    v.x = 105
-                    v.y = 22 + 13 * (k-1)
-                    
-                    -- Check if the cursor is over an item
-                    if(g.mouseCollision(g.mouse.x, g.mouse.y, v)) then
-                        g.mouse.itemMenuHover = true
-                        g.mouse.itemMenuHoverItem = v.name
+                for i=1+4*(g.itemPage-1),4*g.itemPage do
+                    if(g.items[i] ~= nil) then
+                        g.items[i].x = 105
+                        g.items[i].y = 22 + 13 * ((i-1)%4)
+                        
+                        -- Check if the cursor is over an item
+                        if(g.mouseCollision(g.mouse.x, g.mouse.y, g.items[i])) then
+                            g.mouse.itemMenuHover = true
+                            g.mouse.itemMenuHoverItem = g.items[i].name
+                        end
                     end
+                end
+                
+                if(g.mouseCollision(g.mouse.x,g.mouse.y,g.scrollItemPageLeft)) then
+                    g.mouse.scrollPageArrowHover = "Left"
+                elseif(g.mouseCollision(g.mouse.x,g.mouse.y,g.scrollItemPageRight)) then
+                    g.mouse.scrollPageArrowHover = "Right"
+                else
+                    g.mouse.scrollPageArrowHover = nil
                 end
             end
             
