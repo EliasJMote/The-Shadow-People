@@ -56,6 +56,13 @@ local updateRoom = {}
             end
         end
         
+        if(g.curLocation.name == "Sewer 9") then
+            if(g.mouse.objectPointedAt == g.curLocation.objects.pit and g.actionSelected == "Move") then
+                updateRoom.transition("Flooded Labyrinth 1")
+                createEvent.create({name="Start Screen Transition", x=3, y=3, w=94, h=77,event={name="Play Music", music=g.curLocation.music}})
+            end
+        end
+        
         if(g.curLocation.name == "House Outside") then
             g.mapTransitionIsLegal = false
             g.itemSelected = nil

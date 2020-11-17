@@ -19,18 +19,11 @@ local createGame = {}
         -- Initialize current location
         g.curLocation = loadRooms.bedroom
         if(debug) then
-            g.curLocation = loadRooms.floodedLabyrinth1
+            g.curLocation = loadRooms.park2
         end
         
         -- Initialize items currently held
         g.items = {}
-        --[[g.items={
-                    {name="Item 1",w=28,h=4},
-                    {name="Item 2",w=28,h=4},
-                    {name="Item 3",w=28,h=4},
-                    {name="Item 4",w=28,h=4},
-                    {name="Item 5",w=28,h=4}
-                }]]
                   
         g.displayText = true
         g.objectPointedAt = nil

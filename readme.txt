@@ -1,5 +1,5 @@
 ﻿The Shadow People
-Version 0.9.0
+Version 0.9.1
 
 Copyright © 2020 Elias Mote
 Copyright © 2020 Roc Studios
@@ -21,10 +21,21 @@ strictly prohibited, and a violation of copyright.
 II. Version History
 
 ------------------------
-V0.9.0 - Current Version
+V0.9.1 - Current Version
+------------------------
+-- Fixed a bug where the player could accidentally scroll through text during a screen transition event
+-- Make an improvement fix where the player only needs a single click to change which item is selected
+-- Updated backgrounds for the sewers, park
+-- Changed the layout of the sewers.
+-- Changed the underground graveyard section to the statue room.
+-- The mirror is used now to solve the statue room puzzle.
+-- Increased the size of the park by one screen
+
+------------------------
+V0.9.0
 ------------------------
 -- Added/changed backgrounds for inside the gas station, church, school, classroom, living room
--- Added the gas canister, shadow orb, necklace, hacksaw and hammer as pickups
+-- Added the gas canister, shadow orb, necklace, hacksaw, eclipse brooch and hammer as pickups
 -- Added the ability to scroll between item pages (if the player has more than 4 items)
 -- Added text to the 2nd and 3rd car transitions
 -- Added a sfx for smashing the mirrors

@@ -162,6 +162,7 @@ local updateCheckAction = {}
                                         g.showMessageBox = false
                                         g.playerState.classOver = true
                                         loadRooms.school1.backgrounds.light = loadImages.school1Night
+                                        loadRooms.school1.music = loadMusic.houseDark
                                         loadRooms.car2.backgrounds.light = loadImages.carNight
                                         createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="class transition"}})
                                     end
@@ -208,6 +209,21 @@ local updateCheckAction = {}
                             end
                         end
                         
+                    elseif(g.itemSelected == "Car Key") then
+                        if not((g.curLocation == loadRooms.car1 or g.curLocation == loadRooms.car2 or g.curLocation == loadRooms.car3)
+                            and g.mouse.objectPointedAt == g.curLocation.objects.steeringWheel) then
+                            g.writeToTextDisplay({"You can't use the car key", "here."})
+                        end
+                        
+                    elseif(g.itemSelected == "Dark Orb") then
+                        g.writeToTextDisplay({"You can't use the dark orb", "here."})
+                        
+                    elseif(g.itemSelected == "E. Brooch") then
+                        g.writeToTextDisplay({"You can't use the eclipse brooch", "here."})
+                        
+                    elseif(g.itemSelected == "Gas Can") then
+                        g.writeToTextDisplay({"You can't use the gas can", "here."})
+                        
                     -- The gas station key unlocks the front door of the gas station
                     elseif(g.itemSelected == "G.S. Key") then
                         if(g.curLocation == loadRooms.gasStationOutside) then
@@ -221,6 +237,22 @@ local updateCheckAction = {}
                         else
                             if(g.mouse.objectPointedAt ~= nil) then
                                 g.writeToTextDisplay({"You can't use the gas station", "key here."})
+                            end
+                        end
+                        
+                    -- The hacksaw is used to cut the sewer gate
+                    elseif(g.itemSelected == "Hacksaw") then
+                        if(g.curLocation == loadRooms.street7) then
+                            if(g.curLocation.objects.sewerGate.state == "Locked" and g.mouse.objectPointedAt == g.curLocation.objects.sewerGate) then
+                                g.curLocation.objects.sewerGate.state = "Broken"
+                                g.writeToTextDisplay({"You cut the bars with the", "hacksaw."})
+                                loadSFX.pickup:play()
+                            else
+                                g.writeToTextDisplay({"You can't use the hacksaw here."})
+                            end
+                        else
+                            if(g.mouse.objectPointedAt ~= nil) then
+                                g.writeToTextDisplay({"You can't use the hacksaw here."})
                             end
                         end
                         
@@ -252,21 +284,31 @@ local updateCheckAction = {}
                             end
                         end
                         
-                    elseif(g.itemSelected == "Hacksaw") then
-                        if(g.curLocation == loadRooms.street7) then
-                            if(g.curLocation.objects.sewerGate.state == "Locked" and g.mouse.objectPointedAt == g.curLocation.objects.sewerGate) then
-                                g.curLocation.objects.sewerGate.state = "Broken"
-                                g.writeToTextDisplay({"You cut the bars with the", "hacksaw."})
-                                loadSFX.pickup:play()
+                    -- The mirror is used in the statue room light puzzle
+                    elseif(g.itemSelected == "Mirror") then
+                        if(g.curLocation == loadRooms.graveyardUnderground1) then
+                            if(g.mouse.objectPointedAt == g.curLocation.objects.statueEmittingLight) then
+                                if(g.curLocation.objects.statueEmittingLight.state ~= "Lit") then
+                                    g.curLocation.objects.statueHoldingDarkCrystalBall.state = "Lit"
+                                    g.curLocation.objects.statueHoldingDarkCrystalBall.text.look = {"A statue holding a lit crystal", "ball."}
+                                    g.writeToTextDisplay({"You hold the mirror up,", "reflecting light back at the", "dim orb. The orb fills with", "shining light. You hear a panel", "slide in the wall, revealing a", "hidden door."})
+                                    g.curLocation.objects.door = {name="Door",x=45,y=30,w=10,h=37,img={closed=loadImages.graveyardDoorClosed,open=loadImages.graveyardDoorOpen},state="Closed",move="",text={close={"You close the door."},look={"It's a narrow door hidden in", "the wall."},open={"You open the door."},move="",}}
+                                    loadSFX.pickup:play()
+                                else
+                                    g.writeToTextDisplay({"The orb is lit already!"})
+                                end
                             else
-                                g.writeToTextDisplay({"You can't use the hacksaw here."})
+                                g.writeToTextDisplay({"You can't use the mirror here."})
                             end
                         else
                             if(g.mouse.objectPointedAt ~= nil) then
-                                g.writeToTextDisplay({"You can't use the hacksaw here."})
+                              g.writeToTextDisplay({"You can't use the mirror here."})
                             end
                         end
                     end
+                    
+                    elseif(g.itemSelected == "Necklace") then
+                        g.writeToTextDisplay({"You can't use the necklace", "here."})
                 else
                     g.writeToTextDisplay({"You must select an action", "or item first!"})
                 end

@@ -71,16 +71,18 @@ updateEvents.update = function()
 
                 -- First, advance the text box until no text is left in the buffer
                 if(g.showMessageBox) then
-                    -- If there are more than 4 lines of text currently in the buffer
-                    if(#g.textBuffer > 4) then
-                        -- Clear those 4 lines from the buffer
-                        for i=1,4 do
-                            table.remove(g.textBuffer,1)
+                    if not(g.screenTransition.active) then
+                        -- If there are more than 4 lines of text currently in the buffer
+                        if(#g.textBuffer > 4) then
+                            -- Clear those 4 lines from the buffer
+                            for i=1,4 do
+                                table.remove(g.textBuffer,1)
+                            end
+                        else
+                            -- The message box goes away once the text is done
+                            g.showMessageBox = false
+                            g.textBuffer = {}
                         end
-                    else
-                        -- The message box goes away once the text is done
-                        g.showMessageBox = false
-                        g.textBuffer = {}
                     end
                 else
                     
@@ -91,10 +93,10 @@ updateEvents.update = function()
                         
                     -- Select/deselect an item to use
                     if(g.mouse.itemMenuHoverItem) then
-                        if(g.itemSelected == nil) then
+                        if(g.itemSelected == nil or g.itemSelected ~= g.mouse.itemMenuHoverItem) then
                             g.itemSelected = g.mouse.itemMenuHoverItem
                             g.actionSelected = nil
-                        else
+                        elseif(g.itemSelected == g.mouse.itemMenuHoverItem) then
                             g.itemSelected = nil
                         end
                     end

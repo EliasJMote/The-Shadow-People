@@ -106,8 +106,23 @@ function updateRoomLocks.update()
             
         elseif(g.curLocation.name == "Graveyard") then
             if(g.actionSelected == "Move" and loadRooms.graveyard.objects.stairs ~= nil and g.mouse.objectPointedAt == loadRooms.graveyard.objects.stairs) then
-                updateRoom.transition("Graveyard Underground 1")
+                updateRoom.transition("Statue Room")
                 createEvent.create({name="Start Screen Transition", x=3, y=3, w=94, h=77,event={name="Play Music", music=g.curLocation.music}})
+            else
+                g.mapTransitionIsLegal = true
+            end
+            
+        elseif(g.curLocation.name == "Statue Room") then
+            if(g.actionSelected == "Move" and g.curLocation.objects.door ~= nil and g.mouse.objectPointedAt == g.curLocation.objects.door) then
+                if(g.curLocation.objects.door.state == "Closed") then
+                    g.writeToTextDisplay({"The door is closed!"})
+                else
+                    updateRoom.transition("Graveyard Underground")
+                    createEvent.create({name="Start Screen Transition", x=3, y=3, w=94, h=77,event={name="Play Music", music=g.curLocation.music}})
+                end
+                
+            else
+                g.mapTransitionIsLegal = true
             end
             
         elseif(g.curLocation.name == "Street 7") then
