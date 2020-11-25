@@ -61,16 +61,35 @@ local updateRoom = {}
                 updateRoom.transition("Flooded Labyrinth 1")
                 createEvent.create({name="Start Screen Transition", x=3, y=3, w=94, h=77,event={name="Play Music", music=g.curLocation.music}})
             end
-        end
         
-        if(g.curLocation.name == "House Outside") then
+        elseif(g.curLocation.name == "House Outside") then
             g.mapTransitionIsLegal = false
             g.itemSelected = nil
             g.actionSelected = nil
             g.textBuffer = {}
             g.showMessageBox = false
-            createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="good ending"}})
-            createEvent.create({name="Play Music", music=loadMusic.undertheStars})
+            if(g.playerState.hasNecklace) then
+                if(g.playerState.hasShadowOrb and g.playerState.hasEclipseBrooch) then
+                    --createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="dream transition"}})
+                    updateRoom.transition("Shadow Lands 1")
+                    createEvent.create({name="Start Screen Transition", x=3, y=3, w=94, h=77,event={name="Play Music", music=g.curLocation.music}})
+                else
+                    createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="good ending"}})
+                    createEvent.create({name="Play Music", music=loadMusic.undertheStars})
+                end
+            else
+                createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="bad ending"}})
+                createEvent.create({name="Play Music", music=loadMusic.darkStreets})
+            end
+            
+        elseif(g.curLocation.name == "Shadow Lands 3") then
+            g.mapTransitionIsLegal = false
+            g.itemSelected = nil
+            g.actionSelected = nil
+            g.textBuffer = {}
+            g.showMessageBox = false
+            createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="alien ending"}})
+            createEvent.create({name="Play Music", music=loadMusic.darkStreets})
         end
         
         -- Make sure the cursor is over the map and we aren't currently in a screen transition

@@ -21,7 +21,25 @@ loadRooms.bedroom = {
                         backgrounds={light=loadImages.bedroomLight,dark=loadImages.bedroomDark},
                     }
 
+loadRooms.burntHouseInside =   {
+                                    name="Burnt House Inside",
+                                    state="Light",
+                                    map=loadImages.carMap,
+                                    backgrounds={light=loadImages.emptyOutside},
+                                    --music=loadMusic.houseLight,
+                                    objects={},
+                                    exits={south="Burnt House Outside"},
+                                }
 
+loadRooms.burntHouseOutside =   {
+                                    name="Burnt House Outside",
+                                    state="Light",
+                                    map=loadImages.churchOutsideMap,
+                                    backgrounds={light=loadImages.emptyOutside},
+                                    --music=loadMusic.houseLight,
+                                    objects={},
+                                    exits={north="Burnt House Inside",south="Street 2"},
+                                }
 
 -- Car (at house)
 loadRooms.car1 =     {
@@ -36,7 +54,6 @@ loadRooms.car1 =     {
                                     steeringWheel={name="Steering Wheel",x=7,y=30,w=28,h=28,text={look={"It's a steering wheel."}}},
                                     sun={name="Sun",x=81,y=5,w=5,h=5,text={look={"It's the morning sun."}}},
                                 },
-                        --exits={south="Living Room",north="Car 2"},
                         exits={south="Living Room"},
                     }
        
@@ -99,16 +116,18 @@ loadRooms.churchInside1 =    {
                                 name="Church Inside 1",
                                 state="Light",
                                 displayName = "Church Inside",
-                                map=loadImages.churchOutsideMap,
+                                map=loadImages.carMap,
                                 --music=loadMusic.houseDark,
                                 backgrounds={light=loadImages.churchInside},
                                 objects={
-                                            candelabra1={name="Candelabra",x=4,y=36,w=11,h=11,text={look={"An unlit candelabra."}}},
-                                            candelabra2={name="Candelabra",x=85,y=36,w=11,h=11,text={look={"An unlit candelabra."}}},
-                                            churchInsideDoor={name="Door",x=23,y=30,w=10,h=37,img={closed=loadImages.churchDoorInsideClosed,open=loadImages.churchDoorInsideOpen},state="Closed",move="North",text={close={"You close the door."},look={"It's a narrow door hidden in", "the wall."},open={"You open the door."},move="North",}},
-                                            religiousIcon={name="Religious Icon",x=40,y=18,w=21,h=29,text={look={"Some sort of religious icon? It", "looks a bit like a cross with", "spikes on the ends, but there", "is a crescent around part of", "the cross."}}},
+                                            candle1={name="Candle",x=37,y=48,w=3,h=8,state="Unlit",img={lit=loadImages.litCandle,unlit=loadImages.unlitCandle},text={look={"A candle sits on the altar."}}},
+                                            candle2={name="Candle",x=60,y=48,w=3,h=8,state="Unlit",img={lit=loadImages.litCandle,unlit=loadImages.unlitCandle},text={look={"A candle sits on the altar."}}},
+                                            --[[churchInsideDoor={name="Door",x=13,y=30,w=10,h=37,img={closed=loadImages.churchDoorInsideClosed,open=loadImages.churchDoorInsideOpen},state="Closed",move="North",text={close={"You close the door."},look={"It's a narrow door hidden in", "the wall."},open={"You open the door."},move="North",}},]]
+                                            religiousIcon={name="Religious Icon",x=40,y=24,w=21,h=22,text={look={"Some sort of religious icon? It", "looks a bit like a cross with", "spikes on the ends, but there", "is a crescent around part of", "the cross."}}},
+                                            wallCandelabra1={name="Candelabra",x=85,y=36,w=11,h=11,state="Unlit",img={lit=loadImages.litWallCandelabra,unlit=loadImages.unlitWallCandelabra},text={look={"A candelabra hangs on the wall."}}},
                                         },
-                                exits={north="Mirror Room", south="Church Outside"},
+                                --exits={north="Mirror Room", south="Church Outside"},
+                                exits={south="Church Outside"},
                             }
                             
 loadRooms.churchInsideSecretRoom =  {
@@ -118,7 +137,9 @@ loadRooms.churchInsideSecretRoom =  {
                                         map=loadImages.mirrorRoomMap,
                                         --music=loadMusic.houseDark,
                                         backgrounds={light=loadImages.graveyardUnderground2},
-                                        objects={loadObjects.necklace},
+                                        objects={
+                                                    necklace=loadObjects.necklace
+                                                },
                                         exits={south="Mirror Room"},
                                     }
 
@@ -197,6 +218,107 @@ loadRooms.clockTowerOutside =  {
                                     exits={north="Clock Tower Inside First Floor",south="Street 1"},
                                 }
          
+loadRooms.darkPassage1 =    {  
+                                name="Dark Passage 1",
+                                displayName = "????????????",
+                                state="Light",
+                                backgrounds={light=loadImages.empty},
+                                map=loadImages.floodedLabyrinth1Map,
+                                objects={},
+                                --exits={north="Dark Passage 2"},
+                                exits={north="House Outside"},
+                            }
+                            
+loadRooms.darkPassage2 =    {  
+                                name="Dark Passage 2",
+                                displayName = "????????????",
+                                state="Light",
+                                backgrounds={light=loadImages.empty},
+                                map=loadImages.floodedLabyrinth1Map,
+                                objects={},
+                                exits={north="Dark Passage 3"},
+                            }
+                            
+loadRooms.darkPassage3 =    {  
+                                name="Dark Passage 3",
+                                displayName = "????????????",
+                                state="Light",
+                                backgrounds={light=loadImages.empty},
+                                map=loadImages.floodedLabyrinth1Map,
+                                objects={},
+                                exits={north="Dark Passage 4"},
+                            }
+                            
+loadRooms.darkPassage4 =    {  
+                                name="Dark Passage 4",
+                                displayName = "????????????",
+                                state="Light",
+                                backgrounds={light=loadImages.empty},
+                                map=loadImages.floodedLabyrinth1Map,
+                                objects={},
+                                exits={north="Dark Passage 5"},
+                            }
+                            
+loadRooms.darkPassage5 =    {  
+                                name="Dark Passage 5",
+                                displayName = "????????????",
+                                state="Light",
+                                backgrounds={light=loadImages.empty},
+                                map=loadImages.floodedLabyrinth1Map,
+                                objects={},
+                                exits={north="Dark Passage 6"},
+                            }
+                            
+loadRooms.darkPassage6 =    {  
+                                name="Dark Passage 6",
+                                displayName = "????????????",
+                                state="Light",
+                                backgrounds={light=loadImages.empty},
+                                map=loadImages.floodedLabyrinth1Map,
+                                objects={},
+                                exits={north="Dark Passage 7"},
+                            }
+                            
+loadRooms.darkPassage7 =    {  
+                                name="Dark Passage 7",
+                                displayName = "????????????",
+                                state="Light",
+                                backgrounds={light=loadImages.empty},
+                                map=loadImages.floodedLabyrinth1Map,
+                                objects={},
+                                exits={north="Dark Passage 8"},
+                            }
+                            
+loadRooms.darkPassage8 =    {  
+                                name="Dark Passage 8",
+                                displayName = "????????????",
+                                state="Light",
+                                backgrounds={light=loadImages.empty},
+                                map=loadImages.floodedLabyrinth1Map,
+                                objects={},
+                                exits={north="Dark Passage 9"},
+                            }
+                            
+loadRooms.darkPassage9 =    {  
+                                name="Dark Passage 9",
+                                displayName = "????????????",
+                                state="Light",
+                                backgrounds={light=loadImages.empty},
+                                map=loadImages.floodedLabyrinth1Map,
+                                objects={},
+                                exits={north="Dark Passage 10"},
+                            }
+                            
+loadRooms.darkPassage10 =    {  
+                                name="Dark Passage 10",
+                                displayName = "????????????",
+                                state="Light",
+                                backgrounds={light=loadImages.empty},
+                                map=loadImages.floodedLabyrinth1Map,
+                                objects={},
+                                exits={north="House Outside"},
+                            }
+         
 -- Flooded Labyrinth 1
 loadRooms.floodedLabyrinth1 =   {  
                                     name="Flooded Labyrinth 1",
@@ -215,7 +337,7 @@ loadRooms.floodedLabyrinth2 =   {
                                     backgrounds={light=loadImages.emptyRoom},
                                     map=loadImages.churchOutsideMap,
                                     objects={},
-                                    exits={north="House Outside",south="Flooded Labyrinth 1"},
+                                    exits={north="Dark Passage 1",south="Flooded Labyrinth 1"},
                                 }
 
 -- Gas Station Bathroom
@@ -283,12 +405,11 @@ loadRooms.gasStationInside =    {
 loadRooms.graveyard =   {
                             name="Graveyard",
                             state="Light",
-                            --music=loadMusic.sewers,
                             map=loadImages.graveyardMap,
                             backgrounds={light=loadImages.graveyard},
                             objects={
-                                        grave={name="Grave",x=37,y=59,w=26,h=20,text=loadGameText.graveyard.grave,img={normal=loadImages.grave,pushed=loadImages.grave},state="normal"},
-                                        graveReligiousIcon={name="Grave Religious Icon",x=40,y=5,w=21,h=30,text={look={"Some sort of religious icon? It", "looks a bit like a cross with", "spikes on the ends, but there", "is a crescent around part of", "the cross."}}},
+                                        grave={name="Grave",x=37,y=59,w=27,h=20,text=loadGameText.graveyard.grave,img={normal=loadImages.grave,pushed=loadImages.grave},state="normal"},
+                                        graveReligiousIcon={name="Grave Religious Icon",x=40,y=13,w=21,h=22,text={look={"Some sort of religious icon? It", "looks a bit like a cross with", "spikes on the ends, but there", "is a crescent around part of", "the cross."}}},
                                         --stairs={name="stairs",x=38,y=69,w=25,h=11,text={look={"Stairs. They lead down into the", "the earth."}}},
                                     },
                             exits={south="Park 2"},
@@ -314,6 +435,7 @@ loadRooms.graveyardUnderground2 =    {
                                         map=loadImages.graveyardMap,
                                         backgrounds={light=loadImages.graveyardUnderground2},
                                         objects={
+                                                    note={name="Note",x=68,y=48,w=10,h=22,text={look={"Something is inscribed here:", "At last, the culmination of all", "my hard work will soon pay off.", "I have found the three magic", "artifacts that I require to", "reach the land of endless", "twilight. I have no more need", "for this mortal coil, and all", "my earthly troubles will soon", "be shed from my body like so", "many serpent scales."}}},
                                                     shadowOrb = loadObjects.shadowOrb,
                                                 },
                                         exits={south="Statue Room"},
@@ -383,7 +505,7 @@ loadRooms.houseOutside =   {
                                     name="House Outside",
                                     state="Dark",
                                     backgrounds={dark=loadImages.empty},
-                                    map=loadImages.churchOutsideMap,
+                                    map=loadImages.floodedLabyrinth1Map,
                                     objects={},
                                     exits={},
                                 }
@@ -441,6 +563,7 @@ loadRooms.park1 =    {
                         map=loadImages.parkEntranceMap,
                         backgrounds={light=loadImages.parkEntrance},
                         objects={
+                                    lighter = loadObjects.lighter,
                                     parkGate = {name="Park Gate",x=32,y=24,w=37,h=48,img={closed=loadImages.parkGateClosed,locked=loadImages.parkGateLocked,open=loadImages.parkGateOpen},text={close={"You close the gate."},look={"It's a gate to a park."},move="North",open={"You open the gate."}},state="Locked",move="North"},
                                 },
                         exits={north="Park 2", south="Street 3"},
@@ -468,11 +591,13 @@ loadRooms.park2 =    {
 loadRooms.park3 =    {
                         name="Park 3",
                         state="Light",
-                        map=loadImages.car4Map,
+                        map=loadImages.street7Map,
                         backgrounds={light=loadImages.park3},
-                        objects={},
-                        --exits={north="Shed", west="Park 2"},
-                        exits={west="Park 2"},
+                        objects={
+                                    door={name="Door",x=45,y=34,w=9,h=12,state="Closed",move="North",img={closed=loadImages.shedDoorClosed,open=loadImages.shedDoorOpen},text={close={"You close the door."},look={"It's a door to an old, run-down", "shed."},open={"You open the door."},move="North",}},
+                                },
+                        exits={north="Shed", west="Park 2"},
+                        --exits={west="Park 2"},
                     }
 
 -- House patio
@@ -492,15 +617,41 @@ loadRooms.patio =   {
                         exits={east="Living Room"},
                     }
                     
--- Railroad station
---[[loadRooms.railroadStation =     {
-                                    name="Railroad Station",
-                                    state="Dark",
-                                    map=loadImages.highwayNorthEndMap,
-                                    backgrounds={dark=loadImages.empty},
-                                    objects={},
-                                    exits={south="Street 5"},
-                                }]]
+loadRooms.railroad1 =   {
+                            name="Railroad 1",
+                            state="Dark",
+                            map=loadImages.churchOutsideMap,
+                            backgrounds={dark=loadImages.railroad},
+                            objects={},
+                            exits={north="Railroad 2", south="Street 5"},
+                        }
+                        
+loadRooms.railroad2 =   {
+                            name="Railroad 2",
+                            state="Dark",
+                            map=loadImages.churchOutsideMap,
+                            backgrounds={dark=loadImages.railroad},
+                            objects={},
+                            exits={north="Railroad 3", south="Railroad 1"},
+                        }
+                        
+loadRooms.railroad3 =   {
+                            name="Railroad 3",
+                            state="Dark",
+                            map=loadImages.churchOutsideMap,
+                            backgrounds={dark=loadImages.railroad},
+                            objects={},
+                            exits={north="Railroad 4", south="Railroad 2"},
+                        }
+                        
+loadRooms.railroad4 =   {
+                            name="Railroad 4",
+                            state="Dark",
+                            map=loadImages.churchOutsideMap,
+                            backgrounds={dark=loadImages.railroad},
+                            objects={},
+                            exits={north="Train", south="Railroad 3"},
+                        }  
 
 -- Sewer
 loadRooms.sewer1 =  {  
@@ -535,11 +686,11 @@ loadRooms.sewer3 =  {
                         backgrounds={light=loadImages.sewer1},
                         map=loadImages.sewer2Map,
                         objects={},
-                        exits={north="Sewer 4", south="Sewer 2"},
+                        exits={north="Sewer 4", south="Sewer 1"},
                     }
                     
 loadRooms.sewer4 =  {  
-                        name="Sewer 3",
+                        name="Sewer 4",
                         displayName = "Sewer",
                         state="Light",
                         backgrounds={light=loadImages.sewer1},
@@ -555,7 +706,9 @@ loadRooms.sewer5 =  {
                         state="Light",
                         backgrounds={light=loadImages.sewer5},
                         map=loadImages.livingRoomMap,
-                        objects={},
+                        objects={
+                                    pathWest={name="Path West",x=7,y=32,w=18,h=36,move="West",text={look={"It's a side tunnel."},move="West"}},
+                                },
                         exits={north="Sewer 6", west="Sewer 8", south="Sewer 4"},
                     }
                     
@@ -575,7 +728,9 @@ loadRooms.sewer7 =  {
                         state="Light",
                         backgrounds={light=loadImages.sewer6},
                         map=loadImages.mirrorRoomMap,
-                        objects={loadObjects.eclipseBrooch},
+                        objects={
+                                    eclipseBrooch = loadObjects.eclipseBrooch
+                                },
                         exits={south="Sewer 6"},
                     }
                     
@@ -606,7 +761,7 @@ loadRooms.shadowLands1 =    {
                                 name="Shadow Lands 1",
                                 state="Dark",
                                 backgrounds={dark=loadImages.empty},
-                                map=loadImages.churchOutsideMap,
+                                map=loadImages.bedroomMap,
                                 objects={},
                                 exits={north="Shadow Lands 2"},
                             }
@@ -615,18 +770,18 @@ loadRooms.shadowLands2 =    {
                                 name="Shadow Lands 2",
                                 state="Dark",
                                 backgrounds={dark=loadImages.empty},
-                                map=loadImages.churchOutsideMap,
+                                map=loadImages.bedroomMap,
                                 objects={},
                                 exits={north="Shadow Lands 3"},
                             }    
                             
 loadRooms.shadowLands3 =    {  
-                                name="Shadow Lands 2",
+                                name="Shadow Lands 3",
                                 state="Dark",
                                 backgrounds={dark=loadImages.empty},
-                                map=loadImages.churchOutsideMap,
+                                map=loadImages.shadowLands3Map,
                                 objects={},
-                                exits={north="Shadow Lands 3"},
+                                exits={},
                             }                              
                     
 -- School 1
@@ -665,9 +820,12 @@ loadRooms.school2 =    {
 loadRooms.shed =    {
                         name="Shed",
                         state="Light",
-                        map=loadImages.parkEntranceMap,
-                        backgrounds={light=loadImages.park2},
-                        objects={},
+                        map=loadImages.clockTowerInside2FMap,
+                        backgrounds={light=loadImages.shed},
+                        objects={
+                                    radio={name="Radio",x=58,y=39,w=19,h=7,text={look={"It's a ham radio."},talk={"You speak into the microphone.", "But no one answers."},take={"If you take it with you, you", "won't be able to use it, since", "it needs to be plugged into a", "power socket."},use={"You listen to a voice on the", "speakers. It sounds like a", "series of numbers..."}}},
+                                    window={name="Window",x=23,y=22,w=21,h=21,text={look={"A window sits on the wall."}}}
+                                },
                         exits={south="Park 3"},
                     }
 
@@ -681,7 +839,7 @@ loadRooms.street1 =    {
                             objects={
                                         clockTower={name="Clock Tower",x=43,y=15,w=13,h=33,move="North",text={look={"A clock tower stands tall in", "the distance."},move="North"}}
                                     },
-                            exits={west="Highway 4", east="Street 3", north="Clock Tower Outside"},
+                            exits={west="Highway 4", east="Street 2", north="Clock Tower Outside"},
                         }
 
 -- Street 2
@@ -692,7 +850,7 @@ loadRooms.street2 =    {
                             backgrounds={light=loadImages.street2},
                             map=loadImages.street2Map,
                             objects={},
-                            exits={west="Street 1", east="Street 3", north="General Store"},
+                            exits={west="Street 1", east="Street 3", north="Burnt House Outside"},
                         }
                         
 -- Street 3
@@ -705,7 +863,7 @@ loadRooms.street3 =    {
                             objects={
                                         park={name="Park",x=39,y=35,w=21,h=14,move="North",text={look={"A shadowy park lies before you."},move="North"}}
                                     },
-                            exits={west="Street 1", east="Street 4", north="Park 1"},
+                            exits={west="Street 2", east="Street 4", north="Park 1"},
                         }
 
 -- Street 4
@@ -718,7 +876,7 @@ loadRooms.street4 =    {
                             objects={
                                         church={name="Church",x=32,y=39,w=25,h=8,move="North",text={look={"A church sits silently."},move="North"}}
                                     },
-                            exits={west="Street 3", east="Street 6", north="Church Outside"},
+                            exits={west="Street 3", east="Street 5", north="Church Outside"},
                         }
                         
 -- Street 5
@@ -726,11 +884,10 @@ loadRooms.street5 =    {
                             name="Street 5",
                             displayName = "Street",
                             state="Light",
-                            music=loadMusic.house,
                             backgrounds={light=loadImages.street5},
                             map=loadImages.street5Map,
                             objects={},
-                            exits={west="Street 4", east="Street 6", north="Railroad Station"},
+                            exits={west="Street 4", east="Street 6", north="Railroad 1"},
                         }
                         
 loadRooms.street6 =    {  
@@ -744,7 +901,7 @@ loadRooms.street6 =    {
                                         note={name="Note",x=46,y=48,w=8,h=7,text={look={"Something is etched into the", "wall here:", "\"An endless midnight has been", "visited upon me. Only in a", "dream does light exist for me", "anymore. Am I blind? Even when", "my eyes are open, not even the", "faint sliver of the crescent", "moon is visible to me.\""}}},
                                         silhouetteBody={name="Silhouette body",x=45,y=63,w=20,h=10,text={look={"You're not quite sure what it", "is, but it appears to be a", "silhouette of a person. For", "some reason, you get the", "distinct impression that it's", "not a drawing."},talk={"You can't talk to it. It's not", "actually a person, just a flat", "image on the ground."}}},
                                     },
-                            exits={west="Street 4", east="Street 7"},
+                            exits={west="Street 5", east="Street 7"},
                         }
                         
 loadRooms.street7 =    {  
@@ -756,7 +913,17 @@ loadRooms.street7 =    {
                             objects={
                                         sewerGate={name="Sewer Gate",x=44,y=38,w=11,h=22,move="North",state="Locked",img={broken=loadImages.sewerGateBroken,locked=loadImages.sewerGate},text={look={"It's a sewer gate. It looks to", "be rusted in place."},move="North",open={"You can't pull it open with", "your bare hands."}}},
                                     },
-                            exits={north="Sewer 1", west="Street 6"},
+                            exits={north="Sewer 1", west="Street 6"}
                         }
+                        
+-- Train
+loadRooms.train =   {
+                        name="Train",
+                        state="Dark",
+                        map=loadImages.highwayNorthEndMap,
+                        backgrounds={dark=loadImages.emptyOutside},
+                        objects={},
+                        exits={south="Railroad 4"},
+                    }
 
 return loadRooms

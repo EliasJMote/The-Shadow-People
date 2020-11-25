@@ -13,19 +13,30 @@ function drawEnding.draw()
     end
     
     if(g.state == "good ending" and g.timers.endingText >= g.timers.goodEnding
-        or g.state == "easter egg ending" and g.timers.endingText >= g.timers.easterEggEnding) then
+        or g.state == "bad ending" and g.timers.endingText >= g.timers.badEnding
+        or g.state == "easter egg ending" and g.timers.endingText >= g.timers.easterEggEnding
+        or g.state == "alien ending" and g.timers.endingText >= g.timers.alienEnding) then
         love.graphics.print("The", 44, 44, 0, 2, 2)
         love.graphics.print("End", 44, 76, 0, 2, 2)
         local endingNumberStr = ""
+        local endingName = ""
         if(g.state == "good ending") then
-            endingNumberStr = "(Ending 1 of 4)"
+            endingNumberStr = "(Ending 1 of 5)"
+            endingName = "\"Morning Daybreak\""
         elseif(g.state == "bad ending") then
-            endingNumberStr = "(Ending 2 of 4)"
+            endingNumberStr = "(Ending 2 of 5)"
+            endingName = "\"Midnight Shadows\""
         elseif(g.state == "alien ending") then
-            endingNumberStr = "(Ending 3 of 4)"
+            endingNumberStr = "(Ending 3 of 5)"
+            endingName = "\"Eternal Twilight\""
         elseif(g.state == "easter egg ending") then
-            endingNumberStr = "(Ending 4 of 4)"
+            endingNumberStr = "(Ending 4 of 5)"
+            endingName = "\"Solar Blindness\""
+        elseif(g.state == "red prince ending") then
+            endingNumberStr = "(Ending 5 of 5)"
+            endingName = "\"The Red Prince\""
         end
+        love.graphics.print(endingName, 39, 120, 0, 0.4, 0.4)
         love.graphics.print(endingNumberStr, 44, 130, 0, 0.4, 0.4)
     else
         

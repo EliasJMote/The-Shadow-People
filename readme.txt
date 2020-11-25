@@ -1,5 +1,5 @@
 ﻿The Shadow People
-Version 0.9.1
+Version 0.9.2
 
 Copyright © 2020 Elias Mote
 Copyright © 2020 Roc Studios
@@ -21,7 +21,22 @@ strictly prohibited, and a violation of copyright.
 II. Version History
 
 ------------------------
-V0.9.1 - Current Version
+V0.9.2 - Current Version
+------------------------
+-- Added the Dark Passage after the Flooded Labyrinth.
+-- Added a bad ending, which is received when the player doesn't find the necklace.
+-- Added the alien ending at the end of the Shadow Lands.
+-- Added names for all the endings.
+-- Added a candle lighting puzzle to reveal a hidden door in the church. The puzzle is solved with the lighter.
+-- Obtaining the Shadow Orb, the Eclipse Brooch and the Necklace transports the player to the Shadow
+Lands at the end of the game. This place leads to the alien ending.
+-- Added a series of railroad tracks. They will lead to the train.
+-- Added a street road that leads to the burnt house.
+-- Fixed a bug where repeatedly using the mirror to solve the statue puzzle wouldn't properly update the text
+on subsequent uses.
+
+------------------------
+V0.9.1
 ------------------------
 -- Fixed a bug where the player could accidentally scroll through text during a screen transition event
 -- Make an improvement fix where the player only needs a single click to change which item is selected

@@ -19,11 +19,12 @@ local createGame = {}
         -- Initialize current location
         g.curLocation = loadRooms.bedroom
         if(debug) then
-            g.curLocation = loadRooms.park2
+            g.curLocation = loadRooms.graveyardUnderground1
         end
         
         -- Initialize items currently held
         g.items = {}
+        g.items = {loadObjects.mirror.item}
                   
         g.displayText = true
         g.objectPointedAt = nil
@@ -39,7 +40,9 @@ local createGame = {}
         g.timers.endingText = 0
         g.timers.endingTextFadeOut = 60 * 9
         g.timers.goodEnding = 5 * g.timers.endingTextFadeOut + 60 * 2
+        g.timers.badEnding = 8 * g.timers.endingTextFadeOut + 60 * 2
         g.timers.easterEggEnding = 1 * g.timers.endingTextFadeOut + 60 * 2
+        g.timers.alienEnding = 2 * g.timers.endingTextFadeOut + 60 * 2
         
         --g.endingTextFadeOutTime = 60 * 0.01
         g.endingTextLine = 1
@@ -99,6 +102,9 @@ local createGame = {}
         g.playerState = {
             classOver = false,
             hasGasCan = false,
+            --hasShadowOrb = true,
+            --hasEclipseBrooch = true,
+            --hasNecklace = true,
             numOfTimesLookedAtSun = 0,
             clockHour = 3,
             clockMinute = 45,

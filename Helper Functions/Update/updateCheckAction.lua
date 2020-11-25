@@ -125,15 +125,27 @@ local updateCheckAction = {}
                                 end
                             end
                             
-                            --[[if(g.actionSelected == "Talk" and g.curLocation == loadRooms.classroom) then
-                                if(g.mouse.objectPointedAt == g.curLocation.objects.professor) then
-                                    g.playerState.classOver = true
-                                end
-                            end]]
-                            
-                            if(g.actionSelected == "Take" and g.curLocation == loadRooms.gasStationInside) then
-                                if(g.mouse.objectPointedAt == g.curLocation.objects.gasCanister) then
-                                    g.playerState.hasGasCan = true
+                            if(g.actionSelected == "Take") then
+                                if(g.curLocation == loadRooms.gasStationInside) then
+                                    if(g.mouse.objectPointedAt == g.curLocation.objects.gasCanister) then
+                                        g.playerState.hasGasCan = true
+                                    end
+                                    
+                                elseif(g.curLocation == loadRooms.churchInsideSecretRoom) then
+                                    if(g.mouse.objectPointedAt == g.curLocation.objects.necklace) then
+                                        g.playerState.hasNecklace = true
+                                    end
+
+                                elseif(g.curLocation == loadRooms.graveyardUnderground2) then
+                                    if(g.mouse.objectPointedAt == g.curLocation.objects.shadowOrb) then
+                                        g.playerState.hasShadowOrb = true
+                                    end
+                                    
+                                elseif(g.curLocation == loadRooms.sewer7) then
+                                    if(g.mouse.objectPointedAt == g.curLocation.objects.eclipseBrooch) then
+                                        g.playerState.hasEclipseBrooch = true
+                                    end
+                                
                                 end
                             end
                             
@@ -284,18 +296,46 @@ local updateCheckAction = {}
                             end
                         end
                         
+                    elseif(g.itemSelected == "Lighter") then
+                        if(g.curLocation == loadRooms.churchInside1) then
+                            if(g.mouse.objectPointedAt ~= nil) then
+                                if((g.mouse.objectPointedAt.name == "Candle" or g.mouse.objectPointedAt.name == "Candelabra") and g.mouse.objectPointedAt.state == "Unlit") then
+                                    g.mouse.objectPointedAt.state = "Lit"
+                                    local textArray = {"You light the " .. string.lower(g.mouse.objectPointedAt.name) .. "."}
+                                    if(g.curLocation.objects.candle1.state == "Lit"
+                                        and g.curLocation.objects.candle2.state == "Lit"
+                                        and g.curLocation.objects.wallCandelabra1.state == "Lit") then
+                                        
+                                        -- The inside door in the church appears after lighting the candles
+                                        g.curLocation.objects.churchInsideDoor={name="Door",x=13,y=30,w=10,h=37,img={closed=loadImages.churchDoorInsideClosed,open=loadImages.churchDoorInsideOpen},state="Closed",move="",text={close={"You close the door."},look={"It's a narrow door hidden in", "the wall."},open={"You open the door."},move="",}}
+                                        table.insert(textArray, "Lighting the candles has")
+                                        table.insert(textArray, "revealed a hidden door in the")
+                                        table.insert(textArray, "wall.")
+                                    end
+                                    g.writeToTextDisplay(textArray)
+                                else
+                                    g.writeToTextDisplay({"You can't use the lighter here."})
+                                end
+                            end
+                            
+                        else
+                            if(g.mouse.objectPointedAt ~= nil) then
+                                g.writeToTextDisplay({"You can't use the lighter here."})
+                            end
+                        end
+                        
                     -- The mirror is used in the statue room light puzzle
                     elseif(g.itemSelected == "Mirror") then
                         if(g.curLocation == loadRooms.graveyardUnderground1) then
                             if(g.mouse.objectPointedAt == g.curLocation.objects.statueEmittingLight) then
-                                if(g.curLocation.objects.statueEmittingLight.state ~= "Lit") then
+                                if(g.curLocation.objects.statueHoldingDarkCrystalBall.state ~= "Lit") then
                                     g.curLocation.objects.statueHoldingDarkCrystalBall.state = "Lit"
                                     g.curLocation.objects.statueHoldingDarkCrystalBall.text.look = {"A statue holding a lit crystal", "ball."}
                                     g.writeToTextDisplay({"You hold the mirror up,", "reflecting light back at the", "dim orb. The orb fills with", "shining light. You hear a panel", "slide in the wall, revealing a", "hidden door."})
                                     g.curLocation.objects.door = {name="Door",x=45,y=30,w=10,h=37,img={closed=loadImages.graveyardDoorClosed,open=loadImages.graveyardDoorOpen},state="Closed",move="",text={close={"You close the door."},look={"It's a narrow door hidden in", "the wall."},open={"You open the door."},move="",}}
                                     loadSFX.pickup:play()
                                 else
-                                    g.writeToTextDisplay({"The orb is lit already!"})
+                                    g.writeToTextDisplay({"The orb is already lit!"})
                                 end
                             else
                                 g.writeToTextDisplay({"You can't use the mirror here."})

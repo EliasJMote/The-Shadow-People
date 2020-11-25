@@ -43,6 +43,9 @@ function drawCarTransitions.draw()
         love.graphics.print("slamming into a large", init_x, init_y+8*7, 0, 0.5, 0.5)
         love.graphics.print("tree and destroying.", init_x, init_y+8*8, 0, 0.5, 0.5)
         love.graphics.print("your car.", init_x, init_y+8*9, 0, 0.5, 0.5)
+        
+    elseif(g.state == "dream transition") then
+        love.graphics.print("Dream Transition", 32, 8, 0, 0.5, 0.5)
     end
     
     love.graphics.print("Click to continue", 30, 128, 0, 0.5, 0.5)

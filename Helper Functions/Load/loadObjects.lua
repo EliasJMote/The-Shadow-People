@@ -13,9 +13,11 @@ loadObjects.gasCanister = {name="Gas Canister",x=17,y=55,w=9,h=11,text={look={"A
 
 --loadObjects.flashlight = {name="Flashlight",x=63,y=45,w=13,h=5,text={take={"You take the flashlight."}},img=loadImages.flashlight,item={name="Flashlight",w=47,h=4}}
 
-loadObjects.hacksaw = {name="Hacksaw",x=70,y=70,w=13,h=7,text={look={"It's a hacksaw. It can be", "used to cut metal, such as", "pipes."},take={"You take the hacksaw."}},item={name="Hacksaw",w=33,h=4},img=loadImages.hacksaw}
+loadObjects.hacksaw = {name="Hacksaw",x=70,y=70,w=13,h=7,text={look={"It's a hacksaw. It can be used", "to cut metal, such as pipes."},take={"You take the hacksaw."}},item={name="Hacksaw",w=33,h=4},img=loadImages.hacksaw}
 
 loadObjects.hammer = {name="Hammer",x=75,y=70,w=13,h=7,text={look={"A wooden mallet with a rubber", "head. Often used for flattening", "sheet metal but can be useful", "for smashing fragile objects."},take={"You take the hammer."}},item={name="Hammer",w=28,h=4},img=loadImages.hammer}
+
+loadObjects.lighter = {name="Lighter",x=75,y=70,w=8,h=10,text={look={"It's a metal flip lighter.", "There appears to be some fuel", "left inside of it."},take={"You take the lighter"}},item={name="Lighter",w=32,h=4},img=loadImages.lighter}
 
 loadObjects.necklace = {name="Necklace",x=45,y=29,w=10,h=11,text={look={"A silver necklace adorned with", "a small blue sapphire. It seems", "to have a strange but calming", "energy to it."},take={"You take the necklace."}},item={name="Necklace",w=37,h=4},img=loadImages.necklace}
 
