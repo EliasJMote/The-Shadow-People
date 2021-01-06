@@ -19,12 +19,12 @@ local createGame = {}
         -- Initialize current location
         g.curLocation = loadRooms.bedroom
         if(debug) then
-            g.curLocation = loadRooms.graveyardUnderground1
+            g.curLocation = loadRooms.car4
         end
         
         -- Initialize items currently held
         g.items = {}
-        g.items = {loadObjects.mirror.item}
+        --g.items = {loadObjects.mirror.item}
                   
         g.displayText = true
         g.objectPointedAt = nil
@@ -102,12 +102,15 @@ local createGame = {}
         g.playerState = {
             classOver = false,
             hasGasCan = false,
+            hasShadowOrb = false,
             --hasShadowOrb = true,
+            hasEclipseBrooch = false,
             --hasEclipseBrooch = true,
+            hasNecklace = false,
             --hasNecklace = true,
             numOfTimesLookedAtSun = 0,
-            clockHour = 3,
-            clockMinute = 45,
+            --clockHour = 12,
+            --clockMinute = 0,
         }
         
         -- Which page of items are we on

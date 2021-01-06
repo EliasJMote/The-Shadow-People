@@ -1,5 +1,5 @@
 ﻿The Shadow People
-Version 0.9.2
+Version 0.9.3
 
 Copyright © 2020 Elias Mote
 Copyright © 2020 Roc Studios
@@ -13,15 +13,20 @@ VI. Credits
 
 I. Disclaimer
 
-This software may be not be reproduced under any circumstances except for personal, private use. It may
-not be placed on any web site or otherwise distributed publicly except at the sole discretion of the 
-author. Placement of this readme or game on any other web site or as a part of any public display is
-strictly prohibited, and a violation of copyright.
+This software may be not be reproduced under any circumstances except for personal, private use. It may not be placed on any web site or otherwise distributed publicly except at the sole discretion of the author. Placement of this readme or game on any other web site or as a part of any public display is strictly prohibited, and a violation of copyright.
 
 II. Version History
 
 ------------------------
-V0.9.2 - Current Version
+V0.9.3 - Current Version
+------------------------
+-- Added the Flooded Labyrinth (with empty Altar Room)
+-- Added the first (empty) room of the Nightmare Geometry
+-- Added the Number Radio Station to the radio in the shed
+-- Added the Clock Tower puzzle (to get the hacksaw)
+
+------------------------
+V0.9.2
 ------------------------
 -- Added the Dark Passage after the Flooded Labyrinth.
 -- Added a bad ending, which is received when the player doesn't find the necklace.
@@ -32,6 +37,7 @@ V0.9.2 - Current Version
 Lands at the end of the game. This place leads to the alien ending.
 -- Added a series of railroad tracks. They will lead to the train.
 -- Added a street road that leads to the burnt house.
+-- Added the shed in the park
 -- Fixed a bug where repeatedly using the mirror to solve the statue puzzle wouldn't properly update the text
 on subsequent uses.
 

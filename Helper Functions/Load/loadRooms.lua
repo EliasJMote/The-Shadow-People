@@ -1,5 +1,15 @@
 local loadRooms = {}
     
+loadRooms.altarRoom = {
+                        name="Altar Room",
+                        state="Light",
+                        objects={
+                                },
+                        map=loadImages.carMap,
+                        exits={south="Flooded Labyrinth 1"},
+                        backgrounds={light=loadImages.emptyRoom},
+                    }
+
 -- Bedroom
 loadRooms.bedroom = {
                         name="Bedroom",
@@ -197,12 +207,11 @@ loadRooms.clockTowerInsideSecondFloor =  {
                                                         three={name="3",x=60,y=39,w=11,h=6,text={look={"The numeral reads \"3\""}}},
                                                         six={name="6",x=46,y=57,w=7,h=6,text={look={"The numeral reads \"6\""}}},
                                                         nine={name="9",x=28,y=39,w=7,h=6,text={look={"The numeral reads \"9\""}}},
-                                                        panel={name="Panel",x=85,y=57,w=12,h=13,state="Locked",text={look={"It's a hidden panel. You don't", "see any way of opening it", "yourself. There may be some", "other way to open it."},pull={"You can't pull it open",  "yourself. There's nothing to", "grab onto."}},img={locked=loadImages.panel,open=loadImages.panel}},
+                                                        panel={name="Panel",x=85,y=57,w=12,h=13,state="Locked",text={look={"It's a hidden panel. You don't", "see any way of opening it", "yourself. There may be some", "other way to open it."},pull={"You can't pull it open",  "yourself. There's nothing to", "grab onto."}},img={locked=loadImages.panel,open=loadImages.panelOpen}},
                                                         hourHand={name="Hour Hand",x=47,y=30,w=0,h=0,rot={r=0,ox=3,oy=12},img=loadImages.hourHand,text={}},
                                                         minuteHand={name="Minute Hand",x=49,y=18,w=0,h=0,rot={r=0,ox=1,oy=24},img=loadImages.minuteHand,text={}},
                                                         hourButton={name="Hour Button",x=7,y=40,w=5,h=5,img=loadImages.button,text={look={"It's a button in the wall."},push={"You press the button."},use={"You press the button."}}},
                                                         minuteButton={name="Minute Button",x=88,y=40,w=5,h=5,img=loadImages.button,text={look={"It's a button in the wall."},push={"You press the button."},use={"You press the button."}}},
-                                                        loadObjects.hacksaw,
                                                     },
                                             exits={south="Clock Tower Inside First Floor"},
                                         }
@@ -324,21 +333,72 @@ loadRooms.floodedLabyrinth1 =   {
                                     name="Flooded Labyrinth 1",
                                     displayName = "Flooded Labyrinth",
                                     state="Light",
-                                    backgrounds={light=loadImages.emptyRoom},
-                                    map=loadImages.floodedLabyrinth1Map,
-                                    objects={},
-                                    exits={north="Flooded Labyrinth 2"},
+                                    backgrounds={light=loadImages.floodedLabyrinth1},
+                                    map=loadImages.fourWayMap,
+                                    objects={
+                                                pathForward={name="Path Forward",x=36,y=36,w=28,h=11,move="North",text={look={"The tunnel continues forward."},move="North"}},
+                                                pathLeft={name="Path Left",x=4,y=17,w=11,h=48,move="West",text={look={"It's a side tunnel."},move="West"}},
+                                                pathRight={name="Path Right",x=85,y=17,w=11,h=48,move="East",text={look={"It's a side tunnel."},move="East"}},
+                                            },
+                                    exits={west="Flooded Labyrinth 1", north="Flooded Labyrinth 2", east="Flooded Labyrinth 1", south="Flooded Labyrinth 1"},
                                 }
                                 
 loadRooms.floodedLabyrinth2 =   {  
                                     name="Flooded Labyrinth 2",
                                     displayName = "Flooded Labyrinth",
                                     state="Light",
-                                    backgrounds={light=loadImages.emptyRoom},
-                                    map=loadImages.churchOutsideMap,
-                                    objects={},
-                                    exits={north="Dark Passage 1",south="Flooded Labyrinth 1"},
+                                    backgrounds={light=loadImages.floodedLabyrinth2},
+                                    map=loadImages.fourWayMap,
+                                    objects={
+                                                pathForward={name="Path Forward",x=36,y=36,w=28,h=11,move="North",text={look={"The tunnel continues forward."},move="North"}},
+                                                pathLeft={name="Path Left",x=4,y=17,w=11,h=48,move="West",text={look={"It's a side tunnel."},move="West"}},
+                                                pathRight={name="Path Right",x=85,y=17,w=11,h=48,move="East",text={look={"It's a side tunnel."},move="East"}},
+                                            },
+                                    exits={west="Flooded Labyrinth 3", north="Flooded Labyrinth 1", east="Flooded Labyrinth 1", south="Flooded Labyrinth 1"},
                                 }
+                                
+loadRooms.floodedLabyrinth3 =   {  
+                                    name="Flooded Labyrinth 3",
+                                    displayName = "Flooded Labyrinth",
+                                    state="Light",
+                                    backgrounds={light=loadImages.floodedLabyrinth3},
+                                    map=loadImages.fourWayMap,
+                                    objects={
+                                                pathForward={name="Path Forward",x=36,y=36,w=28,h=11,move="North",text={look={"The tunnel continues forward."},move="North"}},
+                                                pathLeft={name="Path Left",x=4,y=17,w=11,h=48,move="West",text={look={"It's a side tunnel."},move="West"}},
+                                                pathRight={name="Path Right",x=85,y=17,w=11,h=48,move="East",text={look={"It's a side tunnel."},move="East"}},
+                                            },
+                                    exits={west="Flooded Labyrinth 1", north="Flooded Labyrinth 1", east="Flooded Labyrinth 1", south="Flooded Labyrinth 4"},
+                                }
+                                
+loadRooms.floodedLabyrinth4 =   {  
+                                    name="Flooded Labyrinth 4",
+                                    displayName = "Flooded Labyrinth",
+                                    state="Light",
+                                    backgrounds={light=loadImages.floodedLabyrinth4},
+                                    map=loadImages.fourWayMap,
+                                    objects={
+                                                pathForward={name="Path Forward",x=36,y=36,w=28,h=11,move="North",text={look={"The tunnel continues forward."},move="North"}},
+                                                pathLeft={name="Path Left",x=4,y=17,w=11,h=48,move="West",text={look={"It's a side tunnel."},move="West"}},
+                                                pathRight={name="Path Right",x=85,y=17,w=11,h=48,move="East",text={look={"It's a side tunnel."},move="East"}},
+                                            },
+                                    exits={west="Flooded Labyrinth 5", north="Flooded Labyrinth 1", east="Altar Room", south="Flooded Labyrinth 1"},
+                                }   
+                                
+loadRooms.floodedLabyrinth5 =   {  
+                                    name="Flooded Labyrinth 5",
+                                    displayName = "Flooded Labyrinth",
+                                    state="Light",
+                                    backgrounds={light=loadImages.floodedLabyrinth5},
+                                    map=loadImages.TMap,
+                                    objects={
+                                                --pathForward={name="Path Forward",x=36,y=36,w=28,h=11,move="North",text={look={"The tunnel continues forward."},move="North"}},
+                                                pathLeft={name="Path Left",x=4,y=17,w=11,h=48,move="West",text={look={"It's a side tunnel."},move="West"}},
+                                                pathRight={name="Path Right",x=85,y=17,w=11,h=48,move="East",text={look={"It's a side tunnel."},move="East"}},
+                                                pit={name="Pit",x=30,y=48,w=40,h=6,move="",text={look={"There's a pit in the floor.", "Water flows into the pit from", "the ground. You can't see the", "bottom..."},move=""}},
+                                            },
+                                    exits={south="Flooded Labyrinth 1",east="Flooded Labyrinth 1",west="Flooded Labyrinth 1"},
+                                }   
 
 -- Gas Station Bathroom
 loadRooms.gasStationBathroom =  {
@@ -556,6 +616,16 @@ loadRooms.mirrorRoom =  {
                             exits={south="Church Inside 1"},
                         }
 
+loadRooms.nightmareGeometry1 =  {
+                                    name="Nightmare Geometry 1",
+                                    state="Light",
+                                    map=loadImages.fourWayMap,
+                                    --music=loadMusic.houseDark,
+                                    backgrounds={light=loadImages.emptyRoom},
+                                    objects={},
+                                    exits={north="Dark Passage 1",west="Dark Passage 1",south="Dark Passage 1",east="Dark Passage 1"},
+                                }
+
 -- Park
 loadRooms.park1 =    {
                         name="Park 1",
@@ -564,7 +634,7 @@ loadRooms.park1 =    {
                         backgrounds={light=loadImages.parkEntrance},
                         objects={
                                     lighter = loadObjects.lighter,
-                                    parkGate = {name="Park Gate",x=32,y=24,w=37,h=48,img={closed=loadImages.parkGateClosed,locked=loadImages.parkGateLocked,open=loadImages.parkGateOpen},text={close={"You close the gate."},look={"It's a gate to a park."},move="North",open={"You open the gate."}},state="Locked",move="North"},
+                                    parkGate = {name="Park Gate",x=32,y=24,w=37,h=48,img={closed=loadImages.parkGateClosed,locked=loadImages.parkGateLocked,open=loadImages.parkGateOpen},text={close={"You close the gate."},look={"It's a gate to a park. It's", "currently locked by a chain with", "a padlock."},move="North",open={"You open the gate."}},state="Locked",move="North"},
                                 },
                         exits={north="Park 2", south="Street 3"},
                     }
@@ -594,9 +664,10 @@ loadRooms.park3 =    {
                         map=loadImages.street7Map,
                         backgrounds={light=loadImages.park3},
                         objects={
-                                    door={name="Door",x=45,y=34,w=9,h=12,state="Closed",move="North",img={closed=loadImages.shedDoorClosed,open=loadImages.shedDoorOpen},text={close={"You close the door."},look={"It's a door to an old, run-down", "shed."},open={"You open the door."},move="North",}},
+                                    door={name="Door",x=45,y=34,w=9,h=12,state="Closed",move="North",img={closed=loadImages.shedDoorClosed,open=loadImages.shedDoorOpen},text={close={"You close the door."},look={"It's a door to an old, run-down", "shed. It looks as though it", "has not been service in a", "long time."},open={"You open the door."},move="North",}},
                                 },
                         exits={north="Shed", west="Park 2"},
+                        music = loadMusic.darkStreets,
                         --exits={west="Park 2"},
                     }
 
@@ -751,6 +822,7 @@ loadRooms.sewer9 =  {
                         backgrounds={light=loadImages.sewer2},
                         map=loadImages.mirrorRoomMap,
                         objects={
+                                    inscription={name="Inscription",x=46,y=39,w=9,h=9,text={look={"Something is etched into the", "wall here:", "\"Let the moon serve as your", "guide in this endless night.\""}}},
                                     pit={name="Pit",x=40,y=55,w=20,h=6,move="",text={look={"There's a pit in the floor.", "Water flows into the pit from", "the sewer. You can't see the", "bottom..."},move=""}},
                                 },
                         exits={south="Sewer 8"},
@@ -807,15 +879,6 @@ loadRooms.school2 =    {
                             exits={south="School 1", north="Classroom"},
                         }
                         
---[[loadRooms.school3 =    {  
-                            name="School 3",
-                            displayName = "School",
-                            state="Light",
-                            backgrounds={light=loadImages.outsideEvening},
-                            map=loadImages.sewer1Map,
-                            objects={},
-                            exits={south="School 2", north="Classroom"},
-                        }]]
 
 loadRooms.shed =    {
                         name="Shed",
@@ -823,8 +886,8 @@ loadRooms.shed =    {
                         map=loadImages.clockTowerInside2FMap,
                         backgrounds={light=loadImages.shed},
                         objects={
-                                    radio={name="Radio",x=58,y=39,w=19,h=7,text={look={"It's a ham radio."},talk={"You speak into the microphone.", "But no one answers."},take={"If you take it with you, you", "won't be able to use it, since", "it needs to be plugged into a", "power socket."},use={"You listen to a voice on the", "speakers. It sounds like a", "series of numbers..."}}},
-                                    window={name="Window",x=23,y=22,w=21,h=21,text={look={"A window sits on the wall."}}}
+                                    radio={name="Radio",x=58,y=39,w=19,h=7,text={look={"It's a ham radio. It looks to", "be in working order."},talk={"You speak into the microphone.", "But no one answers."},take={"If you take it with you, you", "won't be able to use it, since", "it needs to be plugged into a", "power socket."},use={"You listen to a voice on the", "speakers. It sounds like a", "series of numbers...", "0...8...3...5"}}},
+                                    window={name="Window",x=23,y=22,w=21,h=21,text={look={"A window sits on the wall. It's", "pitch black outside save for a", "sliver of the moon and some", "stars in the sky."}}}
                                 },
                         exits={south="Park 3"},
                     }
@@ -839,7 +902,7 @@ loadRooms.street1 =    {
                             objects={
                                         clockTower={name="Clock Tower",x=43,y=15,w=13,h=33,move="North",text={look={"A clock tower stands tall in", "the distance."},move="North"}}
                                     },
-                            exits={west="Highway 4", east="Street 2", north="Clock Tower Outside"},
+                            exits={west="Highway 4", east="Street 3", north="Clock Tower Outside"},
                         }
 
 -- Street 2
@@ -863,7 +926,7 @@ loadRooms.street3 =    {
                             objects={
                                         park={name="Park",x=39,y=35,w=21,h=14,move="North",text={look={"A shadowy park lies before you."},move="North"}}
                                     },
-                            exits={west="Street 2", east="Street 4", north="Park 1"},
+                            exits={west="Street 1", east="Street 4", north="Park 1"},
                         }
 
 -- Street 4
@@ -876,7 +939,7 @@ loadRooms.street4 =    {
                             objects={
                                         church={name="Church",x=32,y=39,w=25,h=8,move="North",text={look={"A church sits silently."},move="North"}}
                                     },
-                            exits={west="Street 3", east="Street 5", north="Church Outside"},
+                            exits={west="Street 3", east="Street 6", north="Church Outside"},
                         }
                         
 -- Street 5
@@ -901,7 +964,7 @@ loadRooms.street6 =    {
                                         note={name="Note",x=46,y=48,w=8,h=7,text={look={"Something is etched into the", "wall here:", "\"An endless midnight has been", "visited upon me. Only in a", "dream does light exist for me", "anymore. Am I blind? Even when", "my eyes are open, not even the", "faint sliver of the crescent", "moon is visible to me.\""}}},
                                         silhouetteBody={name="Silhouette body",x=45,y=63,w=20,h=10,text={look={"You're not quite sure what it", "is, but it appears to be a", "silhouette of a person. For", "some reason, you get the", "distinct impression that it's", "not a drawing."},talk={"You can't talk to it. It's not", "actually a person, just a flat", "image on the ground."}}},
                                     },
-                            exits={west="Street 5", east="Street 7"},
+                            exits={west="Street 4", east="Street 7"},
                         }
                         
 loadRooms.street7 =    {  

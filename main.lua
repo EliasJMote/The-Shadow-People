@@ -1,5 +1,7 @@
 function love.load()
   
+    --require("mobdebug").start()
+  
     -- Global space
     GLOBALS = {}
     local g = GLOBALS

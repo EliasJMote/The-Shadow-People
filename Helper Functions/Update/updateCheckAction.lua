@@ -75,7 +75,7 @@ local updateCheckAction = {}
                                 g.mouse.objectPointedAt.state = "Closed"
                             end
                             
-                            
+                            -- If the player is using an object
                             if(g.actionSelected == "Use") then
                                 -- Operate off the light switch
                                 if(g.mouse.objectPointedAt.lightSwitch) then
@@ -90,13 +90,26 @@ local updateCheckAction = {}
                                         createEvent.create({name="Play Music", music=loadMusic.houseLight})
                                     end
                                 else
+                                    
+                                    -- If the player is pressing the buttons to manipulate the clock in the clock tower second floor
                                     if(g.curLocation == loadRooms.clockTowerInsideSecondFloor) then
+                                        
+                                        -- If the player pushes the button for the hour hand, advance the clock by one hour
                                         if(g.mouse.objectPointedAt == loadRooms.clockTowerInsideSecondFloor.objects.hourButton) then
                                             local r = loadRooms.clockTowerInsideSecondFloor.objects.hourHand.rot.r
-                                            loadRooms.clockTowerInsideSecondFloor.objects.hourHand.rot.r = r + math.rad(360/12)
+                                            loadRooms.clockTowerInsideSecondFloor.objects.hourHand.rot.r = (r + math.rad(360/12)) % (2 * math.pi)
                                         elseif(g.mouse.objectPointedAt == loadRooms.clockTowerInsideSecondFloor.objects.minuteButton) then
                                             local r = loadRooms.clockTowerInsideSecondFloor.objects.minuteHand.rot.r
-                                            loadRooms.clockTowerInsideSecondFloor.objects.minuteHand.rot.r = r + math.rad(360/12)
+                                            loadRooms.clockTowerInsideSecondFloor.objects.minuteHand.rot.r = (r + math.rad(360/12)) % (2 * math.pi)
+                                        end
+                                        
+                                        -- Check if it is the correct time (8:35). If so, open the secret panel.
+                                        g.checkClock()
+                                        
+                                    elseif(g.curLocation == loadRooms.shed) then
+                                        if(g.mouse.objectPointedAt == loadRooms.shed.objects.radio) then
+                                            -- Play the sound clip of the number radio station
+                                            loadSFX.numberRadioStationMessage:play()
                                         end
                                     end
                                 end
@@ -112,16 +125,22 @@ local updateCheckAction = {}
                                             loadRooms.graveyard.objects.grave.y = loadRooms.graveyard.objects.grave.y - 12
                                             loadGameText.graveyard.grave.pull = {"It has already been moved!"}
                                             loadGameText.graveyard.grave.push = {"It has already been moved!"}
+                                            loadSFX.pickup:play()
                                         end
                                     end
                                 elseif(g.curLocation == loadRooms.clockTowerInsideSecondFloor) then
+                                    
+                                    -- If the player pushes the button for the hour hand, advance the clock by one hour
                                     if(g.mouse.objectPointedAt == loadRooms.clockTowerInsideSecondFloor.objects.hourButton) then
                                         local r = loadRooms.clockTowerInsideSecondFloor.objects.hourHand.rot.r
-                                        loadRooms.clockTowerInsideSecondFloor.objects.hourHand.rot.r = r + math.rad(360/12)
+                                        loadRooms.clockTowerInsideSecondFloor.objects.hourHand.rot.r = (r + math.rad(360/12)) % (2 * math.pi)
                                     elseif(g.mouse.objectPointedAt == loadRooms.clockTowerInsideSecondFloor.objects.minuteButton) then
                                         local r = loadRooms.clockTowerInsideSecondFloor.objects.minuteHand.rot.r
-                                        loadRooms.clockTowerInsideSecondFloor.objects.minuteHand.rot.r = r + math.rad(360/12)
+                                        loadRooms.clockTowerInsideSecondFloor.objects.minuteHand.rot.r = (r + math.rad(360/12)) % (2 * math.pi)
                                     end
+                                    
+                                    -- Check if it is the correct time (8:35). If so, open the secret panel.
+                                    g.checkClock()
                                 end
                             end
                             
@@ -311,6 +330,7 @@ local updateCheckAction = {}
                                         table.insert(textArray, "Lighting the candles has")
                                         table.insert(textArray, "revealed a hidden door in the")
                                         table.insert(textArray, "wall.")
+                                        loadSFX.pickup:play()
                                     end
                                     g.writeToTextDisplay(textArray)
                                 else

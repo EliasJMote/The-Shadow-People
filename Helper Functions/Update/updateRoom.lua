@@ -56,9 +56,21 @@ local updateRoom = {}
             end
         end
         
-        if(g.curLocation.name == "Sewer 9") then
+        if(g.curLocation.name == "Park 3") then
+            if(g.movementDirection == "North" and g.curLocation.objects.door.state == "Open") then
+                g.music:stop()
+                g.music = nil
+            end
+        
+        elseif(g.curLocation.name == "Sewer 9") then
             if(g.mouse.objectPointedAt == g.curLocation.objects.pit and g.actionSelected == "Move") then
                 updateRoom.transition("Flooded Labyrinth 1")
+                createEvent.create({name="Start Screen Transition", x=3, y=3, w=94, h=77,event={name="Play Music", music=g.curLocation.music}})
+            end
+            
+        elseif(g.curLocation.name == "Flooded Labyrinth 5") then
+            if(g.mouse.objectPointedAt == g.curLocation.objects.pit and g.actionSelected == "Move") then
+                updateRoom.transition("Nightmare Geometry 1")
                 createEvent.create({name="Start Screen Transition", x=3, y=3, w=94, h=77,event={name="Play Music", music=g.curLocation.music}})
             end
         
@@ -78,6 +90,7 @@ local updateRoom = {}
                     createEvent.create({name="Play Music", music=loadMusic.undertheStars})
                 end
             else
+                -- Play the rotoscope animation before playing the bad ending
                 createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="bad ending"}})
                 createEvent.create({name="Play Music", music=loadMusic.darkStreets})
             end
