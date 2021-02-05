@@ -44,11 +44,11 @@ local updateCheckAction = {}
                     else
 
                         -- If the player is currently in the dark or the object is not visible in the dark
-                        if(g.curLocation.state == "Dark" and not g.mouse.objectPointedAt.visibleInDark and not debug) then
-                            g.writeToTextDisplay({"It's too dark to see!"})
+                        --if(g.curLocation.state == "Dark" and not g.mouse.objectPointedAt.visibleInDark and not debug) then
+                            --g.writeToTextDisplay({"It's too dark to see!"})
                             
                         -- If the player is currently in the light
-                        else
+                        --else
                         
                             if(g.actionSelected ~= "Move") then
                                 if (g.actionSelected == "Open" and g.mouse.objectPointedAt.state ~= "Closed") then
@@ -172,18 +172,22 @@ local updateCheckAction = {}
                                 g.movementDirection = g.mouse.objectPointedAt.move
                             end
                             
-                            -- Easter Egg Ending
+                            
                             if(g.actionSelected == "Look") then
+                                
+                                -- Easter Egg Ending (looking at the sun on the patio and go blind)
                                 if(g.curLocation == loadRooms.patio) then
                                     if(g.mouse.objectPointedAt == loadRooms.patio.objects.sun) then
                                         g.playerState.numOfTimesLookedAtSun = g.playerState.numOfTimesLookedAtSun + 1
-                                        if(g.playerState.numOfTimesLookedAtSun >= 6) then
+                                        if(g.playerState.numOfTimesLookedAtSun >= 5) then
                                             g.actionSelected = nil
                                             g.textBuffer = {}
                                             createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="easter egg ending"}})
                                             createEvent.create({name="Play Music", music=loadMusic.darkStreets})
                                         end
                                     end
+                                    
+                                -- Classroom transition from day to night
                                 elseif(g.curLocation == loadRooms.classroom) then
                                     if(g.mouse.objectPointedAt == loadRooms.classroom.objects.chalkboard1
                                         or g.mouse.objectPointedAt == loadRooms.classroom.objects.chalkboard2
@@ -197,6 +201,76 @@ local updateCheckAction = {}
                                         loadRooms.car2.backgrounds.light = loadImages.carNight
                                         createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="class transition"}})
                                     end
+                                   
+                                elseif(g.curLocation == loadRooms.nightmareGeometry1) then
+                                    if(g.mouse.objectPointedAt == loadRooms.nightmareGeometry1.objects.shadowBody) then
+                                        loadRooms.nightmareGeometry1.objects.shadowBody.text.look={{"I don't want to die."}}
+                                    end
+                                   
+                                -- Staring at the Imperfect
+                                elseif(g.curLocation == loadRooms.nightmareGeometry2) then
+                                
+                                    -- Play audio clips for deep breathing, screaming, crawling (1x, 2x, 3x)
+                                    if(g.mouse.objectPointedAt == loadRooms.nightmareGeometry2.objects.beast) then
+                                        if(loadRooms.nightmareGeometry2.backgrounds.light==loadImages.nightmareGeometry2) then
+                                            loadRooms.nightmareGeometry2.backgrounds.light=loadImages.nightmareGeometry2_2
+                                            loadRooms.nightmareGeometry2.objects.beast={name="Beast",x=25,y=9,w=58,h=57,text={look={"..."}}}
+                                        elseif(loadRooms.nightmareGeometry2.backgrounds.light==loadImages.nightmareGeometry2_2) then
+                                            loadRooms.nightmareGeometry2.backgrounds.light=loadImages.nightmareGeometry2_3
+                                            loadRooms.nightmareGeometry2.objects.beast={name="Beast",x=25,y=3,w=58,h=63,text={look={"Just run."}}}
+                                        elseif(loadRooms.nightmareGeometry2.backgrounds.light==loadImages.nightmareGeometry2_3) then
+                                            loadRooms.nightmareGeometry2.objects.beast={name="Beast",x=25,y=3,w=58,h=63,text={look={"Please run, I'm scared."}}}
+                                        end
+                                    end
+                                
+                                -- Staring at the snaking wall
+                                elseif(g.curLocation == loadRooms.nightmareGeometry4) then
+                                
+                                    -- Play audio clips for deep breathing, screaming, crawling (1x, 2x, 3x)
+                                    if(g.mouse.objectPointedAt == loadRooms.nightmareGeometry4.objects.squiggleHoleInWall) then
+                                        g.playerState.numOfTimesLookedAtWallHole = g.playerState.numOfTimesLookedAtWallHole + 1
+                                        
+                                        if(g.playerState.numOfTimesLookedAtWallHole == 1) then
+                                            loadRooms.nightmareGeometry4.objects.squiggleHoleInWall.text.look={"You hear crawling and", "screaming."}
+                                            
+                                        elseif(g.playerState.numOfTimesLookedAtWallHole == 2) then
+                                            loadRooms.nightmareGeometry4.objects.squiggleHoleInWall.text.look={"The crawling draws near..."}
+                                        
+                                        -- If the player looks 4 times, monster eyes will appear
+                                        elseif(g.playerState.numOfTimesLookedAtWallHole == 3) then
+                                            loadRooms.nightmareGeometry4.objects.squiggleHoleInWall.text.look=
+                                            {"Something is in the wall", 
+                                                "looking at you................", 
+                                                "looking at me.................",
+                                                "Please don't look again......."}
+                                        
+                                        elseif(g.playerState.numOfTimesLookedAtWallHole == 4) then
+                                            loadRooms.nightmareGeometry4.backgrounds.light = loadImages.nightmareGeometry4WithCreature
+                                            loadRooms.nightmareGeometry4.objects.squiggleHoleInWall.text.look={""}
+                                            
+                                        -- If the player looks at least 5 times, the monster will appear and shriek (jump scare!!!)
+                                        elseif(g.playerState.numOfTimesLookedAtWallHole >= 5) then 
+                                            loadRooms.nightmareGeometry4.backgrounds.light = loadImages.nightmareGeometry4
+                                            g.showMessageBox = false
+                                        end
+                                    end
+                                
+                                --[[elseif(g.curLocation == loadRooms.nightmareGeometry5) then
+                                
+                                    -- Play audio of children laughing (1x - 4x)
+                                    if(g.mouse.objectPointedAt == loadRooms.nightmareGeometry5.objects.endlessHallway) then
+                                        g.playerState.numOfTimesLookedAtHallway = g.playerState.numOfTimesLookedAtHallway + 1
+                                        
+                                        -- If the player looks 4 times, a shadow child will appear
+                                        if(g.playerState.numOfTimesLookedAtWallHole == 4) then
+                                            
+                                            -- Disable the north exit after looking/moving 4 times
+                                            loadRooms.nightmareGeometry5.exits.north = nil
+                                        
+                                        -- If the player looks at least 5 times, the shadow child slowly walks towards the screen (Chara Undertale style; jump scare!!!)
+                                        elseif(g.playerState.numOfTimesLookedAtWallHole >= 5) then
+                                        end
+                                    end]]
                                 end
                             end
                             
@@ -219,7 +293,7 @@ local updateCheckAction = {}
                                 end
                                 g.mouse.objectPointedAt = nil
                             end
-                        end
+                        --end
                     end
                 
                 -- Check if the player is selecting an item

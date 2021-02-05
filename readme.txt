@@ -1,5 +1,5 @@
 ﻿The Shadow People
-Version 0.9.3
+Version 0.9.4
 
 Copyright © 2020 Elias Mote
 Copyright © 2020 Roc Studios
@@ -18,7 +18,13 @@ This software may be not be reproduced under any circumstances except for person
 II. Version History
 
 ------------------------
-V0.9.3 - Current Version
+V0.9.4 - Current Version
+------------------------
+-- Added to the Nightmare Geometry area
+-- The holy necklace protects the player from Squiggle Man
+
+------------------------
+V0.9.3
 ------------------------
 -- Added the Flooded Labyrinth (with empty Altar Room)
 -- Added the first (empty) room of the Nightmare Geometry

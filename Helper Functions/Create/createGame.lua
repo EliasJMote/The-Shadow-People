@@ -16,15 +16,17 @@ local createGame = {}
         -- Initialize events table
         g.events = {}
         
+        --g.backgroundStatic = true
+        
         -- Initialize current location
         g.curLocation = loadRooms.bedroom
         if(debug) then
-            g.curLocation = loadRooms.car4
+            g.curLocation = loadRooms.floodedLabyrinth5
+            --g.curLocation = loadRooms.nightmareGeometry1
         end
         
         -- Initialize items currently held
         g.items = {}
-        --g.items = {loadObjects.mirror.item}
                   
         g.displayText = true
         g.objectPointedAt = nil
@@ -43,6 +45,7 @@ local createGame = {}
         g.timers.badEnding = 8 * g.timers.endingTextFadeOut + 60 * 2
         g.timers.easterEggEnding = 1 * g.timers.endingTextFadeOut + 60 * 2
         g.timers.alienEnding = 2 * g.timers.endingTextFadeOut + 60 * 2
+        g.timers.squiggleMan = 0
         
         --g.endingTextFadeOutTime = 60 * 0.01
         g.endingTextLine = 1
@@ -68,7 +71,7 @@ local createGame = {}
                                                         startGame = {x=52,y=128,w=59,h=6,text="Start Game"},
                                                     },
                             titleCreditsScreen =    {
-                                                        titleScreen = {x=20,y=128,w=30,h=6,text="Back"}
+                                                        titleScreen = {x=4,y=128,w=30,h=6,text="Back"}
                                                     },
                             titleScreen =   {
                                                 startGame = {x=52,y=96,w=59,h=6,text="Start Game"},
@@ -103,12 +106,11 @@ local createGame = {}
             classOver = false,
             hasGasCan = false,
             hasShadowOrb = false,
-            --hasShadowOrb = true,
             hasEclipseBrooch = false,
-            --hasEclipseBrooch = true,
-            hasNecklace = false,
-            --hasNecklace = true,
+            hasNecklace = true,
+            numOfTimesLookedAtHallway = 0,
             numOfTimesLookedAtSun = 0,
+            numOfTimesLookedAtWallHole = 0,
             --clockHour = 12,
             --clockMinute = 0,
         }
@@ -119,6 +121,8 @@ local createGame = {}
         g.scrollItemPageLeft = {x=104,y=70,w=4,h=8}
         g.scrollItemPageRight = {x=150,y=70,w=4,h=8}
         g.mouse.scrollPageArrowHover = nil
+        
+        g.backgroundStatic = false
         
         g.shadowPeople = {}
     end

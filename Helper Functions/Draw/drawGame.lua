@@ -12,7 +12,8 @@ local drawGame = {}
 
         -- draw the item text
         love.graphics.print("Items", 118, 9, 0, 0.4, 0.4)
-        --for k,v in ipairs(g.items) do
+        
+        -- Draw each page of items
         for i=1+4*(g.itemPage-1),4*g.itemPage do
             if(g.items[i] ~= nil) then
                 local x = 105
@@ -39,11 +40,35 @@ local drawGame = {}
 
         love.graphics.setColor(g.colors.lightestGreen.r, g.colors.lightestGreen.g, g.colors.lightestGreen.b, 1)
 
-        -- draw background
-        if(g.curLocation.state == "Dark") then
-            love.graphics.draw(g.curLocation.backgrounds.dark, 3, 3)
-        else
-            love.graphics.draw(g.curLocation.backgrounds.light, 3, 3)
+        -- Draw Background
+        if(math.floor(love.timer.getTime()*100000000) % 4 <= 2 or not g.backgroundStatic) then
+            if(g.curLocation.state == "Dark") then
+                love.graphics.draw(g.curLocation.backgrounds.dark, 3, 3)
+            else
+                love.graphics.draw(g.curLocation.backgrounds.light, 3, 3)
+            end
+        end
+        
+        -- For Nightmare Geometry 1 (The Lost Room), very rarely flicker an image of a person far away
+        if(g.curLocation == loadRooms.nightmareGeometry1) then
+            local spawnNum = love.math.random(0,20)
+            if(spawnNum == 0) then
+                love.graphics.draw(loadImages.lostRoomPeople, 3, 3)
+            end
+        end
+        
+        -- If static is enabled (for certain rooms and conditions), draw it
+        if(g.backgroundStatic) then
+            love.graphics.setColor(g.colors.darkestGreen.r, g.colors.darkestGreen.g, g.colors.darkestGreen.b, 1)
+            for i=3,96 do
+                for j=3,79 do
+                    local staticNum = love.math.random(0,20)
+                    if(staticNum <= 1) then
+                        love.graphics.rectangle("fill",i,j,1,1)
+                    end
+                end
+            end
+            --end
         end
         
         love.graphics.setColor(g.colors.lightestGreen.r, g.colors.lightestGreen.g, g.colors.lightestGreen.b, 1)
@@ -68,13 +93,7 @@ local drawGame = {}
             end
         end
         
-        --[[if(debug and g.itemSelected ~= nil) then
-            love.graphics.setColor(1, 0, 0, 1)
-            love.graphics.print(g.itemSelected, 0, 0, 0, 0.4, 0.4)
-            love.graphics.setColor(g.colors.darkestGreen.r, g.colors.darkestGreen.g, g.colors.darkestGreen.b, 1)
-        end]]
-        
-        -- Draw rectangles around the scroll item arrows
+        -- Draw rectangles around the scroll item arrows (if debug is enabled)
         if(debug) then
             love.graphics.setColor(1, 0, 0, 1)
             love.graphics.rectangle("line",g.scrollItemPageLeft.x,g.scrollItemPageLeft.y,g.scrollItemPageLeft.w,g.scrollItemPageLeft.h)

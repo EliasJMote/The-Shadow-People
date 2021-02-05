@@ -26,6 +26,26 @@ function updateGame.update()
     -- Update the event table
     updateEvents.update()
     
+    if(g.playerState.numOfTimesLookedAtWallHole == 5) then
+        g.timers.squiggleMan = g.timers.squiggleMan + 1
+        if(g.timers.squiggleMan > 60) then
+            if not(g.playerState.hasNecklace) then
+                --g.playerState.numOfTimesLookedAtWallHole = 0
+                --g.timers.squiggleMan = 0
+                --g.objectPointedAt = nil
+                --g.mouse.mapHover = nil
+                --g.mouse.objectHover = nil
+                --g.state = "title"
+                --g.music:stop()
+                love.event.quit(0)
+            else
+                g.playerState.numOfTimesLookedAtWallHole = 6
+                g.timers.squiggleMan = 0
+                g.writeToTextDisplay({"The holy necklace saved you."})
+            end
+        end
+    end
+    
     -- Update the global timer
     g.timers.global = g.timers.global + 1
 

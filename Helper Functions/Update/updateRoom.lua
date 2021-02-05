@@ -70,6 +70,7 @@ local updateRoom = {}
             
         elseif(g.curLocation.name == "Flooded Labyrinth 5") then
             if(g.mouse.objectPointedAt == g.curLocation.objects.pit and g.actionSelected == "Move") then
+                g.backgroundStatic = true
                 updateRoom.transition("Nightmare Geometry 1")
                 createEvent.create({name="Start Screen Transition", x=3, y=3, w=94, h=77,event={name="Play Music", music=g.curLocation.music}})
             end

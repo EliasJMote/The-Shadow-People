@@ -618,12 +618,124 @@ loadRooms.mirrorRoom =  {
 
 loadRooms.nightmareGeometry1 =  {
                                     name="Nightmare Geometry 1",
+                                    displayName="Lost Room",
+                                    state="Light",
+                                    map=loadImages.mirrorRoomMap,
+                                    music=loadMusic.nightmareGeometry,
+                                    backgrounds={light=loadImages.nightmareGeometry1},
+                                    objects={
+                                                shadowBody={name="Shadow Body",x=29,y=67,w=22,h=12,text={look={"Something is written next to", "an outline on the ground:", "THERE WAS A LIVING PERSON HERE.", "THEY ARE GONE NOW."}}},
+                                                shadowPeople={name="Shadow People",x=9,y=9,w=86,h=29,text={look={"Are those people waving?"}}},
+                                            },
+                                    exits={south="Nightmare Geometry 2"},
+                                }
+                                
+loadRooms.nightmareGeometry2 =  {
+                                    name="Nightmare Geometry 2",
+                                    state="Light",
+                                    displayName="Lair of the Imperfect",
+                                    map=loadImages.TMap,
+                                    music=loadMusic.nightmareGeometry,
+                                    backgrounds={light=loadImages.nightmareGeometry2},
+                                    objects={
+                                                beast={name="Beast",x=18,y=32,w=65,h=34,text={look={"A strange beast stands before", "you. It has the head of a", "nearly featureless human, but", "legs that resemble an elephant.", "Although, you aren't sure just", "how many legs..."}}},
+                                            },
+                                    exits={west="Nightmare Geometry 3",south="Nightmare Geometry 3",east="Nightmare Geometry 3"},
+                                }
+                            
+
+loadRooms.nightmareGeometry3 =  {
+                                    name="Nightmare Geometry 3",
+                                    displayName="Hole in the Wall",
+                                    state="Light",
+                                    map=loadImages.TMap,
+                                    music=loadMusic.nightmareGeometry,
+                                    backgrounds={light=loadImages.nightmareGeometry3},
+                                    objects={
+                                                humanHoleInWall={name="Hole in Wall",x=41,y=31,w=20,h=29,text={look={"At first glance, you think", "it's another shadow body. But", "interestingly, it's actually", "a human-shaped hole in the", "wall. You peer through the dark", "hole, but it seems to stretch", "on for infinity into inky", "blackness."},use={"You can't fit inside the space.", "It wasn't made for you."}}},
+                                                wall1={name="Wall 1",x=16,y=16,w=25,h=51,text={look={"The wall before you looks to be", "a sheet of rock cut straight", "from a mountain."}}},
+                                                wall2={name="Wall 2",x=41,y=16,w=20,h=15,text={look={"The wall before you looks to be", "a sheet of rock cut straight", "from a mountain."}}},
+                                                wall3={name="Wall 3",x=41,y=60,w=20,h=7,text={look={"The wall before you looks to be", "a sheet of rock cut straight", "from a mountain."}}},
+                                                wall4={name="Wall 4",x=61,y=16,w=23,h=51,text={look={"The wall before you looks to be", "a sheet of rock cut straight", "from a mountain."}}},
+                                            },
+                                    exits={west="Nightmare Geometry 4",south="Nightmare Geometry 4",east="Nightmare Geometry 4"},
+                                }
+                                
+loadRooms.nightmareGeometry4 =  {
+                                    name="Nightmare Geometry 4",
+                                    displayName="Cracked Wall?",
+                                    state="Light",
+                                    map=loadImages.TMap,
+                                    music=loadMusic.nightmareGeometry,
+                                    backgrounds={light=loadImages.nightmareGeometry4},
+                                    objects={
+                                                -- Repeatedly checking this will eventually cause a shadow person appearing and screaming in pain
+                                                squiggleHoleInWall={name="Squiggle Hole in Wall",x=16,y=16,w=68,h=51,text={look={"It appears to be twisting,", "snaking cracks in the wall.", "It's faint, but you think you", "can hear someone screaming in", "pain deep inside the fissures,", "followed by what sounds like", "crawling..."}}},
+                                            },
+                                    exits={west="Dark Passage 1",south="Dark Passage 1",east="Dark Passage 1"},
+                                    --exits={west="Nightmare Geometry 5",south="Nightmare Geometry 5",east="Nightmare Geometry 5"},
+                                }
+                                
+                                
+loadRooms.nightmareGeometry5 =  {
+                                    name="Nightmare Geometry 5",
+                                    displayName="Endless Hallway",
                                     state="Light",
                                     map=loadImages.fourWayMap,
-                                    --music=loadMusic.houseDark,
-                                    backgrounds={light=loadImages.emptyRoom},
+                                    music=loadMusic.nightmareGeometry,
+                                    backgrounds={light=loadImages.nightmareGeometry5},
+                                    objects={
+                                                -- Repeatedly checking this will eventually cause a shadow child to appear and slowly walk towards the player
+                                                -- If this event is triggered, controls will become disabled
+                                                endlessHallway={name="Endless Hallway",x=14,y=3,w=72,h=77,text={look={"It's a hallway with a never-", "ending series of archways. You", "can hear the sounds of children", "in the distance, far far away."}}},
+                                            },
+                                    exits={north="Nightmare Geometry 6",west="Dark Passage 1",south="Dark Passage 1",east="Dark Passage 1"},
+                                }
+                                
+loadRooms.nightmareGeometry6 =  {
+                                    name="Nightmare Geometry 6",
+                                    displayName="Endless Hallway",
+                                    state="Light",
+                                    map=loadImages.highwayMap,
+                                    music=loadMusic.nightmareGeometry,
+                                    backgrounds={light=loadImages.nightmareGeometry5},
+                                    objects={
+                                                -- Repeatedly checking this will eventually cause a shadow child to appear and slowly walk towards the player
+                                                -- If this event is triggered, controls will become disabled
+                                                endlessHallway={name="Endless Hallway",x=14,y=3,w=72,h=77,text={look={"It's a hallway with a never-", "ending series of archways. You", "can hear the sounds of children", "in the distance, far far away."}}},
+                                            },
+                                    exits={north="Nightmare Geometry 7",south="Nightmare Geometry 6"},
+                                }
+                                
+loadRooms.nightmareGeometry7 =  {
+                                    name="Nightmare Geometry 7",
+                                    displayName="Endless Hallway",
+                                    state="Light",
+                                    map=loadImages.highwayMap,
+                                    music=loadMusic.nightmareGeometry,
+                                    backgrounds={light=loadImages.nightmareGeometry5},
+                                    objects={
+                                                -- Repeatedly checking this will eventually cause a shadow child to appear and slowly walk towards the player
+                                                -- If this event is triggered, controls will become disabled
+                                                endlessHallway={name="Endless Hallway",x=14,y=3,w=72,h=77,text={look={"It's a hallway with a never-", "ending series of archways. You", "can hear the sounds of children", "in the distance, far far away."}}},
+                                            },
+                                    exits={north="Nightmare Geometry 8",south="Nightmare Geometry 7"},
+                                }
+                                
+loadRooms.nightmareGeometry8 =  {
+                                    name="Nightmare Geometry 8",
+                                    displayName="Endless Hallway",
+                                    state="Light",
+                                    map=loadImages.shadowLands3Map,
+                                    music=loadMusic.nightmareGeometry,
+                                    backgrounds={light=loadImages.nightmareGeometry5},
                                     objects={},
-                                    exits={north="Dark Passage 1",west="Dark Passage 1",south="Dark Passage 1",east="Dark Passage 1"},
+                                    --[[objects={
+                                                -- Repeatedly checking this will eventually cause a shadow child to appear and slowly walk towards the player
+                                                -- If this event is triggered, controls will become disabled
+                                                endlessHallway={name="Endless Hallway",x=14,y=3,w=72,h=77,text={look={"It's a hallway with a never-", "ending series of archways. You", "can hear the sounds of children", "in the distance, far far away."}}},
+                                            },]]
+                                    exits={},
                                 }
 
 -- Park
@@ -829,6 +941,7 @@ loadRooms.sewer9 =  {
                     }
                     
 -- Shadow Lands
+-- There is a total eclipse in the sky
 loadRooms.shadowLands1 =    {  
                                 name="Shadow Lands 1",
                                 state="Dark",
