@@ -97,10 +97,10 @@ local updateCheckAction = {}
                                         -- If the player pushes the button for the hour hand, advance the clock by one hour
                                         if(g.mouse.objectPointedAt == loadRooms.clockTowerInsideSecondFloor.objects.hourButton) then
                                             local r = loadRooms.clockTowerInsideSecondFloor.objects.hourHand.rot.r
-                                            loadRooms.clockTowerInsideSecondFloor.objects.hourHand.rot.r = (r + math.rad(360/12)) % (2 * math.pi)
+                                            loadRooms.clockTowerInsideSecondFloor.objects.hourHand.rot.r = (r - math.rad(360/12)) % (2 * math.pi)
                                         elseif(g.mouse.objectPointedAt == loadRooms.clockTowerInsideSecondFloor.objects.minuteButton) then
                                             local r = loadRooms.clockTowerInsideSecondFloor.objects.minuteHand.rot.r
-                                            loadRooms.clockTowerInsideSecondFloor.objects.minuteHand.rot.r = (r + math.rad(360/12)) % (2 * math.pi)
+                                            loadRooms.clockTowerInsideSecondFloor.objects.minuteHand.rot.r = (r - math.rad(360/12)) % (2 * math.pi)
                                         end
                                         
                                         -- Check if it is the correct time (8:35). If so, open the secret panel.
@@ -128,15 +128,17 @@ local updateCheckAction = {}
                                             loadSFX.pickup:play()
                                         end
                                     end
+                                    
+                                
                                 elseif(g.curLocation == loadRooms.clockTowerInsideSecondFloor) then
                                     
                                     -- If the player pushes the button for the hour hand, advance the clock by one hour
                                     if(g.mouse.objectPointedAt == loadRooms.clockTowerInsideSecondFloor.objects.hourButton) then
                                         local r = loadRooms.clockTowerInsideSecondFloor.objects.hourHand.rot.r
-                                        loadRooms.clockTowerInsideSecondFloor.objects.hourHand.rot.r = (r + math.rad(360/12)) % (2 * math.pi)
+                                        loadRooms.clockTowerInsideSecondFloor.objects.hourHand.rot.r = (r - math.rad(360/12)) % (2 * math.pi)
                                     elseif(g.mouse.objectPointedAt == loadRooms.clockTowerInsideSecondFloor.objects.minuteButton) then
                                         local r = loadRooms.clockTowerInsideSecondFloor.objects.minuteHand.rot.r
-                                        loadRooms.clockTowerInsideSecondFloor.objects.minuteHand.rot.r = (r + math.rad(360/12)) % (2 * math.pi)
+                                        loadRooms.clockTowerInsideSecondFloor.objects.minuteHand.rot.r = (r - math.rad(360/12)) % (2 * math.pi)
                                     end
                                     
                                     -- Check if it is the correct time (8:35). If so, open the secret panel.
@@ -202,10 +204,10 @@ local updateCheckAction = {}
                                         createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="class transition"}})
                                     end
                                    
-                                elseif(g.curLocation == loadRooms.nightmareGeometry1) then
+                                --[[elseif(g.curLocation == loadRooms.nightmareGeometry1) then
                                     if(g.mouse.objectPointedAt == loadRooms.nightmareGeometry1.objects.shadowBody) then
                                         loadRooms.nightmareGeometry1.objects.shadowBody.text.look={{"I don't want to die."}}
-                                    end
+                                    end]]
                                    
                                 -- Staring at the Imperfect
                                 elseif(g.curLocation == loadRooms.nightmareGeometry2) then
@@ -218,40 +220,68 @@ local updateCheckAction = {}
                                         elseif(loadRooms.nightmareGeometry2.backgrounds.light==loadImages.nightmareGeometry2_2) then
                                             loadRooms.nightmareGeometry2.backgrounds.light=loadImages.nightmareGeometry2_3
                                             loadRooms.nightmareGeometry2.objects.beast={name="Beast",x=25,y=3,w=58,h=63,text={look={"Just run."}}}
-                                        elseif(loadRooms.nightmareGeometry2.backgrounds.light==loadImages.nightmareGeometry2_3) then
-                                            loadRooms.nightmareGeometry2.objects.beast={name="Beast",x=25,y=3,w=58,h=63,text={look={"Please run, I'm scared."}}}
+                                        --elseif(loadRooms.nightmareGeometry2.backgrounds.light==loadImages.nightmareGeometry2_3) then
+                                            --loadRooms.nightmareGeometry2.objects.beast={name="Beast",x=25,y=3,w=58,h=63,text={look={"Please run, I'm scared."}}}
                                         end
+                                    end
+                                    
+                                elseif(g.curLocation == loadRooms.nightmareGeometry3) then
+                                
+                                    -- Play audio clips for deep breathing, screaming, crawling (1x, 2x, 3x)
+                                    if(g.mouse.objectPointedAt == loadRooms.nightmareGeometry3.objects.humanHoleInWall) then
+                                        loadSFX.squiggleManScream:stop()
+                                        loadSFX.squiggleManScream:setVolume(0.1)
+                                        loadSFX.squiggleManScream:setPitch(0.8)
+                                        loadSFX.squiggleManScream:play()
                                     end
                                 
                                 -- Staring at the snaking wall
                                 elseif(g.curLocation == loadRooms.nightmareGeometry4) then
                                 
                                     -- Play audio clips for deep breathing, screaming, crawling (1x, 2x, 3x)
-                                    if(g.mouse.objectPointedAt == loadRooms.nightmareGeometry4.objects.squiggleHoleInWall) then
+                                    if(g.mouse.objectPointedAt == loadRooms.nightmareGeometry4.objects.squiggleHoleInWall and g.playerState.numOfTimesLookedAtWallHole < 5) then
                                         g.playerState.numOfTimesLookedAtWallHole = g.playerState.numOfTimesLookedAtWallHole + 1
                                         
                                         if(g.playerState.numOfTimesLookedAtWallHole == 1) then
                                             loadRooms.nightmareGeometry4.objects.squiggleHoleInWall.text.look={"You hear crawling and", "screaming."}
+                                            loadSFX.squiggleManScream:stop()
+                                            loadSFX.squiggleManScream:setVolume(0.2)
+                                            loadSFX.squiggleManScream:play()
                                             
                                         elseif(g.playerState.numOfTimesLookedAtWallHole == 2) then
                                             loadRooms.nightmareGeometry4.objects.squiggleHoleInWall.text.look={"The crawling draws near..."}
+                                            loadSFX.squiggleManScream:stop()
+                                            loadSFX.squiggleManScream:setVolume(0.4)
+                                            loadSFX.squiggleManScream:play()
                                         
                                         -- If the player looks 4 times, monster eyes will appear
                                         elseif(g.playerState.numOfTimesLookedAtWallHole == 3) then
                                             loadRooms.nightmareGeometry4.objects.squiggleHoleInWall.text.look=
-                                            {"Something is in the wall", 
-                                                "looking at you................", 
-                                                "looking at me.................",
-                                                "Please don't look again......."}
+                                            {"Something is in the wall", "looking at you..."}
+                                            loadSFX.squiggleManScream:stop()
+                                            loadSFX.squiggleManScream:setVolume(0.6)
+                                            loadSFX.squiggleManScream:play()
                                         
                                         elseif(g.playerState.numOfTimesLookedAtWallHole == 4) then
                                             loadRooms.nightmareGeometry4.backgrounds.light = loadImages.nightmareGeometry4WithCreature
                                             loadRooms.nightmareGeometry4.objects.squiggleHoleInWall.text.look={""}
+                                            loadSFX.squiggleManScream:stop()
+                                            loadSFX.squiggleManScream:setVolume(0.8)
+                                            loadSFX.squiggleManScream:play()
                                             
                                         -- If the player looks at least 5 times, the monster will appear and shriek (jump scare!!!)
-                                        elseif(g.playerState.numOfTimesLookedAtWallHole >= 5) then 
+                                        elseif(g.playerState.numOfTimesLookedAtWallHole == 5) then 
                                             loadRooms.nightmareGeometry4.backgrounds.light = loadImages.nightmareGeometry4
                                             g.showMessageBox = false
+                                            loadSFX.squiggleManScream:stop()
+                                            loadSFX.squiggleManScream:setVolume(1)
+                                            loadSFX.squiggleManScream:setPitch(2.5)
+                                            loadSFX.squiggleManScream:play()
+                                            g.mouse.objectHover = nil
+                                            g.mouse.objectPointedAt = nil
+                                            loadRooms.nightmareGeometry4.objects.squiggleHoleInWall = nil
+                                            g.mouse.x = -128
+                                            g.mouse.y = -128
                                         end
                                     end
                                 
@@ -304,6 +334,7 @@ local updateCheckAction = {}
                             if(g.curLocation.objects.parkGate.state == "Locked" and g.mouse.objectPointedAt == g.curLocation.objects.parkGate) then
                                 g.curLocation.objects.parkGate.state = "Closed"
                                 g.writeToTextDisplay({"You cut the chain with the bolt", "cutters."})
+                                g.curLocation.objects.parkGate.text.look={"It's a gate to a park."}
                                 loadSFX.pickup:play()
                             else
                                 g.writeToTextDisplay({"You can't use the bolt cutters", "here."})
@@ -320,15 +351,10 @@ local updateCheckAction = {}
                             g.writeToTextDisplay({"You can't use the car key", "here."})
                         end
                         
-                    elseif(g.itemSelected == "Dark Orb") then
-                        g.writeToTextDisplay({"You can't use the dark orb", "here."})
-                        
                     elseif(g.itemSelected == "E. Brooch") then
                         g.writeToTextDisplay({"You can't use the eclipse brooch", "here."})
-                        
                     elseif(g.itemSelected == "Gas Can") then
-                        g.writeToTextDisplay({"You can't use the gas can", "here."})
-                        
+                        g.writeToTextDisplay({"You can't use the gas can here."})
                     -- The gas station key unlocks the front door of the gas station
                     elseif(g.itemSelected == "G.S. Key") then
                         if(g.curLocation == loadRooms.gasStationOutside) then
@@ -439,10 +465,12 @@ local updateCheckAction = {}
                               g.writeToTextDisplay({"You can't use the mirror here."})
                             end
                         end
-                    end
                     
                     elseif(g.itemSelected == "Necklace") then
                         g.writeToTextDisplay({"You can't use the necklace", "here."})
+                    elseif(g.itemSelected == "Shadow Orb") then
+                        g.writeToTextDisplay({"You can't use the shadow orb", "here."})
+                    end
                 else
                     g.writeToTextDisplay({"You must select an action", "or item first!"})
                 end

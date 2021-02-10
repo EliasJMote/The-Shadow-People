@@ -24,6 +24,7 @@ loadImages.userInterfaceTextBox = love.graphics.newImage("Images/User Interface/
 loadImages.userInterfaceActions = love.graphics.newImage("Images/User Interface/User Interface (Actions).png")
 
 -- Location background images
+loadImages.altarRoom = love.graphics.newImage("Images/Backgrounds/Altar Room.png")
 loadImages.bedroomDark = love.graphics.newImage("Images/Backgrounds/Bedroom (Dark).png")
 loadImages.bedroomLight = love.graphics.newImage("Images/Backgrounds/Bedroom (Light).png")
 loadImages.carDay = love.graphics.newImage("Images/Backgrounds/Car (Day).png")
@@ -66,6 +67,7 @@ loadImages.nightmareGeometry3 = love.graphics.newImage("Images/Backgrounds/Night
 loadImages.nightmareGeometry4 = love.graphics.newImage("Images/Backgrounds/Nightmare Geometry 4.png")
 loadImages.nightmareGeometry4WithCreature = love.graphics.newImage("Images/Backgrounds/Nightmare Geometry 4 (with creature).png")
 loadImages.nightmareGeometry5 = love.graphics.newImage("Images/Backgrounds/Nightmare Geometry 5.png")
+loadImages.nightmareGeometry7 = love.graphics.newImage("Images/Backgrounds/Nightmare Geometry 7.png")
 loadImages.outsideDay = love.graphics.newImage("Images/Backgrounds/Outside (Day).png")
 loadImages.outsideEvening = love.graphics.newImage("Images/Backgrounds/Outside (Evening).png")
 loadImages.parkEntrance = love.graphics.newImage("Images/Backgrounds/Park Entrance.png")
@@ -194,14 +196,26 @@ loadImages.livingRoomMap = love.graphics.newImage("Images/Maps/Living Room Map.p
 loadImages.patioMap = love.graphics.newImage("Images/Maps/Patio Map.png")
 --loadImages.shedOutsideMap = love.graphics.newImage("Images/Backgrounds/Shed Map.png")
 
+-- Endings
+loadImages.goodEnding = love.graphics.newImage("Images/Endings/Morning Daybreak Ending.png")
+loadImages.redPrinceEnding = love.graphics.newImage("Images/Endings/Red Prince Ending.png")
+loadImages.solarBlindnessEnding = love.graphics.newImage("Images/Endings/Solar Blindness Ending.png")
+
 -- SHADOW PEOPLE
+-- Lost room
 loadImages.lostRoomPeople = love.graphics.newImage("Images/SHADOW PEOPLE/Lost Room People.png")
+
+-- Squiggle Man
 loadImages.squiggleMan = {}
-loadImages.squiggleMan[1] = love.graphics.newImage("Images/SHADOW PEOPLE/Squiggle Man/Squiggle Man 1.png")
-loadImages.squiggleMan[2] = love.graphics.newImage("Images/SHADOW PEOPLE/Squiggle Man/Squiggle Man 2.png")
-loadImages.squiggleMan[3] = love.graphics.newImage("Images/SHADOW PEOPLE/Squiggle Man/Squiggle Man 3.png")
-loadImages.squiggleMan[4] = love.graphics.newImage("Images/SHADOW PEOPLE/Squiggle Man/Squiggle Man 4.png")
-loadImages.squiggleMan[5] = love.graphics.newImage("Images/SHADOW PEOPLE/Squiggle Man/Squiggle Man 5.png")
-loadImages.squiggleMan[6] = love.graphics.newImage("Images/SHADOW PEOPLE/Squiggle Man/Squiggle Man 6.png")
+for i=1,6 do
+    loadImages.squiggleMan[i] = love.graphics.newImage("Images/SHADOW PEOPLE/Squiggle Man/Squiggle Man " .. i .. ".png")
+end
+
+-- Shadow Child
+loadImages.shadowChild = {}
+for i=1,10 do
+    loadImages.shadowChild[i] = love.graphics.newImage("Images/SHADOW PEOPLE/Shadow Child/Shadow Child " .. i .. ".png")
+end
+    
 
 return loadImages

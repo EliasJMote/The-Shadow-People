@@ -74,6 +74,17 @@ local updateRoom = {}
                 updateRoom.transition("Nightmare Geometry 1")
                 createEvent.create({name="Start Screen Transition", x=3, y=3, w=94, h=77,event={name="Play Music", music=g.curLocation.music}})
             end
+            
+        elseif(g.curLocation.name == "Nightmare Geometry 7") then
+            if(g.mouse.objectPointedAt == g.curLocation.objects.endlessHallway and (g.actionSelected == "Move" or g.actionSelected == "Look")) then
+                g.mapTransitionIsLegal = false
+                g.itemSelected = nil
+                g.actionSelected = nil
+                g.textBuffer = {}
+                g.showMessageBox = false
+                g.music:stop()
+                createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="shadow child"}})
+            end
         
         elseif(g.curLocation.name == "House Outside") then
             g.mapTransitionIsLegal = false

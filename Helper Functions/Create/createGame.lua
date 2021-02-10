@@ -11,7 +11,9 @@ local createGame = {}
         g.state = "title"
         if(debug) then
             g.state = "game"
+            --g.state = "red prince ending"
         end
+        --g.state = "shadow child"
         
         -- Initialize events table
         g.events = {}
@@ -21,12 +23,16 @@ local createGame = {}
         -- Initialize current location
         g.curLocation = loadRooms.bedroom
         if(debug) then
-            g.curLocation = loadRooms.floodedLabyrinth5
-            --g.curLocation = loadRooms.nightmareGeometry1
+            --g.curLocation = loadRooms.graveyardUnderground1
+            g.curLocation = loadRooms.altarRoom
+            --g.curLocation = loadRooms.nightmareGeometry3
+            --g.curLocation = loadRooms.clockTowerInsideSecondFloor
+            --g.curLocation = loadRooms.houseOutside
         end
         
         -- Initialize items currently held
         g.items = {}
+        --g.items = {{name="Mirror",w=28,h=4}}
                   
         g.displayText = true
         g.objectPointedAt = nil
@@ -45,7 +51,10 @@ local createGame = {}
         g.timers.badEnding = 8 * g.timers.endingTextFadeOut + 60 * 2
         g.timers.easterEggEnding = 1 * g.timers.endingTextFadeOut + 60 * 2
         g.timers.alienEnding = 2 * g.timers.endingTextFadeOut + 60 * 2
+        
+        -- Horror related timers (with Shadow People)
         g.timers.squiggleMan = 0
+        g.timers.shadowChild = 0
         
         --g.endingTextFadeOutTime = 60 * 0.01
         g.endingTextLine = 1
@@ -107,12 +116,12 @@ local createGame = {}
             hasGasCan = false,
             hasShadowOrb = false,
             hasEclipseBrooch = false,
-            hasNecklace = true,
-            numOfTimesLookedAtHallway = 0,
+            hasNecklace = false,
+            --hasShadowOrb = true,
+            --hasEclipseBrooch = true,
+            --hasNecklace = true,
             numOfTimesLookedAtSun = 0,
             numOfTimesLookedAtWallHole = 0,
-            --clockHour = 12,
-            --clockMinute = 0,
         }
         
         -- Which page of items are we on
@@ -123,6 +132,7 @@ local createGame = {}
         g.mouse.scrollPageArrowHover = nil
         
         g.backgroundStatic = false
+        g.fun = 0
         
         g.shadowPeople = {}
     end

@@ -4,10 +4,14 @@ loadRooms.altarRoom = {
                         name="Altar Room",
                         state="Light",
                         objects={
+                                    altar={name="Altar",x=38,y=54,w=26,h=12,text={look={"It's an altar. It doesn't seem", "like you can do anything with", "it right now."}}},
+                                    crescentMoon={name="Crescent Moon",x=43,y=17,w=16,h=16,text={look={"It's an image of a crescent", "moon."}}},
+                                    eyeOfTruth={name="Eye of Truth",x=66,y=17,w=16,h=16,text={look={"A strange looking image. The", "eye in the drawing seems to", "pierce right through your soul."}}},
+                                    symbolOfThePrince={name="Symbol of the Prince",x=18,y=17,w=16,h=16,text={look={"An image of a triangle with", "something on the inside..."}}},
                                 },
                         map=loadImages.carMap,
-                        exits={south="Flooded Labyrinth 1"},
-                        backgrounds={light=loadImages.emptyRoom},
+                        exits={south="Flooded Labyrinth 4"},
+                        backgrounds={light=loadImages.altarRoom},
                     }
 
 -- Bedroom
@@ -333,26 +337,33 @@ loadRooms.floodedLabyrinth1 =   {
                                     name="Flooded Labyrinth 1",
                                     displayName = "Flooded Labyrinth",
                                     state="Light",
+                                    music=loadMusic.floodedLabyrinth,
                                     backgrounds={light=loadImages.floodedLabyrinth1},
                                     map=loadImages.fourWayMap,
                                     objects={
                                                 pathForward={name="Path Forward",x=36,y=36,w=28,h=11,move="North",text={look={"The tunnel continues forward."},move="North"}},
                                                 pathLeft={name="Path Left",x=4,y=17,w=11,h=48,move="West",text={look={"It's a side tunnel."},move="West"}},
                                                 pathRight={name="Path Right",x=85,y=17,w=11,h=48,move="East",text={look={"It's a side tunnel."},move="East"}},
+                                                waterSpout1={name="Water Spout 1",x=22,y=39,w=8,h=24,text={look={"Water is coming out of a spout", "in the wall."}}},
+                                                waterSpout2={name="Water Spout 2",x=70,y=39,w=8,h=24,text={look={"Water is coming out of a spout", "in the wall."}}},
                                             },
                                     exits={west="Flooded Labyrinth 1", north="Flooded Labyrinth 2", east="Flooded Labyrinth 1", south="Flooded Labyrinth 1"},
+                                    
                                 }
                                 
 loadRooms.floodedLabyrinth2 =   {  
                                     name="Flooded Labyrinth 2",
                                     displayName = "Flooded Labyrinth",
                                     state="Light",
+                                    music=loadMusic.floodedLabyrinth,
                                     backgrounds={light=loadImages.floodedLabyrinth2},
                                     map=loadImages.fourWayMap,
                                     objects={
                                                 pathForward={name="Path Forward",x=36,y=36,w=28,h=11,move="North",text={look={"The tunnel continues forward."},move="North"}},
                                                 pathLeft={name="Path Left",x=4,y=17,w=11,h=48,move="West",text={look={"It's a side tunnel."},move="West"}},
                                                 pathRight={name="Path Right",x=85,y=17,w=11,h=48,move="East",text={look={"It's a side tunnel."},move="East"}},
+                                                waterSpout1={name="Water Spout 1",x=22,y=39,w=8,h=24,text={look={"Water is coming out of a spout", "in the wall."}}},
+                                                waterSpout2={name="Water Spout 2",x=70,y=39,w=8,h=24,text={look={"Water is coming out of a spout", "in the wall."}}},
                                             },
                                     exits={west="Flooded Labyrinth 3", north="Flooded Labyrinth 1", east="Flooded Labyrinth 1", south="Flooded Labyrinth 1"},
                                 }
@@ -361,12 +372,15 @@ loadRooms.floodedLabyrinth3 =   {
                                     name="Flooded Labyrinth 3",
                                     displayName = "Flooded Labyrinth",
                                     state="Light",
+                                    music=loadMusic.floodedLabyrinth,
                                     backgrounds={light=loadImages.floodedLabyrinth3},
                                     map=loadImages.fourWayMap,
                                     objects={
                                                 pathForward={name="Path Forward",x=36,y=36,w=28,h=11,move="North",text={look={"The tunnel continues forward."},move="North"}},
                                                 pathLeft={name="Path Left",x=4,y=17,w=11,h=48,move="West",text={look={"It's a side tunnel."},move="West"}},
                                                 pathRight={name="Path Right",x=85,y=17,w=11,h=48,move="East",text={look={"It's a side tunnel."},move="East"}},
+                                                waterSpout1={name="Water Spout 1",x=22,y=39,w=8,h=24,text={look={"Water is coming out of a spout", "in the wall."}}},
+                                                waterSpout2={name="Water Spout 2",x=70,y=39,w=8,h=24,text={look={"Water is coming out of a spout", "in the wall."}}},
                                             },
                                     exits={west="Flooded Labyrinth 1", north="Flooded Labyrinth 1", east="Flooded Labyrinth 1", south="Flooded Labyrinth 4"},
                                 }
@@ -375,12 +389,15 @@ loadRooms.floodedLabyrinth4 =   {
                                     name="Flooded Labyrinth 4",
                                     displayName = "Flooded Labyrinth",
                                     state="Light",
+                                    music=loadMusic.floodedLabyrinth,
                                     backgrounds={light=loadImages.floodedLabyrinth4},
                                     map=loadImages.fourWayMap,
                                     objects={
                                                 pathForward={name="Path Forward",x=36,y=36,w=28,h=11,move="North",text={look={"The tunnel continues forward."},move="North"}},
                                                 pathLeft={name="Path Left",x=4,y=17,w=11,h=48,move="West",text={look={"It's a side tunnel."},move="West"}},
                                                 pathRight={name="Path Right",x=85,y=17,w=11,h=48,move="East",text={look={"It's a side tunnel."},move="East"}},
+                                                waterSpout1={name="Water Spout 1",x=22,y=39,w=8,h=24,text={look={"Water is coming out of a spout", "in the wall."}}},
+                                                waterSpout2={name="Water Spout 2",x=70,y=39,w=8,h=24,text={look={"Water is coming out of a spout", "in the wall."}}},
                                             },
                                     exits={west="Flooded Labyrinth 5", north="Flooded Labyrinth 1", east="Altar Room", south="Flooded Labyrinth 1"},
                                 }   
@@ -389,6 +406,7 @@ loadRooms.floodedLabyrinth5 =   {
                                     name="Flooded Labyrinth 5",
                                     displayName = "Flooded Labyrinth",
                                     state="Light",
+                                    music=loadMusic.floodedLabyrinth,
                                     backgrounds={light=loadImages.floodedLabyrinth5},
                                     map=loadImages.TMap,
                                     objects={
@@ -396,6 +414,8 @@ loadRooms.floodedLabyrinth5 =   {
                                                 pathLeft={name="Path Left",x=4,y=17,w=11,h=48,move="West",text={look={"It's a side tunnel."},move="West"}},
                                                 pathRight={name="Path Right",x=85,y=17,w=11,h=48,move="East",text={look={"It's a side tunnel."},move="East"}},
                                                 pit={name="Pit",x=30,y=48,w=40,h=6,move="",text={look={"There's a pit in the floor.", "Water flows into the pit from", "the ground. You can't see the", "bottom..."},move=""}},
+                                                waterSpout1={name="Water Spout 1",x=22,y=39,w=8,h=24,text={look={"Water is coming out of a spout", "in the wall."}}},
+                                                waterSpout2={name="Water Spout 2",x=70,y=39,w=8,h=24,text={look={"Water is coming out of a spout", "in the wall."}}},
                                             },
                                     exits={south="Flooded Labyrinth 1",east="Flooded Labyrinth 1",west="Flooded Labyrinth 1"},
                                 }   
@@ -425,7 +445,7 @@ loadRooms.gasStationOutside =   {
                                     backgrounds={light=loadImages.gasStationOutside},
                                     music=loadMusic.houseDark,
                                     objects={
-                                                door={name="Door",x=75,y=57,w=7,h=7,img={closed=loadImages.gasStationStoreDoorClosed,locked=loadImages.gasStationStoreDoorClosed,open=loadImages.gasStationStoreDoorOpen},move="North",state="Locked",text={close={"You close the door."},look={"It's a double glass door. It's", "dark on the inside."},open={"You open the door."},move="North"}},
+                                                door={name="Door",x=75,y=57,w=7,h=7,img={closed=loadImages.gasStationStoreDoorClosed,locked=loadImages.gasStationStoreDoorClosed,open=loadImages.gasStationStoreDoorOpen},move="North",state="Locked",text={close={"You close the door."},look={"It's a double glass door. It's", "dark on the inside. It's", "currently locked."},open={"You open the door."},move="North"}},
                                                 light1={name="Light 1",x=15,y=44,w=4,h=2,text={look={"It's a light fixture."}}},
                                                 light2={name="Light 2",x=28,y=44,w=4,h=2,text={look={"It's a light fixture."}}},
                                                 light3={name="Light 3",x=42,y=44,w=4,h=2,text={look={"It's a light fixture."}}},
@@ -672,8 +692,8 @@ loadRooms.nightmareGeometry4 =  {
                                                 -- Repeatedly checking this will eventually cause a shadow person appearing and screaming in pain
                                                 squiggleHoleInWall={name="Squiggle Hole in Wall",x=16,y=16,w=68,h=51,text={look={"It appears to be twisting,", "snaking cracks in the wall.", "It's faint, but you think you", "can hear someone screaming in", "pain deep inside the fissures,", "followed by what sounds like", "crawling..."}}},
                                             },
-                                    exits={west="Dark Passage 1",south="Dark Passage 1",east="Dark Passage 1"},
-                                    --exits={west="Nightmare Geometry 5",south="Nightmare Geometry 5",east="Nightmare Geometry 5"},
+                                    --exits={west="Dark Passage 1",south="Dark Passage 1",east="Dark Passage 1"},
+                                    exits={west="Nightmare Geometry 5",south="Nightmare Geometry 5",east="Nightmare Geometry 5"},
                                 }
                                 
                                 
@@ -687,9 +707,9 @@ loadRooms.nightmareGeometry5 =  {
                                     objects={
                                                 -- Repeatedly checking this will eventually cause a shadow child to appear and slowly walk towards the player
                                                 -- If this event is triggered, controls will become disabled
-                                                endlessHallway={name="Endless Hallway",x=14,y=3,w=72,h=77,text={look={"It's a hallway with a never-", "ending series of archways. You", "can hear the sounds of children", "in the distance, far far away."}}},
+                                                endlessHallway={name="Endless Hallway",x=14,y=3,w=72,h=77,move="North",text={look={"It's a hallway with a never-", "ending series of archways. You", "can hear the sounds of children", "in the distance, far far away."},move="North"}},
                                             },
-                                    exits={north="Nightmare Geometry 6",west="Dark Passage 1",south="Dark Passage 1",east="Dark Passage 1"},
+                                    exits={north="Nightmare Geometry 6",west="Dark Passage 1",south="Nightmare Geometry 5",east="Dark Passage 1"},
                                 }
                                 
 loadRooms.nightmareGeometry6 =  {
@@ -702,40 +722,34 @@ loadRooms.nightmareGeometry6 =  {
                                     objects={
                                                 -- Repeatedly checking this will eventually cause a shadow child to appear and slowly walk towards the player
                                                 -- If this event is triggered, controls will become disabled
-                                                endlessHallway={name="Endless Hallway",x=14,y=3,w=72,h=77,text={look={"It's a hallway with a never-", "ending series of archways. You", "can hear the sounds of children", "in the distance, far far away."}}},
+                                                endlessHallway={name="Endless Hallway",x=14,y=3,w=72,h=77,move="North",text={look={"It's a hallway with a never-", "ending series of archways. You", "can hear the sounds of children", "in the distance, far far away."},move="North"}},
                                             },
-                                    exits={north="Nightmare Geometry 7",south="Nightmare Geometry 6"},
+                                    exits={north="Nightmare Geometry 7",south="Nightmare Geometry 5"},
                                 }
                                 
 loadRooms.nightmareGeometry7 =  {
                                     name="Nightmare Geometry 7",
                                     displayName="Endless Hallway",
                                     state="Light",
-                                    map=loadImages.highwayMap,
+                                    map=loadImages.mirrorRoomMap,
                                     music=loadMusic.nightmareGeometry,
-                                    backgrounds={light=loadImages.nightmareGeometry5},
+                                    backgrounds={light=loadImages.nightmareGeometry7},
                                     objects={
-                                                -- Repeatedly checking this will eventually cause a shadow child to appear and slowly walk towards the player
-                                                -- If this event is triggered, controls will become disabled
-                                                endlessHallway={name="Endless Hallway",x=14,y=3,w=72,h=77,text={look={"It's a hallway with a never-", "ending series of archways. You", "can hear the sounds of children", "in the distance, far far away."}}},
+                                                -- Looking at this or 
+                                                endlessHallway={name="Endless Hallway",x=14,y=3,w=72,h=77,move="",text={look={"It's a hallway with a never-", "ending series of archways. You", "can hear the sounds of children", "in the distance, far far away."},move=""}},
                                             },
-                                    exits={north="Nightmare Geometry 8",south="Nightmare Geometry 7"},
+                                    exits={south="Nightmare Geometry 5"},
                                 }
                                 
 loadRooms.nightmareGeometry8 =  {
                                     name="Nightmare Geometry 8",
                                     displayName="Endless Hallway",
                                     state="Light",
-                                    map=loadImages.shadowLands3Map,
+                                    map=loadImages.mirrorRoomMap,
                                     music=loadMusic.nightmareGeometry,
                                     backgrounds={light=loadImages.nightmareGeometry5},
                                     objects={},
-                                    --[[objects={
-                                                -- Repeatedly checking this will eventually cause a shadow child to appear and slowly walk towards the player
-                                                -- If this event is triggered, controls will become disabled
-                                                endlessHallway={name="Endless Hallway",x=14,y=3,w=72,h=77,text={look={"It's a hallway with a never-", "ending series of archways. You", "can hear the sounds of children", "in the distance, far far away."}}},
-                                            },]]
-                                    exits={},
+                                    exits={south="Dark Passage 1"},
                                 }
 
 -- Park
@@ -746,7 +760,7 @@ loadRooms.park1 =    {
                         backgrounds={light=loadImages.parkEntrance},
                         objects={
                                     lighter = loadObjects.lighter,
-                                    parkGate = {name="Park Gate",x=32,y=24,w=37,h=48,img={closed=loadImages.parkGateClosed,locked=loadImages.parkGateLocked,open=loadImages.parkGateOpen},text={close={"You close the gate."},look={"It's a gate to a park. It's", "currently locked by a chain with", "a padlock."},move="North",open={"You open the gate."}},state="Locked",move="North"},
+                                    parkGate = {name="Park Gate",x=32,y=24,w=37,h=48,img={closed=loadImages.parkGateClosed,locked=loadImages.parkGateLocked,open=loadImages.parkGateOpen},text={close={"You close the gate."},look={"It's a gate to a park. It's", "currently locked by a chain", "with a padlock."},move="North",open={"You open the gate."}},state="Locked",move="North"},
                                 },
                         exits={north="Park 2", south="Street 3"},
                     }
@@ -841,6 +855,7 @@ loadRooms.sewer1 =  {
                         name="Sewer 1",
                         displayName = "Sewer",
                         state="Light",
+                        music=loadMusic.sewers,
                         backgrounds={light=loadImages.sewer4},
                         map=loadImages.sewer1Map,
                         objects={
@@ -854,6 +869,7 @@ loadRooms.sewer2 =  {
                         name="Sewer 2",
                         displayName = "Sewer",
                         state="Light",
+                        music=loadMusic.sewers,
                         backgrounds={light=loadImages.sewer3},
                         map=loadImages.sewer2Map,
                         objects={
@@ -866,6 +882,7 @@ loadRooms.sewer3 =  {
                         name="Sewer 3",
                         displayName = "Sewer",
                         state="Light",
+                        music=loadMusic.sewers,
                         backgrounds={light=loadImages.sewer1},
                         map=loadImages.sewer2Map,
                         objects={},
@@ -876,6 +893,7 @@ loadRooms.sewer4 =  {
                         name="Sewer 4",
                         displayName = "Sewer",
                         state="Light",
+                        music=loadMusic.sewers,
                         backgrounds={light=loadImages.sewer1},
                         map=loadImages.sewer2Map,
                         objects={},
@@ -887,6 +905,7 @@ loadRooms.sewer5 =  {
                         name="Sewer 5",
                         displayName = "Sewer",
                         state="Light",
+                        music=loadMusic.sewers,
                         backgrounds={light=loadImages.sewer5},
                         map=loadImages.livingRoomMap,
                         objects={
@@ -899,6 +918,7 @@ loadRooms.sewer6 =  {
                         name="Sewer 6",
                         displayName = "Sewer",
                         state="Light",
+                        music=loadMusic.sewers,
                         backgrounds={light=loadImages.sewer1},
                         map=loadImages.sewer2Map,
                         objects={},
@@ -909,6 +929,7 @@ loadRooms.sewer7 =  {
                         name="Sewer 7",
                         displayName = "Sewer",
                         state="Light",
+                        music=loadMusic.sewers,
                         backgrounds={light=loadImages.sewer6},
                         map=loadImages.mirrorRoomMap,
                         objects={
@@ -921,6 +942,7 @@ loadRooms.sewer8 =  {
                         name="Sewer 8",
                         displayName = "Sewer",
                         state="Light",
+                        music=loadMusic.sewers,
                         backgrounds={light=loadImages.sewer1},
                         map=loadImages.sewer2Map,
                         objects={},
@@ -931,6 +953,7 @@ loadRooms.sewer9 =  {
                         name="Sewer 9",
                         displayName = "Sewer",
                         state="Light",
+                        music=loadMusic.sewers,
                         backgrounds={light=loadImages.sewer2},
                         map=loadImages.mirrorRoomMap,
                         objects={
@@ -1019,7 +1042,7 @@ loadRooms.street1 =    {
                         }
 
 -- Street 2
-loadRooms.street2 =    {  
+--[[loadRooms.street2 =    {  
                             name="Street 2",
                             displayName = "Street",
                             state="Light",
@@ -1027,7 +1050,7 @@ loadRooms.street2 =    {
                             map=loadImages.street2Map,
                             objects={},
                             exits={west="Street 1", east="Street 3", north="Burnt House Outside"},
-                        }
+                        }]]
                         
 -- Street 3
 loadRooms.street3 =    {
@@ -1056,7 +1079,7 @@ loadRooms.street4 =    {
                         }
                         
 -- Street 5
-loadRooms.street5 =    {  
+--[[loadRooms.street5 =    {  
                             name="Street 5",
                             displayName = "Street",
                             state="Light",
@@ -1064,7 +1087,7 @@ loadRooms.street5 =    {
                             map=loadImages.street5Map,
                             objects={},
                             exits={west="Street 4", east="Street 6", north="Railroad 1"},
-                        }
+                        }]]
                         
 loadRooms.street6 =    {  
                             name="Street 6",
@@ -1093,13 +1116,13 @@ loadRooms.street7 =    {
                         }
                         
 -- Train
-loadRooms.train =   {
+--[[loadRooms.train =   {
                         name="Train",
                         state="Dark",
                         map=loadImages.highwayNorthEndMap,
                         backgrounds={dark=loadImages.emptyOutside},
                         objects={},
                         exits={south="Railroad 4"},
-                    }
+                    }]]
 
 return loadRooms

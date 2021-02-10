@@ -5,6 +5,7 @@ function updateGame.update()
     local g = GLOBALS
 
     -- Update the window scaling (since the player can adjust this window at anytime)
+    
     g.scale.x = love.graphics.getWidth()/160
     g.scale.y = love.graphics.getHeight()/144
 
@@ -26,22 +27,50 @@ function updateGame.update()
     -- Update the event table
     updateEvents.update()
     
+    -- Squiggle man rushes the player
     if(g.playerState.numOfTimesLookedAtWallHole == 5) then
         g.timers.squiggleMan = g.timers.squiggleMan + 1
         if(g.timers.squiggleMan > 60) then
             if not(g.playerState.hasNecklace) then
-                --g.playerState.numOfTimesLookedAtWallHole = 0
-                --g.timers.squiggleMan = 0
-                --g.objectPointedAt = nil
-                --g.mouse.mapHover = nil
-                --g.mouse.objectHover = nil
-                --g.state = "title"
-                --g.music:stop()
+                
+                g.fun = 100 -- Set "fun" value to 100
+                -- Save a text file with the "fun" value. When the player restarts the game, if "fun" == 100, a new image of "Squiggle Man" appears, then "fun" is set back to 50.
+                --love.filesystem.write("Save.txt", "{Fun=100}")
+                
+                -- Exit game
                 love.event.quit(0)
+                
+            -- The magic necklace will save the player
             else
+                loadSFX.squiggleManScream:stop()
                 g.playerState.numOfTimesLookedAtWallHole = 6
-                g.timers.squiggleMan = 0
-                g.writeToTextDisplay({"The holy necklace saved you."})
+                g.timers.squiggleMan = -1
+                g.writeToTextDisplay({"The magic necklace protected", "you."})
+            end
+        end
+    end
+    
+    if(g.state == "shadow child") then
+        g.timers.shadowChild = g.timers.shadowChild + 1
+        if(g.timers.shadowChild > 660) then
+            if not(g.playerState.hasNecklace) then
+                
+                g.fun = 120 -- Set "fun" value to 120
+                -- Save a text file with the "fun" value. When the player restarts the game, if "fun" == 100, a new image of "Squiggle Man" appears, then "fun" is set back to 50.
+                --love.filesystem.write("Save.txt", "{Fun=100}")
+                
+                -- Exit game
+                love.event.quit(0)
+                
+            -- The magic necklace will save the player
+            else
+                --loadSFX.squiggleManScream:stop()
+                --g.playerState.numOfTimesLookedAtWallHole = 6
+                g.music:play()
+                g.state = "game"
+                g.curLocation = loadRooms.nightmareGeometry8
+                g.timers.shadowChild = -1
+                g.writeToTextDisplay({"The magic necklace protected", "you."})
             end
         end
     end

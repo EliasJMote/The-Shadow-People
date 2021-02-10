@@ -136,6 +136,7 @@ function updateRoomLocks.update()
         elseif(g.curLocation.name == "Statue Room") then
             if(g.curLocation.objects.door ~= nil and g.mouse.objectPointedAt == g.curLocation.objects.door) then
                 if(g.curLocation.objects.door.state == "Closed") then
+                    g.mapTransitionIsLegal = false
                     g.writeToTextDisplay({"The door is closed!"})
                 else
                     updateRoom.transition("Graveyard Underground")

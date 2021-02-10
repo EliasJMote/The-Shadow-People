@@ -57,17 +57,20 @@ function g.checkClock()
     -- Check if it is the correct time (8:35). If so, open the secret panel.
     if(g.mouse.objectPointedAt == loadRooms.clockTowerInsideSecondFloor.objects.hourButton
         or g.mouse.objectPointedAt == loadRooms.clockTowerInsideSecondFloor.objects.minuteButton) then
+        
+        g.showMessageBox = false
+        g.textBuffer = {}
                                         
-        local hourAngle = math.deg(loadRooms.clockTowerInsideSecondFloor.objects.hourHand.rot.r)
-        local minuteAngle = math.deg(loadRooms.clockTowerInsideSecondFloor.objects.minuteHand.rot.r)
+        local hourAngle = math.deg(loadRooms.clockTowerInsideSecondFloor.objects.hourHand.rot.r) % 360
+        local minuteAngle = math.deg(loadRooms.clockTowerInsideSecondFloor.objects.minuteHand.rot.r) % 360
 
         local hour = 12
         local minute = 0
         
-        if(hourAngle ~= 0) then hour = g.round(hourAngle / 30) end
-        if(minuteAngle ~= 0) then minute = g.round((minuteAngle * 5) / 30) end
+        if(hourAngle ~= 0) then hour = 12 - g.round(hourAngle / 30) end
+        if(minuteAngle ~= 0) then minute = 60 - g.round((minuteAngle * 5) / 30) end
         
-        if(hour == 8 and minute == 35) then
+        if(hour == 8 and minute == 35 and loadRooms.clockTowerInsideSecondFloor.objects.panel.state ~= "Open") then
             loadRooms.clockTowerInsideSecondFloor.objects.panel.state = "Open"
             loadRooms.clockTowerInsideSecondFloor.objects.panel.text = {look={"It's a hidden panel. It's", "currently open."},pull={"It's already open!"}}
             loadRooms.clockTowerInsideSecondFloor.objects.hacksaw = loadObjects.hacksaw

@@ -1,8 +1,8 @@
 ﻿The Shadow People
-Version 0.9.4
+Version 0.9.5
 
-Copyright © 2020 Elias Mote
-Copyright © 2020 Roc Studios
+Copyright © 2020-2021 Elias Mote
+Copyright © 2020-2021 Roc Studios
 
 I. Disclaimer
 II. Version History
@@ -18,7 +18,20 @@ This software may be not be reproduced under any circumstances except for person
 II. Version History
 
 ------------------------
-V0.9.4 - Current Version
+V0.9.5 - Current Version
+------------------------
+-- Content --
+-- Added altar room in the flooded labyrinth
+-- Added Shadow Child jump scare down the endless hallway
+-- Added minimalistic background "music" to sewers, flooded labyrinth
+
+-- Bug Fixes --
+-- Fixed the clock tower puzzle
+-- Hotfix: Accidentally set the g.playerState.hasNecklace to "true" in V0.9.4. Set it back to "false" in V0.9.5
+-- Hotfix: Fixed a bug with Squiggle Man where the player could remove the image by clicking after he appears
+
+------------------------
+V0.9.4
 ------------------------
 -- Added to the Nightmare Geometry area
 -- The holy necklace protects the player from Squiggle Man
