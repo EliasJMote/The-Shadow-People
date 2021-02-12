@@ -42,14 +42,10 @@ local drawGame = {}
 
         -- Draw Background
         if(math.floor(love.timer.getTime()*100000000) % 4 <= 2 or not g.backgroundStatic) then
-            if(g.curLocation.state == "Dark") then
-                love.graphics.draw(g.curLocation.backgrounds.dark, 3, 3)
-            else
-                love.graphics.draw(g.curLocation.backgrounds.light, 3, 3)
-            end
+            love.graphics.draw(g.curLocation.backgrounds[string.lower(g.curLocation.state)], 3, 3)
         end
         
-        -- For Nightmare Geometry 1 (The Lost Room), very rarely flicker an image of a person far away
+        -- For Nightmare Geometry 1 (The Lost Room), very rarely flicker an image of people
         if(g.curLocation == loadRooms.nightmareGeometry1) then
             local spawnNum = love.math.random(0,20)
             if(spawnNum == 0) then

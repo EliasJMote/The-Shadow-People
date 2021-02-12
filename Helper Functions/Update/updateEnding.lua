@@ -16,8 +16,10 @@ function updateEnding.update()
         creditsTextTable = loadGameText.badCreditsText
     elseif(g.state == "easter egg ending") then
         creditsTextTable = loadGameText.easterEggCreditsText
-    else
+    elseif(g.state == "alien ending") then
         creditsTextTable = loadGameText.alienCreditsText
+    elseif(g.state == "red prince ending") then
+        creditsTextTable = loadGameText.redPrinceCreditsText
     end
     endingTextLineMax = math.ceil((#creditsTextTable)/4)*4+4
     
@@ -41,6 +43,23 @@ function updateEnding.update()
         end
     else
         g.endingScreenMask.y = -144
+    end
+    
+    if(g.state == "red prince ending") then
+        if(g.timers.endingText == g.timers.redPrinceEnding + 60 * 5) then
+            if(g.music ~= nil) then g.music:stop() end
+            g.music = loadMusic.redPrince
+            g.music:play()
+            g.music:setPitch(0.25)
+        elseif(g.timers.endingText == g.timers.redPrinceEnding + 60 * 15) then
+            g.music:setPitch(0.5)
+        elseif(g.timers.endingText == g.timers.redPrinceEnding + 60 * 20) then
+            g.music:setPitch(1)
+        elseif(g.timers.endingText == g.timers.redPrinceEnding + 60 * 25) then
+            g.music:setPitch(1.5)
+        elseif(g.timers.endingText == g.timers.redPrinceEnding + 60 * 26) then
+            love.event.quit(0)
+        end
     end
     
     -- Update the end credits timer

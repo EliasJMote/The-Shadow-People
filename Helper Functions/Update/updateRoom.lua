@@ -56,10 +56,13 @@ local updateRoom = {}
             end
         end
         
+        -- Stop the music when entering the shed
         if(g.curLocation.name == "Park 3") then
             if(g.movementDirection == "North" and g.curLocation.objects.door.state == "Open") then
-                g.music:stop()
-                g.music = nil
+                if(g.music ~= nil) then
+                    g.music:stop()
+                    g.music = nil
+                end
             end
         
         elseif(g.curLocation.name == "Sewer 9") then
@@ -67,10 +70,16 @@ local updateRoom = {}
                 updateRoom.transition("Flooded Labyrinth 1")
                 createEvent.create({name="Start Screen Transition", x=3, y=3, w=94, h=77,event={name="Play Music", music=g.curLocation.music}})
             end
-            
+           
+        elseif(g.curLocation.name == "Puzzling Stone") then
+            if(g.mouse.objectPointedAt == g.curLocation.objects.door and g.actionSelected == "Move") then
+                --g.backgroundStatic = true
+                updateRoom.transition("Altar Room")
+                createEvent.create({name="Start Screen Transition", x=3, y=3, w=94, h=77,event={name="Play Music", music=g.curLocation.music}})
+            end
+           
         elseif(g.curLocation.name == "Flooded Labyrinth 5") then
             if(g.mouse.objectPointedAt == g.curLocation.objects.pit and g.actionSelected == "Move") then
-                g.backgroundStatic = true
                 updateRoom.transition("Nightmare Geometry 1")
                 createEvent.create({name="Start Screen Transition", x=3, y=3, w=94, h=77,event={name="Play Music", music=g.curLocation.music}})
             end
@@ -138,6 +147,12 @@ local updateRoom = {}
                 
                 -- Start the screen transition
                 createEvent.create({name="Start Screen Transition", x=3, y=3, w=94, h=77,event={name="Play Music", music=g.curLocation.music}})
+            end
+            
+            if(g.curLocation.backgroundStatic) then
+                g.backgroundStatic = true
+            else
+                g.backgroundStatic = false
             end
             
         end

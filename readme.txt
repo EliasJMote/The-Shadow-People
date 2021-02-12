@@ -1,5 +1,5 @@
 ﻿The Shadow People
-Version 0.9.5
+Version 0.9.6
 
 Copyright © 2020-2021 Elias Mote
 Copyright © 2020-2021 Roc Studios
@@ -18,7 +18,25 @@ This software may be not be reproduced under any circumstances except for person
 II. Version History
 
 ------------------------
-V0.9.5 - Current Version
+V0.9.6 - Current Version
+------------------------
+-- Content --
+-- Added puzzling stone room to gate altar room
+-- Added ending with the red prince
+-- Added "evil" update to highway 5 after getting the Shadow Orb
+-- Added some easter egg content at the graveyard
+-- Added clues for solving the "puzzling stone" room
+
+-- Bug Fixes --
+-- Fixed a bug where the sewer music would keep playing if you went back to the
+street from the sewer
+-- Fixed a bug with the clock puzzle where numbers "III" and "IX" had the wrong
+descriptions when looking at them
+-- Fixed a bug in the graveyard underground where there was an invisible message
+left in by accident
+
+------------------------
+V0.9.5
 ------------------------
 -- Content --
 -- Added altar room in the flooded labyrinth

@@ -65,9 +65,14 @@ local updateCheckAction = {}
                             end
                             
                             -- Try to open the object if possible
-                            if(g.actionSelected == "Open" and g.mouse.objectPointedAt.state == "Closed" and g.mouse.objectPointedAt.state ~= "Locked") then
+                            --if(g.actionSelected == "Open" and g.mouse.objectPointedAt.state == "Closed" and g.mouse.objectPointedAt.state ~= "Locked") then
+                            if(g.actionSelected == "Open" and g.mouse.objectPointedAt.state == "Closed") then
                                 g.mouse.objectPointedAt.state = "Open"
                                 loadSFX.pickup:play()
+                            end
+                            
+                            if(g.actionSelected == "Open" and g.mouse.objectPointedAt.state == "Stuck") then
+                                g.writeToTextDisplay({"Although it's not locked, it", "won't open for some reason..."})
                             end
                             
                             -- Try to close the object if possible
@@ -106,6 +111,43 @@ local updateCheckAction = {}
                                         -- Check if it is the correct time (8:35). If so, open the secret panel.
                                         g.checkClock()
                                         
+                                    elseif(g.curLocation == loadRooms.puzzlingStone) then
+                                        g.showMessageBox = false
+                                        g.textBuffer = {}
+                                        for i=0,8 do
+                                            if(g.mouse.objectPointedAt == loadRooms.puzzlingStone.objects["button" .. (i+1)]) then 
+                                                if(loadRooms.puzzlingStone.objects["button" .. (i+1)].state == "Off") then
+                                                    loadRooms.puzzlingStone.objects["button" .. (i+1)].state = "On"
+                                                else
+                                                    loadRooms.puzzlingStone.objects["button" .. (i+1)].state = "Off"
+                                                end
+                                            end
+                                        end
+                                        
+                                        if(loadRooms.puzzlingStone.objects.button1.state == "On"
+                                            and loadRooms.puzzlingStone.objects.button2.state == "Off"
+                                            and loadRooms.puzzlingStone.objects.button3.state == "Off"
+                                            and loadRooms.puzzlingStone.objects.button4.state == "Off"
+                                            and loadRooms.puzzlingStone.objects.button5.state == "On"
+                                            and loadRooms.puzzlingStone.objects.button6.state == "Off"
+                                            and loadRooms.puzzlingStone.objects.button7.state == "On"
+                                            and loadRooms.puzzlingStone.objects.button8.state == "On"
+                                            and loadRooms.puzzlingStone.objects.button9.state == "Off"
+                                            and loadRooms.puzzlingStone.objects.door.state == "Stuck") then
+                                            g.showMessageBox = true
+                                            g.writeToTextDisplay({"The door suddenly opens."})
+                                            loadRooms.puzzlingStone.objects.door.state = "Open"
+                                        end
+                                        
+                                    elseif(g.curLocation == loadRooms.altarRoom) then
+                                        if(g.mouse.objectPointedAt == loadRooms.altarRoom.objects.altar) then
+                                            createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="red prince ending"}})
+                                            g.music = loadMusic.nightmareGeometry
+                                            g.music:play()
+                                            --createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="good ending"}})
+                                        end
+                                        --g.state = "red prince ending"
+                                        
                                     elseif(g.curLocation == loadRooms.shed) then
                                         if(g.mouse.objectPointedAt == loadRooms.shed.objects.radio) then
                                             -- Play the sound clip of the number radio station
@@ -143,6 +185,33 @@ local updateCheckAction = {}
                                     
                                     -- Check if it is the correct time (8:35). If so, open the secret panel.
                                     g.checkClock()
+                                    
+                                elseif(g.curLocation == loadRooms.puzzlingStone) then
+                                    g.showMessageBox = false
+                                    g.textBuffer = {}
+                                    for i=0,8 do
+                                        if(g.mouse.objectPointedAt == loadRooms.puzzlingStone.objects["button" .. (i+1)]) then 
+                                            if(loadRooms.puzzlingStone.objects["button" .. (i+1)].state == "Off") then
+                                                loadRooms.puzzlingStone.objects["button" .. (i+1)].state = "On"
+                                            else
+                                                loadRooms.puzzlingStone.objects["button" .. (i+1)].state = "Off"
+                                            end
+                                        end
+                                    end
+                                    if(loadRooms.puzzlingStone.objects.button1.state == "On"
+                                        and loadRooms.puzzlingStone.objects.button2.state == "Off"
+                                        and loadRooms.puzzlingStone.objects.button3.state == "Off"
+                                        and loadRooms.puzzlingStone.objects.button4.state == "Off"
+                                        and loadRooms.puzzlingStone.objects.button5.state == "On"
+                                        and loadRooms.puzzlingStone.objects.button6.state == "Off"
+                                        and loadRooms.puzzlingStone.objects.button7.state == "On"
+                                        and loadRooms.puzzlingStone.objects.button8.state == "On"
+                                        and loadRooms.puzzlingStone.objects.button9.state == "Off"
+                                        and loadRooms.puzzlingStone.objects.door.state == "Stuck") then
+                                        g.showMessageBox = true
+                                        g.writeToTextDisplay({"The door suddenly opens."})
+                                        loadRooms.puzzlingStone.objects.door.state = "Open"
+                                    end
                                 end
                             end
                             
@@ -160,6 +229,7 @@ local updateCheckAction = {}
                                 elseif(g.curLocation == loadRooms.graveyardUnderground2) then
                                     if(g.mouse.objectPointedAt == g.curLocation.objects.shadowOrb) then
                                         g.playerState.hasShadowOrb = true
+                                        loadRooms.highway5.state = "Evil"
                                     end
                                     
                                 elseif(g.curLocation == loadRooms.sewer7) then
@@ -299,6 +369,13 @@ local updateCheckAction = {}
                                         
                                         -- If the player looks at least 5 times, the shadow child slowly walks towards the screen (Chara Undertale style; jump scare!!!)
                                         elseif(g.playerState.numOfTimesLookedAtWallHole >= 5) then
+                                        end
+                                    end]]
+                                    
+                                elseif(g.curLocation == loadRooms.puzzlingStone) then
+                                    --[[if(g.mouse.objectPointedAt == loadRooms.puzzlingStone.objects.button1) then
+                                        if(loadRooms.puzzlingStone.objects.button1.state == "Off") then
+                                            
                                         end
                                     end]]
                                 end

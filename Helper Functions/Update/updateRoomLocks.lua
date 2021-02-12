@@ -154,6 +154,7 @@ function updateRoomLocks.update()
             else
                 g.mapTransitionIsLegal = true
             end
+        
         else
             g.mapTransitionIsLegal = true
         end

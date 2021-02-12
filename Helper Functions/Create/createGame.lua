@@ -11,28 +11,20 @@ local createGame = {}
         g.state = "title"
         if(debug) then
             g.state = "game"
-            --g.state = "red prince ending"
         end
         --g.state = "shadow child"
         
         -- Initialize events table
         g.events = {}
         
-        --g.backgroundStatic = true
-        
         -- Initialize current location
         g.curLocation = loadRooms.bedroom
         if(debug) then
-            --g.curLocation = loadRooms.graveyardUnderground1
             g.curLocation = loadRooms.altarRoom
-            --g.curLocation = loadRooms.nightmareGeometry3
-            --g.curLocation = loadRooms.clockTowerInsideSecondFloor
-            --g.curLocation = loadRooms.houseOutside
         end
         
         -- Initialize items currently held
         g.items = {}
-        --g.items = {{name="Mirror",w=28,h=4}}
                   
         g.displayText = true
         g.objectPointedAt = nil
@@ -51,6 +43,7 @@ local createGame = {}
         g.timers.badEnding = 8 * g.timers.endingTextFadeOut + 60 * 2
         g.timers.easterEggEnding = 1 * g.timers.endingTextFadeOut + 60 * 2
         g.timers.alienEnding = 2 * g.timers.endingTextFadeOut + 60 * 2
+        g.timers.redPrinceEnding = 7 * g.timers.endingTextFadeOut + 60 * 2
         
         -- Horror related timers (with Shadow People)
         g.timers.squiggleMan = 0
@@ -117,9 +110,6 @@ local createGame = {}
             hasShadowOrb = false,
             hasEclipseBrooch = false,
             hasNecklace = false,
-            --hasShadowOrb = true,
-            --hasEclipseBrooch = true,
-            --hasNecklace = true,
             numOfTimesLookedAtSun = 0,
             numOfTimesLookedAtWallHole = 0,
         }
@@ -131,7 +121,6 @@ local createGame = {}
         g.scrollItemPageRight = {x=150,y=70,w=4,h=8}
         g.mouse.scrollPageArrowHover = nil
         
-        g.backgroundStatic = false
         g.fun = 0
         
         g.shadowPeople = {}

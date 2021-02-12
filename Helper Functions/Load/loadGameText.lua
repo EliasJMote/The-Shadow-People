@@ -120,6 +120,34 @@ loadGameText.alienCreditsText = {
                                     "mind remains, but your memories",
                                     "quickly fade into a thick fog."
                                 }
+                                
+loadGameText.redPrinceCreditsText = {
+                                        "When you touch the altar,",
+                                        "suddenly an ornate knife that",
+                                        "was sitting on the altar flies",
+                                        "up and stabs you through the",
+                                        "heart. Blood pools out from",
+                                        "the gaping wound and onto the",
+                                        "ALTAR. The blood slowly",
+                                        "congeals until it forms a",
+                                        "singular mad BLOODY eye",
+                                        "contained within a triangle",
+                                        "that was stretched vertically",
+                                        "to an insane eccentricity.",
+                                        "An OVERPOWERING wave of",
+                                        "blackness overtakes your mind",
+                                        "as you slump to the floor,",
+                                        "puncutated by a chaotic",
+                                        "jumbling of DISCORDANT piano",
+                                        "notes and hollow, echoing",
+                                        "laughter that seems to come",
+                                        "from every which way at once.",
+                                        "Until.........................",
+                                        "..............................",
+                                        "..............................",
+                                        "..............................",
+                                        "HE SEES YOU!"
+                                    }
                 
 
 return loadGameText
