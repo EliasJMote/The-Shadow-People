@@ -7,6 +7,7 @@ function drawEnding.draw()
     love.graphics.rectangle("fill", 0, 0, 160, 144)
     love.graphics.setColor(g.colors.lightestGreen.r, g.colors.lightestGreen.g, g.colors.lightestGreen.b, 1)
     
+    -- Draw the credits text
     for k,v in ipairs(g.textBuffer) do
         love.graphics.print(v, 7, 47 + 13 * (k-1), 0, 0.4, 0.4)
         if(k == 4) then break end
@@ -18,11 +19,12 @@ function drawEnding.draw()
         or (g.state == "alien ending" and g.timers.endingText >= g.timers.alienEnding)
         or (g.state == "red prince ending" and g.timers.endingText >= g.timers.redPrinceEnding)) then
         
-        if(g.state == "bad ending" or g.state == "alien ending") then
+        if(g.state == "bad ending") then
             love.graphics.print("The", 44, 44, 0, 2, 2)
             love.graphics.print("End", 44, 76, 0, 2, 2)
         end
         
+        -- Draw the ending pictures
         local endingNumberStr = ""
         local endingName = ""
         if(g.state == "good ending") then
@@ -35,6 +37,7 @@ function drawEnding.draw()
         elseif(g.state == "alien ending") then
             endingNumberStr = "(Ending 3 of 5)"
             endingName = "\"Eternal Twilight\""
+            love.graphics.draw(loadImages.eternalTwilightEnding,0,0)
         elseif(g.state == "easter egg ending") then
             endingNumberStr = "(Ending 4 of 5)"
             endingName = "\"Solar Blindness\""
@@ -43,6 +46,7 @@ function drawEnding.draw()
             endingNumberStr = "(Ending 5 of 5)"
             endingName = "\"The Red Prince\""
             
+            -- There is a jump scare associated with the "Red Prince" ending
             if(g.timers.endingText >= g.timers.redPrinceEnding + 60 * 5) then
                 love.graphics.setColor(1, 0, 0, 1)
             end
@@ -58,7 +62,7 @@ function drawEnding.draw()
             end
         end
         
-        if(g.state == "bad ending" or g.state == "alien ending") then
+        if(g.state == "bad ending") then-- or g.state == "alien ending") then
             love.graphics.print(endingName, 39, 120, 0, 0.4, 0.4)
             love.graphics.print(endingNumberStr, 44, 130, 0, 0.4, 0.4)
         end

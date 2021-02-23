@@ -154,6 +154,15 @@ function updateRoomLocks.update()
             else
                 g.mapTransitionIsLegal = true
             end
+            
+        elseif(g.curLocation.name == "Dream Mirror Room") then
+            if(loadRooms.dreamMirrorRoom.objects.mirror3.state == "Broken" and g.mouse.objectPointedAt == loadRooms.dreamMirrorRoom.objects.mirror3) then
+                --updateRoom.transition("Shadow Lands 1")
+                --createEvent.create({name="Start Screen Transition", x=3, y=3, w=94, h=77,event={name="Play Music", music=g.curLocation.music}})
+                createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="space transition"}})
+            else
+                g.mapTransitionIsLegal = false
+            end
         
         else
             g.mapTransitionIsLegal = true

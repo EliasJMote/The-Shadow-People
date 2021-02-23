@@ -63,6 +63,16 @@ updateEvents.update = function()
             elseif(event.state == "class transition") then
                 createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="game"}})
                 loadRooms.classroom.objects = {}
+                
+            elseif(event.state == "dream transition") then
+                createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="game"}})
+                g.curLocation = loadRooms.dreamMirrorRoom
+                
+            elseif(event.state == "space transition") then
+                createEvent.create({name="Play Music", music=loadMusic.shadowLands})
+                createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="game"}})
+                g.curLocation = loadRooms.shadowLands1
+                g.backgroundStatic = true
             
             -- If we are in the game
             elseif(event.state == "game") then
@@ -95,7 +105,9 @@ updateEvents.update = function()
                     if(g.mouse.itemMenuHoverItem) then
                         if(g.itemSelected == nil or g.itemSelected ~= g.mouse.itemMenuHoverItem) then
                             g.itemSelected = g.mouse.itemMenuHoverItem
-                            g.actionSelected = nil
+                            if(g.actionSelected ~= "Put") then
+                                g.actionSelected = nil
+                            end
                         elseif(g.itemSelected == g.mouse.itemMenuHoverItem) then
                             g.itemSelected = nil
                         end

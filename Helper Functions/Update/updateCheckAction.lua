@@ -25,6 +25,8 @@ local updateCheckAction = {}
                                 g.writeToTextDisplay({"You can't move there!"})
                             elseif(g.actionSelected == "Open") then
                                 g.writeToTextDisplay({"You can't open that!"})
+                            elseif(g.actionSelected == "Pull") then
+                                g.writeToTextDisplay({"You can't pull that!"})
                             elseif(g.actionSelected == "Push") then
                                 g.writeToTextDisplay({"You can't push that!"})
                             elseif(g.actionSelected == "Put") then
@@ -144,14 +146,22 @@ local updateCheckAction = {}
                                             createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="red prince ending"}})
                                             g.music = loadMusic.nightmareGeometry
                                             g.music:play()
-                                            --createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="good ending"}})
                                         end
-                                        --g.state = "red prince ending"
                                         
                                     elseif(g.curLocation == loadRooms.shed) then
                                         if(g.mouse.objectPointedAt == loadRooms.shed.objects.radio) then
                                             -- Play the sound clip of the number radio station
                                             loadSFX.numberRadioStationMessage:play()
+                                        end
+                                        
+                                    elseif(g.curLocation == loadRooms.shadowLands9) then
+                                        if(loadRooms.shadowLands9.objects.statue.state == "On") then
+                                            g.mapTransitionIsLegal = false
+                                            g.itemSelected = nil
+                                            g.actionSelected = nil
+                                            g.textBuffer = {}
+                                            g.showMessageBox = false
+                                            createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="alien ending"}})
                                         end
                                     end
                                 end
@@ -186,6 +196,7 @@ local updateCheckAction = {}
                                     -- Check if it is the correct time (8:35). If so, open the secret panel.
                                     g.checkClock()
                                     
+                                -- Stone puzzle room
                                 elseif(g.curLocation == loadRooms.puzzlingStone) then
                                     g.showMessageBox = false
                                     g.textBuffer = {}
@@ -244,6 +255,22 @@ local updateCheckAction = {}
                                 g.movementDirection = g.mouse.objectPointedAt.move
                             end
                             
+                            if(g.actionSelected == "Put") then
+                                if(g.curLocation == loadRooms.shadowLands9) then
+                                    if(g.itemSelected == "Shadow Orb" and g.mouse.objectPointedAt == g.curLocation.objects.statue and g.curLocation.objects.statue.state == "Off") then
+                                        g.curLocation.objects.statue.state = "On"
+                                        g.writeToTextDisplay({"You place the Shadow Orb into", "the hands of the statue. It", "pulses with a strange energy.", "Somehow, in your head, you hear", "the words: THE RITUAL IS READY.", "LIE DOWN ON THE ALTAR TO BEGIN", "THE TRANSMOGRIFICATION."})
+                                        g.curLocation.objects.statue.text.put = {"The orb has already been", "placed."}
+                                        
+                                        for k,v in ipairs(g.items) do
+                                            if(v.name =="Shadow Orb") then
+                                                table.remove(g.items,k)
+                                                break
+                                            end
+                                        end
+                                    end
+                                end
+                            end
                             
                             if(g.actionSelected == "Look") then
                                 
@@ -274,11 +301,6 @@ local updateCheckAction = {}
                                         createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="class transition"}})
                                     end
                                    
-                                --[[elseif(g.curLocation == loadRooms.nightmareGeometry1) then
-                                    if(g.mouse.objectPointedAt == loadRooms.nightmareGeometry1.objects.shadowBody) then
-                                        loadRooms.nightmareGeometry1.objects.shadowBody.text.look={{"I don't want to die."}}
-                                    end]]
-                                   
                                 -- Staring at the Imperfect
                                 elseif(g.curLocation == loadRooms.nightmareGeometry2) then
                                 
@@ -295,6 +317,7 @@ local updateCheckAction = {}
                                         end
                                     end
                                     
+                                -- Squiggle Man
                                 elseif(g.curLocation == loadRooms.nightmareGeometry3) then
                                 
                                     -- Play audio clips for deep breathing, screaming, crawling (1x, 2x, 3x)
@@ -482,6 +505,24 @@ local updateCheckAction = {}
                             elseif(g.curLocation.objects.mirror3.state == "Unbroken" and g.mouse.objectPointedAt == g.curLocation.objects.mirror3) then
                                 g.curLocation.objects.mirror3.state = "Broken"
                                 g.writeToTextDisplay({"You smash the mirror to pieces."})
+                                loadSFX.glassShattering:play()
+                            else
+                                g.writeToTextDisplay({"You can't use the hammer here."})
+                            end
+                        elseif(g.curLocation == loadRooms.dreamMirrorRoom) then
+                            if(g.curLocation.objects.mirror1.state == "Unbroken" and g.mouse.objectPointedAt == g.curLocation.objects.mirror1) then
+                                g.curLocation.objects.mirror1.state = "Broken"
+                                g.writeToTextDisplay({"You smash the mirror to pieces."})
+                                loadSFX.glassShattering:play()
+                            elseif(g.curLocation.objects.mirror2.state == "Unbroken" and g.mouse.objectPointedAt == g.curLocation.objects.mirror2) then
+                                g.curLocation.objects.mirror2.state = "Broken"
+                                g.writeToTextDisplay({"You smash the mirror to pieces."})
+                                loadSFX.glassShattering:play()
+                            elseif(g.curLocation.objects.mirror3.state == "Unbroken" and g.mouse.objectPointedAt == g.curLocation.objects.mirror3) then
+                                g.curLocation.objects.mirror3.state = "Broken"
+                                g.writeToTextDisplay({"You smash the mirror to pieces.", "A strange sight lies before", "you. It looks to be a portal to", "deep space. There is a planet", "covered in darkness, barely lit", "by a total eclipse of a nearby", "star."})
+                                g.curLocation.objects.mirror3.text.move=""
+                                g.curLocation.objects.mirror3.move=""
                                 loadSFX.glassShattering:play()
                             else
                                 g.writeToTextDisplay({"You can't use the hammer here."})

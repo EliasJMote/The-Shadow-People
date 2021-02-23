@@ -1,5 +1,5 @@
 ﻿The Shadow People
-Version 0.9.6
+Version 0.9.7
 
 Copyright © 2020-2021 Elias Mote
 Copyright © 2020-2021 Roc Studios
@@ -18,7 +18,18 @@ This software may be not be reproduced under any circumstances except for person
 II. Version History
 
 ------------------------
-V0.9.6 - Current Version
+V0.9.7 - Current Version
+------------------------
+-- Content --
+-- Added music, images and interactable objects to the Shadow Lands, House 
+Outside, Dream Mirror Room
+-- Added to the "Eternal Twilight" ending
+-- Added code so that the player must place the shadow orb in the statue at
+the end of the Shadow Lands (then use the altar) to unlock the
+"Eternal Twilight" ending.
+
+------------------------
+V0.9.6
 ------------------------
 -- Content --
 -- Added puzzling stone room to gate altar room

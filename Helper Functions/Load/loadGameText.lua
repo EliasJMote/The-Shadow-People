@@ -41,7 +41,7 @@ loadGameText.graveyard =    {
                                 grave=  {
                                             look={  "A decrept grave long worn down", "by the sands of time. It looks", "like it was moved recently.", 
                                                     "You expect to read about", "whoever's grave this is, but", "instead something else is", "carved into the stone:", "",
-                                                    "ETERNAL SHADOWE IN THE TWILIGHT", "OF A DARK SUN.", "CREATURES THAT DANCE IN THE", "PERIPHERAL OF THE MIND.",
+                                                    "ETERNAL SHADOW IN THE TWILIGHT", "OF A DARK SUN.", "CREATURES THAT DANCE IN THE", "PERIPHERAL OF THE MIND.",
                                                     "A FORGOTTEN LAND THAT EXISTS", "AMONG THE STARS.", "GIVE YOUR FLESH TO THE HOLY", "ALTAR AND BE REBORN WITH AN",
                                                     "UNYIELDING IMMORTALITY."
                                                 },
@@ -77,7 +77,7 @@ loadGameText.badCreditsText =   {
                                     "You finally get back home and",
                                     "enter through the front door.",
                                     "You quickly collapse on your",
-                                    "bed, while sleep quickly",
+                                    "bed, while sleep rapidly",
                                     "invades your mind. After an",
                                     "unknown stretch of time, you",
                                     "suddenly wake with a jolt.",

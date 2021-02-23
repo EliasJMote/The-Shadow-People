@@ -9,9 +9,9 @@ local createGame = {}
         
         -- Initialize game state
         g.state = "title"
-        if(debug) then
-            g.state = "game"
-        end
+        --if(debug) then
+            --g.state = "game"
+        --end
         --g.state = "shadow child"
         
         -- Initialize events table
@@ -19,12 +19,16 @@ local createGame = {}
         
         -- Initialize current location
         g.curLocation = loadRooms.bedroom
-        if(debug) then
-            g.curLocation = loadRooms.altarRoom
-        end
+        --[[if(debug) then
+            g.curLocation = loadRooms.darkPassage1
+            --g.curLocation = loadRooms.altarRoom
+            --g.curLocation = loadRooms.shadowLands9
+            --g.curLocation = loadRooms.sewer1
+        end]]
         
         -- Initialize items currently held
         g.items = {}
+        --g.items = {{name="Hammer",w=28,h=4},{name="Shadow Orb",w=47,h=4}}
                   
         g.displayText = true
         g.objectPointedAt = nil

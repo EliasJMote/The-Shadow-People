@@ -8,7 +8,9 @@ function updatePlayerAction.update()
                 g.actionSelected = nil
             else
                 g.actionSelected = g.mouse.actionText
-                g.itemSelected = nil
+                if(g.actionSelected ~= "Put") then
+                    g.itemSelected = nil
+                end
             end
         end
     end

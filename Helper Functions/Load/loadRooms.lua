@@ -333,6 +333,22 @@ loadRooms.darkPassage10 =    {
                                 exits={north="House Outside"},
                             }
          
+loadRooms.dreamMirrorRoom =  {
+                            name="Dream Mirror Room",
+                            displayName="Mirror Room?",
+                            state="Light",
+                            map=loadImages.shadowLands3Map,
+                            --music=loadMusic.shadowLands,
+                            --music=loadMusic.houseDark,
+                            music = loadMusic.title,
+                            backgrounds={light=loadImages.mirrorRoom},
+                            objects={
+                                        mirror1={name="Mirror 1",x=21,y=28,w=15,h=38,img={broken=loadImages.hangingMirrorThinBroken,unbroken=loadImages.hangingMirrorThin},state="Unbroken",text={look={"A long mirror."}}},
+                                        mirror2={name="Mirror 2",x=41,y=28,w=15,h=38,img={broken=loadImages.hangingMirrorFatBroken,unbroken=loadImages.hangingMirrorFat},state="Unbroken",text={look={"A long mirror."}}},
+                                        mirror3={name="Mirror 3",x=63,y=28,w=15,h=38,img={broken=loadImages.hangingMirrorThinBrokenSpace,unbroken=loadImages.hangingMirrorThin},state="Unbroken",text={look={"A long mirror."}}},
+                                    },
+                            exits={},
+                        }
 -- Flooded Labyrinth 1
 loadRooms.floodedLabyrinth1 =   {  
                                     name="Flooded Labyrinth 1",
@@ -585,14 +601,17 @@ loadRooms.highway5 =    {
                             exits={south="Highway 4"},
                         }
 
-loadRooms.houseOutside =   {  
-                                    name="House Outside",
-                                    state="Dark",
-                                    backgrounds={dark=loadImages.empty},
-                                    map=loadImages.floodedLabyrinth1Map,
-                                    objects={},
-                                    exits={},
-                                }
+loadRooms.houseOutside =    {  
+                                name="House Outside",
+                                state="Dark",
+                                backgrounds={dark=loadImages.houseOutside},
+                                map=loadImages.shadowLands3Map,
+                                music = loadMusic.title,
+                                objects={
+                                            door = {name="Door",x=43,y=28,w=13,h=32,img={closed=loadImages.houseOutsideDoorClosed,open=loadImages.houseOutsideDoorOpen},text={close={"You close the door."},look={"It's your front door."},move="",open={"You open the door."}},state="Closed",move=""},
+                                        },
+                                exits={},
+                            }
 
 -- House patio
 loadRooms.kitchen =     {
@@ -998,28 +1017,131 @@ loadRooms.sewer9 =  {
 -- There is a total eclipse in the sky
 loadRooms.shadowLands1 =    {  
                                 name="Shadow Lands 1",
-                                state="Dark",
-                                backgrounds={dark=loadImages.empty},
+                                displayName="Shadow Lands",
+                                state="Light",
+                                backgrounds={light=loadImages.shadowLands1},
                                 map=loadImages.bedroomMap,
-                                objects={},
+                                music=loadMusic.shadowLands,
+                                backgroundStatic = true,
+                                objects={
+                                            eclipse={name="Eclipse",x=40,y=6,w=21,h=21,text={look={"A total eclipse of foreign", "celestial bodies hangs in the", "sky, casting the land in an", "effluent gray light."}}},
+                                        },
                                 exits={north="Shadow Lands 2"},
                             }
                             
 loadRooms.shadowLands2 =    {  
                                 name="Shadow Lands 2",
-                                state="Dark",
-                                backgrounds={dark=loadImages.empty},
+                                displayName="Shadow Lands",
+                                state="Light",
+                                backgrounds={light=loadImages.shadowLands2},
                                 map=loadImages.bedroomMap,
-                                objects={},
+                                music=loadMusic.shadowLands,
+                                backgroundStatic = true,
+                                objects={
+                                            eclipse={name="Eclipse",x=40,y=6,w=21,h=21,text={look={"A total eclipse of foreign", "celestial bodies hangs in the", "sky, casting the land in an", "effluent gray light."}}},
+                                        },
                                 exits={north="Shadow Lands 3"},
                             }    
                             
 loadRooms.shadowLands3 =    {  
                                 name="Shadow Lands 3",
-                                state="Dark",
-                                backgrounds={dark=loadImages.empty},
+                                displayName="Shadow Lands",
+                                state="Light",
+                                backgrounds={light=loadImages.shadowLands2},
+                                map=loadImages.bedroomMap,
+                                music=loadMusic.shadowLands,
+                                backgroundStatic = true,
+                                objects={
+                                            eclipse={name="Eclipse",x=40,y=6,w=21,h=21,text={look={"A total eclipse of foreign", "celestial bodies hangs in the", "sky, casting the land in an", "effluent gray light."}}},
+                                        },
+                                exits={north="Shadow Lands 4"},
+                            } 
+                            
+loadRooms.shadowLands4 =    {  
+                                name="Shadow Lands 4",
+                                displayName="Shadow Lands",
+                                state="Light",
+                                backgrounds={light=loadImages.shadowLands2},
+                                map=loadImages.bedroomMap,
+                                music=loadMusic.shadowLands,
+                                backgroundStatic = true,
+                                objects={
+                                            eclipse={name="Eclipse",x=40,y=6,w=21,h=21,text={look={"A total eclipse of foreign", "celestial bodies hangs in the", "sky, casting the land in an", "effluent gray light."}}},
+                                        },
+                                exits={north="Shadow Lands 5"},
+                            }
+                            
+loadRooms.shadowLands5 =    {  
+                                name="Shadow Lands 4",
+                                displayName="Shadow Lands",
+                                state="Light",
+                                backgrounds={light=loadImages.shadowLands2},
+                                map=loadImages.bedroomMap,
+                                music=loadMusic.shadowLands,
+                                backgroundStatic = true,
+                                objects={
+                                            eclipse={name="Eclipse",x=40,y=6,w=21,h=21,text={look={"A total eclipse of foreign", "celestial bodies hangs in the", "sky, casting the land in an", "effluent gray light."}}},
+                                        },
+                                exits={north="Shadow Lands 6"},
+                            }
+                            
+loadRooms.shadowLands6 =    {  
+                                name="Shadow Lands 6",
+                                displayName="Shadow Lands",
+                                state="Light",
+                                backgrounds={light=loadImages.shadowLands2},
+                                map=loadImages.bedroomMap,
+                                music=loadMusic.shadowLands,
+                                backgroundStatic = true,
+                                objects={
+                                            eclipse={name="Eclipse",x=40,y=6,w=21,h=21,text={look={"A total eclipse of foreign", "celestial bodies hangs in the", "sky, casting the land in an", "effluent gray light."}}},
+                                        },
+                                exits={north="Shadow Lands 7"},
+                            }
+                            
+loadRooms.shadowLands7 =    {  
+                                name="Shadow Lands 7",
+                                displayName="Shadow Lands",
+                                state="Light",
+                                backgrounds={light=loadImages.shadowLands2},
+                                map=loadImages.bedroomMap,
+                                music=loadMusic.shadowLands,
+                                backgroundStatic = true,
+                                objects={
+                                            eclipse={name="Eclipse",x=40,y=6,w=21,h=21,text={look={"A total eclipse of foreign", "celestial bodies hangs in the", "sky, casting the land in an", "effluent gray light."}}},
+                                        },
+                                exits={north="Shadow Lands 8"},
+                            }
+                            
+loadRooms.shadowLands8 =    {  
+                                name="Shadow Lands 8",
+                                displayName="Shadow Lands",
+                                state="Light",
+                                backgrounds={light=loadImages.shadowLands2},
+                                map=loadImages.bedroomMap,
+                                music=loadMusic.shadowLands,
+                                backgroundStatic = true,
+                                objects={
+                                            eclipse={name="Eclipse",x=40,y=6,w=21,h=21,text={look={"A total eclipse of foreign", "celestial bodies hangs in the", "sky, casting the land in an", "effluent gray light."}}},
+                                        },
+                                exits={north="Shadow Lands 9"},
+                            }
+                            
+loadRooms.shadowLands9 =    {  
+                                name="Shadow Lands 9",
+                                displayName="Shadow Lands",
+                                state="Light",
+                                backgrounds={light=loadImages.shadowLands3},
                                 map=loadImages.shadowLands3Map,
-                                objects={},
+                                music=loadMusic.shadowLands,
+                                backgroundStatic = true,
+                                objects={
+                                            altar={name="Altar",x=37,y=64,w=26,h=12,img=loadImages.altar,text={look={"An altar rests before you."},use={"You can't use this...yet."}}},
+                                            eclipse={name="Eclipse",x=40,y=6,w=21,h=21,text={look={"A total eclipse of foreign", "celestial bodies hangs in the", "sky, casting the land in an", "effluent gray light."}}},
+                                            statue={name="Statue",x=70,y=46,w=20,h=30,state="Off",img={off=loadImages.statueWithoutBall,on=loadImages.statueWithDarkCrystalBall},text={look={"A statue with empty hands. It", "looks like something could be", "placed here."},put={"You can put something here..."}}},
+                                            statueWithDarkCrystalBall={name="Statue With Dark Crystal Ball",x=10,y=46,w=20,h=30,img=loadImages.statueWithDarkCrystalBall,text={look={"A statue with a dark crystal", "ball."}}},
+                                            
+                                        },
                                 exits={},
                             }                              
                     

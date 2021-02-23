@@ -54,6 +54,31 @@ function drawInGameTransitions.draw()
         love.graphics.print("passing out. Finals", init_x, init_y+8*4, 0, 0.5, 0.5)
         love.graphics.print("is next week and you", init_x, init_y+8*5, 0, 0.5, 0.5)
         love.graphics.print("can't miss anything.", init_x, init_y+8*6, 0, 0.5, 0.5)
+        
+    elseif(g.state == "dream transition") then
+        init_y = 40
+        love.graphics.print("Dream Transition", 32, 8, 0, 0.5, 0.5)
+        love.graphics.print("Your enter your house", init_x, init_y, 0, 0.5, 0.5)
+        love.graphics.print("and make a beeline", init_x, init_y+8, 0, 0.5, 0.5)
+        love.graphics.print("for your bed. Slumber", init_x, init_y+8*2, 0, 0.5, 0.5)
+        love.graphics.print("quickly overwhelms", init_x, init_y+8*3, 0, 0.5, 0.5)
+        love.graphics.print("you, and you begin to", init_x, init_y+8*4, 0, 0.5, 0.5)
+        love.graphics.print("experience a vivid", init_x, init_y+8*5, 0, 0.5, 0.5)
+        love.graphics.print("dream...", init_x, init_y+8*6, 0, 0.5, 0.5)
+        
+    elseif(g.state == "space transition") then
+        init_y = 32
+        love.graphics.print("Space Transition", 32, 8, 0, 0.5, 0.5)
+        love.graphics.print("You step through the", init_x, init_y, 0, 0.5, 0.5)
+        love.graphics.print("portal and come out in", init_x, init_y+8, 0, 0.5, 0.5)
+        love.graphics.print("deep space. Then you", init_x, init_y+8*2, 0, 0.5, 0.5)
+        love.graphics.print("are carried by some", init_x, init_y+8*3, 0, 0.5, 0.5)
+        love.graphics.print("unseen force until you", init_x, init_y+8*4, 0, 0.5, 0.5)
+        love.graphics.print("reach the surface of", init_x, init_y+8*5, 0, 0.5, 0.5)
+        love.graphics.print("an unknown planet. A", init_x, init_y+8*6, 0, 0.5, 0.5)
+        love.graphics.print("total eclipse casts", init_x, init_y+8*7, 0, 0.5, 0.5)
+        love.graphics.print("dim light over the", init_x, init_y+8*8, 0, 0.5, 0.5)
+        love.graphics.print("strange land...", init_x, init_y+8*9, 0, 0.5, 0.5)
     end
     
     love.graphics.print("Click to continue", 30, 128, 0, 0.5, 0.5)

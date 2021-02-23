@@ -53,20 +53,6 @@ local drawGame = {}
             end
         end
         
-        -- If static is enabled (for certain rooms and conditions), draw it
-        if(g.backgroundStatic) then
-            love.graphics.setColor(g.colors.darkestGreen.r, g.colors.darkestGreen.g, g.colors.darkestGreen.b, 1)
-            for i=3,96 do
-                for j=3,79 do
-                    local staticNum = love.math.random(0,20)
-                    if(staticNum <= 1) then
-                        love.graphics.rectangle("fill",i,j,1,1)
-                    end
-                end
-            end
-            --end
-        end
-        
         love.graphics.setColor(g.colors.lightestGreen.r, g.colors.lightestGreen.g, g.colors.lightestGreen.b, 1)
         
         -- Draw the room objects
@@ -85,6 +71,19 @@ local drawGame = {}
                     end
                 else
                     love.graphics.draw(v.img[v.state:lower()], v.x, v.y)
+                end
+            end
+        end
+        
+        -- If static is enabled (for certain rooms and conditions), draw it
+        if(g.backgroundStatic) then
+            love.graphics.setColor(g.colors.darkestGreen.r, g.colors.darkestGreen.g, g.colors.darkestGreen.b, 1)
+            for i=3,96 do
+                for j=3,79 do
+                    local staticNum = love.math.random(0,20)
+                    if(staticNum <= 1) then
+                        love.graphics.rectangle("fill",i,j,1,1)
+                    end
                 end
             end
         end
