@@ -12,17 +12,27 @@ updateEvents.update = function()
         
         if(event.name == "Left Click") then
         
+            if(event.state == "warning") then
+                if(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.warningScreen.continue)) then
+                    --createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="title"}})
+                    g.state = "title"
+                end
+            
+        
             -- On the title screen
-            if(event.state == "title") then
+            elseif(event.state == "title") then
                 -- Skip the opening credits
                 if(g.timers.global < g.timers.titleScreenLogo-70) then
                     g.timers.global = g.timers.titleScreenLogo-70
                 end
                 
-                -- Start the game
+                -- Title screen
                 if(g.timers.global >= g.timers.titleScreenLogo+35) then
                     if(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.titleScreen.startGame)) then
                         g.state = "instructions"
+                        createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144})
+                    elseif(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.titleScreen.options)) then
+                        g.state = "options"
                         createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144})
                     elseif(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.titleScreen.credits)) then
                         g.state = "title credits"
@@ -31,9 +41,35 @@ updateEvents.update = function()
                 end
                 
             elseif(event.state == "title credits") then
+                
+                -- Click the back button
                 if(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.titleCreditsScreen.titleScreen)) then
                     g.state = "title"
                     createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144})
+                
+                -- Click the down arrow to scroll the credits down
+                elseif(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.titleCreditsScreen.downArrow) and g.titleCreditsPage == 1) then
+                    g.titleCreditsPage = 2
+                    
+                -- Click the up arrow to scroll the credits down
+                elseif(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.titleCreditsScreen.upArrow) and g.titleCreditsPage == 2) then
+                    g.titleCreditsPage = 1
+                end
+                
+            elseif(event.state == "options") then
+                if(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.optionsScreen.back)) then
+                    g.state = "title"
+                    createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144})
+                elseif(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.optionsScreen.increaseWindowScale)) then
+                    if(scale < 6) then
+                        scale = scale + 1
+                        love.window.setMode(160*scale, 144*scale, {resizable = true})
+                    end
+                elseif(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.optionsScreen.decreaseWindowScale)) then
+                    if(scale > 1) then
+                        scale = scale - 1
+                        love.window.setMode(160*scale, 144*scale, {resizable = true})
+                    end
                 end
                 
             -- On the instructions screen
@@ -168,7 +204,15 @@ updateEvents.update = function()
         -- Check the current position of the mouse
         elseif(event.name == "Check Mouse Position") then
             g.mouse.textHover = false
-            if(g.state == "title") then
+            
+            if(g.state == "warning") then
+                for k,v in pairs(g.textBoxes.warningScreen) do
+                    if(g.mouseCollision(g.mouse.x,g.mouse.y,v)) then
+                        g.mouse.textHover = true
+                    end
+                end
+            
+            elseif(g.state == "title") then
                 if(g.timers.global >= 175) then
                     for k,v in pairs(g.textBoxes.titleScreen) do
                         if(g.mouseCollision(g.mouse.x,g.mouse.y,v)) then
@@ -186,6 +230,13 @@ updateEvents.update = function()
                 
             elseif(g.state == "title credits") then
                 for k,v in pairs(g.textBoxes.titleCreditsScreen) do
+                    if(g.mouseCollision(g.mouse.x,g.mouse.y,v)) then
+                        g.mouse.textHover = true
+                    end
+                end
+                
+            elseif(g.state == "options") then
+                for k,v in pairs(g.textBoxes.optionsScreen) do
                     if(g.mouseCollision(g.mouse.x,g.mouse.y,v)) then
                         g.mouse.textHover = true
                     end

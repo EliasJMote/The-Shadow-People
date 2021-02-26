@@ -17,10 +17,12 @@ function love.load()
     updateRoomLocks = require("Helper Functions/Update/updateRoomLocks")
     updateEnding = require("Helper Functions/Update/updateEnding")
     
+    drawWarningScreen = require("Helper Functions/Draw/drawWarningScreen")
     drawScreenTransition = require("Helper Functions/Draw/drawScreenTransition")
     drawManager = require("Helper Functions/Draw/drawManager")
     drawTitleScreen = require("Helper Functions/Draw/drawTitleScreen")
     drawTitleCreditsScreen = require("Helper Functions/Draw/drawTitleCreditsScreen")
+    drawOptionsScreen = require("Helper Functions/Draw/drawOptionsScreen")
     drawInstructionsScreen = require("Helper Functions/Draw/drawInstructionsScreen")
     drawUserInterface = require("Helper Functions/Draw/drawUserInterface")
     drawGame = require("Helper Functions/Draw/drawGame")
@@ -33,6 +35,7 @@ function love.load()
     
     -- Set the game window to be resizable
     love.window.setMode(love.graphics.getWidth(), love.graphics.getHeight(), {resizable = true})
+    --love.window.setMode(love.graphics.getWidth(), love.graphics.getHeight())
     
     -- Load helper functions
     loadImages = require("Helper Functions/Load/loadImages")

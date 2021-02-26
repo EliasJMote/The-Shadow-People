@@ -76,7 +76,9 @@ function updateGame.update()
     end
     
     -- Update the global timer
-    g.timers.global = g.timers.global + 1
+    if(g.state ~= "warning") then
+        g.timers.global = g.timers.global + 1
+    end
 
 end
 

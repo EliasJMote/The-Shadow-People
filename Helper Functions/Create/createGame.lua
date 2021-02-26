@@ -8,10 +8,10 @@ local createGame = {}
         g.scale = {}
         
         -- Initialize game state
-        g.state = "title"
-        --if(debug) then
-            --g.state = "game"
-        --end
+        g.state = "warning"
+        if(debug) then
+            g.state = "game"
+        end
         --g.state = "shadow child"
         
         -- Initialize events table
@@ -19,16 +19,17 @@ local createGame = {}
         
         -- Initialize current location
         g.curLocation = loadRooms.bedroom
-        --[[if(debug) then
-            g.curLocation = loadRooms.darkPassage1
+        --g.curLocation = loadRooms.churchInside1
+        --g.curLocation = loadRooms.gasStationInside
+        --if(debug) then
+            --g.curLocation = loadRooms.darkPassage1
             --g.curLocation = loadRooms.altarRoom
             --g.curLocation = loadRooms.shadowLands9
             --g.curLocation = loadRooms.sewer1
-        end]]
+        --end
         
         -- Initialize items currently held
         g.items = {}
-        --g.items = {{name="Hammer",w=28,h=4},{name="Shadow Orb",w=47,h=4}}
                   
         g.displayText = true
         g.objectPointedAt = nil
@@ -76,13 +77,25 @@ local createGame = {}
                             instructionsScreen =    {
                                                         startGame = {x=52,y=128,w=59,h=6,text="Start Game"},
                                                     },
+                            optionsScreen = {
+                                                back = {x=72,y=128,w=19,h=6,text="Back"},
+                                                increaseWindowScale = {x=152,y=24,w=3,h=6,text="+"},
+                                                decreaseWindowScale = {x=120,y=24,w=3,h=6,text="-"},
+                                            },                        
                             titleCreditsScreen =    {
-                                                        titleScreen = {x=4,y=128,w=30,h=6,text="Back"}
+                                                        downArrow = {x=134,y=120,w=19,h=6,text="Down"},
+                                                        titleScreen = {x=4,y=128,w=19,h=6,text="Back"},
+                                                        upArrow = {x=134,y=16,w=9,h=6,text="Up"},
                                                     },
                             titleScreen =   {
                                                 startGame = {x=52,y=96,w=59,h=6,text="Start Game"},
-                                                credits = {x=52,y=110,w=59,h=6,text="Credits"},
+                                                options = {x=52,y=110,w=41,h=6,text="Options"},
+                                                credits = {x=52,y=124,w=41,h=6,text="Credits"},
                                             },
+                                            
+                            warningScreen = {
+                                                continue = {x=42,y=128,w=81,h=6,text="Click to Continue"},
+                                            },                
                         }
         
         -- Which action is selected
@@ -110,13 +123,15 @@ local createGame = {}
         
         g.playerState = {
             classOver = false,
-            hasGasCan = false,
+            hasGas = false,
             hasShadowOrb = false,
             hasEclipseBrooch = false,
             hasNecklace = false,
             numOfTimesLookedAtSun = 0,
             numOfTimesLookedAtWallHole = 0,
         }
+        
+        g.titleCreditsPage = 1
         
         -- Which page of items are we on
         g.itemPage = 1

@@ -7,12 +7,18 @@ function drawManager.draw()
     -- scale the window
     love.graphics.scale(g.scale.x,g.scale.y)
   
+    if(g.state == "warning") then
+        drawWarningScreen.draw()
+  
     -- draw the title screen and intro
-    if(g.state == "title") then
+    elseif(g.state == "title") then
         drawTitleScreen.draw()
         
     elseif(g.state == "title credits") then
         drawTitleCreditsScreen.draw()
+      
+    elseif(g.state == "options") then
+        drawOptionsScreen.draw()
   
     -- draw the instructions screen
     elseif(g.state == "instructions") then

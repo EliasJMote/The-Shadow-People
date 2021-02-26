@@ -46,11 +46,12 @@ local updateCheckAction = {}
                     else
 
                         -- If the player is currently in the dark or the object is not visible in the dark
-                        --if(g.curLocation.state == "Dark" and not g.mouse.objectPointedAt.visibleInDark and not debug) then
-                            --g.writeToTextDisplay({"It's too dark to see!"})
+                        if(g.curLocation.state == "Dark" and not g.mouse.objectPointedAt.visibleInDark and not debug
+                            and (g.curLocation == loadRooms.gasStationBathroom or g.curLocation == loadRooms.churchInside1 or g.curLocation == loadRooms.puzzlingStone)) then
+                            g.writeToTextDisplay({"It's too dark to see!"})
                             
                         -- If the player is currently in the light
-                        --else
+                        else
                         
                             if(g.actionSelected ~= "Move") then
                                 if (g.actionSelected == "Open" and g.mouse.objectPointedAt.state ~= "Closed") then
@@ -58,6 +59,7 @@ local updateCheckAction = {}
                                         g.writeToTextDisplay({"It's already open!"})
                                     elseif(g.mouse.objectPointedAt.state == "Locked") then
                                         g.writeToTextDisplay({"It's locked!"})
+                                        loadSFX.lockedDoor:play()
                                     end
                                 elseif (g.actionSelected == "Close" and g.mouse.objectPointedAt.state == "Closed") then
                                     g.writeToTextDisplay({"It's already closed!"})
@@ -70,7 +72,7 @@ local updateCheckAction = {}
                             --if(g.actionSelected == "Open" and g.mouse.objectPointedAt.state == "Closed" and g.mouse.objectPointedAt.state ~= "Locked") then
                             if(g.actionSelected == "Open" and g.mouse.objectPointedAt.state == "Closed") then
                                 g.mouse.objectPointedAt.state = "Open"
-                                loadSFX.pickup:play()
+                                loadSFX.doorOpen:play()
                             end
                             
                             if(g.actionSelected == "Open" and g.mouse.objectPointedAt.state == "Stuck") then
@@ -80,6 +82,7 @@ local updateCheckAction = {}
                             -- Try to close the object if possible
                             if(g.actionSelected == "Close" and g.mouse.objectPointedAt.state == "Open") then
                                 g.mouse.objectPointedAt.state = "Closed"
+                                loadSFX.doorClose:play()
                             end
                             
                             -- If the player is using an object
@@ -98,8 +101,33 @@ local updateCheckAction = {}
                                     end
                                 else
                                     
+                                    if(g.curLocation == loadRooms.gasStationOutside) then
+                                        if(((g.mouse.objectPointedAt == loadRooms.gasStationOutside.objects.pump1 and loadRooms.gasStationOutside.objects.pump1.state == "On")
+                                            or (g.mouse.objectPointedAt == loadRooms.gasStationOutside.objects.pump2 and loadRooms.gasStationOutside.objects.pump2.state == "On"))
+                                            and g.playerState.hasGas == false) then
+                                            g.playerState.hasGas = true
+                                            loadRooms.gasStationOutside.objects.pump1.text.use = {"Your car is already filled."}
+                                            loadRooms.gasStationOutside.objects.pump2.text.use = {"Your car is already filled."}
+                                            loadSFX.pickup:play()
+                                        end
+                                    
+                                    elseif(g.curLocation == loadRooms.gasStationInside) then
+                                        if(g.mouse.objectPointedAt == loadRooms.gasStationInside.objects.button and loadRooms.gasStationInside.objects.button.state == "Off") then
+                                            loadRooms.gasStationInside.objects.button.state = "On"
+                                            loadRooms.gasStationInside.objects.button.text.look={"It's a button to turn on the", "gas pumps. The pumps are", "currently on."}
+                                            loadRooms.gasStationInside.objects.button.text.push={"The pumps are already on!"}
+                                            loadRooms.gasStationInside.objects.button.text.use={"The pumps are already on!"}
+                                            loadRooms.gasStationOutside.objects.pump1.state = "On"
+                                            loadRooms.gasStationOutside.objects.pump1.text.look={"It's a gas pump. It's receiving", "power."}
+                                            loadRooms.gasStationOutside.objects.pump1.text.use={"You fill your car up with gas."}
+                                            loadRooms.gasStationOutside.objects.pump2.state = "On"
+                                            loadRooms.gasStationOutside.objects.pump2.text.look={"It's a gas pump. It's receiving", "power."}
+                                            loadRooms.gasStationOutside.objects.pump2.text.use={"You fill your car up with gas."}
+                                            loadSFX.pickup:play()
+                                        end
+                                    
                                     -- If the player is pressing the buttons to manipulate the clock in the clock tower second floor
-                                    if(g.curLocation == loadRooms.clockTowerInsideSecondFloor) then
+                                    elseif(g.curLocation == loadRooms.clockTowerInsideSecondFloor) then
                                         
                                         -- If the player pushes the button for the hour hand, advance the clock by one hour
                                         if(g.mouse.objectPointedAt == loadRooms.clockTowerInsideSecondFloor.objects.hourButton) then
@@ -169,7 +197,22 @@ local updateCheckAction = {}
                             
                             -- Push actions
                             if(g.actionSelected == "Push") then
-                                if(g.curLocation == loadRooms.graveyard) then
+                                if(g.curLocation == loadRooms.gasStationInside) then
+                                    if(g.mouse.objectPointedAt == loadRooms.gasStationInside.objects.button and loadRooms.gasStationInside.objects.button.state == "Off") then
+                                        loadRooms.gasStationInside.objects.button.state = "On"
+                                        loadRooms.gasStationInside.objects.button.text.look={"It's a button to turn on the", "gas pumps. The pumps are", "receiving power."}
+                                        loadRooms.gasStationInside.objects.button.text.push={"The pumps are already on!"}
+                                        loadRooms.gasStationInside.objects.button.text.use={"The pumps are already on!"}
+                                        loadRooms.gasStationOutside.objects.pump1.state = "On"
+                                        loadRooms.gasStationOutside.objects.pump1.text.look={"It's a gas pump. It's receiving", "power."}
+                                        loadRooms.gasStationOutside.objects.pump1.text.use={"You fill your car up with gas."}
+                                        loadRooms.gasStationOutside.objects.pump2.state = "On"
+                                        loadRooms.gasStationOutside.objects.pump2.text.look={"It's a gas pump. It's receiving", "power."}
+                                        loadRooms.gasStationOutside.objects.pump2.text.use={"You fill your car up with gas."}
+                                        loadSFX.pickup:play()
+                                    end
+                                
+                                elseif(g.curLocation == loadRooms.graveyard) then
                                     if(g.mouse.objectPointedAt == loadRooms.graveyard.objects.grave) then
                                         if(loadRooms.graveyard.objects.grave.state == "normal") then
                                             loadRooms.graveyard.objects.stairs = {name="stairs",x=37,y=67,w=25,h=11,text={look={"Stairs. They lead down into the", "the earth. But what hides", "there?"},move=""},img=loadImages.graveStairs,move=""}
@@ -423,7 +466,7 @@ local updateCheckAction = {}
                                 end
                                 g.mouse.objectPointedAt = nil
                             end
-                        --end
+                        end
                     end
                 
                 -- Check if the player is selecting an item
@@ -539,6 +582,7 @@ local updateCheckAction = {}
                                 if((g.mouse.objectPointedAt.name == "Candle" or g.mouse.objectPointedAt.name == "Candelabra") and g.mouse.objectPointedAt.state == "Unlit") then
                                     g.mouse.objectPointedAt.state = "Lit"
                                     local textArray = {"You light the " .. string.lower(g.mouse.objectPointedAt.name) .. "."}
+                                    loadSFX.fire:play()
                                     if(g.curLocation.objects.candle1.state == "Lit"
                                         and g.curLocation.objects.candle2.state == "Lit"
                                         and g.curLocation.objects.wallCandelabra1.state == "Lit") then
@@ -548,7 +592,7 @@ local updateCheckAction = {}
                                         table.insert(textArray, "Lighting the candles has")
                                         table.insert(textArray, "revealed a hidden door in the")
                                         table.insert(textArray, "wall.")
-                                        loadSFX.pickup:play()
+                                        --loadSFX.pickup:play()
                                     end
                                     g.writeToTextDisplay(textArray)
                                 else

@@ -1,5 +1,5 @@
 ﻿The Shadow People
-Version 0.9.7
+Version 0.9.9
 
 Copyright © 2020-2021 Elias Mote
 Copyright © 2020-2021 Roc Studios
@@ -18,7 +18,23 @@ This software may be not be reproduced under any circumstances except for person
 II. Version History
 
 ------------------------
-V0.9.7 - Current Version
+V0.9.9 - Current Version
+------------------------
+
+------------------------
+V0.9.8
+------------------------
+-- Content --
+- Gas station puzzle has changed from picking up a gas station can to
+pushing a button to activate the gas pumps. After activation, the gas pumps
+can be used by the player.
+- Made the gas station bathroom dark, so the player must search for the
+light switch.
+- Added SFX for lighting a candle, closing a door, opening a door, attempting to open a locked door
+- Added a seizure warning at the start of the game.
+
+------------------------
+V0.9.7
 ------------------------
 -- Content --
 -- Added music, images and interactable objects to the Shadow Lands, House 

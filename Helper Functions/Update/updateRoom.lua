@@ -42,7 +42,7 @@ local updateRoom = {}
                 
             elseif(g.curLocation.name == "Car 3") then
                 if(g.mouse.objectPointedAt == loadRooms.car3.objects.steeringWheel) then
-                    if(g.playerState.hasGasCan) then
+                    if(g.playerState.hasGas) then
                         g.mapTransitionIsLegal = false
                         g.itemSelected = nil
                         g.actionSelected = nil

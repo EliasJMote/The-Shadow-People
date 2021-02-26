@@ -134,7 +134,7 @@ loadRooms.churchInside1 =    {
                                 displayName = "Church Inside",
                                 map=loadImages.carMap,
                                 --music=loadMusic.houseDark,
-                                backgrounds={light=loadImages.churchInside},
+                                backgrounds={light=loadImages.churchInside,dark=loadImages.churchInside},
                                 objects={
                                             candle1={name="Candle",x=37,y=48,w=3,h=8,state="Unlit",img={lit=loadImages.litCandle,unlit=loadImages.unlitCandle},text={look={"A candle sits on the altar."}}},
                                             candle2={name="Candle",x=60,y=48,w=3,h=8,state="Unlit",img={lit=loadImages.litCandle,unlit=loadImages.unlitCandle},text={look={"A candle sits on the altar."}}},
@@ -466,8 +466,8 @@ loadRooms.gasStationOutside =   {
                                                 light1={name="Light 1",x=15,y=44,w=4,h=2,text={look={"It's a light fixture."}}},
                                                 light2={name="Light 2",x=28,y=44,w=4,h=2,text={look={"It's a light fixture."}}},
                                                 light3={name="Light 3",x=42,y=44,w=4,h=2,text={look={"It's a light fixture."}}},
-                                                pump1={name="Pump 1",x=13,y=59,w=7,h=10,text={look={"It's a gas pump. It's currently", "out of order."}, use={"The pump doesn't work..."}}},
-                                                pump2={name="Pump 2",x=40,y=59,w=7,h=10,text={look={"It's a gas pump. It's currently", "out of order."}, use={"The pump doesn't work..."}}},
+                                                pump1={name="Pump 1",x=13,y=59,w=7,h=10,state="Off",text={look={"It's a gas pump. It's currently", "shut off."}, use={"The pump is turned off."}}},
+                                                pump2={name="Pump 2",x=40,y=59,w=7,h=10,state="Off",text={look={"It's a gas pump. It's currently", "shut off."}, use={"The pump is turned off."}}},
                                                 window1={name="Window 1",x=63,y=57,w=5,h=5,text={look={"It's a window. It's too dark to", "see inside."}}},
                                                 window2={name="Window 2",x=69,y=57,w=5,h=5,text={look={"It's a window. It's too dark to", "see inside."}}},
                                                 window3={name="Window 3",x=83,y=57,w=5,h=5,text={look={"It's a window. It's too dark to", "see inside."}}},
@@ -483,7 +483,8 @@ loadRooms.gasStationInside =    {
                                     map=loadImages.gasStationBathroomMap,
                                     backgrounds={light=loadImages.gasStationInside},
                                     objects={
-                                                gasCanister=loadObjects.gasCanister,
+                                                --gasCanister=loadObjects.gasCanister,
+                                                button={name="Button",x=45,y=29,w=9,h=9,state="Off",text={look={"It's a button to turn on the", "gas pumps. The pumps are", "currently off."},push={"You press the button to turn", "the pumps on."},use={"You press the button to turn", "the pumps on."}}},
                                             },
                                     exits={south="Gas Station Outside"},
                                 }
@@ -849,13 +850,11 @@ loadRooms.puzzlingStone =   {
                                 name="Puzzling Stone",
                                 state="Light",
                                 map=loadImages.mirrorRoomMap,
-                                backgrounds={light=loadImages.puzzlingStone},
+                                backgrounds={light=loadImages.puzzlingStone,dark=loadImages.puzzlingStone},
                                 objects={
                                             door={name="Door",x=39,y=30,w=25,h=27,state="Stuck",img={open=loadImages.puzzlingStoneDoorOpen,stuck=loadImages.puzzlingStoneDoorClosed},move="",text={look={"It's an ancient door in the", "rock wall covered in ivy."},open={"Although it's not locked, it", "won't open for some reason..."},move="",}},
-                                            --[[button1={name="Button 1",x=38,y=60,w=4,h=4,state="Off",img={off=loadImages.puzzlingStoneButtonOff,on=loadImages.puzzlingStoneButtonOn},text={look={"It's an button in the floor."},push={"You push the button."}}},
-                                            button2={name="Button 2",x=48,y=60,w=4,h=4,state="Off",img={off=loadImages.puzzlingStoneButtonOff,on=loadImages.puzzlingStoneButtonOn},text={look={"It's an button in the floor."},push={"You push the button."}}},]]
-                                            wallCandelabra1={name="Candelabra 1",x=4,y=36,w=11,h=11,state="Unlit",img={lit=loadImages.litWallCandelabra,unlit=loadImages.unlitWallCandelabra},text={look={"A candelabra hangs on the wall."}}},
-                                            wallCandelabra2={name="Candelabra 2",x=85,y=36,w=11,h=11,state="Unlit",img={lit=loadImages.litWallCandelabra,unlit=loadImages.unlitWallCandelabra},text={look={"A candelabra hangs on the wall."}}},
+                                            --wallCandelabra1={name="Candelabra 1",x=4,y=36,w=11,h=11,state="Unlit",img={lit=loadImages.litWallCandelabra,unlit=loadImages.unlitWallCandelabra},text={look={"A candelabra hangs on the wall."}}},
+                                            --wallCandelabra2={name="Candelabra 2",x=85,y=36,w=11,h=11,state="Unlit",img={lit=loadImages.litWallCandelabra,unlit=loadImages.unlitWallCandelabra},text={look={"A candelabra hangs on the wall."}}},
                                         },
                                 exits={south="Flooded Labyrinth 4"},
                             }

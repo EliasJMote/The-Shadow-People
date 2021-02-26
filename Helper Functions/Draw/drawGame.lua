@@ -88,6 +88,14 @@ local drawGame = {}
             end
         end
         
+        -- If the room is dark (pitch black), draw over everything
+        if(g.curLocation.state=="Dark") then
+            if(g.curLocation == loadRooms.gasStationBathroom or g.curLocation == loadRooms.churchInside1 or g.curLocation == loadRooms.puzzlingStone) then
+                love.graphics.setColor(g.colors.darkestGreen.r, g.colors.darkestGreen.g, g.colors.darkestGreen.b, 1)
+                love.graphics.rectangle("fill",3,3,96-3+1,79-3+1)
+            end
+        end
+        
         -- Draw rectangles around the scroll item arrows (if debug is enabled)
         if(debug) then
             love.graphics.setColor(1, 0, 0, 1)
