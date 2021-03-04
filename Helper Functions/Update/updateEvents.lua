@@ -29,14 +29,20 @@ updateEvents.update = function()
                 -- Title screen
                 if(g.timers.global >= g.timers.titleScreenLogo+35) then
                     if(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.titleScreen.startGame)) then
-                        g.state = "instructions"
-                        createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144})
+                        --g.state = "instructions"
+                        --createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144})
+                        createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="instructions"}})
+                    elseif(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.titleScreen.loadGame)) then
+                        g.previousState = "title"
+                        createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="load game"}})
                     elseif(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.titleScreen.options)) then
-                        g.state = "options"
-                        createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144})
+                        --g.state = "options"
+                        --createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144})
+                        createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="options"}})
                     elseif(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.titleScreen.credits)) then
-                        g.state = "title credits"
-                        createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144})
+                        --g.state = "title credits"
+                        --createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144})
+                        createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="title credits"}})
                     end
                 end
                 
@@ -72,10 +78,58 @@ updateEvents.update = function()
                     end
                 end
                 
+            elseif(event.state == "pause") then
+                if not(g.screenTransition.active) then
+                    if(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.pauseScreen.resumeGame)) then
+                        createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="game"}})
+                        g.music:play()
+                    elseif(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.pauseScreen.loadGame)) then
+                        g.previousState = "pause"
+                        createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="load game"}})
+                    elseif(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.pauseScreen.saveGame)) then
+                        createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="save game"}})
+                    elseif(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.pauseScreen.quitGame)) then
+                        g.music = loadMusic.title
+                        g.music:play()
+                        createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="title"}})
+                    end
+                end
+                
+            elseif(event.state == "load game") then
+                if not(g.screenTransition.active) then
+                    if(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.loadGameScreen.back)) then
+                        createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state=g.previousState}})
+                    elseif(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.loadGameScreen.loadGame1)) then
+                        g.loadGame("Save_File_1.lua")
+                    elseif(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.loadGameScreen.loadGame2)) then
+                        g.loadGame("Save_File_2.lua")
+                    elseif(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.loadGameScreen.loadGame3)) then
+                        g.loadGame("Save_File_3.lua")
+                    end
+                end
+                
+            elseif(event.state == "save game") then
+                if not(g.screenTransition.active) then
+                    if(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.saveGameScreen.back)) then
+                        g.savedString = ""
+                        createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="pause"}})
+                    elseif(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.saveGameScreen.saveGame1)) then
+                        g.saveGame("Save_File_1.lua")
+                        g.savedString = "Save to file 1 successful!"
+                    elseif(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.saveGameScreen.saveGame2)) then
+                        g.saveGame("Save_File_2.lua")
+                        g.savedString = "Save to file 2 successful!"
+                    elseif(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.saveGameScreen.saveGame3)) then
+                        g.saveGame("Save_File_3.lua")
+                        g.savedString = "Save to file 3 successful!"
+                    end
+                end
+                
             -- On the instructions screen
             elseif(event.state == "instructions") then
                 if(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.instructionsScreen.startGame)) then
                     createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="Play Music", music=loadMusic.houseDark}})
+                    createGame.create()
                     if(g.curLocation == loadRooms.bedroom) then
                         g.writeToTextDisplay(loadGameText.opening)
                     else
@@ -175,6 +229,26 @@ updateEvents.update = function()
                     
             end
             
+        elseif(event.name == "Right Click") then
+            if not(g.screenTransition.active or g.timers.squiggleMan > 0 or g.timers.shadowChild > 0) then
+                if(g.state == "game") then
+                    --g.state = "pause"
+                    g.music:pause()
+                    g.mouse.textHover = false
+                    g.mouse.actionHover = false
+                    g.mouse.objectHover = false
+                    g.mouse.mapHover = false
+                    for k,v in pairs(loadSFX) do
+                        v:stop()
+                    end
+                    createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="pause"}})
+                elseif(g.state == "pause") then
+                    --g.state = "game"
+                    g.music:play()
+                    createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="game"}})
+                end
+            end
+        
         -- Start the screen transition
         elseif(event.name == "Start Screen Transition") then
             g.screenTransition.active = true
@@ -241,6 +315,20 @@ updateEvents.update = function()
                         g.mouse.textHover = true
                     end
                 end
+                
+            elseif(g.state == "pause") then
+                local mouseHover = false
+                for k,v in pairs(g.textBoxes.pauseScreen) do
+                    if(g.mouseCollision(g.mouse.x,g.mouse.y,v)) then
+                        g.mouse.textHover = true
+                        mouseHover = true
+                    end
+                end
+                --[[if not mouseHover then
+                    g.mouse.textHover = false
+                    g.mouse.actionHover = false
+                    g.mouse.objectHover = false
+                end]]
             
             elseif(g.state == "game") then
                 g.mouse.objectHover = false

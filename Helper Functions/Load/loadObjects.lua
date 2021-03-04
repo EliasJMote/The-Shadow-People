@@ -1,7 +1,7 @@
 loadObjects = {}
 
 -- Objects that can be picked up
-loadObjects.boltCutters = {name="Bolt Cutters",x=70,y=71,w=13,h=6,text={look={"A pair of bolt cutters. Use it", "to cut chains or padlocks."},take={"You take the bolt cutters."}},img=loadImages.boltCutters,item={name="B. Cutters",w=47,h=4}}
+loadObjects.boltCutters = {name="Bolt Cutters",x=70,y=71,w=13,h=6,text={look={"A pair of bolt cutters. Use it", "to cut chains or padlocks."},take={"You take the bolt cutters."}},img=loadImages.boltCutters,item={name="B. Cutters",w=47,h=4},state="item"}
 
 loadObjects.carKey = {name="Car Key",x=62,y=52,w=10,h=5,text={look={"A key that goes to your car.", "You won't make it far without", "it."},take={"You take the car key."}},img=loadImages.carKey,item={name="Car Key",w=33,h=4}}
 
@@ -24,6 +24,11 @@ loadObjects.necklace = {name="Necklace",x=45,y=29,w=10,h=11,text={look={"A silve
 loadObjects.mirror = {name="Mirror",x=19,y=30,w=6,h=9,text=loadGameText.bedroom.mirror,item={name="Mirror",w=28,h=4},img=loadImages.mirror}
 
 loadObjects.shadowOrb = {name="Shadow Orb",x=42,y=25,w=16,h=16,text={look={"A mysterious orb of darkness."},take={"You take the shadow orb."}},img=loadImages.shadowOrb,item={name="Shadow Orb",w=47,h=4}}
+
+for obj_key,obj_value in pairs(loadObjects) do
+   obj_value.state = "item"
+   obj_value.img = {item=obj_value.img,offscreen=obj_value.img}
+end
 
 -- Background objects that can be interacted with
 loadObjects.bedroomDoor = {name="Door",x=59,y=17,w=24,h=36,text=loadGameText.bedroom.door,state="Closed",img={closed=loadImages.bedroomDoorClosed,open=loadImages.bedroomDoorOpen},move="North"}

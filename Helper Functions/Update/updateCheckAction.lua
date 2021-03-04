@@ -14,8 +14,9 @@ local updateCheckAction = {}
 
                     -- If it's an illegal action
                     if(g.mouse.objectPointedAt.text[g.actionSelected:lower()] == nil) then
-                        if(g.curLocation.state == "Dark" and not g.mouse.objectPointedAt.visibleInDark and not debug) then
-                            g.writeToTextDisplay({"It's too dark to see!"})
+                        if(g.curLocation.state == "Dark" and not g.mouse.objectPointedAt.visibleInDark and not debug
+                            and g.curLocation == loadRooms.gasStationBathroom) then
+                            g.writeToTextDisplay({"It's too dark to see! Try to", "find a light switch."})
                         else
                             if(g.actionSelected == "Close") then
                                 g.writeToTextDisplay({"You can't close that!"})
@@ -47,8 +48,8 @@ local updateCheckAction = {}
 
                         -- If the player is currently in the dark or the object is not visible in the dark
                         if(g.curLocation.state == "Dark" and not g.mouse.objectPointedAt.visibleInDark and not debug
-                            and (g.curLocation == loadRooms.gasStationBathroom or g.curLocation == loadRooms.churchInside1 or g.curLocation == loadRooms.puzzlingStone)) then
-                            g.writeToTextDisplay({"It's too dark to see!"})
+                            and (g.curLocation == loadRooms.gasStationBathroom)) then
+                            g.writeToTextDisplay({"It's too dark to see! Try to", "find a light switch."})
                             
                         -- If the player is currently in the light
                         else
@@ -179,6 +180,7 @@ local updateCheckAction = {}
                                     elseif(g.curLocation == loadRooms.shed) then
                                         if(g.mouse.objectPointedAt == loadRooms.shed.objects.radio) then
                                             -- Play the sound clip of the number radio station
+                                            loadSFX.numberRadioStationMessage:seek(0)
                                             loadSFX.numberRadioStationMessage:play()
                                         end
                                         
@@ -338,16 +340,16 @@ local updateCheckAction = {}
                                         g.textBuffer = {}
                                         g.showMessageBox = false
                                         g.playerState.classOver = true
-                                        loadRooms.school1.backgrounds.light = loadImages.school1Night
                                         loadRooms.school1.music = loadMusic.houseDark
-                                        loadRooms.car2.backgrounds.light = loadImages.carNight
+                                        loadRooms.school1.state = "dark"
+                                        loadRooms.car2.state = "dark"
+                                        loadRooms.car2.music = loadMusic.houseDark
                                         createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="class transition"}})
                                     end
                                    
                                 -- Staring at the Imperfect
                                 elseif(g.curLocation == loadRooms.nightmareGeometry2) then
-                                
-                                    -- Play audio clips for deep breathing, screaming, crawling (1x, 2x, 3x)
+                                    
                                     if(g.mouse.objectPointedAt == loadRooms.nightmareGeometry2.objects.beast) then
                                         if(loadRooms.nightmareGeometry2.backgrounds.light==loadImages.nightmareGeometry2) then
                                             loadRooms.nightmareGeometry2.backgrounds.light=loadImages.nightmareGeometry2_2
@@ -355,8 +357,6 @@ local updateCheckAction = {}
                                         elseif(loadRooms.nightmareGeometry2.backgrounds.light==loadImages.nightmareGeometry2_2) then
                                             loadRooms.nightmareGeometry2.backgrounds.light=loadImages.nightmareGeometry2_3
                                             loadRooms.nightmareGeometry2.objects.beast={name="Beast",x=25,y=3,w=58,h=63,text={look={"Just run."}}}
-                                        --elseif(loadRooms.nightmareGeometry2.backgrounds.light==loadImages.nightmareGeometry2_3) then
-                                            --loadRooms.nightmareGeometry2.objects.beast={name="Beast",x=25,y=3,w=58,h=63,text={look={"Please run, I'm scared."}}}
                                         end
                                     end
                                     
@@ -437,13 +437,6 @@ local updateCheckAction = {}
                                         elseif(g.playerState.numOfTimesLookedAtWallHole >= 5) then
                                         end
                                     end]]
-                                    
-                                elseif(g.curLocation == loadRooms.puzzlingStone) then
-                                    --[[if(g.mouse.objectPointedAt == loadRooms.puzzlingStone.objects.button1) then
-                                        if(loadRooms.puzzlingStone.objects.button1.state == "Off") then
-                                            
-                                        end
-                                    end]]
                                 end
                             end
                             
@@ -458,7 +451,7 @@ local updateCheckAction = {}
                                 -- Move the item offscreen
                                 for k,v in pairs(g.curLocation.objects) do
                                     if(v.name == g.mouse.objectPointedAt.name) then
-                                        
+                                        v.state = "offscreen"
                                         v.x = -256
                                         v.y = -256
                                         break
@@ -543,6 +536,7 @@ local updateCheckAction = {}
                                 g.curLocation.objects.mirror2.text.open = {"You open the secret door."}
                                 g.curLocation.objects.mirror2.text.move=""
                                 g.curLocation.objects.mirror2.move=""
+                                g.curLocation.objects.mirror2.text.look = {"A hidden room lies beyond the", "broken mirror."}
                                 g.writeToTextDisplay({"You smash the mirror to pieces,", "revealing a hidden door behind", "it."})
                                 loadSFX.glassShattering:play()
                             elseif(g.curLocation.objects.mirror3.state == "Unbroken" and g.mouse.objectPointedAt == g.curLocation.objects.mirror3) then
@@ -624,7 +618,7 @@ local updateCheckAction = {}
                             end
                         else
                             if(g.mouse.objectPointedAt ~= nil) then
-                              g.writeToTextDisplay({"You can't use the mirror here."})
+                                g.writeToTextDisplay({"You can't use the mirror here."})
                             end
                         end
                     

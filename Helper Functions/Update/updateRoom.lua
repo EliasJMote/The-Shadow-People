@@ -64,6 +64,11 @@ local updateRoom = {}
                     g.music = nil
                 end
             end
+            
+        elseif(g.curLocation.name == "Shed") then
+            if(g.movementDirection == "South") then
+                loadSFX.numberRadioStationMessage:stop()
+            end
         
         elseif(g.curLocation.name == "Sewer 9") then
             if(g.mouse.objectPointedAt == g.curLocation.objects.pit and g.actionSelected == "Move") then

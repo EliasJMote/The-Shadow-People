@@ -27,25 +27,34 @@ function updateGame.update()
     -- Update the event table
     updateEvents.update()
     
+    if(g.state == "pause") then
+        --g.mouse.textHover = false
+        g.mouse.actionHover = false
+        g.mouse.objectHover = false
+        g.mouse.mapHover = false
+    end
+    
     -- Squiggle man rushes the player
-    if(g.playerState.numOfTimesLookedAtWallHole == 5) then
-        g.timers.squiggleMan = g.timers.squiggleMan + 1
-        if(g.timers.squiggleMan > 60) then
-            if not(g.playerState.hasNecklace) then
-                
-                g.fun = 100 -- Set "fun" value to 100
-                -- Save a text file with the "fun" value. When the player restarts the game, if "fun" == 100, a new image of "Squiggle Man" appears, then "fun" is set back to 50.
-                --love.filesystem.write("Save.txt", "{Fun=100}")
-                
-                -- Exit game
-                love.event.quit(0)
-                
-            -- The magic necklace will save the player
-            else
-                loadSFX.squiggleManScream:stop()
-                g.playerState.numOfTimesLookedAtWallHole = 6
-                g.timers.squiggleMan = -1
-                g.writeToTextDisplay({"The magic necklace protected", "you."})
+    if(g.state == "game") then
+        if(g.playerState.numOfTimesLookedAtWallHole == 5) then
+            g.timers.squiggleMan = g.timers.squiggleMan + 1
+            if(g.timers.squiggleMan > 60) then
+                if not(g.playerState.hasNecklace) then
+                    
+                    g.fun = 100 -- Set "fun" value to 100
+                    -- Save a text file with the "fun" value. When the player restarts the game, if "fun" == 100, a new image of "Squiggle Man" appears, then "fun" is set back to 50.
+                    --love.filesystem.write("Save.txt", "{Fun=100}")
+                    
+                    -- Exit game
+                    love.event.quit(0)
+                    
+                -- The magic necklace will save the player
+                else
+                    loadSFX.squiggleManScream:stop()
+                    g.playerState.numOfTimesLookedAtWallHole = 6
+                    g.timers.squiggleMan = -1
+                    g.writeToTextDisplay({"The magic necklace protected", "you."})
+                end
             end
         end
     end

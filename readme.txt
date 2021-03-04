@@ -20,6 +20,11 @@ II. Version History
 ------------------------
 V0.9.9 - Current Version
 ------------------------
+-- Content --
+- Added a pause menu that has options for saving, loading, quitting the game, and checking items
+(not complete yet).
+- The player can save the game to any of 3 slots.
+- The player can load the game from any of 3 slots.
 
 ------------------------
 V0.9.8

@@ -4,29 +4,18 @@ local createGame = {}
 
         local g = GLOBALS
         
-        -- Initialize scale of the game
-        g.scale = {}
-        
         -- Initialize game state
         g.state = "warning"
-        if(debug) then
-            g.state = "game"
-        end
-        --g.state = "shadow child"
+        --if(debug) then
+            --g.state = "game"
+        --end
+        --g.state = "shadow child"]]
         
         -- Initialize events table
-        g.events = {}
+        --g.events = {}
         
         -- Initialize current location
         g.curLocation = loadRooms.bedroom
-        --g.curLocation = loadRooms.churchInside1
-        --g.curLocation = loadRooms.gasStationInside
-        --if(debug) then
-            --g.curLocation = loadRooms.darkPassage1
-            --g.curLocation = loadRooms.altarRoom
-            --g.curLocation = loadRooms.shadowLands9
-            --g.curLocation = loadRooms.sewer1
-        --end
         
         -- Initialize items currently held
         g.items = {}
@@ -37,18 +26,10 @@ local createGame = {}
         -- current text onscreen
         g.curText = {}
         
-        -- timers for game actions
-        g.timers = {}
+        -- Reset timers for game actions
         g.timers.global = 0
         g.timers.screenTransition = 0
-        g.timers.titleScreenLogo = 210
         g.timers.endingText = 0
-        g.timers.endingTextFadeOut = 60 * 9
-        g.timers.goodEnding = 5 * g.timers.endingTextFadeOut + 60 * 2
-        g.timers.badEnding = 8 * g.timers.endingTextFadeOut + 60 * 2
-        g.timers.easterEggEnding = 1 * g.timers.endingTextFadeOut + 60 * 2
-        g.timers.alienEnding = 2 * g.timers.endingTextFadeOut + 60 * 2
-        g.timers.redPrinceEnding = 7 * g.timers.endingTextFadeOut + 60 * 2
         
         -- Horror related timers (with Shadow People)
         g.timers.squiggleMan = 0
@@ -56,68 +37,17 @@ local createGame = {}
         
         --g.endingTextFadeOutTime = 60 * 0.01
         g.endingTextLine = 1
-        g.endingScreenMask = {x=0,y=0,w=160,h=144} 
-        
-        -- game boy studio palette
-        g.colors = {
-            darkestGreen = {r=7/255, g=24/255, b=33/255},
-            darkGreen = {r=48/255, g=104/255, b=80/255},
-            lightGreen = {r=134/255, g=192/255, b=108/255},
-            lightestGreen = {r=224/255, g=248/255, b=207/255},
-        }
         
         love.graphics.setColor(g.colors.darkestGreen.r, g.colors.darkestGreen.g, g.colors.darkestGreen.b, 1)
         
         -- Show the message box
         g.showMessageBox = true
-        if(debug) then g.showMessageBox = false end
-        
-        -- Miscellaneous text boxes (start game, options, etc.)
-        g.textBoxes =   {
-                            instructionsScreen =    {
-                                                        startGame = {x=52,y=128,w=59,h=6,text="Start Game"},
-                                                    },
-                            optionsScreen = {
-                                                back = {x=72,y=128,w=19,h=6,text="Back"},
-                                                increaseWindowScale = {x=152,y=24,w=3,h=6,text="+"},
-                                                decreaseWindowScale = {x=120,y=24,w=3,h=6,text="-"},
-                                            },                        
-                            titleCreditsScreen =    {
-                                                        downArrow = {x=134,y=120,w=19,h=6,text="Down"},
-                                                        titleScreen = {x=4,y=128,w=19,h=6,text="Back"},
-                                                        upArrow = {x=134,y=16,w=9,h=6,text="Up"},
-                                                    },
-                            titleScreen =   {
-                                                startGame = {x=52,y=96,w=59,h=6,text="Start Game"},
-                                                options = {x=52,y=110,w=41,h=6,text="Options"},
-                                                credits = {x=52,y=124,w=41,h=6,text="Credits"},
-                                            },
-                                            
-                            warningScreen = {
-                                                continue = {x=42,y=128,w=81,h=6,text="Click to Continue"},
-                                            },                
-                        }
+        if(debug) then
+            g.showMessageBox = false
+        end
         
         -- Which action is selected
         g.actionSelected = nil
-        g.screenTransition = {x=0,y=0,w=160,h=144,active=false}
-        
-        g.actionButtons =   {
-                                {text="Close",x=54,y=103,w=23,h=4},
-                                {text="Look",x=120,y=103,w=18,h=4},
-                                {text="Move",x=15,y=90,w=18,h=4},
-                                {text="Open",x=120,y=90,w=18,h=4},
-                                {text="Pull",x=120,y=116,w=18,h=4},
-                                {text="Push",x=87,y=116,w=18,h=4},
-                                {text="Put",x=54,y=90,w=13,h=4},
-                                {text="Take",x=87,y=90,w=18,h=4},
-                                {text="Talk",x=54,y=116,w=18,h=4},
-                                {text="Use",x=87,y=103,w=13,h=4},
-                            }
-                            
-        g.mapTransitionIsLegal = false
-        g.movementDirection = nil
-        --g.itemSelected = ""
         
         g.textBuffer = {}
         
@@ -131,14 +61,20 @@ local createGame = {}
             numOfTimesLookedAtWallHole = 0,
         }
         
-        g.titleCreditsPage = 1
+        g.mapTransitionIsLegal = false
+        g.movementDirection = nil
         
         -- Which page of items are we on
         g.itemPage = 1
         g.itemCount = 0
-        g.scrollItemPageLeft = {x=104,y=70,w=4,h=8}
-        g.scrollItemPageRight = {x=150,y=70,w=4,h=8}
         g.mouse.scrollPageArrowHover = nil
+        
+        g.previousState = nil
+        
+        for k,v in pairs(loadSFX) do
+            v:setVolume(1)
+            v:setPitch(1)
+        end
         
         g.fun = 0
         
