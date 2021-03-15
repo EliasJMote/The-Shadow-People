@@ -319,6 +319,8 @@ local updateCheckAction = {}
                             
                             if(g.actionSelected == "Look") then
                                 
+                                
+                                
                                 -- Easter Egg Ending (looking at the sun on the patio and go blind)
                                 if(g.curLocation == loadRooms.patio) then
                                     if(g.mouse.objectPointedAt == loadRooms.patio.objects.sun) then
@@ -529,6 +531,7 @@ local updateCheckAction = {}
                             if(g.curLocation.objects.mirror1.state == "Unbroken" and g.mouse.objectPointedAt == g.curLocation.objects.mirror1) then
                                 g.curLocation.objects.mirror1.state = "Broken"
                                 g.writeToTextDisplay({"You smash the mirror to pieces."})
+                                --g.curLocation.objects.mirror2.text.look = {"A hidden room lies beyond the", "broken mirror."}
                                 loadSFX.glassShattering:play()
                             elseif(g.curLocation.objects.mirror2.state == "Unbroken" and g.mouse.objectPointedAt == g.curLocation.objects.mirror2) then
                                 g.curLocation.objects.mirror2.state = "Closed"

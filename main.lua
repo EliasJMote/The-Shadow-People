@@ -9,6 +9,7 @@ function love.load()
     -- External functions
     createEvent = require("Helper Functions/Create/createEvent")
     createGame = require("Helper Functions/Create/createGame")
+    createRooms = require("Helper Functions/Create/createRooms")
     
     updateEvents = require("Helper Functions/Update/updateEvents")
     updateGame = require("Helper Functions/Update/updateGame")

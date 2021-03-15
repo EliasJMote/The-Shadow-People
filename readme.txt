@@ -1,5 +1,5 @@
 ﻿The Shadow People
-Version 0.9.9
+Version 0.9.9.1
 
 Copyright © 2020-2021 Elias Mote
 Copyright © 2020-2021 Roc Studios
@@ -18,7 +18,15 @@ This software may be not be reproduced under any circumstances except for person
 II. Version History
 
 ------------------------
-V0.9.9 - Current Version
+V0.9.9.1 - Current Version
+------------------------
+-- Content --
+
+-- Bug Fixes --
+-- Fixed a bug where starting a new game did not refresh the rooms back to a clean state.
+
+------------------------
+V0.9.9
 ------------------------
 -- Content --
 - Added a pause menu that has options for saving, loading, quitting the game, and checking items

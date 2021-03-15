@@ -1,20 +1,22 @@
 local loadRooms = {}
     
+local g = GLOBALS
+    
 loadRooms.altarRoom = {
-                        name="Altar Room",
-                        state="Light",
-                        objects={
-                                    altar={name="Altar",x=38,y=54,w=26,h=12,text={look={"It's an altar."}, use={""}}},
-                                    crescentMoon={name="Crescent Moon",x=43,y=17,w=16,h=16,text={look={"It's an image of a crescent", "moon."}}},
-                                    eyeOfTruth={name="Eye of Truth",x=66,y=17,w=16,h=16,text={look={"A strange looking image. The", "eye in the drawing seems to", "pierce right through your soul."}}},
-                                    symbolOfThePrince={name="Symbol of the Prince",x=18,y=17,w=16,h=16,text={look={"An image of a triangle with", "something on the inside..."}}},
-                                },
-                        map=loadImages.carMap,
-                        exits={south="Puzzling Stone"},
-                        backgrounds={light=loadImages.altarRoom},
-                        backgroundStatic = true,
-                        music=loadMusic.nightmareGeometry,
-                    }
+                    name="Altar Room",
+                    state="Light",
+                    objects={
+                                altar={name="Altar",x=38,y=54,w=26,h=12,text={look={"It's an altar."}, use={""}}},
+                                crescentMoon={name="Crescent Moon",x=43,y=17,w=16,h=16,text={look={"It's an image of a crescent", "moon."}}},
+                                eyeOfTruth={name="Eye of Truth",x=66,y=17,w=16,h=16,text={look={"A strange looking image. The", "eye in the drawing seems to", "pierce right through your soul."}}},
+                                symbolOfThePrince={name="Symbol of the Prince",x=18,y=17,w=16,h=16,text={look={"An image of a triangle with", "something on the inside..."}}},
+                            },
+                    map=loadImages.carMap,
+                    exits={south="Puzzling Stone"},
+                    backgrounds={light=loadImages.altarRoom},
+                    backgroundStatic = true,
+                    music=loadMusic.nightmareGeometry,
+                }
 
 -- Bedroom
 loadRooms.bedroom = {
@@ -1288,12 +1290,17 @@ loadRooms.street7 =    {
                         
 -- Train
 --[[loadRooms.train =   {
-                        name="Train",
-                        state="Dark",
-                        map=loadImages.highwayNorthEndMap,
-                        backgrounds={dark=loadImages.emptyOutside},
-                        objects={},
-                        exits={south="Railroad 4"},
-                    }]]
+end
+
+
+                    name="Train",
+                    state="Dark",
+                    map=loadImages.highwayNorthEndMap,
+                    backgrounds={dark=loadImages.emptyOutside},
+                    objects={},
+                    exits={south="Railroad 4"},
+                }]]
+                
+g.loadRooms = g.deepCopy(loadRooms)
 
 return loadRooms

@@ -2,7 +2,7 @@ local drawCarTransitions = {}
 
 function drawCarTransitions.draw()
 
-    local g = GLOBALS
+    --[[local g = GLOBALS
 
     love.graphics.setColor(g.colors.darkestGreen.r, g.colors.darkestGreen.g, g.colors.darkestGreen.b, 1)
     love.graphics.rectangle("fill", g.screenTransition.x, g.screenTransition.y, g.screenTransition.w, g.screenTransition.h)
@@ -48,7 +48,7 @@ function drawCarTransitions.draw()
         love.graphics.print("Dream Transition", 32, 8, 0, 0.5, 0.5)
     end
     
-    love.graphics.print("Click to continue", 30, 128, 0, 0.5, 0.5)
+    love.graphics.print("Click to continue", 30, 128, 0, 0.5, 0.5)]]
     
 end
 

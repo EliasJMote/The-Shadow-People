@@ -14,6 +14,9 @@ local createGame = {}
         -- Initialize events table
         --g.events = {}
         
+        --loadRooms.load()
+        createRooms.create()
+        
         -- Initialize current location
         g.curLocation = loadRooms.bedroom
         

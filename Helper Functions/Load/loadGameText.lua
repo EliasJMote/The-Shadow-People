@@ -21,7 +21,7 @@ loadGameText.bedroom =  {
                                     },
                                         
                             lightSwitch = {look={"It's a light switch."},use={"You flipped the light switch."}},
-                            mirror = {look={"You look in the mirror. You", "instantly regretted doing so.", "Your hair is messed up after", "tossing and turning so much", "last night. Will you ever get a", "good night's sleep?"},talk={"You're not sure that's such a", "good idea..."},take={"You take the mirror."}},
+                            mirror = {look={"You look in the mirror. You", "instantly regret doing so.", "Your hair is messed up after", "tossing and turning so much", "last night. Will you ever get a", "good night's sleep?"},talk={"You're not sure that's such a", "good idea..."},take={"You take the mirror."}},
                             mountainPicture = {look={"You examine the picture. It's","Mt. Fuji, you scaled it last", "year with some friends."}},
                             portraitPicture = {look={"You examine the portrait. It's", "a friend of yours, a tall man", "with light brown hair and a", "woodcutter axe slung over his", "shoulder."}},
                             textBook = {look={"You open the book. It's a", "research book on the effects of", "insomnia on the human body. You", "read a passage from the book:", "Insomnia is a condition where", "the person cannot go to sleep,", "even when they want to. It", "affects millions of people each", "year for various reasons. Some", "side effects of sleep", "deprivation include dizziness,", "nausea, migraines and", "hallucinations."},take={"You don't need that textbook", "today."}},
@@ -39,7 +39,7 @@ loadGameText.churchOutside =    {
                                 
 loadGameText.graveyard =    {
                                 grave=  {
-                                            look={  "A decrept grave long worn down", "by the sands of time. It looks", "like it was moved recently.", 
+                                            look={  "A decrepit grave long worn down", "by the sands of time. It looks", "like it was moved recently.", 
                                                     "You expect to read about", "whoever's grave this is, but", "instead something else is", "carved into the stone:", "",
                                                     "ETERNAL SHADOW IN THE TWILIGHT", "OF A DARK SUN.", "CREATURES THAT DANCE IN THE", "PERIPHERAL OF THE MIND.",
                                                     "A FORGOTTEN LAND THAT EXISTS", "AMONG THE STARS.", "GIVE YOUR FLESH TO THE HOLY", "ALTAR AND BE REBORN WITH AN",

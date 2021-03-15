@@ -194,9 +194,32 @@ updateEvents.update = function()
                     -- Select/deselect an item to use
                     if(g.mouse.itemMenuHoverItem) then
                         if(g.itemSelected == nil or g.itemSelected ~= g.mouse.itemMenuHoverItem) then
-                            g.itemSelected = g.mouse.itemMenuHoverItem
-                            if(g.actionSelected ~= "Put") then
+                            if(g.actionSelected ~= "Look") then
+                                g.itemSelected = g.mouse.itemMenuHoverItem
+                            end
+                            if(g.actionSelected ~= "Put" and g.actionSelected ~= "Look") then
                                 g.actionSelected = nil
+                            end
+                            if(g.actionSelected == "Look") then
+                                for k,v in pairs(loadObjects) do
+                                    if(v.item ~= nil) then
+                                        local itemName = ""
+                                        if(g.mouse.itemMenuHoverItem == "G.S. Key") then
+                                            itemName = "Gas Station Key"
+                                        elseif(g.mouse.itemMenuHoverItem == "B. Cutters") then
+                                            itemName = "Bolt Cutters"
+                                        elseif(g.mouse.itemMenuHoverItem == "E. Brooch") then
+                                            itemName = "Eclipse Brooch"
+                                        else
+                                            itemName = g.mouse.itemMenuHoverItem
+                                        end
+                                        if(v.name == itemName) then
+                                            g.writeToTextDisplay(v.item.description)
+                                            break
+                                        end
+                                    end
+                                end
+                                --g.writeToTextDisplay(loadObjects[g.mouse.itemMenuHoverItem].item.description)
                             end
                         elseif(g.itemSelected == g.mouse.itemMenuHoverItem) then
                             g.itemSelected = nil

@@ -39,9 +39,9 @@ function drawInGameTransitions.draw()
         love.graphics.print("awake. Suddenly, a", init_x, init_y+8*3, 0, 0.5, 0.5)
         love.graphics.print("dark figure of a", init_x, init_y+8*4, 0, 0.5, 0.5)
         love.graphics.print("child appears in the", init_x, init_y+8*5, 0, 0.5, 0.5)
-        love.graphics.print("road. You swerve hard,", init_x, init_y+8*6, 0, 0.5, 0.5)
+        love.graphics.print("road. You swerve hard,", init_x, init_y+8*6, 0, 0.5, 0.5) -- Sentence could be rewritten
         love.graphics.print("slamming into a large", init_x, init_y+8*7, 0, 0.5, 0.5)
-        love.graphics.print("tree and destroying.", init_x, init_y+8*8, 0, 0.5, 0.5)
+        love.graphics.print("tree and destroying", init_x, init_y+8*8, 0, 0.5, 0.5)
         love.graphics.print("your car.", init_x, init_y+8*9, 0, 0.5, 0.5)
         
     elseif(g.state == "class transition") then
