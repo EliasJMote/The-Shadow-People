@@ -56,6 +56,7 @@ local createGame = {}
         
         g.playerState = {
             classOver = false,
+            gearPlaced = false,
             hasGas = false,
             hasShadowOrb = false,
             hasEclipseBrooch = false,

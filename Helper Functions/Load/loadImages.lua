@@ -23,6 +23,19 @@ loadImages.cursorUse = love.graphics.newImage("Images/User Interface/Cursors/Cur
 loadImages.userInterfaceTextBox = love.graphics.newImage("Images/User Interface/User Interface (Text).png")
 loadImages.userInterfaceActions = love.graphics.newImage("Images/User Interface/User Interface (Actions).png")
 
+-- Inventory items
+loadImages.inventoryBoltCutters = love.graphics.newImage("Images/Inventory/Bolt Cutters.png")
+loadImages.inventoryCarKey = love.graphics.newImage("Images/Inventory/Car Key.png")
+loadImages.inventoryCog = love.graphics.newImage("Images/Inventory/Cog.png")
+loadImages.inventoryEclipseBrooch = love.graphics.newImage("Images/Inventory/Eclipse Brooch.png")
+loadImages.inventoryGasStationKey = love.graphics.newImage("Images/Inventory/Gas Station Key.png")
+loadImages.inventoryHacksaw = love.graphics.newImage("Images/Inventory/Hacksaw.png")
+loadImages.inventoryHammer = love.graphics.newImage("Images/Inventory/Hammer.png")
+loadImages.inventoryLighter = love.graphics.newImage("Images/Inventory/Lighter.png")
+loadImages.inventoryMirror = love.graphics.newImage("Images/Inventory/Mirror.png")
+loadImages.inventoryNecklace = love.graphics.newImage("Images/Inventory/Necklace.png")
+loadImages.inventoryShadowOrb = love.graphics.newImage("Images/Inventory/Shadow Orb.png")
+
 -- Location background images
 loadImages.altarRoom = love.graphics.newImage("Images/Backgrounds/Altar Room.png")
 loadImages.bedroomDark = love.graphics.newImage("Images/Backgrounds/Bedroom (Dark).png")
@@ -115,6 +128,7 @@ loadImages.classDoorClosed = love.graphics.newImage("Images/Objects/School/Schoo
 loadImages.classDoorOpen = love.graphics.newImage("Images/Objects/School/School Door (Open).png")
 loadImages.clockTowerOutsideDoorClosed = love.graphics.newImage("Images/Objects/Clock Tower Outside/Clock Tower Outside Door Closed.png")
 loadImages.clockTowerOutsideDoorOpen = love.graphics.newImage("Images/Objects/Clock Tower Outside/Clock Tower Outside Door Open.png")
+loadImages.cogHole = love.graphics.newImage("Images/Objects/Clock Tower Inside First Floor/Cog Hole.png") 
 loadImages.gasStationStoreDoorClosed = love.graphics.newImage("Images/Objects/Gas Station/Store Door (Closed).png")
 loadImages.gasStationStoreDoorOpen = love.graphics.newImage("Images/Objects/Gas Station/Store Door (Open).png")
 loadImages.grave = love.graphics.newImage("Images/Objects/Graveyard/Grave.png")
@@ -163,6 +177,7 @@ loadImages.unlitWallCandelabra = love.graphics.newImage("Images/Objects/Church I
 -- Pick up items
 loadImages.boltCutters = love.graphics.newImage("Images/Objects/Park/Bolt Cutters.png")
 loadImages.carKey = love.graphics.newImage("Images/Objects/Living Room/Car Key.png")
+loadImages.cog = love.graphics.newImage("Images/Objects/Shed/Cog.png")
 loadImages.eclipseBrooch = love.graphics.newImage("Images/Objects/Flooded Labyrinth/Eclipse Brooch.png")
 loadImages.gasCanister = love.graphics.newImage("Images/Objects/Gas Station/Gas Canister.png")
 loadImages.hacksaw = love.graphics.newImage("Images/Objects/Clock Tower Inside Second Floor/Hacksaw.png")

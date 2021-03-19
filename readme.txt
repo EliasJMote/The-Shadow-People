@@ -1,5 +1,5 @@
 ﻿The Shadow People
-Version 0.9.9.1
+Version 0.9.11
 
 Copyright © 2020-2021 Elias Mote
 Copyright © 2020-2021 Roc Studios
@@ -17,9 +17,20 @@ This software may be not be reproduced under any circumstances except for person
 
 II. Version History
 
-------------------------
-V0.9.9.1 - Current Version
-------------------------
+-------------------------
+V0.9.11 - Current Version
+-------------------------
+-- Content --
+-- Added a cog that is required for operating the clock tower.
+-- Added an inventory screen with pictures of acquired items. Mouse over will show the name
+of the item.
+
+-- Bug Fixes --
+-- Fixed a bug where pausing the game in the shed would cause a crash.
+
+-------------------------
+V0.9.10
+-------------------------
 -- Content --
 
 -- Bug Fixes --

@@ -23,6 +23,7 @@ function love.load()
     drawManager = require("Helper Functions/Draw/drawManager")
     drawTitleScreen = require("Helper Functions/Draw/drawTitleScreen")
     drawTitleCreditsScreen = require("Helper Functions/Draw/drawTitleCreditsScreen")
+    drawItemScreen = require("Helper Functions/Draw/drawItemScreen")
     drawLoadScreen = require("Helper Functions/Draw/drawLoadScreen")
     drawSaveScreen = require("Helper Functions/Draw/drawSaveScreen")
     drawOptionsScreen = require("Helper Functions/Draw/drawOptionsScreen")
@@ -83,12 +84,13 @@ function love.load()
     g.timers = {}
     g.timers.global = 0
     g.timers.titleScreenLogo = 210
-    g.timers.endingTextFadeOut = 60 * 9
-    g.timers.goodEnding = 5 * g.timers.endingTextFadeOut + 60 * 2
-    g.timers.badEnding = 8 * g.timers.endingTextFadeOut + 60 * 2
-    g.timers.easterEggEnding = 1 * g.timers.endingTextFadeOut + 60 * 2
-    g.timers.alienEnding = 2 * g.timers.endingTextFadeOut + 60 * 2
-    g.timers.redPrinceEnding = 7 * g.timers.endingTextFadeOut + 60 * 2
+    g.timers.endingTextFadeOut = 60 * 12
+    g.timers.endingTextTimeAddition = 60 * 2
+    g.timers.goodEnding = 5 * g.timers.endingTextFadeOut + g.timers.endingTextTimeAddition 
+    g.timers.badEnding = 8 * g.timers.endingTextFadeOut + g.timers.endingTextTimeAddition 
+    g.timers.easterEggEnding = 1 * g.timers.endingTextFadeOut + g.timers.endingTextTimeAddition 
+    g.timers.alienEnding = 2 * g.timers.endingTextFadeOut + g.timers.endingTextTimeAddition 
+    g.timers.redPrinceEnding = 7 * g.timers.endingTextFadeOut + g.timers.endingTextTimeAddition 
     
     -- Initialize events table
     g.events = {}
@@ -142,6 +144,27 @@ function love.load()
                                             loadGame = {x=56,y=72,w=42,h=6,text="Load Game"},
                                             saveGame = {x=56,y=88,w=42,h=6,text="Save Game"},
                                             quitGame = {x=56,y=104,w=42,h=6,text="Quit Game"},
+                                        },
+                        itemScreen =    {
+                                            back = {x=3,y=136,w=18,h=6,text="Back"},
+                                            items=  {
+                                                        -- Row 1
+                                                        boltCutters = {x=4-1,y=18-1,w=34,h=34,name="B. Cutters",longName="Bolt Cutters",img=loadImages.inventoryBoltCutters},
+                                                        carKey = {x=4+40*1-1,y=18-1,w=34,h=34,name="Car Key",img=loadImages.inventoryCarKey},
+                                                        cog = {x=4+40*2-1,y=18-1,w=34,h=34,name="Cog",img=loadImages.inventoryCog},
+                                                        gasStationKey = {x=4+40*3-1,y=18-1,w=34,h=34,name="G.S. Key",longName="Gas Station Key",img=loadImages.inventoryGasStationKey},
+                                                        
+                                                        -- Row 2
+                                                        hacksaw = {x=4+40*0-1,y=18+40*1-1,w=34,h=34,name="Hacksaw",img=loadImages.inventoryHacksaw},
+                                                        hammer = {x=4+40*1-1,y=18+40*1-1,w=34,h=34,name="Hammer",img=loadImages.inventoryHammer},
+                                                        lighter = {x=4+40*2-1,y=18+40*1-1,w=34,h=34,name="Lighter",img=loadImages.inventoryLighter},
+                                                        mirror = {x=4+40*3-1,y=18+40*1-1,w=34,h=34,name="Mirror",img=loadImages.inventoryMirror},
+                                                        
+                                                        -- Row 3
+                                                        eclipseBrooch = {x=24-1,y=18+40*2-1,w=34,h=34,name="E. Brooch",longName="Eclipse Brooch",img=loadImages.inventoryEclipseBrooch},
+                                                        necklace = {x=24+40*1-1,y=18+40*2-1,w=34,h=34,name="Necklace",img=loadImages.inventoryNecklace},
+                                                        shadowOrb = {x=24+40*2-1,y=18+40*2-1,w=34,h=34,name="Shadow Orb",img=loadImages.inventoryShadowOrb},
+                                                    }
                                         },
                         saveGameScreen =    {
                                                 saveGame1 = {x=20,y=32,w=52,h=6,text="Save Game 1"},

@@ -195,6 +195,12 @@ loadRooms.clockTowerInsideFirstFloor =  {
                                             backgrounds={light=loadImages.clockTowerInside1F},
                                             music=loadMusic.darkStreets,
                                             objects={
+                                                        cog1={name="Cog 1",x=20,y=52-14*2,w=14,h=14,img=loadImages.cog,text={look={"It's a gear for the", "clock tower."}}},
+                                                        cogHole={name="Cog Hole",x=20,y=52-14*1,w=14,h=14,state="Empty",img={empty=loadImages.cogHole,full=loadImages.cog},text={look={"It's an empty hole in between", "two gears. It looks like", "something could fit inside."},put={"You can put something here..."}}},
+                                                        cog2={name="Cog 2",x=20,y=52,w=14,h=14,img=loadImages.cog,text={look={"It's a gear for the", "clock tower."}}},
+                                                        cog3={name="Cog 3",x=65,y=52-14*2,w=14,h=14,img=loadImages.cog,text={look={"It's a gear for the", "clock tower."}}},
+                                                        cog4={name="Cog 4",x=65,y=52-14*1,w=14,h=14,img=loadImages.cog,text={look={"It's a gear for the", "clock tower."}}},
+                                                        cog5={name="Cog 5",x=65,y=52,w=14,h=14,img=loadImages.cog,text={look={"It's a gear for the", "clock tower."}}},
                                                         stairs={name="Stairs",x=38,y=35,w=22,h=31,text={look={"Stairs to the second floor."},move="North"},move="North"}
                                                     },
                                             exits={north="Clock Tower Inside Second Floor",south="Clock Tower Outside"},
@@ -1084,7 +1090,7 @@ loadRooms.shadowLands4 =    {
                             }
                             
 loadRooms.shadowLands5 =    {  
-                                name="Shadow Lands 4",
+                                name="Shadow Lands 5",
                                 displayName="Shadow Lands",
                                 state="Light",
                                 backgrounds={light=loadImages.shadowLands2},
@@ -1189,6 +1195,7 @@ loadRooms.shed =    {
                         map=loadImages.clockTowerInside2FMap,
                         backgrounds={light=loadImages.shed},
                         objects={
+                                    cog=loadObjects.cog,
                                     radio={name="Radio",x=58,y=39,w=19,h=7,text={look={"It's a ham radio. It looks to", "be in working order."},talk={"You speak into the microphone.", "But no one answers."},take={"If you take it with you, you", "won't be able to use it, since", "it needs to be plugged into a", "power socket."},use={"You listen to a voice on the", "speakers. It sounds like a", "series of numbers...", "0...8...3...5"}}},
                                     window={name="Window",x=23,y=22,w=21,h=21,text={look={"A window sits on the wall. It's", "pitch black outside save for a", "sliver of the moon and some", "stars in the sky."}}}
                                 },

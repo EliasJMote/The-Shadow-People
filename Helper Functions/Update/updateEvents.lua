@@ -82,7 +82,11 @@ updateEvents.update = function()
                 if not(g.screenTransition.active) then
                     if(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.pauseScreen.resumeGame)) then
                         createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="game"}})
-                        g.music:play()
+                        if(g.music ~= nil) then
+                            g.music:play()
+                        end
+                    elseif(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.pauseScreen.checkItems)) then
+                        createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="inventory"}})
                     elseif(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.pauseScreen.loadGame)) then
                         g.previousState = "pause"
                         createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="load game"}})
@@ -92,6 +96,13 @@ updateEvents.update = function()
                         g.music = loadMusic.title
                         g.music:play()
                         createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="title"}})
+                    end
+                end
+                
+            elseif(event.state == "inventory") then
+                if not(g.screenTransition.active) then
+                    if(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.itemScreen.back)) then
+                        createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="pause"}})
                     end
                 end
                 
@@ -256,7 +267,9 @@ updateEvents.update = function()
             if not(g.screenTransition.active or g.timers.squiggleMan > 0 or g.timers.shadowChild > 0) then
                 if(g.state == "game") then
                     --g.state = "pause"
-                    g.music:pause()
+                    if(g.music ~= nil) then
+                        g.music:pause()
+                    end
                     g.mouse.textHover = false
                     g.mouse.actionHover = false
                     g.mouse.objectHover = false

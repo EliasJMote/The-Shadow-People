@@ -132,15 +132,26 @@ local updateCheckAction = {}
                                         
                                         -- If the player pushes the button for the hour hand, advance the clock by one hour
                                         if(g.mouse.objectPointedAt == loadRooms.clockTowerInsideSecondFloor.objects.hourButton) then
-                                            local r = loadRooms.clockTowerInsideSecondFloor.objects.hourHand.rot.r
-                                            loadRooms.clockTowerInsideSecondFloor.objects.hourHand.rot.r = (r - math.rad(360/12)) % (2 * math.pi)
+                                            if(loadRooms.clockTowerInsideFirstFloor.objects.cogHole.state == "Full") then
+                                                local r = loadRooms.clockTowerInsideSecondFloor.objects.hourHand.rot.r
+                                                loadRooms.clockTowerInsideSecondFloor.objects.hourHand.rot.r = (r - math.rad(360/12)) % (2 * math.pi)
+                                            else
+                                                g.writeToTextDisplay({"Nothing happens."})
+                                            end
+                                                
                                         elseif(g.mouse.objectPointedAt == loadRooms.clockTowerInsideSecondFloor.objects.minuteButton) then
-                                            local r = loadRooms.clockTowerInsideSecondFloor.objects.minuteHand.rot.r
-                                            loadRooms.clockTowerInsideSecondFloor.objects.minuteHand.rot.r = (r - math.rad(360/12)) % (2 * math.pi)
+                                            if(loadRooms.clockTowerInsideFirstFloor.objects.cogHole.state == "Full") then
+                                                local r = loadRooms.clockTowerInsideSecondFloor.objects.minuteHand.rot.r
+                                                loadRooms.clockTowerInsideSecondFloor.objects.minuteHand.rot.r = (r - math.rad(360/12)) % (2 * math.pi)
+                                            else
+                                                g.writeToTextDisplay({"Nothing happens."})
+                                            end
                                         end
                                         
                                         -- Check if it is the correct time (8:35). If so, open the secret panel.
-                                        g.checkClock()
+                                        if(loadRooms.clockTowerInsideFirstFloor.objects.cogHole.state == "Full") then
+                                            g.checkClock()
+                                        end
                                         
                                     elseif(g.curLocation == loadRooms.puzzlingStone) then
                                         g.showMessageBox = false
@@ -231,15 +242,26 @@ local updateCheckAction = {}
                                     
                                     -- If the player pushes the button for the hour hand, advance the clock by one hour
                                     if(g.mouse.objectPointedAt == loadRooms.clockTowerInsideSecondFloor.objects.hourButton) then
-                                        local r = loadRooms.clockTowerInsideSecondFloor.objects.hourHand.rot.r
-                                        loadRooms.clockTowerInsideSecondFloor.objects.hourHand.rot.r = (r - math.rad(360/12)) % (2 * math.pi)
+                                        if(loadRooms.clockTowerInsideFirstFloor.objects.cogHole.state == "Full") then
+                                            local r = loadRooms.clockTowerInsideSecondFloor.objects.hourHand.rot.r
+                                            loadRooms.clockTowerInsideSecondFloor.objects.hourHand.rot.r = (r - math.rad(360/12)) % (2 * math.pi)
+                                        else
+                                            g.writeToTextDisplay({"Nothing happens."})
+                                        end
+                                            
                                     elseif(g.mouse.objectPointedAt == loadRooms.clockTowerInsideSecondFloor.objects.minuteButton) then
-                                        local r = loadRooms.clockTowerInsideSecondFloor.objects.minuteHand.rot.r
-                                        loadRooms.clockTowerInsideSecondFloor.objects.minuteHand.rot.r = (r - math.rad(360/12)) % (2 * math.pi)
+                                        if(loadRooms.clockTowerInsideFirstFloor.objects.cogHole.state == "Full") then
+                                            local r = loadRooms.clockTowerInsideSecondFloor.objects.minuteHand.rot.r
+                                            loadRooms.clockTowerInsideSecondFloor.objects.minuteHand.rot.r = (r - math.rad(360/12)) % (2 * math.pi)
+                                        else
+                                            g.writeToTextDisplay({"Nothing happens."})
+                                        end
                                     end
                                     
                                     -- Check if it is the correct time (8:35). If so, open the secret panel.
-                                    g.checkClock()
+                                    if(loadRooms.clockTowerInsideFirstFloor.objects.cogHole.state == "Full") then
+                                        g.checkClock()
+                                    end
                                     
                                 -- Stone puzzle room
                                 elseif(g.curLocation == loadRooms.puzzlingStone) then
@@ -301,11 +323,28 @@ local updateCheckAction = {}
                             end
                             
                             if(g.actionSelected == "Put") then
-                                if(g.curLocation == loadRooms.shadowLands9) then
+                                if(g.curLocation == loadRooms.clockTowerInsideFirstFloor) then
+                                    if(g.itemSelected == "Cog" and g.mouse.objectPointedAt == g.curLocation.objects.cogHole and g.curLocation.objects.cogHole.state == "Empty") then
+                                        g.playerState.gearPlaced = true
+                                        g.curLocation.objects.cogHole.state = "Full"
+                                        g.writeToTextDisplay({"You place the cog into the", "empty hole. You hear the gears", "begin to grind as the clock", "tower comes to life."})
+                                        g.curLocation.objects.cogHole.text.put = {"The cog has already been", "placed."}
+                                        g.itemSelected = nil
+                                        
+                                        for k,v in ipairs(g.items) do
+                                            if(v.name =="Cog") then
+                                                table.remove(g.items,k)
+                                                break
+                                            end
+                                        end
+                                    end
+                                
+                                elseif(g.curLocation == loadRooms.shadowLands9) then
                                     if(g.itemSelected == "Shadow Orb" and g.mouse.objectPointedAt == g.curLocation.objects.statue and g.curLocation.objects.statue.state == "Off") then
                                         g.curLocation.objects.statue.state = "On"
                                         g.writeToTextDisplay({"You place the Shadow Orb into", "the hands of the statue. It", "pulses with a strange energy.", "Somehow, in your head, you hear", "the words: THE RITUAL IS READY.", "LIE DOWN ON THE ALTAR TO BEGIN", "THE TRANSMOGRIFICATION."})
                                         g.curLocation.objects.statue.text.put = {"The orb has already been", "placed."}
+                                        g.itemSelected = nil
                                         
                                         for k,v in ipairs(g.items) do
                                             if(v.name =="Shadow Orb") then
@@ -488,6 +527,9 @@ local updateCheckAction = {}
                             and g.mouse.objectPointedAt == g.curLocation.objects.steeringWheel) then
                             g.writeToTextDisplay({"You can't use the car key", "here."})
                         end
+                        
+                    elseif(g.itemSelected == "Cog") then
+                        g.writeToTextDisplay({"You can't use the cog here."})
                         
                     elseif(g.itemSelected == "E. Brooch") then
                         g.writeToTextDisplay({"You can't use the eclipse brooch", "here."})

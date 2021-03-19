@@ -35,6 +35,9 @@ function drawManager.draw()
         
     elseif(g.state == "pause") then
         drawPauseScreen.draw()
+        
+    elseif(g.state == "inventory") then
+        drawItemScreen.draw()
     
     elseif(g.state == "car transition 1" or g.state == "car transition 2" or g.state == "car transition 3" or g.state == "class transition" or g.state == "dream transition" or g.state == "space transition") then
         drawInGameTransitions.draw()
