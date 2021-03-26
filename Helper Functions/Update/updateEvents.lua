@@ -29,19 +29,13 @@ updateEvents.update = function()
                 -- Title screen
                 if(g.timers.global >= g.timers.titleScreenLogo+35) then
                     if(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.titleScreen.startGame)) then
-                        --g.state = "instructions"
-                        --createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144})
                         createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="instructions"}})
                     elseif(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.titleScreen.loadGame)) then
                         g.previousState = "title"
                         createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="load game"}})
                     elseif(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.titleScreen.options)) then
-                        --g.state = "options"
-                        --createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144})
                         createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="options"}})
                     elseif(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.titleScreen.credits)) then
-                        --g.state = "title credits"
-                        --createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144})
                         createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="title credits"}})
                     end
                 end
@@ -147,6 +141,7 @@ updateEvents.update = function()
                         g.showMessageBox = false
                     end
                     g.state = "game"
+                    --g.state = "shadow child"
                 end
             
             elseif(event.state == "car transition 1") then
@@ -174,6 +169,14 @@ updateEvents.update = function()
                 createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="game"}})
                 g.curLocation = loadRooms.shadowLands1
                 g.backgroundStatic = true
+                
+            elseif(event.state == "night transition") then
+                --createEvent.create({name="Play Music", music=loadMusic.shadowLands})
+                --createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="bad ending"}})
+                g.music:stop()
+                
+                -- Play the bad ending video
+                createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="video bad ending"}})
             
             -- If we are in the game
             elseif(event.state == "game") then
@@ -360,11 +363,24 @@ updateEvents.update = function()
                         mouseHover = true
                     end
                 end
-                --[[if not mouseHover then
-                    g.mouse.textHover = false
-                    g.mouse.actionHover = false
-                    g.mouse.objectHover = false
-                end]]
+                
+            elseif(g.state == "save game") then
+                local mouseHover = false
+                for k,v in pairs(g.textBoxes.saveGameScreen) do
+                    if(g.mouseCollision(g.mouse.x,g.mouse.y,v)) then
+                        g.mouse.textHover = true
+                        mouseHover = true
+                    end
+                end
+                
+            elseif(g.state == "load game") then
+                local mouseHover = false
+                for k,v in pairs(g.textBoxes.loadGameScreen) do
+                    if(g.mouseCollision(g.mouse.x,g.mouse.y,v)) then
+                        g.mouse.textHover = true
+                        mouseHover = true
+                    end
+                end
             
             elseif(g.state == "game") then
                 g.mouse.objectHover = false

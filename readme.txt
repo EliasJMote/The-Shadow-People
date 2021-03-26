@@ -1,5 +1,5 @@
 ﻿The Shadow People
-Version 0.9.11
+Version 0.9.12
 
 Copyright © 2020-2021 Elias Mote
 Copyright © 2020-2021 Roc Studios
@@ -18,7 +18,25 @@ This software may be not be reproduced under any circumstances except for person
 II. Version History
 
 -------------------------
-V0.9.11 - Current Version
+V0.9.12 - Current Version
+-------------------------
+-- Content --
+-- Improved instructions screen.
+-- Updated clickable area for the "cog" in the item menu.
+-- Updated clickable area for some menu text.
+-- The save and load game screens will use the hand cursor when hovering over games
+that can be saved or loaded.
+-- If the player tries to use the "put" action without selecting an item, the game will
+tell them to "select an item to put down".
+-- Removed unnecessary commented-out code.
+-- Added music to the shadow child jump scare.
+-- Added a cutscene for the bad ending.
+-- Added an bad ending picture.
+
+-- Bug Fixes --
+
+-------------------------
+V0.9.11
 -------------------------
 -- Content --
 -- Added a cog that is required for operating the clock tower.

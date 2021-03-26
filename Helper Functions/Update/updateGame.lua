@@ -32,18 +32,27 @@ function updateGame.update()
         g.mouse.actionHover = false
         g.mouse.objectHover = false
         g.mouse.mapHover = false
-    end
+    --end
+    
+    elseif(g.state == "video bad ending") then
+        if(g.timers.video < 238) then
+            g.timers.video = g.timers.video + 0.2
+        --elseif(g.timers.video == 238) then
+        else
+            g.state = "bad ending"
+            g.music = loadMusic.shadowLands
+            g.music:play()
+            --love.graphics.setColor(g.colors.darkestGreen.r, g.colors.darkestGreen.g, g.colors.darkestGreen.b, 1)
+            --g.timers.video = 239-5
+            --createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="bad ending"}})
+        end
     
     -- Squiggle man rushes the player
-    if(g.state == "game") then
+    elseif(g.state == "game") then
         if(g.playerState.numOfTimesLookedAtWallHole == 5) then
             g.timers.squiggleMan = g.timers.squiggleMan + 1
             if(g.timers.squiggleMan > 60) then
                 if not(g.playerState.hasNecklace) then
-                    
-                    g.fun = 100 -- Set "fun" value to 100
-                    -- Save a text file with the "fun" value. When the player restarts the game, if "fun" == 100, a new image of "Squiggle Man" appears, then "fun" is set back to 50.
-                    --love.filesystem.write("Save.txt", "{Fun=100}")
                     
                     -- Exit game
                     love.event.quit(0)
@@ -57,24 +66,24 @@ function updateGame.update()
                 end
             end
         end
-    end
+    --end
     
-    if(g.state == "shadow child") then
+    elseif(g.state == "shadow child") then
+        if(g.timers.shadowChild == 270) then
+            g.music = loadMusic.shadowChildApproach
+            g.music:play()
+        end
         g.timers.shadowChild = g.timers.shadowChild + 1
         if(g.timers.shadowChild > 660) then
             if not(g.playerState.hasNecklace) then
-                
-                g.fun = 120 -- Set "fun" value to 120
-                -- Save a text file with the "fun" value. When the player restarts the game, if "fun" == 100, a new image of "Squiggle Man" appears, then "fun" is set back to 50.
-                --love.filesystem.write("Save.txt", "{Fun=100}")
                 
                 -- Exit game
                 love.event.quit(0)
                 
             -- The magic necklace will save the player
             else
-                --loadSFX.squiggleManScream:stop()
-                --g.playerState.numOfTimesLookedAtWallHole = 6
+                g.music:stop()
+                g.music = loadMusic.nightmareGeometry
                 g.music:play()
                 g.state = "game"
                 g.curLocation = loadRooms.nightmareGeometry8

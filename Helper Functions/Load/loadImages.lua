@@ -229,6 +229,7 @@ loadImages.patioMap = love.graphics.newImage("Images/Maps/Patio Map.png")
 --loadImages.shedOutsideMap = love.graphics.newImage("Images/Backgrounds/Shed Map.png")
 
 -- Endings
+loadImages.badEnding = love.graphics.newImage("Images/Endings/Midnight Shadows Ending.png")
 loadImages.eternalTwilightEnding = love.graphics.newImage("Images/Endings/Eternal Twilight Ending.png")
 loadImages.goodEnding = love.graphics.newImage("Images/Endings/Morning Daybreak Ending.png")
 loadImages.redPrinceEnding = love.graphics.newImage("Images/Endings/Red Prince Ending.png")
@@ -251,5 +252,21 @@ for i=1,10 do
     loadImages.shadowChild[i] = love.graphics.newImage("Images/SHADOW PEOPLE/Shadow Child/Shadow Child " .. i .. ".png")
 end
     
+loadImages.video = {}
+    
+-- Shadow Person Video (for the bad ending)
+
+loadImages.video.badEnding = {}
+for i=0,9 do
+    loadImages.video.badEnding[i] = love.graphics.newImage("Images/Video/Image1000" .. i .. ".png")
+end
+
+for i=10,99 do
+    loadImages.video.badEnding[i] = love.graphics.newImage("Images/Video/Image100" .. i .. ".png")
+end
+
+for i=100,238 do
+    loadImages.video.badEnding[i] = love.graphics.newImage("Images/Video/Image10" .. i .. ".png")
+end
 
 return loadImages

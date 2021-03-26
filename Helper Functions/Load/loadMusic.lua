@@ -9,6 +9,7 @@ loadMusic.nightmareGeometry = love.audio.newSource("Music/Nightmare Geometry.mp3
 loadMusic.redPrince = love.audio.newSource("Music/Red Prince.wav", "stream")
 loadMusic.sewers = love.audio.newSource("Music/Sewer Drip.mp3", "stream")
 loadMusic.shadowLands = love.audio.newSource("Music/Shadow Lands.mp3", "stream")
+loadMusic.shadowChildApproach = love.audio.newSource("Music/Shadow Child Approach.mp3", "stream")
 loadMusic.title = love.audio.newSource("Music/Somber Song.mp3", "stream")
 loadMusic.undertheStars = love.audio.newSource("Music/Under the Stars (8-bit).mp3", "stream")
 

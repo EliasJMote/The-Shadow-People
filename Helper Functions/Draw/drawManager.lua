@@ -39,12 +39,14 @@ function drawManager.draw()
     elseif(g.state == "inventory") then
         drawItemScreen.draw()
     
-    elseif(g.state == "car transition 1" or g.state == "car transition 2" or g.state == "car transition 3" or g.state == "class transition" or g.state == "dream transition" or g.state == "space transition") then
+    elseif(g.state == "car transition 1" or g.state == "car transition 2" or g.state == "car transition 3" or g.state == "class transition" or g.state == "dream transition" or g.state == "space transition" or g.state == "night transition") then
         drawInGameTransitions.draw()
     
     elseif(g.state == "good ending" or g.state == "bad ending" or g.state == "red prince ending" or g.state == "alien ending" or g.state == "easter egg ending") then
         drawEnding.draw()
         
+    elseif(g.state == "video bad ending") then
+        drawVideo.draw()
     end
 
     -- Draw the mouse cursor
@@ -77,6 +79,9 @@ function drawManager.draw()
     if(g.state == "shadow child") then
         local t = g.timers.shadowChild
         local dt = 16
+        love.graphics.setColor(g.colors.darkestGreen.r, g.colors.darkestGreen.g, g.colors.darkestGreen.b, 1)
+        love.graphics.rectangle("fill",-64,-64,160+64,144+64)
+        love.graphics.setColor(g.colors.lightestGreen.r, g.colors.lightestGreen.g, g.colors.lightestGreen.b, 1)
         
         if(t < 150) then
             love.graphics.draw(loadImages.shadowChild[1],160/2,144/2, 0, 0.3, 0.3,11,21)
@@ -97,9 +102,13 @@ function drawManager.draw()
                 love.graphics.setColor(g.colors.darkestGreen.r, g.colors.darkestGreen.g, g.colors.darkestGreen.b, 1)
             end
             if(t % dt < dt/2) then
-                love.graphics.rectangle("fill",0,0,160,144)
+                love.graphics.rectangle("fill",-64,-64,160+64,144+64)
             end
             love.graphics.setColor(g.colors.lightestGreen.r, g.colors.lightestGreen.g, g.colors.lightestGreen.b, 1)
+            local shakeMagnitude = 2
+            local dx = love.math.random(-shakeMagnitude, shakeMagnitude)
+            local dy = love.math.random(-shakeMagnitude, shakeMagnitude)
+            love.graphics.translate(dx, dy)
             love.graphics.draw(loadImages.shadowChild[7+math.floor(g.timers.shadowChild/4)%4],160/2,144/2, 0, 0.3+(t-270)/200, 0.3+(t-270)/200,11,21)
         else
             --love.graphics.draw(loadImages.shadowChild[7+math.floor(660/4)%4],160/2,144/2, 0, 0.3+(660-270)/200, 0.3+(660-270)/200,11,21)

@@ -79,6 +79,20 @@ function drawInGameTransitions.draw()
         love.graphics.print("total eclipse casts", init_x, init_y+8*7, 0, 0.5, 0.5)
         love.graphics.print("dim light over the", init_x, init_y+8*8, 0, 0.5, 0.5)
         love.graphics.print("strange land...", init_x, init_y+8*9, 0, 0.5, 0.5)
+        
+    elseif(g.state == "night transition") then
+        init_y = 32
+        love.graphics.print("Night Transition", 32, 8, 0, 0.5, 0.5)
+        love.graphics.print("You finally get back", init_x, init_y, 0, 0.5, 0.5)
+        love.graphics.print("home and enter through", init_x, init_y+8, 0, 0.5, 0.5)
+        love.graphics.print("the front door. You", init_x, init_y+8*2, 0, 0.5, 0.5)
+        love.graphics.print("quickly collapse on", init_x, init_y+8*3, 0, 0.5, 0.5)
+        love.graphics.print("your bed, while sleep", init_x, init_y+8*4, 0, 0.5, 0.5)
+        love.graphics.print("rapidly invades your", init_x, init_y+8*5, 0, 0.5, 0.5)
+        love.graphics.print("mind. After an unknown", init_x, init_y+8*6, 0, 0.5, 0.5)
+        love.graphics.print("stretch of time, you", init_x, init_y+8*7, 0, 0.5, 0.5)
+        love.graphics.print("suddenly wake with a", init_x, init_y+8*8, 0, 0.5, 0.5)
+        love.graphics.print("jolt.", init_x, init_y+8*9, 0, 0.5, 0.5)
     end
     
     love.graphics.print("Click to continue", 30, 128, 0, 0.5, 0.5)

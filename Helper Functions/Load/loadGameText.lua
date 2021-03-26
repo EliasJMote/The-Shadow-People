@@ -55,54 +55,54 @@ loadGameText.goodCreditsText =  {
                                     "day, but you finally make it",
                                     "back home to your bedroom. You",
                                     "stumble wildly to your bed as", 
+                                    
                                     "you slip in and out of",
                                     "consciousness. You slam down",
                                     "hard onto your mattress and",
                                     "pass out. When you awaken,",
                                     "the sun is shining",
+                                    
                                     "magnificently in the azure sky,",
                                     "and all the blackness of the",
                                     "night has been banished to",
                                     "another day. You peaceably",
+                                    
                                     "lie in your bed, and reflect on",
                                     "all the difficulties you just",
                                     "overcame. You vow to do your",
                                     "best to catch up on sleep, even",
+                                    
                                     "if it means your grades suffer",
                                     "a bit. Because nothing is more",
                                     "important than a life."
                                 }
             
 loadGameText.badCreditsText =   {
-                                    "You finally get back home and",
-                                    "enter through the front door.",
-                                    "You quickly collapse on your",
-                                    "bed, while sleep rapidly",
-                                    "invades your mind. After an",
-                                    "unknown stretch of time, you",
-                                    "suddenly wake with a jolt.",
                                     "Immediately you realize with",
                                     "mounting terror that your body",
                                     "is completely immobilized. You",
                                     "strain your eyes this way and",
+                                    
                                     "that, searching for anything.",
                                     "A black body presses down on",
                                     "your chest. Several others,",
                                     "including children, hold your",
+                                    
                                     "limbs down fast with",
                                     "unrelenting strength. The",
                                     "tallest one stands seven feet",
                                     "tall in the encroaching dark",
+                                    
                                     "space. It doesn't move at all.",
                                     "It doesn't need to. It stares",
                                     "without eyes, as all the others",
                                     "do, at your helpless body.",
-                                    "",
+                                    
                                     "YOU ATTEMPT TO SCREAM.",
                                     "YOU CAN'T MOVE YOUR MOUTH.",
                                     "THE MINUTES PASS.",
                                     "THE SHADOWS WATCH.",
-                                    "",
+                                    
                                     "YOUR MIND GOES BLACK AND YOU",
                                     "PASS INTO A DREAMSCAPE.",
                                 }

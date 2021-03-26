@@ -34,6 +34,7 @@ function love.load()
     drawInGameTransitions = require("Helper Functions/Draw/drawInGameTransitions")
     drawCursor = require("Helper Functions/Draw/drawCursor")
     drawEnding = require("Helper Functions/Draw/drawEnding")
+    drawVideo = require("Helper Functions/Draw/drawVideo")
     
     json = require("Helper Functions/json")
     
@@ -78,19 +79,20 @@ function love.load()
         --g.state = "game"
     --end
     --g.state = "title credits"
-    --g.state = "shadow child"
+   -- g.state = "shadow child"
     
     -- Initialize the constant game timers
     g.timers = {}
     g.timers.global = 0
     g.timers.titleScreenLogo = 210
-    g.timers.endingTextFadeOut = 60 * 12
+    g.timers.endingTextFadeOut = 60 * 10
     g.timers.endingTextTimeAddition = 60 * 2
     g.timers.goodEnding = 5 * g.timers.endingTextFadeOut + g.timers.endingTextTimeAddition 
-    g.timers.badEnding = 8 * g.timers.endingTextFadeOut + g.timers.endingTextTimeAddition 
+    g.timers.badEnding = 6 * g.timers.endingTextFadeOut + g.timers.endingTextTimeAddition 
     g.timers.easterEggEnding = 1 * g.timers.endingTextFadeOut + g.timers.endingTextTimeAddition 
     g.timers.alienEnding = 2 * g.timers.endingTextFadeOut + g.timers.endingTextTimeAddition 
-    g.timers.redPrinceEnding = 7 * g.timers.endingTextFadeOut + g.timers.endingTextTimeAddition 
+    g.timers.redPrinceEnding = 7 * g.timers.endingTextFadeOut + g.timers.endingTextTimeAddition
+    g.timers.video = 0
     
     -- Initialize events table
     g.events = {}
@@ -125,13 +127,13 @@ function love.load()
     -- Miscellaneous text boxes that can be highlighted and selected (start game, options, etc.)
     g.textBoxes =   {
                         instructionsScreen =    {
-                                                    startGame = {x=52,y=128,w=59,h=6,text="Start Game"},
+                                                    startGame = {x=58,y=128,w=47,h=6,text="Start Game"},
                                                 },
                         loadGameScreen =    {
-                                                loadGame1 = {x=20,y=32,w=52,h=6,text="Load Game 1"},
-                                                loadGame2 = {x=20,y=64,w=52,h=6,text="Load Game 2"},
-                                                loadGame3 = {x=20,y=96,w=52,h=6,text="Load Game 3"},
-                                                back = {x=20,y=128,w=18,h=6,text="Back"},
+                                                loadGame1 = {x=20,y=32,w=52,h=5,text="Load Game 1"},
+                                                loadGame2 = {x=20,y=64,w=52,h=5,text="Load Game 2"},
+                                                loadGame3 = {x=20,y=96,w=52,h=5,text="Load Game 3"},
+                                                back = {x=20,y=128,w=18,h=5,text="Back"},
                                             },
                         optionsScreen = {
                                             back = {x=72,y=128,w=19,h=6,text="Back"},
@@ -139,11 +141,11 @@ function love.load()
                                             decreaseWindowScale = {x=120,y=24,w=3,h=6,text="-"},
                                         },  
                         pauseScreen =   {
-                                            resumeGame = {x=56,y=40,w=52,h=6,text="Resume Game"},
-                                            checkItems = {x=56,y=56,w=52,h=6,text="Check Items"},
-                                            loadGame = {x=56,y=72,w=42,h=6,text="Load Game"},
-                                            saveGame = {x=56,y=88,w=42,h=6,text="Save Game"},
-                                            quitGame = {x=56,y=104,w=42,h=6,text="Quit Game"},
+                                            resumeGame = {x=56,y=40,w=52,h=5,text="Resume Game"},
+                                            checkItems = {x=56,y=56,w=52,h=5,text="Check Items"},
+                                            loadGame = {x=56,y=72,w=42,h=5,text="Load Game"},
+                                            saveGame = {x=56,y=88,w=42,h=5,text="Save Game"},
+                                            quitGame = {x=56,y=104,w=42,h=5,text="Quit Game"},
                                         },
                         itemScreen =    {
                                             back = {x=3,y=136,w=18,h=6,text="Back"},
@@ -167,10 +169,10 @@ function love.load()
                                                     }
                                         },
                         saveGameScreen =    {
-                                                saveGame1 = {x=20,y=32,w=52,h=6,text="Save Game 1"},
-                                                saveGame2 = {x=20,y=64,w=52,h=6,text="Save Game 2"},
-                                                saveGame3 = {x=20,y=96,w=52,h=6,text="Save Game 3"},
-                                                back = {x=20,y=128,w=18,h=6,text="Back"},
+                                                saveGame1 = {x=20,y=32,w=52,h=5,text="Save Game 1"},
+                                                saveGame2 = {x=20,y=64,w=52,h=5,text="Save Game 2"},
+                                                saveGame3 = {x=20,y=96,w=52,h=5,text="Save Game 3"},
+                                                back = {x=20,y=128,w=18,h=5,text="Back"},
                                             },
                         titleCreditsScreen =    {
                                                     downArrow = {x=134,y=120,w=18,h=6,text="Down"},
@@ -179,13 +181,13 @@ function love.load()
                                                 },
                         titleScreen =   {
                                             startGame = {x=52,y=82,w=59,h=6,text="Start Game"},
-                                            loadGame = {x=52,y=96,w=59,h=6,text="Load Game"},
+                                            loadGame = {x=52,y=96,w=53,h=6,text="Load Game"},
                                             options = {x=52,y=110,w=41,h=6,text="Options"},
                                             credits = {x=52,y=124,w=41,h=6,text="Credits"},
                                         },
                                         
                         warningScreen = {
-                                            continue = {x=42,y=128,w=81,h=6,text="Click to Continue"},
+                                            continue = {x=42,y=128,w=81,h=5,text="Click to Continue"},
                                         }, 
                     }
     

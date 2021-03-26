@@ -31,7 +31,11 @@ local updateCheckAction = {}
                             elseif(g.actionSelected == "Push") then
                                 g.writeToTextDisplay({"You can't push that!"})
                             elseif(g.actionSelected == "Put") then
-                                g.writeToTextDisplay({"You can't put that there!"})
+                                if(g.itemSelected == nil) then
+                                    g.writeToTextDisplay({"Select an item to place first."})
+                                else
+                                    g.writeToTextDisplay({"You can't put that there!"})
+                                end
                             elseif(g.actionSelected == "Take") then
                                 g.writeToTextDisplay({"You can't take that!"})
                             elseif(g.actionSelected == "Talk") then
@@ -294,12 +298,8 @@ local updateCheckAction = {}
                             end
                             
                             if(g.actionSelected == "Take") then
-                                if(g.curLocation == loadRooms.gasStationInside) then
-                                    if(g.mouse.objectPointedAt == g.curLocation.objects.gasCanister) then
-                                        g.playerState.hasGasCan = true
-                                    end
                                     
-                                elseif(g.curLocation == loadRooms.churchInsideSecretRoom) then
+                                if(g.curLocation == loadRooms.churchInsideSecretRoom) then
                                     if(g.mouse.objectPointedAt == g.curLocation.objects.necklace) then
                                         g.playerState.hasNecklace = true
                                     end
@@ -357,8 +357,6 @@ local updateCheckAction = {}
                             end
                             
                             if(g.actionSelected == "Look") then
-                                
-                                
                                 
                                 -- Easter Egg Ending (looking at the sun on the patio and go blind)
                                 if(g.curLocation == loadRooms.patio) then
