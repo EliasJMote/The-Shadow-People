@@ -26,8 +26,7 @@ function drawScreenTransition.draw()
         -- Set the color back to normal
         love.graphics.setColor(1, 1, 1, 1)
         
-        -- Increment the screen transition timer
-        g.timers.screenTransition = g.timers.screenTransition + 1
+        
         
     end
     

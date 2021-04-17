@@ -54,6 +54,7 @@ loadImages.clockTowerOutside = love.graphics.newImage("Images/Backgrounds/Clock 
 loadImages.empty = love.graphics.newImage("Images/Backgrounds/Empty.png")
 loadImages.emptyOutside = love.graphics.newImage("Images/Backgrounds/Empty Outside.png")
 loadImages.emptyRoom = love.graphics.newImage("Images/Backgrounds/Empty Room.png")
+loadImages.finalDarkPassage = love.graphics.newImage("Images/Backgrounds/Final Dark Passage.png")
 loadImages.floodedLabyrinth1 = love.graphics.newImage("Images/Backgrounds/Flooded Labyrinth 1.png")
 loadImages.floodedLabyrinth2 = love.graphics.newImage("Images/Backgrounds/Flooded Labyrinth 2.png")
 loadImages.floodedLabyrinth3 = love.graphics.newImage("Images/Backgrounds/Flooded Labyrinth 3.png")
@@ -107,6 +108,8 @@ loadImages.shadowLands1 = love.graphics.newImage("Images/Backgrounds/Shadow Land
 loadImages.shadowLands2 = love.graphics.newImage("Images/Backgrounds/Shadow Lands 2.png")
 loadImages.shadowLands3 = love.graphics.newImage("Images/Backgrounds/Shadow Lands 3.png")
 loadImages.shed = love.graphics.newImage("Images/Backgrounds/Shed.png")
+loadImages.shedEvil = love.graphics.newImage("Images/Backgrounds/Shed (Evil).png")
+loadImages.statueRoom = love.graphics.newImage("Images/Backgrounds/Statue Room.png")
 loadImages.street1 = love.graphics.newImage("Images/Backgrounds/Street 1.png")
 loadImages.street2 = love.graphics.newImage("Images/Backgrounds/Street 2.png")
 loadImages.street3 = love.graphics.newImage("Images/Backgrounds/Street 3.png")
@@ -126,9 +129,12 @@ loadImages.churchDoorInsideClosed = love.graphics.newImage("Images/Objects/Churc
 loadImages.churchDoorInsideOpen = love.graphics.newImage("Images/Objects/Church Inside/Church Door (Open).png")
 loadImages.classDoorClosed = love.graphics.newImage("Images/Objects/School/School Door (Closed).png")
 loadImages.classDoorOpen = love.graphics.newImage("Images/Objects/School/School Door (Open).png")
+loadImages.classDoorOpenNight = love.graphics.newImage("Images/Objects/School/School Door (Open, Night).png")
 loadImages.clockTowerOutsideDoorClosed = love.graphics.newImage("Images/Objects/Clock Tower Outside/Clock Tower Outside Door Closed.png")
 loadImages.clockTowerOutsideDoorOpen = love.graphics.newImage("Images/Objects/Clock Tower Outside/Clock Tower Outside Door Open.png")
 loadImages.cogHole = love.graphics.newImage("Images/Objects/Clock Tower Inside First Floor/Cog Hole.png") 
+loadImages.gasStationButtonOff = love.graphics.newImage("Images/Objects/Gas Station/Gas Station Inside Button (Off).png")
+loadImages.gasStationButtonOn = love.graphics.newImage("Images/Objects/Gas Station/Gas Station Inside Button (On).png")
 loadImages.gasStationStoreDoorClosed = love.graphics.newImage("Images/Objects/Gas Station/Store Door (Closed).png")
 loadImages.gasStationStoreDoorOpen = love.graphics.newImage("Images/Objects/Gas Station/Store Door (Open).png")
 loadImages.grave = love.graphics.newImage("Images/Objects/Graveyard/Grave.png")
@@ -254,19 +260,37 @@ end
     
 loadImages.video = {}
     
--- Shadow Person Video (for the bad ending)
+-- Street Video (for the intro)
+loadImages.video.intro = {}
 
-loadImages.video.badEnding = {}
-for i=0,9 do
-    loadImages.video.badEnding[i] = love.graphics.newImage("Images/Video/Image1000" .. i .. ".png")
+--[[for i=1,9 do
+    loadImages.video.intro[i] = love.graphics.newImage("Images/Video/Intro/img000" .. i .. ".png_160x144.png")
 end
 
 for i=10,99 do
-    loadImages.video.badEnding[i] = love.graphics.newImage("Images/Video/Image100" .. i .. ".png")
+    loadImages.video.intro[i] = love.graphics.newImage("Images/Video/Intro/img00" .. i .. ".png_160x144.png")
+end]]
+
+for i=726,876 do
+    loadImages.video.intro[i] = love.graphics.newImage("Images/Video/Intro/img0" .. i .. ".png_160x144.png")
+end
+
+--[[for i=1000,1239 do
+    loadImages.video.intro[i] = love.graphics.newImage("Images/Video/Intro/img" .. i .. ".png_160x144.png")
+end]]
+
+-- Shadow Person Video (for the bad ending)
+loadImages.video.badEnding = {}
+for i=0,9 do
+    loadImages.video.badEnding[i] = love.graphics.newImage("Images/Video/Bedroom/Image1000" .. i .. ".png")
+end
+
+for i=10,99 do
+    loadImages.video.badEnding[i] = love.graphics.newImage("Images/Video/Bedroom/Image100" .. i .. ".png")
 end
 
 for i=100,238 do
-    loadImages.video.badEnding[i] = love.graphics.newImage("Images/Video/Image10" .. i .. ".png")
+    loadImages.video.badEnding[i] = love.graphics.newImage("Images/Video/Bedroom/Image10" .. i .. ".png")
 end
 
 return loadImages

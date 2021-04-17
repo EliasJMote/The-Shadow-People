@@ -27,12 +27,33 @@ function updateGame.update()
     -- Update the event table
     updateEvents.update()
     
+    if(g.screenTransition.active) then
+        -- Increment the screen transition timer
+        g.timers.screenTransition = g.timers.screenTransition + 1
+    end
+    
     if(g.state == "pause") then
-        --g.mouse.textHover = false
         g.mouse.actionHover = false
         g.mouse.objectHover = false
         g.mouse.mapHover = false
-    --end
+    
+    elseif(g.state == "video intro") then
+        --if(g.timers.video < 1238) then
+        if(g.timers.video < 875) then
+            g.timers.video = g.timers.video + 0.2
+        --elseif(g.timers.video == 238) then
+        else
+            g.timers.video = 0
+            g.state = "screen transition"
+            --g.state = "title"
+            createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="title"}})
+            --createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144})
+            --g.music = loadMusic.shadowLands
+            --g.music:play()
+            --love.graphics.setColor(g.colors.darkestGreen.r, g.colors.darkestGreen.g, g.colors.darkestGreen.b, 1)
+            --g.timers.video = 239-5
+            --createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="bad ending"}})
+        end
     
     elseif(g.state == "video bad ending") then
         if(g.timers.video < 238) then
@@ -94,7 +115,7 @@ function updateGame.update()
     end
     
     -- Update the global timer
-    if(g.state ~= "warning") then
+    if(g.state ~= "warning" and g.state ~= "video intro") then
         g.timers.global = g.timers.global + 1
     end
 

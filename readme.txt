@@ -1,5 +1,5 @@
 ﻿The Shadow People
-Version 0.9.12
+Version 1.0.0
 
 Copyright © 2020-2021 Elias Mote
 Copyright © 2020-2021 Roc Studios
@@ -13,12 +13,42 @@ VI. Credits
 
 I. Disclaimer
 
-This software may be not be reproduced under any circumstances except for personal, private use. It may not be placed on any web site or otherwise distributed publicly except at the sole discretion of the author. Placement of this readme or game on any other web site or as a part of any public display is strictly prohibited, and a violation of copyright.
+This software may be not be reproduced under any circumstances except for personal, private use. It 
+may not be placed on any web site or otherwise distributed publicly except at the sole discretion of
+ the author. Placement of this readme or game on any other web site or as a part of any public
+ display is strictly prohibited, and a violation of copyright.
 
 II. Version History
 
 -------------------------
-V0.9.12 - Current Version
+V1.0.0 - Current Version
+-------------------------
+-- Content --
+-- Added an intro cutscene
+-- Added to the Nightmare Geometry area
+-- Updated in-game graphics
+-- Updated in-game sfx
+-- Updated in-game text
+-- Updated in-game objects
+-- Changed the clock tower puzzle to require pushing a third button to solve it, rather than just
+using the hour and minute hand buttons. This will make it much harder for people to solve it by
+trying each combination.
+
+-- Bug Fixes --
+-- Fixed a bug where trying to load a game that didn't exist crashed the game.
+-- Fixed a bug where loading a game at the school after class is over didn't update the classroom
+properly.
+-- Fixed a bug where right clicking before the game loaded would cause a crash.
+-- Fixed a bug where placing an item didn't correctly decrement the total number of items in the
+inventory.
+-- Fixed a bug where loading a game after pushing the grave didn't update the grave or create the
+stairs leading into the crypt.
+-- Fixed a bug where the mallet would not appear in the item screen after acquiring it.
+-- Fixed a bug where cutting open the sewer gate didn't update the text to properly reflect it's
+new "broken" state.
+
+-------------------------
+V0.9.12
 -------------------------
 -- Content --
 -- Improved instructions screen.
@@ -114,8 +144,10 @@ V0.9.5
 
 -- Bug Fixes --
 -- Fixed the clock tower puzzle
--- Hotfix: Accidentally set the g.playerState.hasNecklace to "true" in V0.9.4. Set it back to "false" in V0.9.5
--- Hotfix: Fixed a bug with Squiggle Man where the player could remove the image by clicking after he appears
+-- Hotfix: Accidentally set the g.playerState.hasNecklace to "true" in V0.9.4. Set it back to
+"false" in V0.9.5
+-- Hotfix: Fixed a bug with Squiggle Man where the player could remove the image by clicking after
+he appears
 
 ------------------------
 V0.9.4
@@ -138,20 +170,23 @@ V0.9.2
 -- Added a bad ending, which is received when the player doesn't find the necklace.
 -- Added the alien ending at the end of the Shadow Lands.
 -- Added names for all the endings.
--- Added a candle lighting puzzle to reveal a hidden door in the church. The puzzle is solved with the lighter.
+-- Added a candle lighting puzzle to reveal a hidden door in the church. The puzzle is solved with
+the lighter.
 -- Obtaining the Shadow Orb, the Eclipse Brooch and the Necklace transports the player to the Shadow
 Lands at the end of the game. This place leads to the alien ending.
 -- Added a series of railroad tracks. They will lead to the train.
 -- Added a street road that leads to the burnt house.
 -- Added the shed in the park
--- Fixed a bug where repeatedly using the mirror to solve the statue puzzle wouldn't properly update the text
-on subsequent uses.
+-- Fixed a bug where repeatedly using the mirror to solve the statue puzzle wouldn't properly update
+the text on subsequent uses.
 
 ------------------------
 V0.9.1
 ------------------------
--- Fixed a bug where the player could accidentally scroll through text during a screen transition event
--- Make an improvement fix where the player only needs a single click to change which item is selected
+-- Fixed a bug where the player could accidentally scroll through text during a screen transition
+event
+-- Make an improvement fix where the player only needs a single click to change which item is
+selected
 -- Updated backgrounds for the sewers, park
 -- Changed the layout of the sewers.
 -- Changed the underground graveyard section to the statue room.
@@ -172,13 +207,15 @@ V0.9.0
 -- The hammer can smash the central mirror in the mirror room to enter a secret room
 -- The gas station key allows access to the gas station inside
 -- The hacksaw can be used to cut open the entrance to the sewer gate
--- Fixed a bug where action text highlighting was occuring during screen transitions if the mouse was over the action text
+-- Fixed a bug where action text highlighting was occurring during screen transitions if the mouse
+was over the action text
 
 ------------------------
 V0.8.0
 ------------------------
 -- Added new music (title screen, house light 8-bit, house dark 8-bit, highway, good ending)
--- Added good ending credits sequence (temporarily accessible from the outside of the house just past the flooded labyrinth)
+-- Added good ending credits sequence (temporarily accessible from the outside of the house just
+past the flooded labyrinth)
 -- Added easter egg credits sequence (accessed by looking at the sun 5 times)
 -- Added/improved some backgrounds
 -- Added bolt cutters object to cut the chain on the park gate
@@ -214,7 +251,8 @@ V0.4.0
 -- Actions are now required for interacting with the background
 -- Clicking no longer deselects a selected action
 -- Actions can be deselected
--- Fixed a bug where bedroom objects were selectable on the title screen, changing the mouse to a hand cursor
+-- Fixed a bug where bedroom objects were selectable on the title screen, changing the mouse to a
+hand cursor
 -- Decoupled some update code from draw functions
 
 ------------------------

@@ -45,7 +45,7 @@ function drawManager.draw()
     elseif(g.state == "good ending" or g.state == "bad ending" or g.state == "red prince ending" or g.state == "alien ending" or g.state == "easter egg ending") then
         drawEnding.draw()
         
-    elseif(g.state == "video bad ending") then
+    elseif(g.state == "video intro" or g.state == "video bad ending") then
         drawVideo.draw()
     end
 

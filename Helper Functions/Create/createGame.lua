@@ -4,21 +4,16 @@ local createGame = {}
 
         local g = GLOBALS
         
-        -- Initialize game state
-        g.state = "warning"
-        --if(debug) then
-            --g.state = "game"
-        --end
-        --g.state = "shadow child"]]
-        
-        -- Initialize events table
-        --g.events = {}
-        
-        --loadRooms.load()
+        -- Create the game rooms
         createRooms.create()
+        
+        --g.state = "game"
         
         -- Initialize current location
         g.curLocation = loadRooms.bedroom
+        if(debug) then
+            g.curLocation = loadRooms.nightmareGeometry1
+        end
         
         -- Initialize items currently held
         g.items = {}
@@ -33,6 +28,7 @@ local createGame = {}
         g.timers.global = 0
         g.timers.screenTransition = 0
         g.timers.endingText = 0
+        g.timers.video = 0
         
         -- Horror related timers (with Shadow People)
         g.timers.squiggleMan = 0
@@ -79,8 +75,6 @@ local createGame = {}
             v:setVolume(1)
             v:setPitch(1)
         end
-        
-        g.fun = 0
         
         g.shadowPeople = {}
     end

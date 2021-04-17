@@ -76,10 +76,9 @@ function love.load()
     -- Initialize game state
     g.state = "warning"
     --if(debug) then
-        --g.state = "game"
+        
     --end
     --g.state = "title credits"
-   -- g.state = "shadow child"
     
     -- Initialize the constant game timers
     g.timers = {}
@@ -92,7 +91,7 @@ function love.load()
     g.timers.easterEggEnding = 1 * g.timers.endingTextFadeOut + g.timers.endingTextTimeAddition 
     g.timers.alienEnding = 2 * g.timers.endingTextFadeOut + g.timers.endingTextTimeAddition 
     g.timers.redPrinceEnding = 7 * g.timers.endingTextFadeOut + g.timers.endingTextTimeAddition
-    g.timers.video = 0
+    g.timers.video = 726
     
     -- Initialize events table
     g.events = {}
@@ -158,7 +157,7 @@ function love.load()
                                                         
                                                         -- Row 2
                                                         hacksaw = {x=4+40*0-1,y=18+40*1-1,w=34,h=34,name="Hacksaw",img=loadImages.inventoryHacksaw},
-                                                        hammer = {x=4+40*1-1,y=18+40*1-1,w=34,h=34,name="Hammer",img=loadImages.inventoryHammer},
+                                                        mallet = {x=4+40*1-1,y=18+40*1-1,w=34,h=34,name="Mallet",img=loadImages.inventoryHammer},
                                                         lighter = {x=4+40*2-1,y=18+40*1-1,w=34,h=34,name="Lighter",img=loadImages.inventoryLighter},
                                                         mirror = {x=4+40*3-1,y=18+40*1-1,w=34,h=34,name="Mirror",img=loadImages.inventoryMirror},
                                                         
@@ -186,6 +185,16 @@ function love.load()
                                             credits = {x=52,y=124,w=41,h=6,text="Credits"},
                                         },
                                         
+                        transitionScreens = {
+                                                car1={startGame = {x=30,y=128,w=101,h=6,text="Click to Continue"}},
+                                                car2={startGame = {x=30,y=128,w=101,h=6,text="Click to Continue"}},
+                                                car3={startGame = {x=30,y=128,w=101,h=6,text="Click to Continue"}},
+                                                class={startGame = {x=30,y=128,w=101,h=6,text="Click to Continue"}},
+                                                dream={startGame = {x=30,y=128,w=101,h=6,text="Click to Continue"}},
+                                                space={startGame = {x=30,y=128,w=101,h=6,text="Click to Continue"}},
+                                                night={startGame = {x=30,y=128,w=101,h=6,text="Click to Continue"}},
+                                            },
+                                        
                         warningScreen = {
                                             continue = {x=42,y=128,w=81,h=5,text="Click to Continue"},
                                         }, 
@@ -196,6 +205,15 @@ function love.load()
     
     g.savedString = ""
     g.previousState = nil
+    
+    g.screenTransition.active = false
+    g.timers.squiggleMan = 0
+    g.timers.shadowChild = 0
+    
+    if(debug) then
+        createGame.create()
+        g.state = "game"
+    end
 end
 
 function love.update(dt)

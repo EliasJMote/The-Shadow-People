@@ -70,12 +70,13 @@ function g.highlightText(textBox,textSize)
 end
 
 function g.checkClock()
-    -- Check if it is the correct time (8:35). If so, open the secret panel.
+    -- Manipulate the clock
     if(g.mouse.objectPointedAt == loadRooms.clockTowerInsideSecondFloor.objects.hourButton
         or g.mouse.objectPointedAt == loadRooms.clockTowerInsideSecondFloor.objects.minuteButton) then
-        
         g.showMessageBox = false
         g.textBuffer = {}
+    end
+        if(g.mouse.objectPointedAt == loadRooms.clockTowerInsideSecondFloor.objects.selectionButton) then
                                         
         local hourAngle = math.deg(loadRooms.clockTowerInsideSecondFloor.objects.hourHand.rot.r) % 360
         local minuteAngle = math.deg(loadRooms.clockTowerInsideSecondFloor.objects.minuteHand.rot.r) % 360
@@ -85,142 +86,47 @@ function g.checkClock()
         
         if(hourAngle ~= 0) then hour = 12 - g.round(hourAngle / 30) end
         if(minuteAngle ~= 0) then minute = 60 - g.round((minuteAngle * 5) / 30) end
-        
+    
+        if(hour == 8 and minute == 35) then
+            if(loadRooms.clockTowerInsideSecondFloor.objects.panel.state ~= "Open") then
+                g.showMessageBox = false
+                g.textBuffer = {}
+                
+                loadRooms.clockTowerInsideSecondFloor.objects.panel.state = "Open"
+                loadRooms.clockTowerInsideSecondFloor.objects.panel.text = {look={"It's a hidden panel. It's", "currently open."},open={"It's already open!"},pull={"It's already open!"}}
+                loadRooms.clockTowerInsideSecondFloor.objects.hacksaw = loadObjects.hacksaw
+                g.writeToTextDisplay({"As you press the button, a", "secret panel in the wall opens.", "A hacksaw falls out of the", "panel and clatters to the", "floor."})
+                loadSFX.pickup:play()
+            else
+                g.showMessageBox = false
+                g.textBuffer = {}
+                g.writeToTextDisplay({"The panel is open already!"})
+            end
+        end
+    
+    -- Check if it is the correct time (8:35). If so, open the secret panel.
+    --[[elseif(g.mouse.objectPointedAt == loadRooms.clockTowerInsideSecondFloor.objects.selectionButton) then
+        g.showMessageBox = false
+        g.textBuffer = {}
+    
         if(hour == 8 and minute == 35 and loadRooms.clockTowerInsideSecondFloor.objects.panel.state ~= "Open") then
             loadRooms.clockTowerInsideSecondFloor.objects.panel.state = "Open"
             loadRooms.clockTowerInsideSecondFloor.objects.panel.text = {look={"It's a hidden panel. It's", "currently open."},open={"It's already open!"},pull={"It's already open!"}}
             loadRooms.clockTowerInsideSecondFloor.objects.hacksaw = loadObjects.hacksaw
             g.writeToTextDisplay({"As you press the button, a", "secret panel in the wall opens.", "A hacksaw falls out of the", "panel and clatters to the", "floor."})
-        end
+            loadSFX.pickup:play()
+        end]]
     end
 end
---[[function g.serializeTable(t)
-    local str = "{"
-    
-    for k,v in pairs(t) do
-        local keyStr
-        
-        if(type(k) == "number") then
-            keyStr = "[" .. k .. "]"
-        else
-            keyStr = k
-        end
-        
-        if(type(v) == "number") then
-            str = str .. keyStr .. "=" .. tostring(v) .. ","
-        elseif(type(v) == "string") then
-            str = str .. keyStr .. "=\"" ..  v .. "\","
-        elseif(type(v) == "table") then
-            str = str .. keyStr .. "=" ..  g.serializeTable(v) .. ","
-        end
-    end
-    
-    str = str .. "}"
-    
-    return str
-end
-
-function g.deserializeTable(str)
-    local t = {}
-    local pos = 1
-    local s = ""
-    local num = 0
-    local key = nil
-    local val = nil
-    
-    -- Begin in state 1
-    local state = 1
-    
-    local c = str:sub(pos,pos)
-    
-    -- The first character must be a "{", signifying a new table
-    if(c == "{") then
-        state = 2
-        pos = 2
-        c = str:sub(pos,pos)
-    end
-    
-    -- If the second character is a letter, we have a key,value table (goto state 3)
-    if(c:match("%l|%u")) then
-        state = 3
-        
-    -- If the second character is a left brace, we have an array (goto state 5)
-    elseif(c == "[") then
-        s = s + c
-        pos = pos + 1
-        c = str:sub(pos,pos)
-        state = 5
-    end
-    
-    -- In state 3, loop through the key name until we reach an equals sign
-    while(state == 3) do
-        s = s + c
-        pos = pos + 1
-        c = str:sub(pos,pos)
-        if(c == "=") then
-            key = s
-            pos = pos + 1
-            c = str:sub(pos,pos)
-            state = 7
-        end
-    end
-    
-    -- In state 5, loop through the array number until we reach a right brace
-    while(state == 5) do
-        s = s + c
-        pos = pos + 1
-        c = str:sub(pos,pos)
-        if(c == "]") then
-            pos = pos + 1
-            c = str:sub(pos,pos)
-            state = 6
-            num = tostring(s)
-        end
-    end
-    
-    if(state == 6) then
-        if(c == "=") then
-            pos = pos + 1
-            c = str:sub(pos,pos)
-            state = 7
-        end
-    end
-    
-    if(state == 7) then
-        
-    end
-        
-    
-    return t
-end]]
 
 function g.loadGame(loadFile)
     
     -- Read in the contents of the file
-    --[[local contents = love.filesystem.read(mapPath)
-    contents = contents:gsub('[%p%c%s]', ' ')
-
-    local mapTable = {}
-    for i = 1, #contents do
-        local c = contents:sub(i,i)
-        if(c ~= " ") then
-            table.insert(mapTable,tonumber(c))
-        end
-    end
-    
-    return mapTable]]
-    
     local contents = love.filesystem.read(loadFile)
-    --local loadTable = {}
-    --local str = ""
-    --local pos = 1
-    
-    --return g.parseStringToTable(contents,pos)
     
     createGame.create()
     g.showMessageBox = false
     
-    -- local saveTable = {curLocation=g.curLocation.name,items=g.items,rooms=rooms,playerState=g.playerState}
     local loadTable = json.decode(contents)
     
     g.playerState = loadTable.playerState
@@ -248,6 +154,20 @@ function g.loadGame(loadFile)
                 room_value.music = loadMusic.houseDark
             end
         end
+    end
+    
+    -- Check if the grave has already been moved
+    if(loadRooms.graveyard.objects.grave.state == "Pushed") then
+        loadRooms.graveyard.objects.stairs = {name="stairs",x=37,y=67,w=25,h=11,text={look={"Stairs. They lead down into the", "the earth. But what hides", "there?"},move=""},img=loadImages.graveStairs,move=""}
+        loadGameText.graveyard.grave.pull = {"It has already been moved!"}
+        loadGameText.graveyard.grave.push = {"It has already been moved!"}
+        loadRooms.graveyard.objects.grave.text = loadGameText.graveyard.grave
+    end
+    
+    -- Check if the cog has been placed already
+    if(g.playerState.gearPlaced == true) then
+        loadRooms.clockTowerInsideFirstFloor.objects.cogHole.text.look = {"It's a gear for the clock", "tower."}
+        loadRooms.clockTowerInsideFirstFloor.objects.cogHole.text.put = {"The cog has already been", "placed."}
     end
     
     -- Check if the panel is open and the player has not yet picked up the hacksaw
@@ -282,15 +202,22 @@ function g.loadGame(loadFile)
         loadRooms.gasStationOutside.objects.pump2.text.use={"You fill your car up with gas."}
     end
     
+    if(loadRooms.street7.objects.sewerGate.state == "Broken") then
+        loadRooms.street7.objects.sewerGate.text = {close={"It's been cut open. It can't be", "closed anymore."},look={"It's a sewer gate. It's been", "cut open."},move="North",open={"It's already open!"},pull={"It's already open!"},push={"It's already open!"}}
+    end
+    
     if(g.playerState.hasGas == true) then
         loadRooms.gasStationOutside.objects.pump1.text.use = {"Your car is already filled."}
         loadRooms.gasStationOutside.objects.pump2.text.use = {"Your car is already filled."}
     end
     
     if(g.playerState.classOver == true) then
-        loadRooms.school1.backgrounds.light = loadImages.school1Night
         loadRooms.school1.music = loadMusic.houseDark
-        loadRooms.car2.backgrounds.light = loadImages.carNight
+        loadRooms.school1.state = "dark"
+        loadRooms.school2.objects.door.img.open = loadImages.classDoorOpenNight
+        loadRooms.car2.state = "dark"
+        loadRooms.car2.music = loadMusic.houseDark
+        loadRooms.classroom.objects = {}
     end
     
     if(loadRooms.park1.objects.parkGate.state == "Closed") then

@@ -10,6 +10,7 @@ function drawLoadScreen.draw()
     
     love.graphics.print("Load Game", 60, 8, 0, 0.4, 0.4)
     
+    love.graphics.rectangle("line",2,2,160-4,144-4)
     
     if(love.filesystem.getInfo("Save_File_1.lua")) then
         g.highlightText(g.textBoxes.loadGameScreen.loadGame1,0.4)

@@ -10,7 +10,7 @@ local drawInstructionsScreen = {}
         love.graphics.setColor(g.colors.lightGreen.r, g.colors.lightGreen.g, g.colors.lightGreen.b, 1)
         
         -- Print the "Instructions" title
-        love.graphics.print("Instructions", 46, 10, 0, 0.5, 0.5)
+        love.graphics.print("Instructions", 44, 10, 0, 0.5, 0.5)
         
         local size = 0.4
         

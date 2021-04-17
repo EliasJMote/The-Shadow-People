@@ -8,7 +8,9 @@ function drawPauseScreen.draw()
     love.graphics.rectangle("fill", 0, 0, 160, 144)
     love.graphics.setColor(g.colors.lightGreen.r, g.colors.lightGreen.g, g.colors.lightGreen.b, 1)
     
-    love.graphics.print("Paused", 68, 8, 0, 0.4, 0.4)
+    love.graphics.rectangle("line",2,2,160-4,144-4)
+    
+    love.graphics.print("Paused", 66, 8, 0, 0.4, 0.4)
     
     for k,v in pairs(g.textBoxes.pauseScreen) do
         g.highlightText(v,0.4)

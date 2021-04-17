@@ -78,10 +78,15 @@ local updateCheckAction = {}
                             if(g.actionSelected == "Open" and g.mouse.objectPointedAt.state == "Closed") then
                                 g.mouse.objectPointedAt.state = "Open"
                                 loadSFX.doorOpen:play()
-                            end
                             
-                            if(g.actionSelected == "Open" and g.mouse.objectPointedAt.state == "Stuck") then
-                                g.writeToTextDisplay({"Although it's not locked, it", "won't open for some reason..."})
+                            elseif(g.actionSelected == "Open" and g.mouse.objectPointedAt.state == "Stuck") then
+                                g.writeToTextDisplay({"Although it's not locked, it", "won't open for some reason."})
+                            
+                            --elseif(g.actionSelected == "Open" and g.mouse.objectPointedAt.state == nil) then
+                                --g.writeToTextDisplay(g.mouse.objectPointedAt.text[g.actionSelected:lower()])
+                                
+                            elseif(g.actionSelected == "Open") then
+                                g.writeToTextDisplay(g.mouse.objectPointedAt.text[g.actionSelected:lower()])
                             end
                             
                             -- Try to close the object if possible
@@ -183,6 +188,8 @@ local updateCheckAction = {}
                                             g.showMessageBox = true
                                             g.writeToTextDisplay({"The door suddenly opens."})
                                             loadRooms.puzzlingStone.objects.door.state = "Open"
+                                            loadRooms.puzzlingStone.objects.door.text.open = {"The door is already open! Best", "not to tarry, unless it decides", "to close back up."}
+                                            loadSFX.pickup:play()
                                         end
                                         
                                     elseif(g.curLocation == loadRooms.altarRoom) then
@@ -293,6 +300,8 @@ local updateCheckAction = {}
                                         g.showMessageBox = true
                                         g.writeToTextDisplay({"The door suddenly opens."})
                                         loadRooms.puzzlingStone.objects.door.state = "Open"
+                                        loadRooms.puzzlingStone.objects.door.text.open = {"The door is already open! Best", "not to tarry, unless it decides", "to close back up."}
+                                        loadSFX.pickup:play()
                                     end
                                 end
                             end
@@ -308,6 +317,7 @@ local updateCheckAction = {}
                                     if(g.mouse.objectPointedAt == g.curLocation.objects.shadowOrb) then
                                         g.playerState.hasShadowOrb = true
                                         loadRooms.highway5.state = "Evil"
+                                        loadRooms.shed.state = "Evil"
                                     end
                                     
                                 elseif(g.curLocation == loadRooms.sewer7) then
@@ -328,9 +338,13 @@ local updateCheckAction = {}
                                         g.playerState.gearPlaced = true
                                         g.curLocation.objects.cogHole.state = "Full"
                                         g.writeToTextDisplay({"You place the cog into the", "empty hole. You hear the gears", "begin to grind as the clock", "tower comes to life."})
+                                        g.curLocation.objects.cogHole.text.look = {"It's a gear for the clock", "tower."}
                                         g.curLocation.objects.cogHole.text.put = {"The cog has already been", "placed."}
                                         g.itemSelected = nil
+                                        loadSFX.pickup:play()
+                                        g.itemCount = g.itemCount - 1
                                         
+                                        -- Remove the cog from the player's inventory
                                         for k,v in ipairs(g.items) do
                                             if(v.name =="Cog") then
                                                 table.remove(g.items,k)
@@ -345,6 +359,8 @@ local updateCheckAction = {}
                                         g.writeToTextDisplay({"You place the Shadow Orb into", "the hands of the statue. It", "pulses with a strange energy.", "Somehow, in your head, you hear", "the words: THE RITUAL IS READY.", "LIE DOWN ON THE ALTAR TO BEGIN", "THE TRANSMOGRIFICATION."})
                                         g.curLocation.objects.statue.text.put = {"The orb has already been", "placed."}
                                         g.itemSelected = nil
+                                        loadSFX.pickup:play()
+                                        g.itemCount = g.itemCount - 1
                                         
                                         for k,v in ipairs(g.items) do
                                             if(v.name =="Shadow Orb") then
@@ -379,8 +395,10 @@ local updateCheckAction = {}
                                         g.textBuffer = {}
                                         g.showMessageBox = false
                                         g.playerState.classOver = true
+                                        loadRooms.classroom.objects = {}
                                         loadRooms.school1.music = loadMusic.houseDark
                                         loadRooms.school1.state = "dark"
+                                        loadRooms.school2.objects.door.img.open = loadImages.classDoorOpenNight
                                         loadRooms.car2.state = "dark"
                                         loadRooms.car2.music = loadMusic.houseDark
                                         createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="class transition"}})
@@ -538,7 +556,8 @@ local updateCheckAction = {}
                         if(g.curLocation == loadRooms.gasStationOutside) then
                             if(g.curLocation.objects.door.state == "Locked" and g.mouse.objectPointedAt == g.curLocation.objects.door) then
                                 g.curLocation.objects.door.state = "Closed"
-                                g.writeToTextDisplay({"You unlock the door with", "the key."})
+                                g.writeToTextDisplay({"You unlock the door with the", "key."})
+                                g.curLocation.objects.door.text.look={"It's a double glass door. It's", "dark on the inside."}
                                 loadSFX.pickup:play()
                             else
                                 g.writeToTextDisplay({"You can't use the gas station", "key here."})
@@ -552,9 +571,10 @@ local updateCheckAction = {}
                     -- The hacksaw is used to cut the sewer gate
                     elseif(g.itemSelected == "Hacksaw") then
                         if(g.curLocation == loadRooms.street7) then
-                            if(g.curLocation.objects.sewerGate.state == "Locked" and g.mouse.objectPointedAt == g.curLocation.objects.sewerGate) then
+                            if(g.curLocation.objects.sewerGate.state == "Rusted" and g.mouse.objectPointedAt == g.curLocation.objects.sewerGate) then
                                 g.curLocation.objects.sewerGate.state = "Broken"
                                 g.writeToTextDisplay({"You cut the bars with the", "hacksaw."})
+                                g.curLocation.objects.sewerGate.text = {close={"It's been cut open. It can't be", "closed anymore."},look={"It's a sewer gate. It's been", "cut open."},move="North",open={"It's already open!"},pull={"It's already open!"},push={"It's already open!"}}
                                 loadSFX.pickup:play()
                             else
                                 g.writeToTextDisplay({"You can't use the hacksaw here."})
@@ -565,13 +585,13 @@ local updateCheckAction = {}
                             end
                         end
                         
-                    -- The hammer is used to smash the mirrors in the mirror room
-                    elseif(g.itemSelected == "Hammer") then
+                    -- The mallet is used to smash the mirrors in the mirror room
+                    elseif(g.itemSelected == "Mallet") then
                         if(g.curLocation == loadRooms.mirrorRoom) then
                             if(g.curLocation.objects.mirror1.state == "Unbroken" and g.mouse.objectPointedAt == g.curLocation.objects.mirror1) then
                                 g.curLocation.objects.mirror1.state = "Broken"
                                 g.writeToTextDisplay({"You smash the mirror to pieces."})
-                                --g.curLocation.objects.mirror2.text.look = {"A hidden room lies beyond the", "broken mirror."}
+                                g.curLocation.objects.mirror1.text.look={"A long mirror. It's been", "smashed to pieces."}
                                 loadSFX.glassShattering:play()
                             elseif(g.curLocation.objects.mirror2.state == "Unbroken" and g.mouse.objectPointedAt == g.curLocation.objects.mirror2) then
                                 g.curLocation.objects.mirror2.state = "Closed"
@@ -585,18 +605,21 @@ local updateCheckAction = {}
                             elseif(g.curLocation.objects.mirror3.state == "Unbroken" and g.mouse.objectPointedAt == g.curLocation.objects.mirror3) then
                                 g.curLocation.objects.mirror3.state = "Broken"
                                 g.writeToTextDisplay({"You smash the mirror to pieces."})
+                                g.curLocation.objects.mirror3.text.look={"A long mirror. It's been", "smashed to pieces."}
                                 loadSFX.glassShattering:play()
                             else
-                                g.writeToTextDisplay({"You can't use the hammer here."})
+                                g.writeToTextDisplay({"You can't use the mallet here."})
                             end
                         elseif(g.curLocation == loadRooms.dreamMirrorRoom) then
                             if(g.curLocation.objects.mirror1.state == "Unbroken" and g.mouse.objectPointedAt == g.curLocation.objects.mirror1) then
                                 g.curLocation.objects.mirror1.state = "Broken"
                                 g.writeToTextDisplay({"You smash the mirror to pieces."})
+                                g.curLocation.objects.mirror1.text.look={"A long mirror. It's been", "smashed to pieces."}
                                 loadSFX.glassShattering:play()
                             elseif(g.curLocation.objects.mirror2.state == "Unbroken" and g.mouse.objectPointedAt == g.curLocation.objects.mirror2) then
                                 g.curLocation.objects.mirror2.state = "Broken"
                                 g.writeToTextDisplay({"You smash the mirror to pieces."})
+                                g.curLocation.objects.mirror2.text.look={"A long mirror. It's been", "smashed to pieces."}
                                 loadSFX.glassShattering:play()
                             elseif(g.curLocation.objects.mirror3.state == "Unbroken" and g.mouse.objectPointedAt == g.curLocation.objects.mirror3) then
                                 g.curLocation.objects.mirror3.state = "Broken"
@@ -605,11 +628,11 @@ local updateCheckAction = {}
                                 g.curLocation.objects.mirror3.move=""
                                 loadSFX.glassShattering:play()
                             else
-                                g.writeToTextDisplay({"You can't use the hammer here."})
+                                g.writeToTextDisplay({"You can't use the mallet here."})
                             end
                         else
                             if(g.mouse.objectPointedAt ~= nil) then
-                                g.writeToTextDisplay({"You can't use the hammer here."})
+                                g.writeToTextDisplay({"You can't use the mallet here."})
                             end
                         end
                         
