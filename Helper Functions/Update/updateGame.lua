@@ -4,8 +4,10 @@ function updateGame.update()
 
     local g = GLOBALS
 
+    -- Update the next time we want to hit based on the minimum delta time
+    g.nextTime = g.nextTime + g.minDT
+
     -- Update the window scaling (since the player can adjust this window at anytime)
-    
     g.scale.x = love.graphics.getWidth()/160
     g.scale.y = love.graphics.getHeight()/144
 
@@ -38,33 +40,22 @@ function updateGame.update()
         g.mouse.mapHover = false
     
     elseif(g.state == "video intro") then
-        --if(g.timers.video < 1238) then
         if(g.timers.video < 875) then
             g.timers.video = g.timers.video + 0.2
-        --elseif(g.timers.video == 238) then
         else
             g.timers.video = 0
             g.state = "screen transition"
-            --g.state = "title"
             createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="title"}})
-            --createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144})
-            --g.music = loadMusic.shadowLands
-            --g.music:play()
-            --love.graphics.setColor(g.colors.darkestGreen.r, g.colors.darkestGreen.g, g.colors.darkestGreen.b, 1)
-            --g.timers.video = 239-5
-            --createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="bad ending"}})
         end
     
     elseif(g.state == "video bad ending") then
         if(g.timers.video < 238) then
             g.timers.video = g.timers.video + 0.2
-        --elseif(g.timers.video == 238) then
         else
             g.state = "bad ending"
             g.music = loadMusic.shadowLands
             g.music:play()
             --love.graphics.setColor(g.colors.darkestGreen.r, g.colors.darkestGreen.g, g.colors.darkestGreen.b, 1)
-            --g.timers.video = 239-5
             --createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="bad ending"}})
         end
     

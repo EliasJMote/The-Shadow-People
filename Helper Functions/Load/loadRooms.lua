@@ -488,7 +488,7 @@ loadRooms.gasStationOutside =   {
                                     backgrounds={light=loadImages.gasStationOutside},
                                     music=loadMusic.houseDark,
                                     objects={
-                                                door={name="Door",x=75,y=57,w=7,h=7,img={closed=loadImages.gasStationStoreDoorClosed,locked=loadImages.gasStationStoreDoorClosed,open=loadImages.gasStationStoreDoorOpen},move="North",state="Locked",text={close={"You close the door."},look={"It's a double glass door. It's", "dark on the inside. It's", "currently locked."},open={"You open the door."},move="North"}},
+                                                door={name="Door",x=75,y=57,w=7,h=7,img={closed=loadImages.gasStationStoreDoorClosed,locked=loadImages.gasStationStoreDoorClosed,open=loadImages.gasStationStoreDoorOpen},move="North",state="Locked",text={close={"You close the door."},look={"It's a double glass door. It's", "dark on the inside. It's", "currently locked."},open={"It's locked!"},move="North"}},
                                                 light1={name="Light 1",x=15,y=44,w=4,h=2,text={look={"It's a light fixture."}}},
                                                 light2={name="Light 2",x=28,y=44,w=4,h=2,text={look={"It's a light fixture."}}},
                                                 light3={name="Light 3",x=42,y=44,w=4,h=2,text={look={"It's a light fixture."}}},
@@ -755,6 +755,7 @@ loadRooms.nightmareGeometry4 =  {
                                                 squiggleHoleInWall={name="Squiggle Hole in Wall",x=16,y=16,w=68,h=51,text={look={"It appears to be twisting,", "snaking cracks in the wall.", "It's faint, but you think you", "can hear someone screaming in", "pain deep inside the fissures,", "followed by what sounds like", "crawling..."}}},
                                             },
                                     exits={west="Dark Passage 8",south="Dark Passage 8",east="Dark Passage 8"},
+                                    --exits={},
                                     --exits={west="Nightmare Geometry 5",south="Nightmare Geometry 5",east="Nightmare Geometry 5"},
                                     backgroundStatic = true,
                                 }
@@ -768,8 +769,6 @@ loadRooms.nightmareGeometry5 =  {
                                     music=loadMusic.nightmareGeometry,
                                     backgrounds={light=loadImages.nightmareGeometry5},
                                     objects={
-                                                -- Repeatedly checking this will eventually cause a shadow child to appear and slowly walk towards the player
-                                                -- If this event is triggered, controls will become disabled
                                                 endlessHallway={name="Endless Hallway",x=14,y=3,w=72,h=77,move="North",text={look={"It's a hallway with a never-", "ending series of archways. You", "can hear the sounds of children", "in the distance, far far away."},move="North"}},
                                             },
                                     exits={north="Nightmare Geometry 6",west="Dark Passage 1",south="Nightmare Geometry 5",east="Dark Passage 1"},
@@ -800,8 +799,8 @@ loadRooms.nightmareGeometry7 =  {
                                     music=loadMusic.nightmareGeometry,
                                     backgrounds={light=loadImages.nightmareGeometry7},
                                     objects={
-                                                -- Looking at this or 
-                                                endlessHallway={name="Endless Hallway",x=14,y=3,w=72,h=77,move="",text={look={"It's a hallway with a never-", "ending series of archways. You", "can hear the sounds of children", "in the distance, far far away."},move=""}},
+                                                -- Looking at this will spawn a shadow child 
+                                                endlessHallway={name="Endless Hallway",x=47,y=32,w=6,h=12,move="",text={look={"It's a hallway with a never-", "ending series of archways. You", "can hear the sounds of children", "in the distance, far far away."},move=""}},
                                             },
                                     exits={south="Nightmare Geometry 5"},
                                     backgroundStatic = true,

@@ -7,12 +7,10 @@ local createGame = {}
         -- Create the game rooms
         createRooms.create()
         
-        --g.state = "game"
-        
         -- Initialize current location
         g.curLocation = loadRooms.bedroom
         if(debug) then
-            g.curLocation = loadRooms.nightmareGeometry1
+            g.curLocation = loadRooms.nightmareGeometry7
         end
         
         -- Initialize items currently held

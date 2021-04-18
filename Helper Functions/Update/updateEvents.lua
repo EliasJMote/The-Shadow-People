@@ -470,6 +470,21 @@ updateEvents.update = function()
                 g.mouse.mapHover = nil
                 g.mouse.actionHover = nil
                 g.mouse.itemMenuHoverItem = nil
+                
+            elseif(g.state == "night transition") then
+                local mouseHover = false
+                if(g.mouseCollision(g.mouse.x,g.mouse.y,g.textBoxes.transitionScreens.space.startGame)) then
+                    g.mouse.textHover = true
+                    mouseHover = true
+                else
+                    g.mouse.textHover = false
+                end
+                g.mouse.objectHover = nil
+                g.mouse.mapHover = nil
+                g.mouse.objectHover = nil
+                g.mouse.mapHover = nil
+                g.mouse.actionHover = nil
+                g.mouse.itemMenuHoverItem = nil
             
             elseif(g.state == "game") then
                 g.mouse.objectHover = false

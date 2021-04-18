@@ -1,5 +1,5 @@
 ﻿The Shadow People
-Version 1.0.0.1
+Version 1.0.0.2
 
 Copyright © 2020-2021 Elias Mote
 Copyright © 2020-2021 Roc Studios
@@ -18,14 +18,33 @@ This software may be not be reproduced under any circumstances except for person
 II. Version History
 
 --------------------------
-V1.0.0.1 - Current Version
+V1.0.0.2 - Current Version
+--------------------------
+-- Content --
+-- Changed the size of the collision box for seeing the Shadow Child at the end of the Endless
+Hallway.
+-- Added a fps cap of 60
+-- Slowed down the credits text to 12 seconds per page, instead of 10
+-- Added an icon for the windows version of The Shadow People
+
+-- Bug Fixes --
+-- Fixed a bug where trying to open a door that's already open wouldn't update the text to let the
+player know that the door was already open.
+-- Fixed a bug with the gas station outside door where if the player tried to open the door while it
+was locked, the text would incorrectly read "Opened the Door" instead of "It's locked".
+-- Fixed a bug where loading the game at the "Cracked Wall?" (Nightmare Geometry 4) would load the
+room incorrectly.
+-- Fixed a bug where the "Night Transition" would not correctly set the mouse cursor.
+
+--------------------------
+V1.0.0.1
 --------------------------
 -- Content --
 -- Added some extra dialogue when staring at the sun from the patio. This is to clue the
 player in that staring at the sun is a bad idea.
 
 -- Misc. --
-Added LICENCE.txt for the JSON4Lua Module. The MIT License applies only to that module.
+-- Added LICENCE.txt for the JSON4Lua Module. The MIT License applies only to that module.
 
 -------------------------
 V1.0.0

@@ -50,11 +50,9 @@ function drawManager.draw()
     end
 
     -- Draw the mouse cursor
-    --if(g.playerState.numOfTimesLookedAtWallHole ~= 5) then
-        if not(g.state == "title" and g.timers.global < g.timers.titleScreenLogo+35) then
-            drawCursor.draw()
-        end
-    --end
+    if not(g.state == "title" and g.timers.global < g.timers.titleScreenLogo+35) then
+        drawCursor.draw()
+    end
     
     -- Draw the screen transition
     drawScreenTransition.draw()
@@ -114,6 +112,14 @@ function drawManager.draw()
             --love.graphics.draw(loadImages.shadowChild[7+math.floor(660/4)%4],160/2,144/2, 0, 0.3+(660-270)/200, 0.3+(660-270)/200,11,21)
         end
     end
+    
+    -- Set the game to sleep or return if needed to cap the frame rate
+    local curTime = love.timer.getTime()
+    if g.nextTime <= curTime then
+        g.nextTime = curTime
+        return
+    end
+    love.timer.sleep(g.nextTime - curTime)
 end
 
 return drawManager

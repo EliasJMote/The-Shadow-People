@@ -64,8 +64,14 @@ function love.load()
     font = love.graphics.newFont("Font/prstart.ttf")
     love.graphics.setFont(font)
     
+    love.window.setIcon(love.image.newImageData("Images/Icon/The Shadow People Icon.png"))
+    
     -- Set the mouse to be invisible
     love.mouse.setVisible(false)
+    
+    -- Initialize the max FPS
+    g.minDT = 1/60 -- 1 / max FPS
+    g.nextTime = love.timer.getTime()
     
     -- Set up the mouse variables
     g.mouse = {}
@@ -81,7 +87,7 @@ function love.load()
     g.timers = {}
     g.timers.global = 0
     g.timers.titleScreenLogo = 210
-    g.timers.endingTextFadeOut = 60 * 10
+    g.timers.endingTextFadeOut = 60 * 12
     g.timers.endingTextTimeAddition = 60 * 2
     g.timers.goodEnding = 5 * g.timers.endingTextFadeOut + g.timers.endingTextTimeAddition 
     g.timers.badEnding = 6 * g.timers.endingTextFadeOut + g.timers.endingTextTimeAddition 
@@ -214,7 +220,7 @@ function love.load()
 end
 
 function love.update(dt)
-    updateGame.update()
+    updateGame.update(dt)
 end
 
 function love.draw()

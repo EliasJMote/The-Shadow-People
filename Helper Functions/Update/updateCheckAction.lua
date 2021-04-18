@@ -84,6 +84,12 @@ local updateCheckAction = {}
                             
                             --elseif(g.actionSelected == "Open" and g.mouse.objectPointedAt.state == nil) then
                                 --g.writeToTextDisplay(g.mouse.objectPointedAt.text[g.actionSelected:lower()])
+                               
+                            elseif (g.actionSelected == "Open" and g.mouse.objectPointedAt.state == "Locked") then
+                                    g.writeToTextDisplay({"It's locked!"})
+                               
+                            elseif (g.actionSelected == "Open" and g.mouse.objectPointedAt.state == "Open") then
+                                    g.writeToTextDisplay({"It's already open!"})
                                 
                             elseif(g.actionSelected == "Open") then
                                 g.writeToTextDisplay(g.mouse.objectPointedAt.text[g.actionSelected:lower()])
@@ -575,6 +581,7 @@ local updateCheckAction = {}
                                 g.curLocation.objects.door.state = "Closed"
                                 g.writeToTextDisplay({"You unlock the door with the", "key."})
                                 g.curLocation.objects.door.text.look={"It's a double glass door. It's", "dark on the inside."}
+                                g.curLocation.objects.door.text.open={"You open the door."}
                                 loadSFX.pickup:play()
                             else
                                 g.writeToTextDisplay({"You can't use the gas station", "key here."})

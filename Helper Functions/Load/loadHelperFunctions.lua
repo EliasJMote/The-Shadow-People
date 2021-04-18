@@ -250,20 +250,8 @@ function g.loadGame(loadFile)
     
     loadRooms.nightmareGeometry2.backgrounds.light = loadImages.nightmareGeometry2
     
-    loadRooms.nightmareGeometry4 =  {
-                                        name="Nightmare Geometry 4",
-                                        displayName="Cracked Wall?",
-                                        state="Light",
-                                        map=loadImages.TMap,
-                                        music=loadMusic.nightmareGeometry,
-                                        backgrounds={light=loadImages.nightmareGeometry4},
-                                        objects={
-                                                    -- Repeatedly checking this will eventually cause a shadow person appearing and screaming in pain
-                                                    squiggleHoleInWall={name="Squiggle Hole in Wall",x=16,y=16,w=68,h=51,text={look={"It appears to be twisting,", "snaking cracks in the wall.", "It's faint, but you think you", "can hear someone screaming in", "pain deep inside the fissures,", "followed by what sounds like", "crawling..."}}},
-                                                },
-                                        exits={west="Nightmare Geometry 5",south="Nightmare Geometry 5",east="Nightmare Geometry 5"},
-                                        backgroundStatic = true,
-                                }
+    -- Repeatedly checking this will eventually cause a shadow person appearing and screaming in pain
+    loadRooms.nightmareGeometry4.objects={squiggleHoleInWall={name="Squiggle Hole in Wall",x=16,y=16,w=68,h=51,text={look={"It appears to be twisting,", "snaking cracks in the wall.", "It's faint, but you think you", "can hear someone screaming in", "pain deep inside the fissures,", "followed by what sounds like", "crawling..."}}}}
     
     for room_key,room_value in pairs(loadRooms) do
         --[[for load_room_key, load_room_value in pairs(loadTable.rooms) do
