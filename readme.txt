@@ -1,5 +1,5 @@
 ﻿The Shadow People
-Version 1.0.0
+Version 1.0.0.1
 
 Copyright © 2020-2021 Elias Mote
 Copyright © 2020-2021 Roc Studios
@@ -13,15 +13,22 @@ VI. Credits
 
 I. Disclaimer
 
-This software may be not be reproduced under any circumstances except for personal, private use. It 
-may not be placed on any web site or otherwise distributed publicly except at the sole discretion of
- the author. Placement of this readme or game on any other web site or as a part of any public
- display is strictly prohibited, and a violation of copyright.
+This software may be not be reproduced under any circumstances except for personal, private use. It may not be placed on any web site or otherwise distributed publicly except at the sole discretion of the author. Placement of this readme or game on any other web site or as a part of any public display is strictly prohibited, and a violation of copyright.
 
 II. Version History
 
+--------------------------
+V1.0.0.1 - Current Version
+--------------------------
+-- Content --
+-- Added some extra dialogue when staring at the sun from the patio. This is to clue the
+player in that staring at the sun is a bad idea.
+
+-- Misc. --
+Added LICENCE.txt for the JSON4Lua Module. The MIT License applies only to that module.
+
 -------------------------
-V1.0.0 - Current Version
+V1.0.0
 -------------------------
 -- Content --
 -- Added an intro cutscene
@@ -299,10 +306,14 @@ V0.1.0
 -- Added user interface for the player
 
 III. Story
+The Shadow People is a #pointandclick #horror #adventure game where you wake up exhausted the week before finals week. Gathering your things, you head to campus to attend class, and then after sitting through a lengthy lecture, you head back home.
 
+After refueling at a gas station on the way back, you're driving alone in the dark and doing your best to keep yourself awake. Suddenly, you think you see someone in the road, and you violently swerve out of the way to avoid them. Unfortunately, your car gets smashed pretty badly in the wreck, leaving you stranded on a lonely section of highway.
+
+Your cell phone is unable to get any signal, so you decide to hoof it, looking for any sign of civilization or cell phone signal. You reach a nearby town that you swear used to be just empty grassland. You navigate the silent streets, trying your best to figure out a way back home.
 
 IV. Controls
-- Use the mouse to click on objects, the map or action text
+Use the left mouse to click through the game. Select text or objects within the game to perform certain actions. Use the right click during the game to access the pause menu. You can select up to 10 different actions, including the "Move" action.
 
 V. Contact
 Contact me with questions or comments at rulerofchaosstudios@gmail.com
@@ -321,6 +332,7 @@ Testers: Dred4170, Raistlarn, Taylor Fielder, Aluminati, BeanWagon
 Software:
 Engine: Love2d
 Programming language: Lua
-Music: 
+Music: Famitracker
 Sound effects: Sfxr
 Font: "Press Start" font by codeman38 http://www.zone38.net/
+JSON4Lua: Craig Mason-Jones http://github.com/craigmj/json4lua/

@@ -77,7 +77,7 @@ loadRooms.car1 =     {
                                     gloveCompartment={name="Glove Compartment",x=70,y=44,w=27,h=10,text={look={"It's your car glove", "compartment. Unfortunately, the", "lock mechanism is stuck, so you", "can't open it."},open={"The lock is stuck. Opening the", "compartment is futile."}}},
                                     shifter={name="Shifter",x=48,y=51,w=4,h=20,text={look={"It's your car shifter. It helps", "you switch gears when driving."},use={"You don't need to use it now."}}},
                                     steeringWheel={name="Steering Wheel",x=7,y=30,w=28,h=28,text={look={"It's your car steering wheel.", "It's a bit sticky these days."}}},
-                                    sun={name="Sun",x=81,y=5,w=5,h=5,text={look={"It's the morning sun."}}},
+                                    --sun={name="Sun",x=81,y=5,w=5,h=5,text={look={"It's the morning sun."}}},
                                 },
                         exits={south="Living Room"},
                     }

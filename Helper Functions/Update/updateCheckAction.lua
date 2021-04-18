@@ -378,7 +378,24 @@ local updateCheckAction = {}
                                 if(g.curLocation == loadRooms.patio) then
                                     if(g.mouse.objectPointedAt == loadRooms.patio.objects.sun) then
                                         g.playerState.numOfTimesLookedAtSun = g.playerState.numOfTimesLookedAtSun + 1
-                                        if(g.playerState.numOfTimesLookedAtSun >= 5) then
+                                        
+                                        if(g.playerState.numOfTimesLookedAtSun == 1) then
+                                            loadRooms.patio.objects.sun.text.look = {"You really should not stare at", "the sun."}
+                                        end
+                                        
+                                        if(g.playerState.numOfTimesLookedAtSun == 2) then
+                                            loadRooms.patio.objects.sun.text.look = {"Seriously, it's not a wise", "choice to gaze too long at it."}
+                                        end
+                                        
+                                        if(g.playerState.numOfTimesLookedAtSun == 3) then
+                                            loadRooms.patio.objects.sun.text.look = {"If you keep it up, you'll lose", "your eyesight."}
+                                        end
+                                        
+                                        if(g.playerState.numOfTimesLookedAtSun == 4) then
+                                            loadRooms.patio.objects.sun.text.look = {"Say good-bye to your sight and", "welcome an endless darkness..."}
+                                        end
+                                        
+                                        if(g.playerState.numOfTimesLookedAtSun >= 6) then
                                             g.actionSelected = nil
                                             g.textBuffer = {}
                                             createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="easter egg ending"}})

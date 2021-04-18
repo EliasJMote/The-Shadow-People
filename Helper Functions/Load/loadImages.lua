@@ -263,21 +263,9 @@ loadImages.video = {}
 -- Street Video (for the intro)
 loadImages.video.intro = {}
 
---[[for i=1,9 do
-    loadImages.video.intro[i] = love.graphics.newImage("Images/Video/Intro/img000" .. i .. ".png_160x144.png")
-end
-
-for i=10,99 do
-    loadImages.video.intro[i] = love.graphics.newImage("Images/Video/Intro/img00" .. i .. ".png_160x144.png")
-end]]
-
 for i=726,876 do
     loadImages.video.intro[i] = love.graphics.newImage("Images/Video/Intro/img0" .. i .. ".png_160x144.png")
 end
-
---[[for i=1000,1239 do
-    loadImages.video.intro[i] = love.graphics.newImage("Images/Video/Intro/img" .. i .. ".png_160x144.png")
-end]]
 
 -- Shadow Person Video (for the bad ending)
 loadImages.video.badEnding = {}

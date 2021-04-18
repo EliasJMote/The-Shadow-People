@@ -36,7 +36,8 @@ function love.load()
     drawEnding = require("Helper Functions/Draw/drawEnding")
     drawVideo = require("Helper Functions/Draw/drawVideo")
     
-    json = require("Helper Functions/json")
+    -- JSON4Lua Module
+    json = require("Helper Functions/JSON4Lua/json")
     
     -- Set the scaler to use the nearest neighbor filter
     love.graphics.setDefaultFilter("nearest", "nearest", 0)
@@ -75,10 +76,6 @@ function love.load()
     
     -- Initialize game state
     g.state = "warning"
-    --if(debug) then
-        
-    --end
-    --g.state = "title credits"
     
     -- Initialize the constant game timers
     g.timers = {}
