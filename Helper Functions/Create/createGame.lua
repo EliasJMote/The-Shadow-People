@@ -4,13 +4,15 @@ local createGame = {}
 
         local g = GLOBALS
         
+        g.backgroundStatic = false
+        
         -- Create the game rooms
         createRooms.create()
         
         -- Initialize current location
         g.curLocation = loadRooms.bedroom
         if(debug) then
-            g.curLocation = loadRooms.nightmareGeometry7
+            g.curLocation = loadRooms.darkPassage1
         end
         
         -- Initialize items currently held

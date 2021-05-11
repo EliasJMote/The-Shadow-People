@@ -89,11 +89,15 @@ function love.load()
     g.timers.titleScreenLogo = 210
     g.timers.endingTextFadeOut = 60 * 12
     g.timers.endingTextTimeAddition = 60 * 2
+    
+    -- Divide the number of text lines by 4, then round up
     g.timers.goodEnding = 5 * g.timers.endingTextFadeOut + g.timers.endingTextTimeAddition 
     g.timers.badEnding = 6 * g.timers.endingTextFadeOut + g.timers.endingTextTimeAddition 
     g.timers.easterEggEnding = 1 * g.timers.endingTextFadeOut + g.timers.endingTextTimeAddition 
-    g.timers.alienEnding = 2 * g.timers.endingTextFadeOut + g.timers.endingTextTimeAddition 
+    g.timers.alienEnding = 11 * g.timers.endingTextFadeOut + g.timers.endingTextTimeAddition 
     g.timers.redPrinceEnding = 7 * g.timers.endingTextFadeOut + g.timers.endingTextTimeAddition
+    
+    -- 726 is the first video frame for the intro cutscene
     g.timers.video = 726
     
     -- Initialize events table
@@ -115,6 +119,9 @@ function love.load()
                             {text="Talk",x=54,y=116,w=18,h=4},
                             {text="Use",x=87,y=103,w=13,h=4},
                         }
+                   
+    -- List of all states that objects can be in the game
+    g.objectStates = {"On", "Off", "Open", "Closed", "Locked", "Stuck", "Rusted", "Lit", "Unlit"}
           
     g.endingScreenMask = {x=0,y=0,w=160,h=144} 
         
@@ -196,6 +203,7 @@ function love.load()
                                                 dream={startGame = {x=30,y=128,w=101,h=6,text="Click to Continue"}},
                                                 space={startGame = {x=30,y=128,w=101,h=6,text="Click to Continue"}},
                                                 night={startGame = {x=30,y=128,w=101,h=6,text="Click to Continue"}},
+                                                dark={startGame = {x=30,y=128,w=101,h=6,text="Click to Continue"}},
                                             },
                                         
                         warningScreen = {

@@ -132,10 +132,8 @@ function g.loadGame(loadFile)
     g.playerState = loadTable.playerState
     g.items = loadTable.items
     
+    -- Move objects offscreen if the player has picked them up already
     for room_key,room_value in pairs(loadRooms) do
-        if(room_key == "mirrorRoom") then
-            print("ok")
-        end
         room_value.state = loadTable.rooms[room_key].state
         for obj_key,obj_value in pairs(loadTable.rooms[room_key].objects) do
             if(room_value.objects[obj_key] ~= nil) then
@@ -162,6 +160,10 @@ function g.loadGame(loadFile)
         loadGameText.graveyard.grave.pull = {"It has already been moved!"}
         loadGameText.graveyard.grave.push = {"It has already been moved!"}
         loadRooms.graveyard.objects.grave.text = loadGameText.graveyard.grave
+        
+        -- Update the map
+        loadRooms.graveyard.map = loadImages.twoWayVerticalMap
+        loadRooms.graveyard.exits.north = "Statue Room"
     end
     
     -- Check if the cog has been placed already
@@ -241,6 +243,8 @@ function g.loadGame(loadFile)
         and loadRooms.churchInside1.objects.candle2.state == "Lit"
         and loadRooms.churchInside1.objects.wallCandelabra1.state == "Lit") then
         loadRooms.churchInside1.objects.churchInsideDoor={name="Door",x=13,y=30,w=10,h=37,img={closed=loadImages.churchDoorInsideClosed,open=loadImages.churchDoorInsideOpen},state="Closed",move="",text={close={"You close the door."},look={"It's a narrow door hidden in", "the wall."},open={"You open the door."},move="",}}
+        loadRooms.churchInside1.map = loadImages.twoWayVerticalMap
+        loadRooms.churchInside1.exits.north = "Mirror Room"
     end
     
     if(loadRooms.graveyardUnderground1.objects.statueHoldingDarkCrystalBall.state == "Lit") then
@@ -250,7 +254,7 @@ function g.loadGame(loadFile)
     
     loadRooms.nightmareGeometry2.backgrounds.light = loadImages.nightmareGeometry2
     
-    -- Repeatedly checking this will eventually cause a shadow person appearing and screaming in pain
+    -- Reset Squiggly Man's room
     loadRooms.nightmareGeometry4.objects={squiggleHoleInWall={name="Squiggle Hole in Wall",x=16,y=16,w=68,h=51,text={look={"It appears to be twisting,", "snaking cracks in the wall.", "It's faint, but you think you", "can hear someone screaming in", "pain deep inside the fissures,", "followed by what sounds like", "crawling..."}}}}
     
     for room_key,room_value in pairs(loadRooms) do

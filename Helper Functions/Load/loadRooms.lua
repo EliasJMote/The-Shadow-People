@@ -255,12 +255,14 @@ loadRooms.darkPassage1 =    {
                                 displayName = "????????????",
                                 state="Light",
                                 backgrounds={light=loadImages.finalDarkPassage},
-                                map=loadImages.floodedLabyrinth1Map,
+                                map=loadImages.shadowLands3Map,
                                 objects={
-                                            light={name="Light",x=47,y=39,w=6,h=6,move="North",text={look={"It's a distant light..."},move="North"}},
+                                            light={name="Light",x=47,y=39,w=6,h=6,move="",text={look={"It's a distant light..."},move=""}},
                                         },
                                 music=loadMusic.nightmareGeometry,
-                                exits={north="House Outside"},
+                                --exits={north="House Outside"},
+                                exits={},
+                                backgroundStatic = true,
                             }
                             
 loadRooms.darkPassage2 =    {  
@@ -343,20 +345,23 @@ loadRooms.darkPassage9 =    {
                                 exits={north="Nightmare Geometry 5",west="Nightmare Geometry 5",south="Nightmare Geometry 5",east="Nightmare Geometry 5"},
                             }
          
-loadRooms.dreamMirrorRoom =  {
-                            name="Dream Mirror Room",
-                            displayName="Mirror Room?",
-                            state="Light",
-                            map=loadImages.shadowLands3Map,
-                            music = loadMusic.title,
-                            backgrounds={light=loadImages.mirrorRoom},
-                            objects={
-                                        mirror1={name="Mirror 1",x=21,y=28,w=15,h=38,img={broken=loadImages.hangingMirrorThinBroken,unbroken=loadImages.hangingMirrorThin},state="Unbroken",text={look={"A long mirror."}}},
-                                        mirror2={name="Mirror 2",x=41,y=28,w=15,h=38,img={broken=loadImages.hangingMirrorFatBroken,unbroken=loadImages.hangingMirrorFat},state="Unbroken",text={look={"A long mirror."}}},
-                                        mirror3={name="Mirror 3",x=63,y=28,w=15,h=38,img={broken=loadImages.hangingMirrorThinBrokenSpace,unbroken=loadImages.hangingMirrorThin},state="Unbroken",text={look={"A long mirror."}}},
-                                    },
-                            exits={},
-                        }
+
+-- The mirror room when the player is asleep in the "alien ending"
+loadRooms.dreamMirrorRoom = {
+                                name="Dream Mirror Room",
+                                displayName="Mirror Room?",
+                                state="Light",
+                                map=loadImages.shadowLands3Map,
+                                music = loadMusic.title,
+                                backgrounds={light=loadImages.mirrorRoom},
+                                objects={
+                                            mirror1={name="Mirror 1",x=21,y=28,w=15,h=38,img={broken=loadImages.hangingMirrorThinBroken,unbroken=loadImages.hangingMirrorThin},state="Unbroken",text={look={"A long mirror."}}},
+                                            mirror2={name="Mirror 2",x=41,y=28,w=15,h=38,img={broken=loadImages.hangingMirrorFatBroken,unbroken=loadImages.hangingMirrorFat},state="Unbroken",text={look={"A long mirror."}}},
+                                            mirror3={name="Mirror 3",x=63,y=28,w=15,h=38,img={broken=loadImages.hangingMirrorThinBrokenSpace,unbroken=loadImages.hangingMirrorThin},state="Unbroken",text={look={"A long mirror."}}},
+                                        },
+                                exits={},
+                                backgroundStatic = true,
+                            }
 -- Flooded Labyrinth 1
 loadRooms.floodedLabyrinth1 =   {  
                                     name="Flooded Labyrinth 1",
@@ -366,6 +371,8 @@ loadRooms.floodedLabyrinth1 =   {
                                     backgrounds={light=loadImages.floodedLabyrinth1},
                                     map=loadImages.fourWayMap,
                                     objects={
+                                                directions={name="Directions",x=20,y=6,w=44,h=8,text={look={"Strange markings. What could", "they mean?"}}},
+                                                moon={name="Moon",x=76,y=6,w=8,h=8,text={look={"It's a full moon."}}},
                                                 pathForward={name="Path Forward",x=36,y=36,w=28,h=11,move="North",text={look={"The tunnel continues forward."},move="North"}},
                                                 pathLeft={name="Path Left",x=4,y=17,w=11,h=48,move="West",text={look={"It's a side tunnel."},move="West"}},
                                                 pathRight={name="Path Right",x=85,y=17,w=11,h=48,move="East",text={look={"It's a side tunnel."},move="East"}},
@@ -384,6 +391,8 @@ loadRooms.floodedLabyrinth2 =   {
                                     backgrounds={light=loadImages.floodedLabyrinth2},
                                     map=loadImages.fourWayMap,
                                     objects={
+                                                directions={name="Directions",x=20,y=6,w=44,h=8,text={look={"Strange markings. What could", "they mean?"}}},
+                                                moon={name="Moon",x=76,y=6,w=8,h=8,text={look={"It's a waning gibbous moon."}}},
                                                 pathForward={name="Path Forward",x=36,y=36,w=28,h=11,move="North",text={look={"The tunnel continues forward."},move="North"}},
                                                 pathLeft={name="Path Left",x=4,y=17,w=11,h=48,move="West",text={look={"It's a side tunnel."},move="West"}},
                                                 pathRight={name="Path Right",x=85,y=17,w=11,h=48,move="East",text={look={"It's a side tunnel."},move="East"}},
@@ -401,6 +410,8 @@ loadRooms.floodedLabyrinth3 =   {
                                     backgrounds={light=loadImages.floodedLabyrinth3},
                                     map=loadImages.fourWayMap,
                                     objects={
+                                                directions={name="Directions",x=20,y=6,w=44,h=8,text={look={"Strange markings. What could", "they mean?"}}},
+                                                moon={name="Moon",x=76,y=6,w=8,h=8,text={look={"It's a third quarter moon."}}},
                                                 pathForward={name="Path Forward",x=36,y=36,w=28,h=11,move="North",text={look={"The tunnel continues forward."},move="North"}},
                                                 pathLeft={name="Path Left",x=4,y=17,w=11,h=48,move="West",text={look={"It's a side tunnel."},move="West"}},
                                                 pathRight={name="Path Right",x=85,y=17,w=11,h=48,move="East",text={look={"It's a side tunnel."},move="East"}},
@@ -418,6 +429,8 @@ loadRooms.floodedLabyrinth4 =   {
                                     backgrounds={light=loadImages.floodedLabyrinth4},
                                     map=loadImages.fourWayMap,
                                     objects={
+                                                directions={name="Directions",x=20,y=6,w=44,h=8,text={look={"Strange markings. What could", "they mean?"}}},
+                                                moon={name="Moon",x=76,y=6,w=8,h=8,text={look={"It's a waning crescent moon."}}},
                                                 pathForward={name="Path Forward",x=36,y=36,w=28,h=11,move="North",text={look={"The tunnel continues forward."},move="North"}},
                                                 pathLeft={name="Path Left",x=4,y=17,w=11,h=48,move="West",text={look={"It's a side tunnel."},move="West"}},
                                                 pathRight={name="Path Right",x=85,y=17,w=11,h=48,move="East",text={look={"It's a side tunnel."},move="East"}},
@@ -433,8 +446,10 @@ loadRooms.floodedLabyrinth5 =   {
                                     state="Light",
                                     music=loadMusic.floodedLabyrinth,
                                     backgrounds={light=loadImages.floodedLabyrinth5},
-                                    map=loadImages.TMap,
+                                    map=loadImages.fourWayMap,
                                     objects={
+                                                directions={name="Directions",x=20,y=6,w=44,h=8,text={look={"Strange markings. What could", "they mean?"}}},
+                                                moon={name="Moon",x=76,y=6,w=8,h=8,text={look={"It's a new moon."}}},
                                                 --pathForward={name="Path Forward",x=36,y=36,w=28,h=11,move="North",text={look={"The tunnel continues forward."},move="North"}},
                                                 pathLeft={name="Path Left",x=4,y=17,w=11,h=48,move="West",text={look={"It's a side tunnel."},move="West"}},
                                                 pathRight={name="Path Right",x=85,y=17,w=11,h=48,move="East",text={look={"It's a side tunnel."},move="East"}},
@@ -442,24 +457,25 @@ loadRooms.floodedLabyrinth5 =   {
                                                 waterSpout1={name="Water Spout 1",x=22,y=39,w=8,h=24,text={look={"Water is coming out of a spout", "in the wall."}}},
                                                 waterSpout2={name="Water Spout 2",x=70,y=39,w=8,h=24,text={look={"Water is coming out of a spout", "in the wall."}}},
                                             },
-                                    exits={south="Flooded Labyrinth 1",east="Flooded Labyrinth 1",west="Flooded Labyrinth 1"},
+                                    exits={north="Nightmare Geometry 1",south="Flooded Labyrinth 1",east="Flooded Labyrinth 1",west="Flooded Labyrinth 1"},
                                 }   
 
 -- Gas Station Bathroom
 loadRooms.gasStationBathroom =  {
                                     name="Gas Station Bathroom",
-                                    state="Dark",
+                                    state="Light",
                                     map=loadImages.gasStationBathroomMap,
                                     music=loadMusic.houseDark,
                                     backgrounds={dark=loadImages.gasStationBathroomDark,light=loadImages.gasStationBathroomLight},
                                     objects={  
                                                 gasStationKey=loadObjects.gasStationKey,
-                                                lightSwitch={name="Light Switch",x=44,y=33,w=5,h=8,text=loadGameText.bedroom.lightSwitch,visibleInDark=true,lightSwitch=true},
+                                                --lightSwitch={name="Light Switch",x=44,y=33,w=5,h=8,text=loadGameText.bedroom.lightSwitch,visibleInDark=true,lightSwitch=true},
                                                 mirror={name="Mirror",x=20,y=25,w=17,h=15,text={look={"It's a filthy gas station", "mirror. You gaze at it for a", "length of time, using the cold", "water to try to wake yourself", "up. As you stare at the mirror,", "you think you see the shadow of", "a person for a brief moment.", "However, when you blink, the", "image is suddenly gone without", "a trace."},talk={"If you start trying to have a", "conversation with yourself at", "this point, you may be too far", "gone..."}}},
                                                 sink={name="Sink",x=20,y=45,w=17,h=12,text={look={"It's a damaged sink."},use={"You turn the handle. Sickly", "gray water comes out of the", "spout."}}},
                                                 toilet={name="Toilet",x=63,y=46,w=16,h=21,text={look={"It's a vile toilet. A horrific", "stench emanates from the foul", "liquid."},take={"It's too heavy to take. And why", "would you want to???"},use={"No!"}}},
                                             },
                                     exits={south="Gas Station Outside"},
+                                    backgroundStatic = true,
                                 }
 
 -- Gas Station Store Inside
@@ -636,12 +652,12 @@ loadRooms.houseOutside =    {
                                 name="House Outside",
                                 state="Dark",
                                 backgrounds={dark=loadImages.houseOutside},
-                                map=loadImages.shadowLands3Map,
+                                map=loadImages.floodedLabyrinth1Map,
                                 music = loadMusic.title,
                                 objects={
-                                            door = {name="Door",x=43,y=28,w=13,h=32,img={closed=loadImages.houseOutsideDoorClosed,open=loadImages.houseOutsideDoorOpen},text={close={"You close the door."},look={"It's your front door."},move="",open={"You open the door."}},state="Closed",move=""},
+                                            door = {name="Door",x=43,y=28,w=13,h=32,img={closed=loadImages.houseOutsideDoorClosed,open=loadImages.houseOutsideDoorOpen},text={close={"You close the door."},look={"It's the front door to your", "house. Somehow, you emerged", "from that dark place and made", "it back home.",},move="",open={"You open the door."}},state="Closed",move=""},
                                         },
-                                exits={},
+                                exits={north=""},
                             }
 
 -- House patio
@@ -703,7 +719,6 @@ loadRooms.nightmareGeometry1 =  {
                                                 shadowBody={name="Shadow Body",x=29,y=67,w=22,h=12,text={look={"Something is written next to", "an outline on the ground:", "THERE WAS A LIVING PERSON HERE.", "THEY ARE GONE NOW."}}},
                                                 shadowPeople={name="Shadow People",x=9,y=9,w=86,h=29,text={look={"Are those people waving?"}}},
                                             },
-                                    --exits={south="Nightmare Geometry 2"},
                                     exits={south="Dark Passage 2"},
                                     backgroundStatic = true,
                                 }
@@ -716,9 +731,8 @@ loadRooms.nightmareGeometry2 =  {
                                     music=loadMusic.nightmareGeometry,
                                     backgrounds={light=loadImages.nightmareGeometry2},
                                     objects={
-                                                beast={name="Beast",x=18,y=32,w=65,h=34,text={look={"A strange beast stands before", "you. It has the head of a", "nearly featureless human, but", "legs that resemble an elephant.", "Although, you aren't sure just", "how many legs..."}}},
+                                                beast={name="Beast",x=18,y=32,w=65,h=34,text={look={"A strange beast stands before", "you. It has the head of a", "nearly featureless human, but", "legs that resemble an elephant.", "Although, you aren't sure just", "how many legs."},pull={"No!"},push={"No!"},talk={"While it has a face that", "somewhat  approximates a human,", "it either can't speak or feels", "no need to."}}},
                                             },
-                                    --exits={west="Nightmare Geometry 3",south="Nightmare Geometry 3",east="Nightmare Geometry 3"},
                                     exits={west="Dark Passage 4",south="Dark Passage 4",east="Dark Passage 4"},
                                     backgroundStatic = true,
                                 }
@@ -755,8 +769,6 @@ loadRooms.nightmareGeometry4 =  {
                                                 squiggleHoleInWall={name="Squiggle Hole in Wall",x=16,y=16,w=68,h=51,text={look={"It appears to be twisting,", "snaking cracks in the wall.", "It's faint, but you think you", "can hear someone screaming in", "pain deep inside the fissures,", "followed by what sounds like", "crawling..."}}},
                                             },
                                     exits={west="Dark Passage 8",south="Dark Passage 8",east="Dark Passage 8"},
-                                    --exits={},
-                                    --exits={west="Nightmare Geometry 5",south="Nightmare Geometry 5",east="Nightmare Geometry 5"},
                                     backgroundStatic = true,
                                 }
                                 
@@ -900,7 +912,7 @@ loadRooms.puzzlingStone =   {
                             }
                             
 for i=0,8 do
-    loadRooms.puzzlingStone.objects["button" .. (i+1)] = {name="Button " .. (i+1),x=28+10*(i%3+1),y=53+7*(math.floor(i/3)+1),w=4,h=4,state="Off",img={off=loadImages.puzzlingStoneButtonOff,on=     loadImages.puzzlingStoneButtonOn},text={look={"It's an button in the floor."},push={""},use={""}}}
+    loadRooms.puzzlingStone.objects["button" .. (i+1)] = {name="Button " .. (i+1),x=28+10*(i%3+1),y=53+7*(math.floor(i/3)+1),w=4,h=4,state="Off",img={off=loadImages.puzzlingStoneButtonOff,on=     loadImages.puzzlingStoneButtonOn},text={look={"It's a button in the floor."},push={""},use={""}}}
 end
 
 --[[loadRooms.railroad1 =   {
@@ -1074,12 +1086,12 @@ loadRooms.sewer9 =  {
                         state="Light",
                         music=loadMusic.sewers,
                         backgrounds={light=loadImages.sewer2},
-                        map=loadImages.mirrorRoomMap,
+                        map=loadImages.twoWayVerticalMap,
                         objects={
                                     inscription={name="Inscription",x=46,y=39,w=9,h=9,text={look={"Something is etched into the", "wall here:", "\"Let the moon serve as your", "guide in this endless night.\""}}},
                                     pit={name="Pit",x=40,y=55,w=20,h=6,move="",text={look={"There's a pit in the floor.", "Water flows into the pit from", "the sewer. You can't see the", "bottom..."},move=""}},
                                 },
-                        exits={south="Sewer 8"},
+                        exits={north="Flooded Labyrinth 1",south="Sewer 8"},
                     }
                     
 -- Shadow Lands

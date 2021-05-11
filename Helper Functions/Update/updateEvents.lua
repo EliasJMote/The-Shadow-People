@@ -91,6 +91,7 @@ updateEvents.update = function()
                         elseif(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.pauseScreen.quitGame)) then
                             g.music = loadMusic.title
                             g.music:play()
+                            g.backgroundStatic = false
                             createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="title"}})
                         end
                     end
@@ -188,6 +189,12 @@ updateEvents.update = function()
                         -- Play the bad ending video
                         createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="video bad ending"}})
                     end
+                    
+                elseif(event.state == "dark transition") then
+                    if(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.transitionScreens.dark.startGame)) then
+                        createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="game"}})
+                        g.curLocation = loadRooms.houseOutside
+                    end
                 
                 -- If we are in the game
                 elseif(event.state == "game") then
@@ -251,11 +258,14 @@ updateEvents.update = function()
                             end
                         end
                         
+                        -- Flip to the item page on the left
                         if(g.mouseCollision(g.mouse.x,g.mouse.y,g.scrollItemPageLeft)) then
                             if(g.itemPage > 1) then
                                 g.itemPage = g.itemPage - 1
                             end
                             --g.mouse.scrollPageArrowHover = "Left"
+                            
+                        -- Flip to the item page on the right
                         elseif(g.mouseCollision(g.mouse.x,g.mouse.y,g.scrollItemPageRight)) then
                             if(g.itemPage < math.ceil(g.itemCount/4)) then
                                 g.itemPage = g.itemPage + 1
@@ -392,6 +402,20 @@ updateEvents.update = function()
                         mouseHover = true
                     end
                 end
+                
+            elseif(g.state == "inventory") then
+                --local mouseHover = false
+                --[[for k,v in pairs(g.textBoxes.itemScreen) do
+                    if(g.mouseCollision(g.mouse.x,g.mouse.y,v)) then
+                        g.mouse.textHover = true
+                        mouseHover = true
+                    end
+                end]]
+                if(g.mouseCollision(g.mouse.x,g.mouse.y,g.textBoxes.itemScreen.back)) then
+                    g.mouse.textHover = true
+                else
+                    g.mouse.textHover = false
+                end
             
             elseif(g.state == "car transition 1") then
                 if(g.mouseCollision(g.mouse.x,g.mouse.y,g.textBoxes.transitionScreens.car1.startGame)) then
@@ -474,6 +498,21 @@ updateEvents.update = function()
             elseif(g.state == "night transition") then
                 local mouseHover = false
                 if(g.mouseCollision(g.mouse.x,g.mouse.y,g.textBoxes.transitionScreens.space.startGame)) then
+                    g.mouse.textHover = true
+                    mouseHover = true
+                else
+                    g.mouse.textHover = false
+                end
+                g.mouse.objectHover = nil
+                g.mouse.mapHover = nil
+                g.mouse.objectHover = nil
+                g.mouse.mapHover = nil
+                g.mouse.actionHover = nil
+                g.mouse.itemMenuHoverItem = nil
+                
+            elseif(g.state == "dark transition") then
+                local mouseHover = false
+                if(g.mouseCollision(g.mouse.x,g.mouse.y,g.textBoxes.transitionScreens.dark.startGame)) then
                     g.mouse.textHover = true
                     mouseHover = true
                 else

@@ -27,6 +27,7 @@ local drawTitleCreditsScreen = {}
             love.graphics.print("Taylor Fielder", 60, 24, 0, 0.4, 0.4)
             love.graphics.print("Aluminati", 60, 32, 0, 0.4, 0.4)
             love.graphics.print("BeanWagon", 60, 40, 0, 0.4, 0.4)
+            love.graphics.print("David Harper", 60, 40, 0, 0.4, 0.4)
         end
         --love.graphics.print("Special Thanks:", 4, 104, 0, 0.4, 0.4)
         love.graphics.print("(C) Elias Mote  2020-2021", 36, 128, 0, 0.4, 0.4)

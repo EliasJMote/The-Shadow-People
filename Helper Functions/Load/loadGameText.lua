@@ -113,12 +113,66 @@ loadGameText.easterEggCreditsText = {
                                         "times!"
                                     }
                                     
-loadGameText.alienCreditsText = {
+--[[loadGameText.alienCreditsText = {
                                     "Your body dissolves in a flash",
                                     "of bright gray light. All that",
                                     "remains is a shadowy form. Your",
                                     "mind remains, but your memories",
                                     "quickly fade into a thick fog."
+                                }]]
+                                
+loadGameText.alienCreditsText = {
+                                    "As you lie down on the cold,",
+                                    "stone altar, unsure of what",
+                                    "will happen next, the",
+                                    "flickering light surrounding",
+                                    
+                                    "the edge of the eclipse",
+                                    "suddenly seems to focus and",
+                                    "draw together on some far away",
+                                    "point in space. Some great",
+                                    
+                                    "invisible lens seemed to",
+                                    "concentrate the light into a",
+                                    "powerful beam of energy like",
+                                    "forces untold sending mighty",
+                                    
+                                    "god rays from the heavens.",
+                                    "The strange light suddenly",
+                                    "reaches you and surrounds you",
+                                    "completely, bathing your body",
+                                    
+                                    "with unknowable power. Your",
+                                    "body feels slightly tingly all",
+                                    "over, and you look down at your",
+                                    "hands, noticing that your flesh",
+                                    
+                                    "seems to be melting away. Under",
+                                    "the surface of skin lies a",
+                                    "solid form of infinite",
+                                    "blackness that absorbs all",
+                                    
+                                    "light that strikes it. Within",
+                                    "seconds, your entire body",
+                                    "becomes a shade of its former",
+                                    "self. And while the sensation",
+                                    
+                                    "is minute, your thoughts",
+                                    "become slower and harder to",
+                                    "grasp. Memories of your",
+                                    "former life wash away like a",
+                                    
+                                    "tide eroding the bedrock of",
+                                    "your psyche. A swirling fog",
+                                    "permeates your consciousness,",
+                                    "and the darkness soon takes",
+                                    
+                                    "over completely. As you draw",
+                                    "your final breaths, you see a",
+                                    "large group of shadow people",
+                                    "gathering close by, watching",
+                                    
+                                    "you silently, and waiting...",
                                 }
                                 
 loadGameText.redPrinceCreditsText = {
@@ -128,17 +182,17 @@ loadGameText.redPrinceCreditsText = {
                                         "up and stabs you through the",
                                         "heart. Blood pools out from",
                                         "the gaping wound and onto the",
-                                        "ALTAR. The blood slowly",
+                                        "altar. The blood slowly",
                                         "congeals until it forms a",
-                                        "singular mad BLOODY eye",
+                                        "singular mad bloody eye",
                                         "contained within a triangle",
                                         "that was stretched vertically",
                                         "to an insane eccentricity.",
-                                        "An OVERPOWERING wave of",
+                                        "An overpowering wave of",
                                         "blackness overtakes your mind",
                                         "as you slump to the floor,",
                                         "puncutated by a chaotic",
-                                        "jumbling of DISCORDANT piano",
+                                        "jumbling of discordant piano",
                                         "notes and hollow, echoing",
                                         "laughter that seems to come",
                                         "from every which way at once.",

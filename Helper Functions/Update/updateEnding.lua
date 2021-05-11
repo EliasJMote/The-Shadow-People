@@ -45,6 +45,13 @@ function updateEnding.update()
         g.endingScreenMask.y = -144
     end
     
+    -- Enable background static for the alien ending
+    if(g.state == "alien ending") then
+        if(g.timers.endingText == g.timers.alienEnding) then
+            g.backgroundStatic = true
+        end
+    end
+    
     if(g.state == "red prince ending") then
         if(g.timers.endingText == g.timers.redPrinceEnding + 60 * 5) then
             if(g.music ~= nil) then g.music:stop() end

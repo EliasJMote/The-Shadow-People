@@ -115,6 +115,24 @@ function drawInGameTransitions.draw()
         
         -- Print the "Start Game" button
         g.highlightText(g.textBoxes.transitionScreens.night.startGame,size)
+        
+    elseif(g.state == "dark transition") then
+        init_y = 28
+        love.graphics.print("Dark Transition", 32, 8, 0, 0.5, 0.5)
+        love.graphics.print("You slowly trudge", init_x, init_y, 0, 0.5, 0.5)
+        love.graphics.print("through the dark", init_x, init_y+8, 0, 0.5, 0.5)
+        love.graphics.print("passage. You are", init_x, init_y+8*2, 0, 0.5, 0.5)
+        love.graphics.print("barely able to keep", init_x, init_y+8*3, 0, 0.5, 0.5)
+        love.graphics.print("awake. You reach the", init_x, init_y+8*4, 0, 0.5, 0.5)
+        love.graphics.print("far away light, and", init_x, init_y+8*5, 0, 0.5, 0.5)
+        love.graphics.print("it quickly envelops", init_x, init_y+8*6, 0, 0.5, 0.5)
+        love.graphics.print("your entire vision.", init_x, init_y+8*7, 0, 0.5, 0.5)
+        love.graphics.print("When it finally dims,", init_x, init_y+8*8, 0, 0.5, 0.5)
+        love.graphics.print("you find you are", init_x, init_y+8*9, 0, 0.5, 0.5)
+        love.graphics.print("somehow back home...", init_x, init_y+8*10, 0, 0.5, 0.5)
+        
+        -- Print the "Start Game" button
+        g.highlightText(g.textBoxes.transitionScreens.dark.startGame,size)
     end
     
     --love.graphics.print("Click to continue", 30, 128, 0, 0.5, 0.5)

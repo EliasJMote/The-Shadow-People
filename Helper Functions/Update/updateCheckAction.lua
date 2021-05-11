@@ -73,8 +73,7 @@ local updateCheckAction = {}
                                 end
                             end
                             
-                            -- Try to open the object if possible
-                            --if(g.actionSelected == "Open" and g.mouse.objectPointedAt.state == "Closed" and g.mouse.objectPointedAt.state ~= "Locked") then
+                            -- Open the object if it's closed
                             if(g.actionSelected == "Open" and g.mouse.objectPointedAt.state == "Closed") then
                                 g.mouse.objectPointedAt.state = "Open"
                                 loadSFX.doorOpen:play()
@@ -82,13 +81,12 @@ local updateCheckAction = {}
                             elseif(g.actionSelected == "Open" and g.mouse.objectPointedAt.state == "Stuck") then
                                 g.writeToTextDisplay({"Although it's not locked, it", "won't open for some reason."})
                             
-                            --elseif(g.actionSelected == "Open" and g.mouse.objectPointedAt.state == nil) then
-                                --g.writeToTextDisplay(g.mouse.objectPointedAt.text[g.actionSelected:lower()])
-                               
-                            elseif (g.actionSelected == "Open" and g.mouse.objectPointedAt.state == "Locked") then
+                            -- The player can't open an object that's locked
+                            elseif(g.actionSelected == "Open" and g.mouse.objectPointedAt.state == "Locked") then
                                     g.writeToTextDisplay({"It's locked!"})
-                               
-                            elseif (g.actionSelected == "Open" and g.mouse.objectPointedAt.state == "Open") then
+                            
+                            -- The player can't open an object that's already open
+                            elseif(g.actionSelected == "Open" and g.mouse.objectPointedAt.state == "Open") then
                                     g.writeToTextDisplay({"It's already open!"})
                                 
                             elseif(g.actionSelected == "Open") then
@@ -127,6 +125,7 @@ local updateCheckAction = {}
                                             loadSFX.pickup:play()
                                         end
                                     
+                                    -- If the player uses the gas station button and it's currently off, update text and states for the button and the outside pumps
                                     elseif(g.curLocation == loadRooms.gasStationInside) then
                                         if(g.mouse.objectPointedAt == loadRooms.gasStationInside.objects.button and loadRooms.gasStationInside.objects.button.state == "Off") then
                                             loadRooms.gasStationInside.objects.button.state = "On"
@@ -195,6 +194,11 @@ local updateCheckAction = {}
                                             g.writeToTextDisplay({"The door suddenly opens."})
                                             loadRooms.puzzlingStone.objects.door.state = "Open"
                                             loadRooms.puzzlingStone.objects.door.text.open = {"The door is already open! Best", "not to tarry, unless it decides", "to close back up."}
+                                            
+                                            -- Update the map
+                                            loadRooms.puzzlingStone.map = loadImages.twoWayVerticalMap
+                                            loadRooms.puzzlingStone.exits.north = "Altar Room"
+                                            
                                             loadSFX.pickup:play()
                                         end
                                         
@@ -248,8 +252,13 @@ local updateCheckAction = {}
                                             loadRooms.graveyard.objects.stairs = {name="stairs",x=37,y=67,w=25,h=11,text={look={"Stairs. They lead down into the", "the earth. But what hides", "there?"},move=""},img=loadImages.graveStairs,move=""}
                                             loadRooms.graveyard.objects.grave.state = "Pushed"
                                             loadRooms.graveyard.objects.grave.y = loadRooms.graveyard.objects.grave.y - 12
-                                            loadGameText.graveyard.grave.pull = {"It has already been moved!"}
-                                            loadGameText.graveyard.grave.push = {"It has already been moved!"}
+                                            loadRooms.graveyard.objects.grave.text.pull = {"It has already been moved!"}
+                                            loadRooms.graveyard.objects.grave.text.push = {"It has already been moved!"}
+                                            
+                                            -- Update the map
+                                            loadRooms.graveyard.map = loadImages.twoWayVerticalMap
+                                            loadRooms.graveyard.exits.north = "Statue Room"
+                                            
                                             loadSFX.pickup:play()
                                         end
                                     end
@@ -307,6 +316,11 @@ local updateCheckAction = {}
                                         g.writeToTextDisplay({"The door suddenly opens."})
                                         loadRooms.puzzlingStone.objects.door.state = "Open"
                                         loadRooms.puzzlingStone.objects.door.text.open = {"The door is already open! Best", "not to tarry, unless it decides", "to close back up."}
+                                        
+                                        -- Update the map
+                                        loadRooms.puzzlingStone.map = loadImages.twoWayVerticalMap
+                                        loadRooms.puzzlingStone.exits.north = "Altar Room"
+                                        
                                         loadSFX.pickup:play()
                                     end
                                 end
@@ -314,11 +328,13 @@ local updateCheckAction = {}
                             
                             if(g.actionSelected == "Take") then
                                     
+                                -- If the player takes the necklace, record this player state
                                 if(g.curLocation == loadRooms.churchInsideSecretRoom) then
                                     if(g.mouse.objectPointedAt == g.curLocation.objects.necklace) then
                                         g.playerState.hasNecklace = true
                                     end
 
+                                -- If the player takes the shadow orb, record this player state and update some rooms
                                 elseif(g.curLocation == loadRooms.graveyardUnderground2) then
                                     if(g.mouse.objectPointedAt == g.curLocation.objects.shadowOrb) then
                                         g.playerState.hasShadowOrb = true
@@ -326,6 +342,7 @@ local updateCheckAction = {}
                                         loadRooms.shed.state = "Evil"
                                     end
                                     
+                                -- If the player takes the eclipse brooch, record this player state
                                 elseif(g.curLocation == loadRooms.sewer7) then
                                     if(g.mouse.objectPointedAt == g.curLocation.objects.eclipseBrooch) then
                                         g.playerState.hasEclipseBrooch = true
@@ -433,10 +450,20 @@ local updateCheckAction = {}
                                     if(g.mouse.objectPointedAt == loadRooms.nightmareGeometry2.objects.beast) then
                                         if(loadRooms.nightmareGeometry2.backgrounds.light==loadImages.nightmareGeometry2) then
                                             loadRooms.nightmareGeometry2.backgrounds.light=loadImages.nightmareGeometry2_2
-                                            loadRooms.nightmareGeometry2.objects.beast={name="Beast",x=25,y=9,w=58,h=57,text={look={"..."}}}
+                                            loadRooms.nightmareGeometry2.objects.beast.x = 25
+                                            loadRooms.nightmareGeometry2.objects.beast.y = 9
+                                            loadRooms.nightmareGeometry2.objects.beast.w = 58
+                                            loadRooms.nightmareGeometry2.objects.beast.h = 57
+                                            loadRooms.nightmareGeometry2.objects.beast.text.look = {"..."}
+                                            --loadRooms.nightmareGeometry2.objects.beast={name="Beast",x=25,y=9,w=58,h=57,text={look={"..."}}}
                                         elseif(loadRooms.nightmareGeometry2.backgrounds.light==loadImages.nightmareGeometry2_2) then
                                             loadRooms.nightmareGeometry2.backgrounds.light=loadImages.nightmareGeometry2_3
-                                            loadRooms.nightmareGeometry2.objects.beast={name="Beast",x=25,y=3,w=58,h=63,text={look={"Just run."}}}
+                                            loadRooms.nightmareGeometry2.objects.beast.x = 25
+                                            loadRooms.nightmareGeometry2.objects.beast.y = 3
+                                            loadRooms.nightmareGeometry2.objects.beast.w = 58
+                                            loadRooms.nightmareGeometry2.objects.beast.h = 63
+                                            loadRooms.nightmareGeometry2.objects.beast.text.look = {"Just run."}
+                                            --loadRooms.nightmareGeometry2.objects.beast={name="Beast",x=25,y=3,w=58,h=63,text={look={"Just run."}}}
                                         end
                                     end
                                     
@@ -625,6 +652,11 @@ local updateCheckAction = {}
                                 g.curLocation.objects.mirror2.move=""
                                 g.curLocation.objects.mirror2.text.look = {"A hidden room lies beyond the", "broken mirror."}
                                 g.writeToTextDisplay({"You smash the mirror to pieces,", "revealing a hidden door behind", "it."})
+                                
+                                -- Update the map
+                                loadRooms.mirrorRoom.map = loadImages.twoWayVerticalMap
+                                loadRooms.mirrorRoom.exits.north = "Church Inside Secret Room"
+                                
                                 loadSFX.glassShattering:play()
                             elseif(g.curLocation.objects.mirror3.state == "Unbroken" and g.mouse.objectPointedAt == g.curLocation.objects.mirror3) then
                                 g.curLocation.objects.mirror3.state = "Broken"
@@ -634,6 +666,8 @@ local updateCheckAction = {}
                             else
                                 g.writeToTextDisplay({"You can't use the mallet here."})
                             end
+                            
+                        -- The mallet is also used to smash the mirrors in the dream mirror room
                         elseif(g.curLocation == loadRooms.dreamMirrorRoom) then
                             if(g.curLocation.objects.mirror1.state == "Unbroken" and g.mouse.objectPointedAt == g.curLocation.objects.mirror1) then
                                 g.curLocation.objects.mirror1.state = "Broken"
@@ -650,6 +684,11 @@ local updateCheckAction = {}
                                 g.writeToTextDisplay({"You smash the mirror to pieces.", "A strange sight lies before", "you. It looks to be a portal to", "deep space. There is a planet", "covered in darkness, barely lit", "by a total eclipse of a nearby", "star."})
                                 g.curLocation.objects.mirror3.text.move=""
                                 g.curLocation.objects.mirror3.move=""
+                                
+                                -- Update the map
+                                loadRooms.dreamMirrorRoom.map = loadImages.floodedLabyrinth1Map
+                                loadRooms.dreamMirrorRoom.exits.north = ""
+                                
                                 loadSFX.glassShattering:play()
                             else
                                 g.writeToTextDisplay({"You can't use the mallet here."})
@@ -676,7 +715,13 @@ local updateCheckAction = {}
                                         table.insert(textArray, "Lighting the candles has")
                                         table.insert(textArray, "revealed a hidden door in the")
                                         table.insert(textArray, "wall.")
-                                        --loadSFX.pickup:play()
+                                        --g.writeToTextDisplay({""})
+                                        
+                                        -- Update the map for the room
+                                        loadRooms.churchInside1.map = loadImages.twoWayVerticalMap
+                                        loadRooms.churchInside1.exits.north = "Mirror Room"
+                                        --loadRooms.churchInside1.exits.north = "Church Inside Secret Room"
+                                        
                                     end
                                     g.writeToTextDisplay(textArray)
                                 else
@@ -699,6 +744,11 @@ local updateCheckAction = {}
                                     g.curLocation.objects.statueHoldingDarkCrystalBall.text.look = {"A statue holding a lit crystal", "ball."}
                                     g.writeToTextDisplay({"You hold the mirror up,", "reflecting light back at the", "dim orb. The orb fills with", "shining light. You hear a panel", "slide in the wall, revealing a", "hidden door."})
                                     g.curLocation.objects.door = {name="Door",x=45,y=30,w=10,h=37,img={closed=loadImages.graveyardDoorClosed,open=loadImages.graveyardDoorOpen},state="Closed",move="",text={close={"You close the door."},look={"It's a narrow door hidden in", "the wall."},open={"You open the door."},move="",}}
+                                    
+                                    -- Update the map
+                                    loadRooms.graveyardUnderground1.map = loadImages.twoWayVerticalMap
+                                    loadRooms.graveyardUnderground1.exits.north = "Graveyard Underground"
+                                    
                                     loadSFX.pickup:play()
                                 else
                                     g.writeToTextDisplay({"The orb is already lit!"})

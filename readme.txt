@@ -18,6 +18,24 @@ This software may be not be reproduced under any circumstances except for person
 II. Version History
 
 --------------------------
+V1.0.0.3 - Current Version
+--------------------------
+-- Content --
+-- Secret doors are now selectable from the map
+-- Edited the image for the "Return of the Prince" ending
+-- Added text to the "Eternal Twilight" ending
+-- Animated the "Midnight Shadows" ending
+-- Added clickable objects for the flooded labyrinth (movement sequence and phase of the moon)
+-- Added "dark transition" at the end of the dark passage connecting it to the house outside
+-- Added text for the "Lair of the Imperfect" and "House Outside" rooms
+
+-- Bug Fixes --
+-- Fixed a bug where the player could move through the sewer gate early if they used map movement.
+-- Fixed a bug where the description for the Eclipse Brooch in the inventory used the car keys description
+-- Fixed a typo in the Puzzling Stone room
+-- Fixed a bug in the House Outside room where the player could move through the door before opening it
+
+--------------------------
 V1.0.0.2 - Current Version
 --------------------------
 -- Content --
@@ -346,7 +364,7 @@ VI. Credits
 Producer: Elias Mote
 Programmer: Elias Mote
 Musicians: Taylor Fielder, Elias Mote
-Testers: Dred4170, Raistlarn, Taylor Fielder, Aluminati, BeanWagon
+Testers: Dred4170, Raistlarn, Taylor Fielder, Aluminati, BeanWagon, David Harper
 
 Software:
 Engine: Love2d

@@ -19,11 +19,6 @@ function drawEnding.draw()
         or (g.state == "alien ending" and g.timers.endingText >= g.timers.alienEnding)
         or (g.state == "red prince ending" and g.timers.endingText >= g.timers.redPrinceEnding)) then
         
-        --[[if(g.state == "bad ending") then
-            love.graphics.print("The", 44, 44, 0, 2, 2)
-            love.graphics.print("End", 44, 76, 0, 2, 2)
-        end]]
-        
         -- Draw the ending pictures
         local endingNumberStr = ""
         local endingName = ""
@@ -34,7 +29,7 @@ function drawEnding.draw()
         elseif(g.state == "bad ending") then
             endingNumberStr = "(Ending 2 of 5)"
             endingName = "\"Midnight Shadows\""
-            love.graphics.draw(loadImages.badEnding,0,0)
+            love.graphics.draw(loadImages.badEnding[math.floor(g.timers.global/15)%5+1],0,0)
         elseif(g.state == "alien ending") then
             endingNumberStr = "(Ending 3 of 5)"
             endingName = "\"Eternal Twilight\""
@@ -62,6 +57,23 @@ function drawEnding.draw()
                 love.graphics.draw(loadImages.redPrince,16,6,0,2,2)
             end
         end
+        
+        --[[if(g.state == "alien ending") then
+            love.graphics.setColor(g.colors.darkestGreen.r, g.colors.darkestGreen.g, g.colors.darkestGreen.b, 1)
+            for i=0,160 do
+                for j=0,144 do
+                    local staticNum = love.math.random(0,20)
+                    if(staticNum <= 1) then
+                        love.graphics.rectangle("fill",i,j,1,1)
+                    end
+                end
+            end
+            
+            local staticNum = love.math.random(0,20)
+            if(staticNum <= 1) then
+                love.graphics.rectangle("fill",0,0,160,144)
+            end
+        end]]
         
         --[[if(g.state == "bad ending") then-- or g.state == "alien ending") then
             love.graphics.print(endingName, 39, 120, 0, 0.4, 0.4)

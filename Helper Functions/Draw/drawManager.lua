@@ -39,7 +39,7 @@ function drawManager.draw()
     elseif(g.state == "inventory") then
         drawItemScreen.draw()
     
-    elseif(g.state == "car transition 1" or g.state == "car transition 2" or g.state == "car transition 3" or g.state == "class transition" or g.state == "dream transition" or g.state == "space transition" or g.state == "night transition") then
+    elseif(g.state == "car transition 1" or g.state == "car transition 2" or g.state == "car transition 3" or g.state == "class transition" or g.state == "dream transition" or g.state == "space transition" or g.state == "night transition" or g.state == "dark transition") then
         drawInGameTransitions.draw()
     
     elseif(g.state == "good ending" or g.state == "bad ending" or g.state == "red prince ending" or g.state == "alien ending" or g.state == "easter egg ending") then

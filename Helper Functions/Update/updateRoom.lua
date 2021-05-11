@@ -65,6 +65,7 @@ local updateRoom = {}
                 end
             end
             
+        -- Stop the number radio station message
         elseif(g.curLocation.name == "Shed") then
             if(g.movementDirection == "South") then
                 loadSFX.numberRadioStationMessage:stop()
@@ -99,24 +100,44 @@ local updateRoom = {}
                 g.music:stop()
                 createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="shadow child"}})
             end
-        
-        elseif(g.curLocation.name == "House Outside") then
-            if(g.mouse.objectPointedAt == g.curLocation.objects.door and g.actionSelected == "Move") then
+            
+        elseif(g.curLocation.name == "Dark Passage 1") then
+            if(g.mouse.objectPointedAt == g.curLocation.objects.light and (g.actionSelected == "Move" or g.actionSelected == "Look")) then
                 g.mapTransitionIsLegal = false
                 g.itemSelected = nil
                 g.actionSelected = nil
                 g.textBuffer = {}
                 g.showMessageBox = false
-                if(g.playerState.hasNecklace) then
-                    if(g.playerState.hasShadowOrb and g.playerState.hasEclipseBrooch) then
-                        createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="dream transition"}})
+                createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="dark transition"}})
+            end
+        
+        elseif(g.curLocation.name == "House Outside") then
+            if(loadRooms.houseOutside.objects.door.state == "Open") then
+                if((g.mouse.objectPointedAt == g.curLocation.objects.door and g.actionSelected == "Move")
+                or (g.movementDirection == "North")) then
+                --if(g.movementDirection == "North") then
+                    g.mapTransitionIsLegal = false
+                    g.itemSelected = nil
+                    g.actionSelected = nil
+                    g.textBuffer = {}
+                    g.showMessageBox = false
+                    if(g.playerState.hasNecklace) then
+                        if(g.playerState.hasShadowOrb and g.playerState.hasEclipseBrooch) then
+                            createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="dream transition"}})
+                        else
+                            createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="good ending"}})
+                            createEvent.create({name="Play Music", music=loadMusic.undertheStars})
+                        end
                     else
-                        createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="good ending"}})
-                        createEvent.create({name="Play Music", music=loadMusic.undertheStars})
+                        -- Go the the night transition
+                        createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="night transition"}})
                     end
-                else
-                    -- Go the the night transition
-                    createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="night transition"}})
+                end
+            else
+                if((g.mouse.objectPointedAt == g.curLocation.objects.door and g.actionSelected == "Move") or (g.movementDirection == "North")) then
+                    g.mapTransitionIsLegal = false
+                    g.movementDirection = nil
+                    g.writeToTextDisplay({"The door is closed!"})
                 end
             end
         end
