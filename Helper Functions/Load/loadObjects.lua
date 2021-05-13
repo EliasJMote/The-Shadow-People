@@ -1,6 +1,6 @@
 loadObjects = {}
 
--- Objects that can be picked up
+-- Objects that can be picked up (inventory items)
 loadObjects.boltCutters = {name="Bolt Cutters",x=70,y=71,w=13,h=6,text={look={"A pair of bolt cutters. Use it", "to cut chains or padlocks."},take={"You take the bolt cutters."}},img=loadImages.boltCutters,item={name="B. Cutters",w=47,h=4,description={"A pair of bolt cutters. Use it", "to cut chains or padlocks."}},state="item"}
 
 loadObjects.carKey = {name="Car Key",x=52,y=52,w=10,h=5,text={look={"A key that goes to your car.", "You won't make it far without", "it."},take={"You take the car key."}},img=loadImages.carKey,item={name="Car Key",w=33,h=4,description={"A key that goes to your car.", "You won't make it far without", "it."}}}

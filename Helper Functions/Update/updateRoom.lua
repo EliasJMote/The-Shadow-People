@@ -14,27 +14,17 @@ local updateRoom = {}
     
     function updateRoom.update()
 
+        -- The car key is used in conjunction with the steering wheel to progress to car transition states
         if(g.itemSelected == "Car Key") then
             if(g.curLocation.name == "Car 1") then
-            
                 if(g.mouse.objectPointedAt == loadRooms.car1.objects.steeringWheel) then
-                    g.mapTransitionIsLegal = false
-                    g.itemSelected = nil
-                    g.actionSelected = nil
-                    g.textBuffer = {}
-                    g.showMessageBox = false
-                    createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="car transition 1"}})
+                    g.fromGameToTransition("car transition 1")
                 end
                 
             elseif(g.curLocation.name == "Car 2") then
                 if(g.mouse.objectPointedAt == loadRooms.car2.objects.steeringWheel) then
                     if(g.playerState.classOver) then
-                        g.mapTransitionIsLegal = false
-                        g.itemSelected = nil
-                        g.actionSelected = nil
-                        g.textBuffer = {}
-                        g.showMessageBox = false
-                        createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="car transition 2"}})
+                        g.fromGameToTransition("car transition 2")
                     else
                         g.writeToTextDisplay({"You have to go to class first!"})
                     end
@@ -43,12 +33,7 @@ local updateRoom = {}
             elseif(g.curLocation.name == "Car 3") then
                 if(g.mouse.objectPointedAt == loadRooms.car3.objects.steeringWheel) then
                     if(g.playerState.hasGas) then
-                        g.mapTransitionIsLegal = false
-                        g.itemSelected = nil
-                        g.actionSelected = nil
-                        g.textBuffer = {}
-                        g.showMessageBox = false
-                        createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="car transition 3"}})
+                        g.fromGameToTransition("car transition 3")
                     else
                         g.writeToTextDisplay({"You need to get gas first!"})
                     end
@@ -71,15 +56,16 @@ local updateRoom = {}
                 loadSFX.numberRadioStationMessage:stop()
             end
         
+        -- Using the move action to enter the sewer pit
         elseif(g.curLocation.name == "Sewer 9") then
             if(g.mouse.objectPointedAt == g.curLocation.objects.pit and g.actionSelected == "Move") then
                 updateRoom.transition("Flooded Labyrinth 1")
                 createEvent.create({name="Start Screen Transition", x=3, y=3, w=94, h=77,event={name="Play Music", music=g.curLocation.music}})
             end
            
+        -- Using the move action to enter the puzzling stone door after it's open
         elseif(g.curLocation.name == "Puzzling Stone") then
             if(g.mouse.objectPointedAt == g.curLocation.objects.door and g.actionSelected == "Move") then
-                --g.backgroundStatic = true
                 updateRoom.transition("Altar Room")
                 createEvent.create({name="Start Screen Transition", x=3, y=3, w=94, h=77,event={name="Play Music", music=g.curLocation.music}})
             end
@@ -115,7 +101,6 @@ local updateRoom = {}
             if(loadRooms.houseOutside.objects.door.state == "Open") then
                 if((g.mouse.objectPointedAt == g.curLocation.objects.door and g.actionSelected == "Move")
                 or (g.movementDirection == "North")) then
-                --if(g.movementDirection == "North") then
                     g.mapTransitionIsLegal = false
                     g.itemSelected = nil
                     g.actionSelected = nil

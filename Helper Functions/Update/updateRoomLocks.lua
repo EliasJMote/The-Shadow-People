@@ -147,7 +147,7 @@ function updateRoomLocks.update()
                 g.mapTransitionIsLegal = true
             end
             
-        elseif(g.curLocation.name == "Street 7") then
+        elseif(g.curLocation.name == "Street 5") then
             if(g.curLocation.objects["sewerGate"].state == "Rusted" and g.movementDirection == "North") then
                 g.mapTransitionIsLegal = false
                 g.writeToTextDisplay({"The door is rusted shut!"})

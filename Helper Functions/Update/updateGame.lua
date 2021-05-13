@@ -40,69 +40,18 @@ function updateGame.update()
         g.mouse.mapHover = false
     
     elseif(g.state == "video intro") then
-        if(g.timers.video < 875) then
-            g.timers.video = g.timers.video + 0.2
-        else
-            g.timers.video = 0
-            g.state = "screen transition"
-            createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="title"}})
-        end
+        updateVideoIntro.update()
     
     elseif(g.state == "video bad ending") then
-        if(g.timers.video < 238) then
-            g.timers.video = g.timers.video + 0.2
-        else
-            g.state = "bad ending"
-            g.music = loadMusic.shadowLands
-            g.music:play()
-            --love.graphics.setColor(g.colors.darkestGreen.r, g.colors.darkestGreen.g, g.colors.darkestGreen.b, 1)
-            --createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="bad ending"}})
-        end
+        updateVideoBadEnding.update()
     
     -- Squiggle man rushes the player
     elseif(g.state == "game") then
-        if(g.playerState.numOfTimesLookedAtWallHole == 5) then
-            g.timers.squiggleMan = g.timers.squiggleMan + 1
-            if(g.timers.squiggleMan > 60) then
-                if not(g.playerState.hasNecklace) then
-                    
-                    -- Exit game
-                    love.event.quit(0)
-                    
-                -- The magic necklace will save the player
-                else
-                    loadSFX.squiggleManScream:stop()
-                    g.playerState.numOfTimesLookedAtWallHole = 6
-                    g.timers.squiggleMan = -1
-                    g.writeToTextDisplay({"The magic necklace protected", "you."})
-                end
-            end
-        end
-    --end
+        updateSquiggleMan.update()
     
+    -- The shadow child slowly approaches the player in a cutscene
     elseif(g.state == "shadow child") then
-        if(g.timers.shadowChild == 270) then
-            g.music = loadMusic.shadowChildApproach
-            g.music:play()
-        end
-        g.timers.shadowChild = g.timers.shadowChild + 1
-        if(g.timers.shadowChild > 660) then
-            if not(g.playerState.hasNecklace) then
-                
-                -- Exit game
-                love.event.quit(0)
-                
-            -- The magic necklace will save the player
-            else
-                g.music:stop()
-                g.music = loadMusic.nightmareGeometry
-                g.music:play()
-                g.state = "game"
-                g.curLocation = loadRooms.nightmareGeometry8
-                g.timers.shadowChild = -1
-                g.writeToTextDisplay({"The magic necklace protected", "you."})
-            end
-        end
+        updateShadowChild.update()
     end
     
     -- Update the global timer

@@ -1,5 +1,5 @@
 ﻿The Shadow People
-Version 1.0.0.2
+Version 1.0.0.4
 
 Copyright © 2020-2021 Elias Mote
 Copyright © 2020-2021 Roc Studios
@@ -18,7 +18,19 @@ This software may be not be reproduced under any circumstances except for person
 II. Version History
 
 --------------------------
-V1.0.0.3 - Current Version
+V1.0.0.4 - Current Version
+--------------------------
+-- Improvements --
+-- Removed multiple map images to eliminate redundancy.
+-- Code refactoring (removing old unnecessary code, adding more functions and variables to reduce code repetition and coupling) This includes:
+--- Separating the check items and actions into separate functions (in their own files)
+
+-- Bug Fixes --
+-- Fixed a bug where the wrong music would play in the dream mirror room.
+-- Fixed some bugs involving not updating the map upon loading the game after some secret doors have been opened
+
+--------------------------
+V1.0.0.3
 --------------------------
 -- Content --
 -- Secret doors are now selectable from the map
@@ -28,6 +40,7 @@ V1.0.0.3 - Current Version
 -- Added clickable objects for the flooded labyrinth (movement sequence and phase of the moon)
 -- Added "dark transition" at the end of the dark passage connecting it to the house outside
 -- Added text for the "Lair of the Imperfect" and "House Outside" rooms
+-- Changed the gas station bathroom to flicker instead of being dark
 
 -- Bug Fixes --
 -- Fixed a bug where the player could move through the sewer gate early if they used map movement.

@@ -26,8 +26,6 @@ function drawScreenTransition.draw()
         -- Set the color back to normal
         love.graphics.setColor(1, 1, 1, 1)
         
-        
-        
     end
     
 end

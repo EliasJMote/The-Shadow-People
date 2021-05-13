@@ -19,7 +19,6 @@ function drawWarningScreen.draw()
     love.graphics.print("for children or those easily", 4, 88, 0, 0.4, 0.4)
     love.graphics.print("disturbed.", 4, 96, 0, 0.4, 0.4)
     
-    --love.graphics.print("Click to continue.", 4, 132, 0, 0.4, 0.4)
     for k,v in pairs(g.textBoxes.warningScreen) do
         g.highlightText(v,0.4)
     end

@@ -57,28 +57,6 @@ function drawEnding.draw()
                 love.graphics.draw(loadImages.redPrince,16,6,0,2,2)
             end
         end
-        
-        --[[if(g.state == "alien ending") then
-            love.graphics.setColor(g.colors.darkestGreen.r, g.colors.darkestGreen.g, g.colors.darkestGreen.b, 1)
-            for i=0,160 do
-                for j=0,144 do
-                    local staticNum = love.math.random(0,20)
-                    if(staticNum <= 1) then
-                        love.graphics.rectangle("fill",i,j,1,1)
-                    end
-                end
-            end
-            
-            local staticNum = love.math.random(0,20)
-            if(staticNum <= 1) then
-                love.graphics.rectangle("fill",0,0,160,144)
-            end
-        end]]
-        
-        --[[if(g.state == "bad ending") then-- or g.state == "alien ending") then
-            love.graphics.print(endingName, 39, 120, 0, 0.4, 0.4)
-            love.graphics.print(endingNumberStr, 44, 130, 0, 0.4, 0.4)
-        end]]
     end
 
     if not(g.state == "red prince ending" and g.timers.endingText >= g.timers.redPrinceEnding) then

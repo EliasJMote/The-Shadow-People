@@ -112,14 +112,6 @@ loadGameText.easterEggCreditsText = {
                                         "looking at the sun too many",
                                         "times!"
                                     }
-                                    
---[[loadGameText.alienCreditsText = {
-                                    "Your body dissolves in a flash",
-                                    "of bright gray light. All that",
-                                    "remains is a shadowy form. Your",
-                                    "mind remains, but your memories",
-                                    "quickly fade into a thick fog."
-                                }]]
                                 
 loadGameText.alienCreditsText = {
                                     "As you lie down on the cold,",
@@ -132,7 +124,7 @@ loadGameText.alienCreditsText = {
                                     "draw together on some far away",
                                     "point in space. Some great",
                                     
-                                    "invisible lens seemed to",
+                                    "invisible lens appears to",
                                     "concentrate the light into a",
                                     "powerful beam of energy like",
                                     "forces untold sending mighty",
@@ -180,26 +172,32 @@ loadGameText.redPrinceCreditsText = {
                                         "suddenly an ornate knife that",
                                         "was sitting on the altar flies",
                                         "up and stabs you through the",
+                                        
                                         "heart. Blood pools out from",
                                         "the gaping wound and onto the",
                                         "altar. The blood slowly",
                                         "congeals until it forms a",
+                                        
                                         "singular mad bloody eye",
                                         "contained within a triangle",
                                         "that was stretched vertically",
                                         "to an insane eccentricity.",
+                                        
                                         "An overpowering wave of",
                                         "blackness overtakes your mind",
                                         "as you slump to the floor,",
                                         "puncutated by a chaotic",
+                                        
                                         "jumbling of discordant piano",
                                         "notes and hollow, echoing",
                                         "laughter that seems to come",
                                         "from every which way at once.",
+                                        
                                         "Until.........................",
                                         "..............................",
                                         "..............................",
                                         "..............................",
+                                        
                                         "HE SEES YOU!"
                                     }
                 

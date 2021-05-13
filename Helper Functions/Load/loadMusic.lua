@@ -2,7 +2,6 @@ local loadMusic = {}
 
 loadMusic.darkStreets = love.audio.newSource("Music/Dark Streets (8-bit).mp3", "stream")
 loadMusic.floodedLabyrinth = love.audio.newSource("Music/Flooded Labyrinth.mp3", "stream")
---loadMusic.house = love.audio.newSource("Music/Main House.wav", "stream")
 loadMusic.houseLight = love.audio.newSource("Music/Main House (Light).mp3", "stream")
 loadMusic.houseDark = love.audio.newSource("Music/Main House (Dark).mp3", "stream")
 loadMusic.nightmareGeometry = love.audio.newSource("Music/Nightmare Geometry.mp3", "stream")

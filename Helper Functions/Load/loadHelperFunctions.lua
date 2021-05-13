@@ -118,7 +118,126 @@ function g.checkClock()
         end]]
     end
 end
+function g.updateGrave()
+    -- Move the grave up and update text
+    loadRooms.graveyard.objects.grave.text.pull = {"It has already been moved!"}
+    loadRooms.graveyard.objects.grave.text.push = {"It has already been moved!"}
+    
+    -- Update the map
+    loadRooms.graveyard.map = loadImages.twoWayVerticalMap
+    loadRooms.graveyard.exits.north = "Statue Room"
+end
+function g.activateGasPumps()
+    loadRooms.gasStationInside.objects.button.text.look={"It's a button to turn on the", "gas pumps. The pumps are", "receiving power."}
+    loadRooms.gasStationInside.objects.button.text.push={"The pumps are already on!"}
+    loadRooms.gasStationInside.objects.button.text.use={"The pumps are already on!"}
+    loadRooms.gasStationOutside.objects.pump1.state = "On"
+    loadRooms.gasStationOutside.objects.pump1.text.look={"It's a gas pump. It's receiving", "power."}
+    loadRooms.gasStationOutside.objects.pump1.text.use={"You fill your car up with gas."}
+    loadRooms.gasStationOutside.objects.pump2.state = "On"
+    loadRooms.gasStationOutside.objects.pump2.text.look={"It's a gas pump. It's receiving", "power."}
+    loadRooms.gasStationOutside.objects.pump2.text.use={"You fill your car up with gas."}
+end
+function g.playerCarHasGasoline()
+    loadRooms.gasStationOutside.objects.pump1.text.use = {"Your car is already filled."}
+    loadRooms.gasStationOutside.objects.pump2.text.use = {"Your car is already filled."}
+end
+function g.revealStatueRoomHiddenDoorOnMap()
+    -- The statue holding a dark crystal ball opens a door when the light reflects off the mirror and hits the dark crystal ball
+    loadRooms.graveyardUnderground1.objects.statueHoldingDarkCrystalBall.text.look = {"A statue holding a lit crystal", "ball."}
+    
+    -- Update the map
+    loadRooms.graveyardUnderground1.map = loadImages.twoWayVerticalMap
+    loadRooms.graveyardUnderground1.exits.north = "Graveyard Underground"
+end
 
+function g.revealChurchHiddenDoorOnMap()
+    -- Update the map
+    loadRooms.churchInside1.map = loadImages.twoWayVerticalMap
+    loadRooms.churchInside1.exits.north = "Mirror Room"
+end
+
+function g.schoolEveningToNight()
+    loadRooms.classroom.objects = {}
+    loadRooms.school1.music = loadMusic.houseDark
+    loadRooms.school1.state = "dark"
+    loadRooms.school2.objects.door.img.open = loadImages.classDoorOpenNight
+    loadRooms.car2.state = "dark"
+    loadRooms.car2.music = loadMusic.houseDark
+end
+
+function g.brokenNormalMirrorState(mirror)
+    mirror.text.look={"A long mirror. It's been", "smashed to pieces."}
+end
+
+function g.smashNormalMirror(mirror)
+    mirror.state = "Broken"
+    g.writeToTextDisplay({"You smash the mirror to pieces."})
+    g.brokenNormalMirrorState(mirror)
+    loadSFX.glassShattering:play()
+end
+function g.updateSewerGateText()
+    loadRooms.street5.objects.sewerGate.text = {close={"It's been cut open. It can't be", "closed anymore."},look={"It's a sewer gate. It's been", "cut open."},move="North",open={"It's already open!"},pull={"It's already open!"},push={"It's already open!"}}
+end
+function g.updatePuzzlingStoneMap()
+    -- Update the map
+    loadRooms.puzzlingStone.map = loadImages.twoWayVerticalMap
+    loadRooms.puzzlingStone.exits.north = "Altar Room"
+end
+function g.updatePuzzlingStonePuzzle()
+    g.showMessageBox = false
+    g.textBuffer = {}
+    
+    for i=0,8 do
+        if(g.mouse.objectPointedAt == loadRooms.puzzlingStone.objects["button" .. (i+1)]) then 
+            if(loadRooms.puzzlingStone.objects["button" .. (i+1)].state == "Off") then
+                loadRooms.puzzlingStone.objects["button" .. (i+1)].state = "On"
+            else
+                loadRooms.puzzlingStone.objects["button" .. (i+1)].state = "Off"
+            end
+        end
+    end
+    
+    if(loadRooms.puzzlingStone.objects.button1.state == "On"
+        and loadRooms.puzzlingStone.objects.button2.state == "Off"
+        and loadRooms.puzzlingStone.objects.button3.state == "Off"
+        and loadRooms.puzzlingStone.objects.button4.state == "Off"
+        and loadRooms.puzzlingStone.objects.button5.state == "On"
+        and loadRooms.puzzlingStone.objects.button6.state == "Off"
+        and loadRooms.puzzlingStone.objects.button7.state == "On"
+        and loadRooms.puzzlingStone.objects.button8.state == "On"
+        and loadRooms.puzzlingStone.objects.button9.state == "Off"
+        and loadRooms.puzzlingStone.objects.door.state == "Stuck") then
+        g.showMessageBox = true
+        g.writeToTextDisplay({"The door suddenly opens."})
+        loadRooms.puzzlingStone.objects.door.state = "Open"
+        
+        -- Update the map
+        g.updatePuzzlingStoneMap()
+        
+        loadSFX.pickup:play()
+    end
+end
+function g.updateHiddenDoorInMirror()
+    g.curLocation.objects.mirror2.text.close = {"You close the secret door."}
+    g.curLocation.objects.mirror2.text.open = {"You open the secret door."}
+    g.curLocation.objects.mirror2.text.move=""
+    g.curLocation.objects.mirror2.move=""
+    g.curLocation.objects.mirror2.text.look = {"A hidden room lies beyond the", "broken mirror."}
+    g.writeToTextDisplay({"You smash the mirror to pieces,", "revealing a hidden door behind", "it."})
+    
+    -- Update the map
+    loadRooms.mirrorRoom.map = loadImages.twoWayVerticalMap
+    loadRooms.mirrorRoom.exits.north = "Church Inside Secret Room"
+end
+function g.updateSpacePortalInMirror()
+    g.curLocation.objects.mirror3.text.move=""
+    g.curLocation.objects.mirror3.move=""
+    
+    -- Update the map
+    loadRooms.dreamMirrorRoom.map = loadImages.oneWayUpMap
+    loadRooms.dreamMirrorRoom.exits.north = ""
+end
 function g.loadGame(loadFile)
     
     -- Read in the contents of the file
@@ -156,14 +275,7 @@ function g.loadGame(loadFile)
     
     -- Check if the grave has already been moved
     if(loadRooms.graveyard.objects.grave.state == "Pushed") then
-        loadRooms.graveyard.objects.stairs = {name="stairs",x=37,y=67,w=25,h=11,text={look={"Stairs. They lead down into the", "the earth. But what hides", "there?"},move=""},img=loadImages.graveStairs,move=""}
-        loadGameText.graveyard.grave.pull = {"It has already been moved!"}
-        loadGameText.graveyard.grave.push = {"It has already been moved!"}
-        loadRooms.graveyard.objects.grave.text = loadGameText.graveyard.grave
-        
-        -- Update the map
-        loadRooms.graveyard.map = loadImages.twoWayVerticalMap
-        loadRooms.graveyard.exits.north = "Statue Room"
+        g.updateGrave()
     end
     
     -- Check if the cog has been placed already
@@ -176,80 +288,85 @@ function g.loadGame(loadFile)
     if(loadRooms.clockTowerInsideSecondFloor.objects.panel.state == "Open") then
         loadRooms.clockTowerInsideSecondFloor.objects.panel.text = {look={"It's a hidden panel. It's", "currently open."},open={"It's already open!"},pull={"It's already open!"}}
         local playerHasHacksaw = false
+        
+        -- Check if the player has the hacksaw
         for k,v in ipairs(g.items) do
             if(v.name == "Hacksaw") then
                 playerHasHacksaw = true
             end
         end
+        
+        -- If the player has not picked up the hacksaw yet, spawn it in the clock tower second floor
         if not(playerHasHacksaw) then
             loadRooms.clockTowerInsideSecondFloor.objects.hacksaw = loadObjects.hacksaw
         end
     end
     
-    if(loadRooms.graveyard.objects.grave.state == "Pushed") then
-        loadRooms.graveyard.objects.grave.y = loadRooms.graveyard.objects.grave.y - 12
-        loadGameText.graveyard.grave.pull = {"It has already been moved!"}
-        loadGameText.graveyard.grave.push = {"It has already been moved!"}
-    end
-    
+    -- Check if the button is on in the gas station store
     if(loadRooms.gasStationInside.objects.button.state == "On") then
-        loadRooms.gasStationInside.objects.button.text.look={"It's a button to turn on the", "gas pumps. The pumps are", "receiving power."}
-        loadRooms.gasStationInside.objects.button.text.push={"The pumps are already on!"}
-        loadRooms.gasStationInside.objects.button.text.use={"The pumps are already on!"}
-        loadRooms.gasStationOutside.objects.pump1.state = "On"
-        loadRooms.gasStationOutside.objects.pump1.text.look={"It's a gas pump. It's receiving", "power."}
-        loadRooms.gasStationOutside.objects.pump1.text.use={"You fill your car up with gas."}
-        loadRooms.gasStationOutside.objects.pump2.state = "On"
-        loadRooms.gasStationOutside.objects.pump2.text.look={"It's a gas pump. It's receiving", "power."}
-        loadRooms.gasStationOutside.objects.pump2.text.use={"You fill your car up with gas."}
+        g.activateGasPumps()
     end
     
-    if(loadRooms.street7.objects.sewerGate.state == "Broken") then
-        loadRooms.street7.objects.sewerGate.text = {close={"It's been cut open. It can't be", "closed anymore."},look={"It's a sewer gate. It's been", "cut open."},move="North",open={"It's already open!"},pull={"It's already open!"},push={"It's already open!"}}
+    if(loadRooms.street5.objects.sewerGate.state == "Broken") then
+        g.updateSewerGateText()
     end
     
     if(g.playerState.hasGas == true) then
-        loadRooms.gasStationOutside.objects.pump1.text.use = {"Your car is already filled."}
-        loadRooms.gasStationOutside.objects.pump2.text.use = {"Your car is already filled."}
+        g.playerCarHasGasoline()
     end
     
     if(g.playerState.classOver == true) then
-        loadRooms.school1.music = loadMusic.houseDark
-        loadRooms.school1.state = "dark"
-        loadRooms.school2.objects.door.img.open = loadImages.classDoorOpenNight
-        loadRooms.car2.state = "dark"
-        loadRooms.car2.music = loadMusic.houseDark
-        loadRooms.classroom.objects = {}
+        g.schoolEveningToNight()
     end
     
-    if(loadRooms.park1.objects.parkGate.state == "Closed") then
+    if(loadRooms.park1.objects.parkGate.state == "Closed" or loadRooms.park1.objects.parkGate.state == "Open") then
         loadRooms.park1.objects.parkGate.text.look={"It's a gate to a park."}
     end
     
+    if(loadRooms.mirrorRoom.objects.mirror1.state == "Broken") then
+        g.brokenNormalMirrorState(loadRooms.mirrorRoom.objects.mirror1)
+    end
+    
+    if(loadRooms.mirrorRoom.objects.mirror3.state == "Broken") then
+        g.brokenNormalMirrorState(loadRooms.mirrorRoom.objects.mirror3)
+    end
+    
     if(loadRooms.mirrorRoom.objects.mirror2.state == "Closed" or loadRooms.mirrorRoom.objects.mirror2.state == "Open") then
-        loadRooms.mirrorRoom.objects.mirror2.text.close = {"You close the secret door."}
-        loadRooms.mirrorRoom.objects.mirror2.text.open = {"You open the secret door."}
-        loadRooms.mirrorRoom.objects.mirror2.text.look = {"A hidden room lies beyond the", "broken mirror."}
-        loadRooms.mirrorRoom.objects.mirror2.text.move=""
-        loadRooms.mirrorRoom.objects.mirror2.move=""
+        g.updateHiddenDoorInMirror()
     end
     
+    if(loadRooms.puzzlingStone.objects.door.state == "Open") then
+        g.updatePuzzlingStoneMap()
+    end
+    
+    if(loadRooms.dreamMirrorRoom.objects.mirror1.state == "Broken") then
+        g.brokenNormalMirrorState(loadRooms.dreamMirrorRoom.objects.mirror1)
+    end
+    
+    if(loadRooms.dreamMirrorRoom.objects.mirror2.state == "Broken") then
+        g.brokenNormalMirrorState(loadRooms.dreamMirrorRoom.objects.mirror2)
+    end
+    
+    -- If the player smashes the dream mirror, they can transition to the Shadow Lands
     if(loadRooms.dreamMirrorRoom.objects.mirror3.state == "Broken") then
-        loadRooms.dreamMirrorRoom.objects.mirror3.text.move=""
-        loadRooms.dreamMirrorRoom.objects.mirror3.move=""
+        g.updateSpacePortalInMirror()
     end
     
+    -- If the player lights the three candles in the church, reveal the hidden door
     if(loadRooms.churchInside1.objects.candle1.state == "Lit"
         and loadRooms.churchInside1.objects.candle2.state == "Lit"
         and loadRooms.churchInside1.objects.wallCandelabra1.state == "Lit") then
+        
+        -- Reveal the hidden door
         loadRooms.churchInside1.objects.churchInsideDoor={name="Door",x=13,y=30,w=10,h=37,img={closed=loadImages.churchDoorInsideClosed,open=loadImages.churchDoorInsideOpen},state="Closed",move="",text={close={"You close the door."},look={"It's a narrow door hidden in", "the wall."},open={"You open the door."},move="",}}
-        loadRooms.churchInside1.map = loadImages.twoWayVerticalMap
-        loadRooms.churchInside1.exits.north = "Mirror Room"
+        
+        -- Update the map
+        g.revealChurchHiddenDoorOnMap()
     end
     
+    -- If the player used the mirror to reveal the hidden door
     if(loadRooms.graveyardUnderground1.objects.statueHoldingDarkCrystalBall.state == "Lit") then
-        loadRooms.graveyardUnderground1.objects.statueHoldingDarkCrystalBall.text.look = {"A statue holding a lit crystal", "ball."}
-        loadRooms.graveyardUnderground1.objects.door = {name="Door",x=45,y=30,w=10,h=37,img={closed=loadImages.graveyardDoorClosed,open=loadImages.graveyardDoorOpen},state="Closed",move="",text={close={"You close the door."},look={"It's a narrow door hidden in", "the wall."},open={"You open the door."},move="",}}
+        g.revealStatueRoomHiddenDoorOnMap()
     end
     
     loadRooms.nightmareGeometry2.backgrounds.light = loadImages.nightmareGeometry2
@@ -285,6 +402,7 @@ function g.loadGame(loadFile)
     g.itemPage = 1
     g.itemCount = #g.items
     
+    -- Turn background static on if the room has it
     if(g.curLocation.backgroundStatic) then
         g.backgroundStatic = true
     else
@@ -296,13 +414,12 @@ function g.loadGame(loadFile)
     g.music:seek(0)
     g.music:play()
     
+    -- Reset looking at the sun, the wall hole, and squiggle man
     g.playerState.numOfTimesLookedAtSun = 0
     g.playerState.numOfTimesLookedAtWallHole = 0
     g.timers.squiggleMan = 0
     
     createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="game"}})
-    
-    --return 
 end
 function g.saveGame(saveFile)
     local rooms = {}
@@ -325,5 +442,21 @@ function g.saveGame(saveFile)
     
     --love.filesystem.write(saveFile, saveData)
     love.filesystem.write(saveFile, saveDataJson)
+end
+
+function g.clearMouseCursorState()
+    g.mouse.objectHover = nil
+    g.mouse.mapHover = nil
+    g.mouse.objectHover = nil
+    g.mouse.mapHover = nil
+    g.mouse.actionHover = nil
+    g.mouse.itemMenuHoverItem = nil
+end
+function g.fromGameToTransition(state)
+    g.mapTransitionIsLegal = false
+    g.clearMouseCursorState()
+    g.textBuffer = {}
+    g.showMessageBox = false
+    createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state=state}})
 end
 return loadHelperFunctions

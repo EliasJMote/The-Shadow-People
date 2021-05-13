@@ -28,7 +28,6 @@ local drawGame = {}
                 end
             else
                 break
-                --if(k == 4) then break end
             end
         end
 
@@ -41,9 +40,7 @@ local drawGame = {}
         love.graphics.setColor(g.colors.lightestGreen.r, g.colors.lightestGreen.g, g.colors.lightestGreen.b, 1)
 
         -- Draw Background
-        --if(math.floor(love.timer.getTime()*100000000) % 4 <= 2 or not g.backgroundStatic) then
         love.graphics.draw(g.curLocation.backgrounds[string.lower(g.curLocation.state)], 3, 3)
-        --end
         
         -- For Nightmare Geometry 1 (The Lost Room), very rarely flicker an image of people
         if(g.curLocation == loadRooms.nightmareGeometry1) then
@@ -55,7 +52,7 @@ local drawGame = {}
         
         love.graphics.setColor(g.colors.lightestGreen.r, g.colors.lightestGreen.g, g.colors.lightestGreen.b, 1)
         
-        -- Draw the room objects
+        -- Draw the room's objects
         for k,v in pairs(g.curLocation.objects) do
             if(debug) then
                 love.graphics.setColor(1, 0, 0, 1)
@@ -75,7 +72,7 @@ local drawGame = {}
             end
         end
         
-        -- If static is enabled (for certain rooms and conditions), draw it
+        -- If static is enabled (for certain rooms and conditions), draw it over the background
         if(g.backgroundStatic) then
             love.graphics.setColor(g.colors.darkestGreen.r, g.colors.darkestGreen.g, g.colors.darkestGreen.b, 1)
             if(g.curLocation == loadRooms.gasStationBathroom) then
@@ -100,14 +97,6 @@ local drawGame = {}
         end
         
         love.graphics.setColor(g.colors.lightestGreen.r, g.colors.lightestGreen.g, g.colors.lightestGreen.b, 1)
-        
-        -- If the room is dark (pitch black), draw over everything
-        --[[if(g.curLocation.state=="Dark") then
-            if(g.curLocation == loadRooms.gasStationBathroom or g.curLocation == loadRooms.churchInside1 or g.curLocation == loadRooms.puzzlingStone) then
-                love.graphics.setColor(g.colors.darkestGreen.r, g.colors.darkestGreen.g, g.colors.darkestGreen.b, 1)
-                love.graphics.rectangle("fill",3,3,96-3+1,79-3+1)
-            end
-        end]]
         
         -- Draw rectangles around the scroll item arrows (if debug is enabled)
         if(debug) then
