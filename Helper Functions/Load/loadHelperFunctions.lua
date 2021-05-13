@@ -224,7 +224,7 @@ function g.updateHiddenDoorInMirror()
     loadRooms.mirrorRoom.objects.mirror2.text.move=""
     loadRooms.mirrorRoom.objects.mirror2.move=""
     loadRooms.mirrorRoom.objects.mirror2.text.look = {"A hidden room lies beyond the", "broken mirror."}
-    g.writeToTextDisplay({"You smash the mirror to pieces,", "revealing a hidden door behind", "it."})
+    
     
     -- Update the map
     loadRooms.mirrorRoom.map = loadImages.twoWayVerticalMap

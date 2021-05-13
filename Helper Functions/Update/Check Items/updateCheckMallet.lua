@@ -11,6 +11,7 @@ function updateCheckMallet.update()
             
         elseif(g.curLocation.objects.mirror2.state == "Unbroken" and g.mouse.objectPointedAt == g.curLocation.objects.mirror2) then
             g.curLocation.objects.mirror2.state = "Closed"
+            g.writeToTextDisplay({"You smash the mirror to pieces,", "revealing a hidden door behind", "it."})
             g.updateHiddenDoorInMirror()
             loadSFX.glassShattering:play()
             
