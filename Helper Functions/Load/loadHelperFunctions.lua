@@ -219,11 +219,11 @@ function g.updatePuzzlingStonePuzzle()
     end
 end
 function g.updateHiddenDoorInMirror()
-    g.curLocation.objects.mirror2.text.close = {"You close the secret door."}
-    g.curLocation.objects.mirror2.text.open = {"You open the secret door."}
-    g.curLocation.objects.mirror2.text.move=""
-    g.curLocation.objects.mirror2.move=""
-    g.curLocation.objects.mirror2.text.look = {"A hidden room lies beyond the", "broken mirror."}
+    loadRooms.mirrorRoom.objects.mirror2.text.close = {"You close the secret door."}
+    loadRooms.mirrorRoom.objects.mirror2.text.open = {"You open the secret door."}
+    loadRooms.mirrorRoom.objects.mirror2.text.move=""
+    loadRooms.mirrorRoom.objects.mirror2.move=""
+    loadRooms.mirrorRoom.objects.mirror2.text.look = {"A hidden room lies beyond the", "broken mirror."}
     g.writeToTextDisplay({"You smash the mirror to pieces,", "revealing a hidden door behind", "it."})
     
     -- Update the map
@@ -231,8 +231,8 @@ function g.updateHiddenDoorInMirror()
     loadRooms.mirrorRoom.exits.north = "Church Inside Secret Room"
 end
 function g.updateSpacePortalInMirror()
-    g.curLocation.objects.mirror3.text.move=""
-    g.curLocation.objects.mirror3.move=""
+    loadRooms.dreamMirrorRoom.objects.mirror3.text.move=""
+    loadRooms.dreamMirrorRoom.objects.mirror3.move=""
     
     -- Update the map
     loadRooms.dreamMirrorRoom.map = loadImages.oneWayUpMap
