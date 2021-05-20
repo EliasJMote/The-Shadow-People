@@ -1,5 +1,5 @@
 ﻿The Shadow People
-Version 1.0.0.4
+Version 1.0.0.5
 
 Copyright © 2020-2021 Elias Mote
 Copyright © 2020-2021 Roc Studios
@@ -13,21 +13,41 @@ VI. Credits
 
 I. Disclaimer
 
-This software may be not be reproduced under any circumstances except for personal, private use. It may not be placed on any web site or otherwise distributed publicly except at the sole discretion of the author. Placement of this readme or game on any other web site or as a part of any public display is strictly prohibited, and a violation of copyright.
+This software may be not be reproduced under any circumstances except for personal, private use. It
+may not be placed on any web site or otherwise distributed publicly except at the sole discretion of
+ the author. Placement of this readme or game on any other web site or as a part of any public
+ display is strictly prohibited, and a violation of copyright.
 
 II. Version History
 
 --------------------------
-V1.0.0.4 - Current Version
+V1.0.0.5 - Current Version
+--------------------------
+-- Changes --
+-- Reduced the screen transition time from 70 frames to 50 frames 
+
+-- Bug Fixes --
+-- Fixed a bug where saving a game with an item currently selected from the player's inventory, then
+loading a different game would still cause the game to think that item was selected, even for save
+files where the player has not acquired that item yet. This could lead to softlocking.
+-- Fixed a bug where loading the game in the living room would not allow the player to move south
+to the bedroom until a different room was entered first.
+-- Fixed a typo for one of the transition text screens.
+-- Fixed overlapping text in the credits screen.
+
+--------------------------
+V1.0.0.4
 --------------------------
 -- Improvements --
 -- Removed multiple map images to eliminate redundancy.
--- Code refactoring (removing old unnecessary code, adding more functions and variables to reduce code repetition and coupling) This includes:
+-- Code refactoring (removing old unnecessary code, adding more functions and variables to reduce 
+code repetition and coupling) This includes:
 --- Separating the check items and actions into separate functions (in their own files)
 
 -- Bug Fixes --
 -- Fixed a bug where the wrong music would play in the dream mirror room.
--- Fixed some bugs involving not updating the map upon loading the game after some secret doors have been opened
+-- Fixed some bugs involving not updating the map upon loading the game after some secret doors have
+ been opened
 
 --------------------------
 V1.0.0.3
@@ -44,9 +64,11 @@ V1.0.0.3
 
 -- Bug Fixes --
 -- Fixed a bug where the player could move through the sewer gate early if they used map movement.
--- Fixed a bug where the description for the Eclipse Brooch in the inventory used the car keys description
+-- Fixed a bug where the description for the Eclipse Brooch in the inventory used the car keys
+description
 -- Fixed a typo in the Puzzling Stone room
--- Fixed a bug in the House Outside room where the player could move through the door before opening it
+-- Fixed a bug in the House Outside room where the player could move through the door before opening
+it
 
 --------------------------
 V1.0.0.2 - Current Version
@@ -356,14 +378,23 @@ V0.1.0
 -- Added user interface for the player
 
 III. Story
-The Shadow People is a #pointandclick #horror #adventure game where you wake up exhausted the week before finals week. Gathering your things, you head to campus to attend class, and then after sitting through a lengthy lecture, you head back home.
+The Shadow People is a #pointandclick #horror #adventure game where you wake up exhausted the week
+before finals week. Gathering your things, you head to campus to attend class, and then after
+sitting through a lengthy lecture, you head back home.
 
-After refueling at a gas station on the way back, you're driving alone in the dark and doing your best to keep yourself awake. Suddenly, you think you see someone in the road, and you violently swerve out of the way to avoid them. Unfortunately, your car gets smashed pretty badly in the wreck, leaving you stranded on a lonely section of highway.
+After refueling at a gas station on the way back, you're driving alone in the dark and doing your
+best to keep yourself awake. Suddenly, you think you see someone in the road, and you violently
+swerve out of the way to avoid them. Unfortunately, your car gets smashed pretty badly in the wreck,
+ leaving you stranded on a lonely section of highway.
 
-Your cell phone is unable to get any signal, so you decide to hoof it, looking for any sign of civilization or cell phone signal. You reach a nearby town that you swear used to be just empty grassland. You navigate the silent streets, trying your best to figure out a way back home.
+Your cell phone is unable to get any signal, so you decide to hoof it, looking for any sign of
+civilization or cell phone signal. You reach a nearby town that you swear used to be just empty
+grassland. You navigate the silent streets, trying your best to figure out a way back home.
 
 IV. Controls
-Use the left mouse to click through the game. Select text or objects within the game to perform certain actions. Use the right click during the game to access the pause menu. You can select up to 10 different actions, including the "Move" action.
+Use the left mouse to click through the game. Select text or objects within the game to perform
+certain actions. Use the right click during the game to access the pause menu. You can select up to
+10 different actions, including the "Move" action.
 
 V. Contact
 Contact me with questions or comments at rulerofchaosstudios@gmail.com
@@ -377,7 +408,8 @@ VI. Credits
 Producer: Elias Mote
 Programmer: Elias Mote
 Musicians: Taylor Fielder, Elias Mote
-Testers: Dred4170, Raistlarn, Taylor Fielder, Aluminati, BeanWagon, David Harper
+Testers: Dred4170, Raistlarn, Taylor Fielder, Aluminati, BeanWagon, David Harper, Elias Mote
+Special Thanks: My loving and supportive family.
 
 Software:
 Engine: Love2d

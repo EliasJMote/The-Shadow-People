@@ -409,15 +409,26 @@ function g.loadGame(loadFile)
         g.backgroundStatic = false
     end
     
-    g.music:stop()
-    g.music = g.curLocation.music
-    g.music:seek(0)
-    g.music:play()
+    
+    -- If there is music to load, load it. Otherwise, do nothing (the shed doesn't have music, so it's value is nil when loaded).
+    if(g.music ~= nil) then
+        g.music:stop()
+        g.music = g.curLocation.music
+        g.music:seek(0)
+        g.music:play()
+    end
     
     -- Reset looking at the sun, the wall hole, and squiggle man
     g.playerState.numOfTimesLookedAtSun = 0
     g.playerState.numOfTimesLookedAtWallHole = 0
     g.timers.squiggleMan = 0
+    
+    -- Clear the mouse cursor state
+    g.clearMouseCursorState()
+    
+    -- Clear selected items
+    g.actionSelected = nil
+    g.itemSelected = nil
     
     createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="game"}})
 end
@@ -445,8 +456,6 @@ function g.saveGame(saveFile)
 end
 
 function g.clearMouseCursorState()
-    g.mouse.objectHover = nil
-    g.mouse.mapHover = nil
     g.mouse.objectHover = nil
     g.mouse.mapHover = nil
     g.mouse.actionHover = nil

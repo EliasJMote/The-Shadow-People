@@ -15,7 +15,7 @@ function drawTitleScreen.draw()
         love.graphics.draw(loadImages.rocStudiosLogo)
     end
     
-    if(g.timers.global >= g.timers.titleScreenLogo+35) then
+    if(g.timers.global >= g.timers.titleScreenLogo+35-20) then
         love.graphics.setColor(g.colors.lightestGreen.r, g.colors.lightestGreen.g, g.colors.lightestGreen.b, 1)
         love.graphics.draw(loadImages.titleScreen)
         love.graphics.setColor(g.colors.lightGreen.r, g.colors.lightGreen.g, g.colors.lightGreen.b, 1)

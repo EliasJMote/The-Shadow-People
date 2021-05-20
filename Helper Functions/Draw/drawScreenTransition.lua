@@ -6,15 +6,17 @@ function drawScreenTransition.draw()
 
     if(g.screenTransition.active) then
 
-        if(g.timers.screenTransition < 10) then
+        local screenTransitionTime = 50
+
+        if(g.timers.screenTransition < screenTransitionTime * 1/7) then
             love.graphics.setColor(g.colors.darkGreen.r, g.colors.darkGreen.g, g.colors.darkGreen.b, 1)
-        elseif(g.timers.screenTransition < 25) then
+        elseif(g.timers.screenTransition < screenTransitionTime * 5/14) then
             love.graphics.setColor(g.colors.lightGreen.r, g.colors.lightGreen.g, g.colors.lightGreen.b, 1)
-        elseif(g.timers.screenTransition < 40) then
+        elseif(g.timers.screenTransition < screenTransitionTime * 4/7) then
             love.graphics.setColor(g.colors.lightestGreen.r, g.colors.lightestGreen.g, g.colors.lightestGreen.b, 1)
-        elseif(g.timers.screenTransition < 55) then
+        elseif(g.timers.screenTransition < screenTransitionTime * 11/14) then
             love.graphics.setColor(g.colors.lightGreen.r, g.colors.lightGreen.g, g.colors.lightGreen.b, 1)
-        elseif(g.timers.screenTransition < 70) then
+        elseif(g.timers.screenTransition < screenTransitionTime) then
             love.graphics.setColor(g.colors.darkGreen.r, g.colors.darkGreen.g, g.colors.darkGreen.b, 1)
         else
             createEvent.create(createEvent.create{name="Stop Screen Transition"})

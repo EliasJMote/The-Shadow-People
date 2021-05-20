@@ -24,7 +24,7 @@ function updateRoomLocks.update()
                 elseif(g.curLocation.objects["livingRoomDoor"].state == "Open") then
                     g.mapTransitionIsLegal = true
                 end
-            elseif(g.movementDirection == "West") then
+            else
                 g.mapTransitionIsLegal = true
             end
         

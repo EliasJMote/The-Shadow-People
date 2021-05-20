@@ -19,7 +19,7 @@ function updateLeftClickTitleEvents.update(event)
         end
         
         -- Title screen
-        if(g.timers.global >= g.timers.titleScreenLogo+35) then
+        if(g.timers.global >= g.timers.titleScreenLogo+20) then
             if(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.titleScreen.startGame)) then
                 createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="instructions"}})
             elseif(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.titleScreen.loadGame)) then
