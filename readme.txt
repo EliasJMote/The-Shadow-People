@@ -1,5 +1,5 @@
 ﻿The Shadow People
-Version 1.0.0.5
+Version 1.0.0.6
 
 Copyright © 2020-2021 Elias Mote
 Copyright © 2020-2021 Roc Studios
@@ -21,7 +21,25 @@ may not be placed on any web site or otherwise distributed publicly except at th
 II. Version History
 
 --------------------------
-V1.0.0.5 - Current Version
+V1.0.0.6 - Current Version
+--------------------------
+-- Changes --
+-- Updated the title screen to show tiny build changes (such as V1.0.0.6 instead of V1.0.0). This
+was done because testers were getting confused by what version was being used.
+
+-- Bug Fixes --
+-- Fixed a bug where the Shadow Child cutscene wouldn't trigger. Instead, the game would softlock
+after looking at them.
+-- Fixed a bug where destroying the mirror that leads to the portal in the dream mirror room
+wouldn't update the text for looking at it.
+-- Fixed a bug where starting a new game after previously playing a different game and selecting an
+item would still cause that item to be selected in a new game.
+-- Fixed a bug where the previous fix for loading into the shed would still cause a crash from the
+title screen. This bug also likely would have prevented music from loading in on save files
+(unconfirmed).
+
+--------------------------
+V1.0.0.5
 --------------------------
 -- Changes --
 -- Reduced the screen transition time from 70 frames to 50 frames 

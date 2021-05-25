@@ -24,7 +24,7 @@ function drawTitleScreen.draw()
             g.highlightText(v,0.5)
         end
         love.graphics.setColor(g.colors.lightGreen.r, g.colors.lightGreen.g, g.colors.lightGreen.b, 1)
-        love.graphics.print("V" .. gameVersion, 112, 130, 0, 0.5, 0.5)
+        love.graphics.print("V" .. gameVersion, 112-4, 134, 0, 0.5, 0.5)
     end
 end
 

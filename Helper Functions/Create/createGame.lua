@@ -71,6 +71,13 @@ local createGame = {}
         
         g.previousState = nil
         
+        -- Clear the mouse cursor state
+        g.clearMouseCursorState()
+        
+        -- Clear selected items
+        g.actionSelected = nil
+        g.itemSelected = nil
+        
         for k,v in pairs(loadSFX) do
             v:setVolume(1)
             v:setPitch(1)

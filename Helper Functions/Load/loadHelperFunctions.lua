@@ -222,7 +222,7 @@ function g.updateHiddenDoorInMirror()
     loadRooms.mirrorRoom.objects.mirror2.text.close = {"You close the secret door."}
     loadRooms.mirrorRoom.objects.mirror2.text.open = {"You open the secret door."}
     loadRooms.mirrorRoom.objects.mirror2.text.move=""
-    loadRooms.mirrorRoom.objects.mirror2.move=""
+    loadRooms.mirrorRoom.objects.mirror2.move = ""
     loadRooms.mirrorRoom.objects.mirror2.text.look = {"A hidden room lies beyond the", "broken mirror."}
     
     
@@ -231,8 +231,9 @@ function g.updateHiddenDoorInMirror()
     loadRooms.mirrorRoom.exits.north = "Church Inside Secret Room"
 end
 function g.updateSpacePortalInMirror()
-    loadRooms.dreamMirrorRoom.objects.mirror3.text.move=""
-    loadRooms.dreamMirrorRoom.objects.mirror3.move=""
+    loadRooms.dreamMirrorRoom.objects.mirror3.text.move = ""
+    loadRooms.dreamMirrorRoom.objects.mirror3.move = ""
+    loadRooms.dreamMirrorRoom.objects.mirror3.text.look = {"A hidden portal to another", "planet lies beyond the broken", "mirror."}
     
     -- Update the map
     loadRooms.dreamMirrorRoom.map = loadImages.oneWayUpMap
@@ -409,10 +410,13 @@ function g.loadGame(loadFile)
         g.backgroundStatic = false
     end
     
-    
-    -- If there is music to load, load it. Otherwise, do nothing (the shed doesn't have music, so it's value is nil when loaded).
+    -- Stop music if it currently exists
     if(g.music ~= nil) then
         g.music:stop()
+    end
+    
+    -- If the location has music to load, load it. Otherwise, do nothing (the shed doesn't have music, so it's value is nil when loaded).
+    if(g.curLocation.music ~= nil) then
         g.music = g.curLocation.music
         g.music:seek(0)
         g.music:play()
@@ -460,6 +464,7 @@ function g.clearMouseCursorState()
     g.mouse.mapHover = nil
     g.mouse.actionHover = nil
     g.mouse.itemMenuHoverItem = nil
+    g.mouse.scrollPageArrowHover = nil
 end
 function g.fromGameToTransition(state)
     g.mapTransitionIsLegal = false
