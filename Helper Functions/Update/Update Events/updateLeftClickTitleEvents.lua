@@ -24,6 +24,25 @@ function updateLeftClickTitleEvents.update(event)
                 createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="instructions"}})
             elseif(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.titleScreen.loadGame)) then
                 g.previousState = "title"
+                
+                if(love.filesystem.getInfo("Save_File_1.lua")) then
+                    local contents = love.filesystem.read("Save_File_1.lua")
+                    local loadTable = json.decode(contents)
+                    g.loadGameDateTime1 = loadTable.dateTime
+                end
+                
+                if(love.filesystem.getInfo("Save_File_2.lua")) then
+                    local contents = love.filesystem.read("Save_File_2.lua")
+                    local loadTable = json.decode(contents)
+                    g.loadGameDateTime2 = loadTable.dateTime
+                end
+                
+                if(love.filesystem.getInfo("Save_File_3.lua")) then
+                    local contents = love.filesystem.read("Save_File_3.lua")
+                    local loadTable = json.decode(contents)
+                    g.loadGameDateTime3 = loadTable.dateTime
+                end
+                
                 createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="load game"}})
             elseif(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.titleScreen.options)) then
                 createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="options"}})

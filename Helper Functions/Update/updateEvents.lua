@@ -51,9 +51,15 @@ updateEvents.update = function()
                 g.screenTransition.event = nil
             end
             
+        -- Play the selected music
         elseif(event.name == "Play Music") then
-            if(event.music ~= nil and event.music ~= g.music) then
-                if(g.music ~= nil) then g.music:stop() end
+        
+            -- Check that the event has music and is different than the currently playing music
+            --if(event.music ~= nil and event.music ~= g.music) then
+            if(event.music ~= nil) then
+                
+                -- If different music is currently playing, stop it
+                if(g.music ~= nil and event.music ~= g.music) then g.music:stop() end
                 g.music = event.music
                 g.music:play()
             end

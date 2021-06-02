@@ -14,8 +14,46 @@ function updateLeftClickPauseEvents.update(event)
                 createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="inventory"}})
             elseif(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.pauseScreen.loadGame)) then
                 g.previousState = "pause"
+                
+                if(love.filesystem.getInfo("Save_File_1.lua")) then
+                    local contents = love.filesystem.read("Save_File_1.lua")
+                    local loadTable = json.decode(contents)
+                    g.loadGameDateTime1 = loadTable.dateTime
+                end
+                
+                if(love.filesystem.getInfo("Save_File_2.lua")) then
+                    local contents = love.filesystem.read("Save_File_2.lua")
+                    local loadTable = json.decode(contents)
+                    g.loadGameDateTime2 = loadTable.dateTime
+                end
+                
+                if(love.filesystem.getInfo("Save_File_3.lua")) then
+                    local contents = love.filesystem.read("Save_File_3.lua")
+                    local loadTable = json.decode(contents)
+                    g.loadGameDateTime3 = loadTable.dateTime
+                end
+                
                 createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="load game"}})
             elseif(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.pauseScreen.saveGame)) then
+                
+                if(love.filesystem.getInfo("Save_File_1.lua")) then
+                    local contents = love.filesystem.read("Save_File_1.lua")
+                    local loadTable = json.decode(contents)
+                    g.loadGameDateTime1 = loadTable.dateTime
+                end
+                
+                if(love.filesystem.getInfo("Save_File_2.lua")) then
+                    local contents = love.filesystem.read("Save_File_2.lua")
+                    local loadTable = json.decode(contents)
+                    g.loadGameDateTime2 = loadTable.dateTime
+                end
+                
+                if(love.filesystem.getInfo("Save_File_3.lua")) then
+                    local contents = love.filesystem.read("Save_File_3.lua")
+                    local loadTable = json.decode(contents)
+                    g.loadGameDateTime3 = loadTable.dateTime
+                end
+                
                 createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="save game"}})
             elseif(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.pauseScreen.quitGame)) then
                 g.music = loadMusic.title
@@ -53,12 +91,21 @@ function updateLeftClickPauseEvents.update(event)
             elseif(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.saveGameScreen.saveGame1)) then
                 g.saveGame("Save_File_1.lua")
                 g.savedString = "Save to file 1 successful!"
+                local contents = love.filesystem.read("Save_File_1.lua")
+                local loadTable = json.decode(contents)
+                g.loadGameDateTime1 = loadTable.dateTime
             elseif(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.saveGameScreen.saveGame2)) then
                 g.saveGame("Save_File_2.lua")
                 g.savedString = "Save to file 2 successful!"
+                local contents = love.filesystem.read("Save_File_2.lua")
+                local loadTable = json.decode(contents)
+                g.loadGameDateTime2 = loadTable.dateTime
             elseif(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.saveGameScreen.saveGame3)) then
                 g.saveGame("Save_File_3.lua")
                 g.savedString = "Save to file 3 successful!"
+                local contents = love.filesystem.read("Save_File_3.lua")
+                local loadTable = json.decode(contents)
+                g.loadGameDateTime3 = loadTable.dateTime
             end
         end
     end

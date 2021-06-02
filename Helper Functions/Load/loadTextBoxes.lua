@@ -9,9 +9,9 @@ function loadTextBoxes.load()
                                                     startGame = {x=58,y=128,w=47,h=6,text="Start Game"},
                                                 },
                         loadGameScreen =    {
-                                                loadGame1 = {x=20,y=32,w=52,h=5,text="Load Game 1"},
-                                                loadGame2 = {x=20,y=64,w=52,h=5,text="Load Game 2"},
-                                                loadGame3 = {x=20,y=96,w=52,h=5,text="Load Game 3"},
+                                                loadGame1 = {x=6,y=32,w=52,h=5,text="Load Game 1"},
+                                                loadGame2 = {x=6,y=64,w=52,h=5,text="Load Game 2"},
+                                                loadGame3 = {x=6,y=96,w=52,h=5,text="Load Game 3"},
                                                 back = {x=20,y=128,w=18,h=5,text="Back"},
                                             },
                         optionsScreen = {
@@ -48,9 +48,9 @@ function loadTextBoxes.load()
                                                     }
                                         },
                         saveGameScreen =    {
-                                                saveGame1 = {x=20,y=32,w=52,h=5,text="Save Game 1"},
-                                                saveGame2 = {x=20,y=64,w=52,h=5,text="Save Game 2"},
-                                                saveGame3 = {x=20,y=96,w=52,h=5,text="Save Game 3"},
+                                                saveGame1 = {x=6,y=32,w=52,h=5,text="Save Game 1"},
+                                                saveGame2 = {x=6,y=64,w=52,h=5,text="Save Game 2"},
+                                                saveGame3 = {x=6,y=96,w=52,h=5,text="Save Game 3"},
                                                 back = {x=20,y=128,w=18,h=5,text="Back"},
                                             },
                         titleCreditsScreen =    {

@@ -1,5 +1,5 @@
 ﻿The Shadow People
-Version 1.0.0.6
+Version 1.0.0.7
 
 Copyright © 2020-2021 Elias Mote
 Copyright © 2020-2021 Roc Studios
@@ -21,7 +21,17 @@ may not be placed on any web site or otherwise distributed publicly except at th
 II. Version History
 
 --------------------------
-V1.0.0.6 - Current Version
+V1.0.0.7 - Current Version
+--------------------------
+-- Changes --
+-- The save and load screens now display the timestamps for each save file.
+
+-- Bug Fixes --
+-- Fixed a bug where loading into the shed from a different room will prevent the music from
+starting after leaving the shed.
+
+--------------------------
+V1.0.0.6
 --------------------------
 -- Changes --
 -- Updated the title screen to show tiny build changes (such as V1.0.0.6 instead of V1.0.0). This

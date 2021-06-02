@@ -450,7 +450,7 @@ function g.saveGame(saveFile)
     end
     
     -- Save rooms, items, player state, current location
-    local saveTable = {curLocation=g.curLocation.name,items=g.items,rooms=rooms,playerState=g.playerState}
+    local saveTable = {curLocation=g.curLocation.name,dateTime=os.date('*t'),items=g.items,rooms=rooms,playerState=g.playerState}
     
     --local saveData = g.serializeTable(saveTable)
     local saveDataJson = json.encode(saveTable)
