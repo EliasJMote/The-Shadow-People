@@ -1,8 +1,8 @@
 function love.conf(t)
     debug = false
     --debug = true
-    gameVersion = "1.0.0.7"
     scale = 5
+    gameVersion = "1.0.0.8"
     t.title = "The Shadow People V" .. gameVersion
     t.version = "11.1"
     t.window.width = 160 * scale

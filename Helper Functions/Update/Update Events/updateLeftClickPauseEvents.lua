@@ -56,10 +56,7 @@ function updateLeftClickPauseEvents.update(event)
                 
                 createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="save game"}})
             elseif(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.pauseScreen.quitGame)) then
-                g.music = loadMusic.title
-                g.music:play()
-                g.backgroundStatic = false
-                createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="title"}})
+                g.goToTitleScreen()
             end
         end
         
@@ -108,6 +105,12 @@ function updateLeftClickPauseEvents.update(event)
                 g.loadGameDateTime3 = loadTable.dateTime
             end
         end
+        
+    elseif((g.state == "good ending" and g.timers.endingText >= g.timers.goodEnding)
+        or (g.state == "bad ending" and g.timers.endingText >= g.timers.badEnding)
+        or (g.state == "easter egg ending" and g.timers.endingText >= g.timers.easterEggEnding)
+        or (g.state == "alien ending" and g.timers.endingText >= g.timers.alienEnding)) then
+        g.goToTitleScreen()
     end
 end
 

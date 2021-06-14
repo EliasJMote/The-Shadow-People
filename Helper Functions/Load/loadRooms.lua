@@ -856,7 +856,7 @@ loadRooms.school1 =    {
                             backgrounds={light=loadImages.school1Evening,dark=loadImages.school1Night},
                             map=loadImages.twoWayVerticalMap,
                             objects={
-                                        school={name="School",x=33,y=33,w=34,h=13,move="North",text={look={"It's your school. You spend", "about four days out of the week", "within it's halls."},move="North"}},
+                                        school={name="School",x=33,y=33,w=34,h=13,move="North",text={look={"It's your school. You spend", "about four days out of the week", "within its halls."},move="North"}},
                                         sun={name="Sun",x=4,y=29,w=5,h=5,text={look={"It's the evening sun. It's not", "quite so bright anymore, so", "it's less likely to cause you", "to go blind."}}},
                                     },
                             music=loadMusic.houseLight,

@@ -8,8 +8,8 @@ function updateSquiggleMan.update()
         if(g.timers.squiggleMan > 60) then
             if not(g.playerState.hasNecklace) then
                 
-                -- Exit game
-                love.event.quit(0)
+                -- Return to the title screen
+                g.goToTitleScreen()
                 
             -- The magic necklace will save the player
             else

@@ -1,5 +1,5 @@
 ﻿The Shadow People
-Version 1.0.0.7
+Version 1.0.0.8
 
 Copyright © 2020-2021 Elias Mote
 Copyright © 2020-2021 Roc Studios
@@ -21,7 +21,22 @@ may not be placed on any web site or otherwise distributed publicly except at th
 II. Version History
 
 --------------------------
-V1.0.0.7 - Current Version
+V1.0.0.8 - Current Version
+--------------------------
+-- Changes --
+-- Getting a game over now boots you to the title screen rather than shuts the game off. This was
+done to make the game more streamer friendly.
+-- Getting any ending now allows you to go back to the title screen with a left click. This was
+done to make the game more streamer friendly.
+
+-- Bug Fixes --
+-- Fixed a small issue where, when trying to use the eclipse brooch, the text for it would go to far
+on the message box.
+-- Fixed a bug where sound effects would not stop when travelling between rooms. This meant that
+Squiggle Man's moan would not stop even when not in the area anymore.
+
+--------------------------
+V1.0.0.7
 --------------------------
 -- Changes --
 -- The save and load screens now display the timestamps for each save file.

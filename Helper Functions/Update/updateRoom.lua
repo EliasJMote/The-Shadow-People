@@ -10,6 +10,11 @@ local updateRoom = {}
             end
         end
         g.textBuffer = {}
+        
+        -- Stops all sound effects when traversing between rooms (mainly for Squiggle Man and the Shadow Children)
+        for k,v in pairs(loadSFX) do
+            v:stop()
+        end
     end
     
     function updateRoom.update()

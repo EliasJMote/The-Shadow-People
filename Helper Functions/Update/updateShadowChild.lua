@@ -11,8 +11,8 @@ function updateShadowChild.update()
     if(g.timers.shadowChild >= 660) then
         if not(g.playerState.hasNecklace) then
                 
-            -- Exit game
-            love.event.quit(0)
+            -- Return to the title screen
+            g.goToTitleScreen()
             
         -- The magic necklace will save the player
         else

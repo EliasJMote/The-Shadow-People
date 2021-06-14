@@ -1,5 +1,6 @@
 local loadSFX = {}
 
+loadSFX.childrenLaughing = love.audio.newSource("SFX/Children Laughing.wav", "static")
 loadSFX.doorClose = love.audio.newSource("SFX/Door Close.wav", "static")
 loadSFX.doorOpen = love.audio.newSource("SFX/Door Open.wav", "static")
 loadSFX.fire = love.audio.newSource("SFX/Fire.wav", "static")

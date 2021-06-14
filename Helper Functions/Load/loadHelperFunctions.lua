@@ -473,4 +473,16 @@ function g.fromGameToTransition(state)
     g.showMessageBox = false
     createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state=state}})
 end
+function g.goToTitleScreen()
+    g.clearMouseCursorState()
+    g.music:stop()
+    loadSFX.squiggleManScream:stop()
+    g.playerState.numOfTimesLookedAtWallHole = 0
+    g.timers.squiggleMan = 0
+    g.timers.shadowChild = 0
+    g.music = loadMusic.title
+    g.music:play()
+    g.backgroundStatic = false
+    createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="title"}})
+end
 return loadHelperFunctions

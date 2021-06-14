@@ -15,7 +15,7 @@ function updateCheckItem.update()
         g.writeToTextDisplay({"You can't use the cog here."})
         
     elseif(g.itemSelected == "E. Brooch") then
-        g.writeToTextDisplay({"You can't use the eclipse brooch", "here."})
+        g.writeToTextDisplay({"You can't use the eclipse", "brooch here."})
         
     elseif(g.itemSelected == "Gas Can") then
         g.writeToTextDisplay({"You can't use the gas can here."})

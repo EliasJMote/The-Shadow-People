@@ -69,6 +69,13 @@ function updateCheckActionLook.update()
             end
         end
         
+    -- Looking at the Endless Hallway
+    elseif(g.curLocation == loadRooms.nightmareGeometry5 or g.curLocation == loadRooms.nightmareGeometry6) then
+        if(g.mouse.objectPointedAt == g.curLocation.objects.endlessHallway) then
+            loadSFX.childrenLaughing:stop()
+            loadSFX.childrenLaughing:play()
+        end
+        
     -- Squiggle Man
     elseif(g.curLocation == loadRooms.nightmareGeometry3) then
     
