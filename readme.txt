@@ -1,5 +1,5 @@
 ﻿The Shadow People
-Version 1.0.0.8
+Version 1.0.1
 
 Copyright © 2020-2021 Elias Mote
 Copyright © 2020-2021 Roc Studios
@@ -21,16 +21,29 @@ may not be placed on any web site or otherwise distributed publicly except at th
 II. Version History
 
 --------------------------
-V1.0.0.8 - Current Version
+V1.0.1 - Current Version
+--------------------------
+-- Bug Fixes --
+-- Fixed a bug where the game would crash when returning to the game from the pause menu in the shed.
+-- Fixed a bug where loading into Park 3 would not permit the player to move west until traveling to
+the shed first. This was caused by g.mapTransitionIsLegal not being initialized to true when loading
+the game. The variable is now initialized to true by default to prevent other possible loading issues.
+-- Fixed a bug where picking up the hacksaw, then loading a game before the hacksaw was picked up,
+would prevent the hacksaw from spawning in a second time without restarting the game. This was caused
+by the hacksaw being put offscreen and therefore unattainable.
+
+--------------------------
+V1.0.0.8
 --------------------------
 -- Changes --
 -- Getting a game over now boots you to the title screen rather than shuts the game off. This was
 done to make the game more streamer friendly.
 -- Getting any ending now allows you to go back to the title screen with a left click. This was
 done to make the game more streamer friendly.
+-- Added a SFX for the Shadow Child endless hallway
 
 -- Bug Fixes --
--- Fixed a small issue where, when trying to use the eclipse brooch, the text for it would go to far
+-- Fixed a small issue where, when trying to use the eclipse brooch, the text for it would go top far
 on the message box.
 -- Fixed a bug where sound effects would not stop when travelling between rooms. This meant that
 Squiggle Man's moan would not stop even when not in the area anymore.

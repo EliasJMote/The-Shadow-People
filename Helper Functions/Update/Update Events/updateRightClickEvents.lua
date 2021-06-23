@@ -28,7 +28,9 @@ function updateRightClickEvents.update(event)
         elseif(g.state == "pause") then
             
             -- Start the music back up
-            g.music:play()
+            if(g.music ~= nil) then
+                g.music:play()
+            end
             
             -- Transition to the game state
             createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="game"}})

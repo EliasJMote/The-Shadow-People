@@ -87,6 +87,7 @@ function g.checkClock()
         if(hourAngle ~= 0) then hour = 12 - g.round(hourAngle / 30) end
         if(minuteAngle ~= 0) then minute = 60 - g.round((minuteAngle * 5) / 30) end
     
+        -- Check if it is the correct time (8:35). If so, open the secret panel.
         if(hour == 8 and minute == 35) then
             if(loadRooms.clockTowerInsideSecondFloor.objects.panel.state ~= "Open") then
                 g.showMessageBox = false
@@ -103,19 +104,6 @@ function g.checkClock()
                 g.writeToTextDisplay({"The panel is open already!"})
             end
         end
-    
-    -- Check if it is the correct time (8:35). If so, open the secret panel.
-    --[[elseif(g.mouse.objectPointedAt == loadRooms.clockTowerInsideSecondFloor.objects.selectionButton) then
-        g.showMessageBox = false
-        g.textBuffer = {}
-    
-        if(hour == 8 and minute == 35 and loadRooms.clockTowerInsideSecondFloor.objects.panel.state ~= "Open") then
-            loadRooms.clockTowerInsideSecondFloor.objects.panel.state = "Open"
-            loadRooms.clockTowerInsideSecondFloor.objects.panel.text = {look={"It's a hidden panel. It's", "currently open."},open={"It's already open!"},pull={"It's already open!"}}
-            loadRooms.clockTowerInsideSecondFloor.objects.hacksaw = loadObjects.hacksaw
-            g.writeToTextDisplay({"As you press the button, a", "secret panel in the wall opens.", "A hacksaw falls out of the", "panel and clatters to the", "floor."})
-            loadSFX.pickup:play()
-        end]]
     end
 end
 function g.updateGrave()
@@ -251,13 +239,24 @@ function g.loadGame(loadFile)
     
     g.playerState = loadTable.playerState
     g.items = loadTable.items
+    g.mapTransitionIsLegal = true
     
     -- Move objects offscreen if the player has picked them up already
     for room_key,room_value in pairs(loadRooms) do
+        
+        -- Set the room's state to be the loaded game's state
         room_value.state = loadTable.rooms[room_key].state
+        
+        -- For each object in the loaded game's object table
         for obj_key,obj_value in pairs(loadTable.rooms[room_key].objects) do
+            
+            --
             if(room_value.objects[obj_key] ~= nil) then
+                
+                -- Set the object state in the room to be the loaded game's object state
                 room_value.objects[obj_key].state = obj_value.state
+                
+                -- Move it offscreen if needed
                 if(obj_value.state == "offscreen") then
                    room_value.objects[obj_key].x = -256
                    room_value.objects[obj_key].y = -256
@@ -283,6 +282,15 @@ function g.loadGame(loadFile)
     if(g.playerState.gearPlaced == true) then
         loadRooms.clockTowerInsideFirstFloor.objects.cogHole.text.look = {"It's a gear for the clock", "tower."}
         loadRooms.clockTowerInsideFirstFloor.objects.cogHole.text.put = {"The cog has already been", "placed."}
+    end
+    
+    -- If the panel is locked and the hacksaw is offscreen, restore it back to original state
+    if(loadRooms.clockTowerInsideSecondFloor.objects.panel.state == "Locked") then
+        if(loadObjects.hacksaw.state == "offscreen") then
+           loadObjects.hacksaw = {name="Hacksaw",x=70,y=70,w=13,h=7,text={look={"It's a hacksaw. It can be used", "to cut metal, such as pipes."},take={"You take the hacksaw."}},item={name="Hacksaw",w=33,h=4,description={"It's a hacksaw. It can be used", "to cut metal, such as pipes."}},img=loadImages.hacksaw}
+            loadObjects.hacksaw.state = "item"
+            loadObjects.hacksaw.img = {item=loadObjects.hacksaw.img,offscreen=loadObjects.hacksaw.img}
+        end
     end
     
     -- Check if the panel is open and the player has not yet picked up the hacksaw
@@ -375,13 +383,8 @@ function g.loadGame(loadFile)
     -- Reset Squiggly Man's room
     loadRooms.nightmareGeometry4.objects={squiggleHoleInWall={name="Squiggle Hole in Wall",x=16,y=16,w=68,h=51,text={look={"It appears to be twisting,", "snaking cracks in the wall.", "It's faint, but you think you", "can hear someone screaming in", "pain deep inside the fissures,", "followed by what sounds like", "crawling..."}}}}
     
+    -- for each room in the room table
     for room_key,room_value in pairs(loadRooms) do
-        --[[for load_room_key, load_room_value in pairs(loadTable.rooms) do
-            if(room_value.name == load_room_value.name) then
-                room_value.state = load_room_value
-                break
-            end
-        end]]
         room_value.state = loadTable.rooms[room_key].state
         for obj_key,obj_value in pairs(loadTable.rooms[room_key].objects) do
             if(room_value.objects[obj_key] ~= nil) then
