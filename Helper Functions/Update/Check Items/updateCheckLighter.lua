@@ -3,12 +3,21 @@ local updateCheckLighter = {}
 local g = GLOBALS
 
 function updateCheckLighter.update()
+    
+    -- Inside the first room of the church
     if(g.curLocation == loadRooms.churchInside1) then
+        
+        -- If the mouse is pointed at something
         if(g.mouse.objectPointedAt ~= nil) then
+            
+            -- If the mouse is pointed at an unlit candle or candelabra, light it
             if((g.mouse.objectPointedAt.name == "Candle" or g.mouse.objectPointedAt.name == "Candelabra") and g.mouse.objectPointedAt.state == "Unlit") then
                 g.mouse.objectPointedAt.state = "Lit"
+                g.mouse.objectPointedAt.text.use={"You extinguish the light."}
                 local textArray = {"You light the " .. string.lower(g.mouse.objectPointedAt.name) .. "."}
                 loadSFX.fire:play()
+                
+                -- Check if the two candles and wall candelabra are lit
                 if(g.curLocation.objects.candle1.state == "Lit"
                     and g.curLocation.objects.candle2.state == "Lit"
                     and g.curLocation.objects.wallCandelabra1.state == "Lit") then
@@ -20,11 +29,29 @@ function updateCheckLighter.update()
                     table.insert(textArray, "wall.")
                     
                     -- Update the map for the room
-                    loadRooms.churchInside1.map = loadImages.twoWayVerticalMap
+                    loadRooms.churchInside1.map = loadImages.threeWayLeftMap
                     loadRooms.churchInside1.exits.north = "Mirror Room"
                     
                 end
                 g.writeToTextDisplay(textArray)
+            else
+                g.writeToTextDisplay({"You can't use the lighter here."})
+            end
+        end
+        
+    elseif(g.curLocation == loadRooms.churchBasement) then
+        -- If the mouse is pointed at something
+        if(g.mouse.objectPointedAt ~= nil) then
+            
+            -- If the mouse is pointed at an unlit candelabra, light it
+            if(g.mouse.objectPointedAt.name == "Candelabra" and g.mouse.objectPointedAt.state == "Unlit") then
+                if(g.curLocation.objects.shadow == nil) then
+                    g.mouse.objectPointedAt.state = "Lit"
+                    loadSFX.fire:play()
+                    g.writeToTextDisplay({"You light the " .. string.lower(g.mouse.objectPointedAt.name) .. "."})
+                else
+                    g.writeToTextDisplay({"It's too late for that."})
+                end
             else
                 g.writeToTextDisplay({"You can't use the lighter here."})
             end

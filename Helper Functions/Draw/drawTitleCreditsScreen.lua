@@ -35,8 +35,8 @@ local drawTitleCreditsScreen = {}
             
         end
         --
-        love.graphics.print("(C) Elias Mote  2020-2021", 36, 128, 0, 0.4, 0.4)
-        love.graphics.print("(C) Roc Studios 2020-2021", 36, 136, 0, 0.4, 0.4)
+        love.graphics.print("(C) Elias Mote  2020-2022", 36, 128, 0, 0.4, 0.4)
+        love.graphics.print("(C) Roc Studios 2020-2022", 36, 136, 0, 0.4, 0.4)
         
         for k,v in pairs(g.textBoxes.titleCreditsScreen) do
             g.highlightText(v,0.4)

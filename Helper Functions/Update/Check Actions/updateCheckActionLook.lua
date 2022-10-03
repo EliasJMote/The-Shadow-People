@@ -39,6 +39,8 @@ function updateCheckActionLook.update()
             or g.mouse.objectPointedAt == loadRooms.classroom.objects.chalkboard2
             or g.mouse.objectPointedAt == loadRooms.classroom.objects.chalkboard3) then
             
+            loadRooms.school2.objects.door.text.look = {"It's the door to your class."}
+            
             -- Class at school is over
             g.playerState.classOver = true
             
@@ -47,6 +49,54 @@ function updateCheckActionLook.update()
             
             -- Go to the class transition screen
             g.fromGameToTransition("class transition")
+        end
+       
+    elseif(g.curLocation == loadRooms.churchBasement) then
+        if(g.curLocation.objects.shadow ~= nil and g.mouse.objectPointedAt == g.curLocation.objects.shadow) then
+            g.showMessageBox = false
+            if(g.curLocation.objects.shadow.state == "One") then
+                g.curLocation.objects.shadow.state = "Two"
+                g.curLocation.objects.shadow.w=16
+                g.curLocation.objects.shadow.h=27
+            elseif(g.curLocation.objects.shadow.state == "Two") then
+                g.curLocation.objects.shadow.state = "Three"
+                g.curLocation.objects.shadow.w=19
+                g.curLocation.objects.shadow.h=33
+            elseif(g.curLocation.objects.shadow.state == "Three") then
+                g.curLocation.objects.shadow.state = "Four"
+                g.curLocation.objects.shadow.w=26
+                g.curLocation.objects.shadow.h=44
+                g.music:stop()
+            elseif(g.curLocation.objects.shadow.state == "Four") then
+                g.curLocation.objects.shadow.state = "Five"
+                g.curLocation.objects.shadow.w=39
+                g.curLocation.objects.shadow.h=66
+            elseif(g.curLocation.objects.shadow.state == "Five") then
+                
+                if not(g.playerState.hasNecklace) then
+                
+                    g.music:stop()
+                    g.music=loadMusic.whoAreYouRunningFrom
+                    g.music:play()
+                    g.state = "who are you running from?"
+                    
+                -- The magic necklace will save the player
+                else
+                
+                    g.music:stop()
+                    g.music=loadMusic.darkStreets
+                    g.music:play()
+                    
+                    g.backgroundStatic = false
+                    g.curLocation.objects.shadow = nil
+                    g.curLocation.objects.inscription=nil
+                    g.curLocation.objects.ladder={name="ladder",x=72,y=7,w=8,h=41,img=loadImages.churchBasementLadder,text={look={"It's a ladder going up."},move=""}}
+                    g.curLocation.objects.mirror=nil
+                    g.writeToTextDisplay({"The magic necklace protected", "you."})
+                end
+                
+                
+            end
         end
        
     -- Staring at the Imperfect

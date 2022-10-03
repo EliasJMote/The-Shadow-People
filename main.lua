@@ -36,3 +36,7 @@ end
 function love.mousepressed(x, y, button, istouch, presses)
     updateMousePress.update(x,y,button)
 end
+
+function love.resize(w,h)
+    updateWindowResize.update(w,h)
+end

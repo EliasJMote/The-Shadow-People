@@ -61,8 +61,8 @@ function loadTextBoxes.load()
                         titleScreen =   {
                                             startGame = {x=52,y=82,w=59,h=6,text="Start Game"},
                                             loadGame = {x=52,y=96,w=53,h=6,text="Load Game"},
-                                            options = {x=52,y=110,w=41,h=6,text="Options"},
-                                            credits = {x=52,y=124,w=41,h=6,text="Credits"},
+                                            credits = {x=52,y=110,w=41,h=6,text="Credits"},
+                                            --options = {x=52,y=110+14,w=41,h=6,text="Options"},
                                         },
                                         
                         transitionScreens = {

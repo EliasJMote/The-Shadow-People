@@ -5,6 +5,8 @@ function updateRoomLocks.update()
     local g = GLOBALS
     
     -- Debug mode lets you move around the game unhindered
+    -- This code assumes the player is attempting to move in a cardinal direction.
+    -- For movement outside of this, use "updateRoom.lua" instead.
     if not (debug) then
     
         -- For each room, check the locks
@@ -70,16 +72,14 @@ function updateRoomLocks.update()
             else
                 g.mapTransitionIsLegal = true
             end
-            
+           
+        -- Main church room (with candles)
         elseif(g.curLocation.name == "Church Inside 1") then
             if(g.curLocation.objects.churchInsideDoor ~= nil) then
                 if(g.mouse.objectPointedAt == g.curLocation.objects.churchInsideDoor or g.movementDirection == "North") then
                     if(g.curLocation.objects.churchInsideDoor.state == "Closed") then
                         g.mapTransitionIsLegal = false
                         g.writeToTextDisplay({"The door is closed!"})
-                    else
-                        updateRoom.transition("Mirror Room")
-                        createEvent.create({name="Start Screen Transition", x=3, y=3, w=94, h=77,event={name="Play Music", music=g.curLocation.music}})
                     end
                 else
                     g.mapTransitionIsLegal = true

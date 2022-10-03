@@ -43,7 +43,8 @@ function updateCheckItem.update()
         g.writeToTextDisplay({"You can't use the necklace", "here."})
         
     elseif(g.itemSelected == "Shadow Orb") then
-        g.writeToTextDisplay({"You can't use the shadow orb", "here."})
+        updateCheckShadowOrb.update()
+        --g.writeToTextDisplay({"You can't use the shadow orb", "here."})
     end
 end
 

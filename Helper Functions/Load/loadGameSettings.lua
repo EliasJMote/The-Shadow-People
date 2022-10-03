@@ -2,7 +2,7 @@ local loadGameSettings = {}
 
 function loadGameSettings.load()
     -- Set the game window to be resizable
-    love.window.setMode(love.graphics.getWidth(), love.graphics.getHeight(), {resizable = true}) -- For playing the game normally
+    --love.window.setMode(love.graphics.getWidth(), love.graphics.getHeight(), {resizable = true}) -- For playing the game normally
     --love.window.setMode(love.graphics.getWidth(), love.graphics.getHeight(), {borderless = true}) -- For gif recording and screenshots
     
     -- Set the scaler to use the nearest neighbor filter

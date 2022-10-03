@@ -15,6 +15,7 @@ function loadMapImages.load()
     loadImages.twoWayVerticalMap = love.graphics.newImage("Images/Maps/2 Way/2 Way Vertical Map.png")
     loadImages.twoWayLUpperLeftMap = love.graphics.newImage("Images/Maps/2 Way/2 Way L Upper Left Map.png")
     loadImages.twoWayLUpperRightMap = love.graphics.newImage("Images/Maps/2 Way/2 Way L Upper Right Map.png")
+    loadImages.twoWayLLowerLeftMap = love.graphics.newImage("Images/Maps/2 Way/2 Way L Lower Left Map.png")
     
     -- 3 Way
     loadImages.threeWayDownMap = love.graphics.newImage("Images/Maps/3 Way/3 Way Down Map.png")

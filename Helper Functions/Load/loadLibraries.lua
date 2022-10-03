@@ -18,6 +18,7 @@ function loadLibraries.load()
     updateShadowChild = require("Helper Functions/Update/updateShadowChild")
     updateSquiggleMan = require("Helper Functions/Update/updateSquiggleMan")
     updateTitleScreen = require("Helper Functions/Update/updateTitleScreen")
+    updateWindowResize = require("Helper Functions/Update/updateWindowResize")
     updateVideoBadEnding = require("Helper Functions/Update/updateVideoBadEnding")
     updateVideoIntro = require("Helper Functions/Update/updateVideoIntro")
     
@@ -38,6 +39,7 @@ function loadLibraries.load()
     updateCheckLighter = require("Helper Functions/Update/Check Items/updateCheckLighter")
     updateCheckMallet = require("Helper Functions/Update/Check Items/updateCheckMallet")
     updateCheckMirror = require("Helper Functions/Update/Check Items/updateCheckMirror")
+    updateCheckShadowOrb = require("Helper Functions/Update/Check Items/updateCheckShadowOrb")
     updateCheckItem = require("Helper Functions/Update/Check Items/updateCheckItem")
     
     -- Update check word action functions

@@ -56,7 +56,7 @@ loadRooms.car1 =     {
                         objects={
                                     gloveCompartment={name="Glove Compartment",x=70,y=44,w=27,h=10,text={look={"It's your car glove", "compartment. Unfortunately, the", "lock mechanism is stuck, so you", "can't open it."},open={"The lock is stuck. Opening the", "compartment is futile."}}},
                                     shifter={name="Shifter",x=48,y=51,w=4,h=20,text={look={"It's your car shifter. It helps", "you switch gears when driving."},use={"You don't need to use it now."}}},
-                                    steeringWheel={name="Steering Wheel",x=7,y=30,w=28,h=28,text={look={"It's your car steering wheel.", "It's a bit sticky these days."}}},
+                                    steeringWheel={name="Steering Wheel",x=7,y=30,w=28,h=28,text={look={"It's your car steering wheel.", "It's a bit sticky these days.", "Use your car keys here to", "start driving."}}},
                                 },
                         exits={south="Living Room"},
                     }
@@ -110,21 +110,50 @@ loadRooms.car4 =    {
                         exits={west="Highway 1"},
                     }
         
+loadRooms.churchBasement =   {
+                                name="Church Basement",
+                                state="Light",
+                                objects={
+                                            inscription={name="Inscription",x=20,y=40,w=9,h=9,img=loadImages.graveyardNote,text={look={"Something is etched into the", "wall here:", "\"In the darkness, you can see","your true self.\""}}},
+                                            ladder={name="Ladder",x=72,y=7,w=8,h=41,img=loadImages.churchBasementLadder,text={look={"It's a ladder going up."},move=""}},
+                                            mirror={name="Mirror",x=32,y=34,w=32,h=32,text={look={"A large ornate mirror stands", "before you. It's strange, but", "the longer you gaze at your", "reflection, the more you feel", "like it's watching you..."}}},
+                                            wallCandelabra1={name="Candelabra",x=4,y=36,w=11,h=11,state="Lit",img={lit={loadImages.litWallCandelabra,loadImages.litWallCandelabra2},unlit=loadImages.unlitWallCandelabra},text={look={"A candelabra hangs on the wall."},use={"You extinguish the light."}}},
+                                            wallCandelabra2={name="Candelabra",x=85,y=36,w=11,h=11,state="Lit",img={lit={loadImages.litWallCandelabra,loadImages.litWallCandelabra2},unlit=loadImages.unlitWallCandelabra},text={look={"A candelabra hangs on the wall."},use={"You extinguish the light."}}},
+                                        },
+                                map=loadImages.zeroWayMap,
+                                music=loadMusic.darkStreets,
+                                backgrounds={light=loadImages.churchBasement,dark=loadImages.churchBasement},
+                                exits={},
+                            }
 -- Church (main room)
 loadRooms.churchInside1 =    {
                                 name="Church Inside 1",
                                 state="Light",
                                 displayName = "Church Inside",
-                                map=loadImages.oneWayDownMap,
+                                map=loadImages.twoWayLLowerLeftMap,
                                 backgrounds={light=loadImages.churchInside,dark=loadImages.churchInside},
                                 music=loadMusic.darkStreets,
                                 objects={
-                                            candle1={name="Candle",x=37,y=48,w=3,h=8,state="Unlit",img={lit=loadImages.litCandle,unlit=loadImages.unlitCandle},text={look={"A candle sits on the altar."}}},
-                                            candle2={name="Candle",x=60,y=48,w=3,h=8,state="Unlit",img={lit=loadImages.litCandle,unlit=loadImages.unlitCandle},text={look={"A candle sits on the altar."}}},
+                                            candle1={name="Candle",x=37,y=48,w=3,h=8,state="Unlit",img={lit={loadImages.litCandle,loadImages.litCandle2},unlit=loadImages.unlitCandle},text={look={"A candle sits on the altar."},use={"It's already out."}}},
+                                            candle2={name="Candle",x=60,y=48,w=3,h=8,state="Unlit",img={lit={loadImages.litCandle,loadImages.litCandle2},unlit=loadImages.unlitCandle},text={look={"A candle sits on the altar."},use={"It's already out."}}},
                                             religiousIcon={name="Religious Icon",x=40,y=24,w=21,h=22,text={look={"Some sort of religious icon? It", "looks a bit like a cross with", "spikes on the ends, but there", "is a crescent around part of", "the cross."}}},
-                                            wallCandelabra1={name="Candelabra",x=85,y=36,w=11,h=11,state="Unlit",img={lit=loadImages.litWallCandelabra,unlit=loadImages.unlitWallCandelabra},text={look={"A candelabra hangs on the wall."}}},
+                                            wallCandelabra1={name="Candelabra",x=85,y=36,w=11,h=11,state="Unlit",img={lit={loadImages.litWallCandelabra,loadImages.litWallCandelabra2},unlit=loadImages.unlitWallCandelabra},text={look={"A candelabra hangs on the wall."},use={"It's already out."}}},
                                         },
-                                exits={south="Church Outside"},
+                                exits={west="Church Inside 2",south="Church Outside"},
+                            }
+                            
+loadRooms.churchInside2 =    {
+                                name="Church Inside 2",
+                                state="Light",
+                                displayName = "Church Inside 2",
+                                map=loadImages.oneWayRightMap,
+                                backgrounds={light=loadImages.churchInside2,dark=loadImages.churchInside2},
+                                music=loadMusic.darkStreets,
+                                objects={
+                                            mural={name="Mural",x=19,y=19,w=75,h=45,text={look={"It's a mural. You can see what","appears to be a crystal cavern,","a forest, a lighthouse on a","beach, dark hills, a swampy","pit, and a tower rising into", "the sky. A large magnificent","crescent moon hangs overhead,","overlooking it all.","Is it based on a story...?"},push={"You place your hand against the","mural, but it doesn't respond","to your touch."},use={"You place your hand against the","mural, but it doesn't respond","to your touch."}}},
+                                            trapDoor={name="Trap Door",x=76,y=74,w=16,h=6,state="Closed",img={closed=loadImages.churchTrapDoorClosed,open=loadImages.churchTrapDoorOpen},text={close={"You close the door."},look={"It looks like a trap door.","What's it doing here..?"},move="",open={"You open the door."}}},
+                                        },
+                                exits={east="Church Inside 1"},
                             }
                             
 loadRooms.churchInsideSecretRoom =  {
@@ -657,6 +686,7 @@ loadRooms.mirrorRoom =  {
                             exits={south="Church Inside 1"},
                         }
 
+-- Nightmare Geometry (below the sewers)
 loadRooms.nightmareGeometry1 =  {
                                     name="Nightmare Geometry 1",
                                     displayName="Lost Room",
@@ -779,6 +809,7 @@ loadRooms.nightmareGeometry8 =  {
 -- Park
 loadRooms.park1 =    {
                         name="Park 1",
+                        displayName = "Park Entrance",
                         state="Light",
                         map=loadImages.twoWayVerticalMap,
                         backgrounds={light=loadImages.parkEntrance},
@@ -792,6 +823,7 @@ loadRooms.park1 =    {
                     
 loadRooms.park2 =    {
                         name="Park 2",
+                        displayName = "Park Path",
                         state="Light",
                         map=loadImages.threeWayRightMap,
                         backgrounds={light=loadImages.park2},
@@ -805,6 +837,7 @@ loadRooms.park2 =    {
                     
 loadRooms.park3 =    {
                         name="Park 3",
+                        displayName = "Park Shed",
                         state="Light",
                         map=loadImages.twoWayLUpperLeftMap,
                         backgrounds={light=loadImages.park3},

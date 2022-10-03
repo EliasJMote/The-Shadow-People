@@ -52,6 +52,33 @@ function drawManager.draw()
         
     elseif(g.state == "shadow child") then
         drawShadowChildCutscene.draw()
+    elseif(g.state == "who are you running from?") then
+        
+        g.timers.video = g.timers.video + 1
+        local time = 236
+        if(g.timers.video < time * 4) then
+            if(g.timers.video % time < (time/2)) then
+                love.graphics.draw(loadImages.whoAreYouRunningFrom,0,0)
+            else
+                love.graphics.draw(loadImages.whoAreYouRunningFrom2,0,0)
+            end
+        elseif(g.timers.video < time * 4.15) then
+            love.graphics.draw(loadImages.whoAreYouRunningFrom3,0,0)
+        elseif(g.timers.video < time * 4.3) then
+            love.graphics.draw(loadImages.whoAreYouRunningFrom4,0,0)
+        else
+            g.goToTitleScreen()
+        end
+        
+        love.graphics.printf("Who are you running from?",0,4,160,"center")
+        
+        if(g.timers.video == time*4) then
+            g.music:stop()
+            loadSFX.whoAreYouRunningFromScream:play()
+            --g.music = loadMusic.whoAreYouRunningFromFast
+            --g.music:play()
+        end
+        --g.goToTitleScreen()
     end
 
     -- Draw the mouse cursor

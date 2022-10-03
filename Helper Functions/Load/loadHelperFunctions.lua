@@ -111,6 +111,12 @@ function g.updateGrave()
     loadRooms.graveyard.objects.grave.text.pull = {"It has already been moved!"}
     loadRooms.graveyard.objects.grave.text.push = {"It has already been moved!"}
     
+    loadRooms.graveyard.objects.stairs = {name="stairs",x=37,y=67,w=25,h=11,text={look={"Stairs. They lead down into the", "the earth. But what hides", "there?"},move=""},img=loadImages.graveStairs,move=""}
+    loadRooms.graveyard.objects.grave.state = "Pushed"
+    
+    -- Move the grave and update the map
+    loadRooms.graveyard.objects.grave.y = loadRooms.graveyard.objects.grave.y - 12
+    
     -- Update the map
     loadRooms.graveyard.map = loadImages.twoWayVerticalMap
     loadRooms.graveyard.exits.north = "Statue Room"
@@ -131,6 +137,10 @@ function g.playerCarHasGasoline()
     loadRooms.gasStationOutside.objects.pump2.text.use = {"Your car is already filled."}
 end
 function g.revealStatueRoomHiddenDoorOnMap()
+    
+    -- Reveal the hidden door in the statue room
+        loadRooms.graveyardUnderground1.objects.door = {name="Door",x=45,y=30,w=10,h=37,img={closed=loadImages.graveyardDoorClosed,open=loadImages.graveyardDoorOpen},state="Closed",move="",text={close={"You close the door."},look={"It's a narrow door hidden in", "the wall."},open={"You open the door."},move="",}}
+    
     -- The statue holding a dark crystal ball opens a door when the light reflects off the mirror and hits the dark crystal ball
     loadRooms.graveyardUnderground1.objects.statueHoldingDarkCrystalBall.text.look = {"A statue holding a lit crystal", "ball."}
     
@@ -141,7 +151,7 @@ end
 
 function g.revealChurchHiddenDoorOnMap()
     -- Update the map
-    loadRooms.churchInside1.map = loadImages.twoWayVerticalMap
+    loadRooms.churchInside1.map = loadImages.threeWayLeftMap
     loadRooms.churchInside1.exits.north = "Mirror Room"
 end
 
@@ -217,6 +227,9 @@ function g.updateHiddenDoorInMirror()
     -- Update the map
     loadRooms.mirrorRoom.map = loadImages.twoWayVerticalMap
     loadRooms.mirrorRoom.exits.north = "Church Inside Secret Room"
+    --loadRooms.churchInside1.exits.east = "Mirror Room"
+    loadRooms.churchInside1.exits.north = nil
+    loadRooms.churchInside1.exits.north = "Mirror Room"
 end
 function g.updateSpacePortalInMirror()
     loadRooms.dreamMirrorRoom.objects.mirror3.text.move = ""
@@ -263,12 +276,31 @@ function g.loadGame(loadFile)
                 end
             end
         end
+        
         if(room_value == loadRooms.livingRoom or room_value == loadRooms.bedroom or room_value == loadRooms.gasStationBathroom or room_value == loadRooms.school1
             or room_value == loadRooms.car2) then
             if(room_value.state == "Light" and room_value.music ~= loadMusic.houseLight) then
                 room_value.music = loadMusic.houseLight
             elseif(room_value.state == "Dark" and room_value.music ~= loadMusic.houseDark) then
                 room_value.music = loadMusic.houseDark
+            end
+        end
+    end
+    
+    -- For each room in the room table
+    for room_key,room_value in pairs(loadRooms) do
+        
+        -- Set the room to be the same state as before
+        room_value.state = loadTable.rooms[room_key].state
+        
+        -- Set all object states
+        for obj_key,obj_value in pairs(loadTable.rooms[room_key].objects) do
+            if(room_value.objects[obj_key] ~= nil) then
+                room_value.objects[obj_key].state = obj_value.state
+                if(obj_value.state == "offscreen") then
+                   room_value.objects[obj_key].x = -256
+                   room_value.objects[obj_key].y = -256
+                end
             end
         end
     end
@@ -373,6 +405,8 @@ function g.loadGame(loadFile)
         g.revealChurchHiddenDoorOnMap()
     end
     
+    g.mouse.objectPointedAt = nil
+    
     -- If the player used the mirror to reveal the hidden door
     if(loadRooms.graveyardUnderground1.objects.statueHoldingDarkCrystalBall.state == "Lit") then
         g.revealStatueRoomHiddenDoorOnMap()
@@ -383,20 +417,11 @@ function g.loadGame(loadFile)
     -- Reset Squiggly Man's room
     loadRooms.nightmareGeometry4.objects={squiggleHoleInWall={name="Squiggle Hole in Wall",x=16,y=16,w=68,h=51,text={look={"It appears to be twisting,", "snaking cracks in the wall.", "It's faint, but you think you", "can hear someone screaming in", "pain deep inside the fissures,", "followed by what sounds like", "crawling..."}}}}
     
-    -- for each room in the room table
-    for room_key,room_value in pairs(loadRooms) do
-        room_value.state = loadTable.rooms[room_key].state
-        for obj_key,obj_value in pairs(loadTable.rooms[room_key].objects) do
-            if(room_value.objects[obj_key] ~= nil) then
-                room_value.objects[obj_key].state = obj_value.state
-                if(obj_value.state == "offscreen") then
-                   room_value.objects[obj_key].x = -256
-                   room_value.objects[obj_key].y = -256
-                end
-            end
-        end
-    end
+    -- Reset the church basement
+    loadRooms.churchBasement.objects.wallCandelabra1.state = "Lit"
+    loadRooms.churchBasement.objects.wallCandelabra2.state = "Lit"
     
+    -- Place the player at the current location
     for k,v in pairs(loadRooms) do
         if(v.name == loadTable.curLocation) then
             g.curLocation = v
@@ -477,8 +502,14 @@ function g.fromGameToTransition(state)
     createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state=state}})
 end
 function g.goToTitleScreen()
+    g.video = 0
     g.clearMouseCursorState()
-    g.music:stop()
+    
+    -- Stop music only if it exists
+    if(g.music ~= nil) then
+        g.music:stop()
+    end
+    
     loadSFX.squiggleManScream:stop()
     g.playerState.numOfTimesLookedAtWallHole = 0
     g.timers.squiggleMan = 0
@@ -486,6 +517,7 @@ function g.goToTitleScreen()
     g.music = loadMusic.title
     g.music:play()
     g.backgroundStatic = false
+    g.state = "title"
     createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="title"}})
 end
 return loadHelperFunctions

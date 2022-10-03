@@ -16,7 +16,9 @@ function loadBackgroundImages.load()
     loadImages.carNightCollision = love.graphics.newImage("Images/Backgrounds/Car (Night, Collision).png")
     
     -- Church area
+    loadImages.churchBasement = love.graphics.newImage("Images/Backgrounds/Church Basement.png")
     loadImages.churchInside = love.graphics.newImage("Images/Backgrounds/Church Inside.png")
+    loadImages.churchInside2 = love.graphics.newImage("Images/Backgrounds/Church Inside 2.png")
     loadImages.churchOutside = love.graphics.newImage("Images/Backgrounds/Church Outside.png")
     loadImages.mirrorRoom = love.graphics.newImage("Images/Backgrounds/Mirror Room.png")
     
@@ -27,6 +29,7 @@ function loadBackgroundImages.load()
     
     -- Empty area (used for the dark passages and empty rooms)
     loadImages.empty = love.graphics.newImage("Images/Backgrounds/Empty.png")
+    loadImages.emptyRoom = love.graphics.newImage("Images/Backgrounds/Empty Room.png")
     
     -- Flooded labyrinth area
     loadImages.altarRoom = love.graphics.newImage("Images/Backgrounds/Altar Room.png")

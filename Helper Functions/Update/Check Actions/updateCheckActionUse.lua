@@ -60,6 +60,52 @@ function updateCheckActionUse.update()
                 g.checkClock()
             end
             
+        elseif(g.curLocation == loadRooms.churchInside1) then
+            if((g.mouse.objectPointedAt.name == "Candelabra" or g.mouse.objectPointedAt.name == "Candle")
+                and g.mouse.objectPointedAt.state == "Lit") then
+                g.mouse.objectPointedAt.state = "Unlit"
+                g.mouse.objectPointedAt.text.use = {"It's already out."}
+            end
+            
+        elseif(g.curLocation == loadRooms.churchBasement) then
+            local function darkness()
+                -- Start dark static
+                g.backgroundStatic = true
+                
+                -- Remove ladder
+                g.curLocation.objects.ladder = nil
+                
+                -- Mouse no longer looks at any object
+                g.mouse.objectPointedAt = nil
+                
+                -- Start shadow lands music; stop what was playing before
+                g.music:stop()
+                g.music=loadMusic.shadowLands
+                g.music:play()
+                
+                g.curLocation.objects.inscription.text.look = {"YOU SHOULDN'T HAVE DONE THAT"}
+                
+                g.curLocation.objects.mirror = nil
+                g.curLocation.objects.shadow = {name="shadow",x=42,y=43,w=13,h=22,state="One",img={one=loadImages.churchBasementShadow,two=loadImages.churchBasementShadow2,three=loadImages.churchBasementShadow3,four=loadImages.churchBasementShadow4,five=loadImages.churchBasementShadow5},text={look={""}}}
+            end
+        
+            if(g.curLocation.objects.wallCandelabra1.state == "Lit" and g.mouse.objectPointedAt == g.curLocation.objects.wallCandelabra1) then
+                g.curLocation.objects.wallCandelabra1.state = "Unlit"
+                g.curLocation.objects.wallCandelabra1.text.use = {"It's already out."}
+                --loadSFX.pickup:play()
+                if(g.curLocation.objects.wallCandelabra2.state == "Unlit") then
+                    darkness()
+                end
+                
+            elseif(g.curLocation.objects.wallCandelabra2.state == "Lit" and g.mouse.objectPointedAt == g.curLocation.objects.wallCandelabra2) then
+                g.curLocation.objects.wallCandelabra2.state = "Unlit"
+                g.curLocation.objects.wallCandelabra2.text.use = {"It's already out."}
+                --loadSFX.pickup:play()
+                if(g.curLocation.objects.wallCandelabra1.state == "Unlit") then
+                    darkness()
+                end
+            end
+            
         elseif(g.curLocation == loadRooms.puzzlingStone) then
             g.updatePuzzlingStonePuzzle()
             

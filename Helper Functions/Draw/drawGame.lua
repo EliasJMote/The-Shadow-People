@@ -4,16 +4,16 @@ local drawGame = {}
 
     function drawGame.draw()
         
-        -- draw the user interface
+        -- Draw the user interface
         drawUserInterface.draw()
 
-        -- draw text
+        -- Draw text
         love.graphics.setColor(g.colors.darkestGreen.r, g.colors.darkestGreen.g, g.colors.darkestGreen.b, 1)
 
-        -- draw the item text
+        -- Draw the item text UI
         love.graphics.print("Items", 118, 9, 0, 0.4, 0.4)
         
-        -- Draw each page of items
+        -- Draw each page of inventory items
         for i=1+4*(g.itemPage-1),4*g.itemPage do
             if(g.items[i] ~= nil) then
                 local x = 105
@@ -59,15 +59,27 @@ local drawGame = {}
                 love.graphics.rectangle("line", v.x, v.y, v.w, v.h) -- draw red rectangles over clickable objects
             end
             
+            -- If the particular object has an associated image
             if(v.img) then
+                
+                -- If the image has no current state
                 if(v.state == nil) then
+                    
+                    -- Check if the image has any rotation
                     if(v.rot == nil) then
                         love.graphics.draw(v.img, v.x, v.y)
                     else
                         love.graphics.draw(v.img, v.x+v.rot.ox, v.y+v.rot.oy, v.rot.r, 1, 1, v.rot.ox, v.rot.oy)
                     end
+                    
+                -- If the image has a current state
                 else
-                    love.graphics.draw(v.img[v.state:lower()], v.x, v.y)
+                    local image = v.img[v.state:lower()]
+                    if(type(image) == "table" and #image > 1) then
+                        love.graphics.draw(image[math.floor(g.timers.global/30)%(#image)+1], v.x, v.y)
+                    else
+                        love.graphics.draw(image, v.x, v.y)
+                    end
                 end
             end
         end

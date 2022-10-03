@@ -6,13 +6,16 @@ function drawCursor.draw()
     
     love.graphics.setColor(g.colors.lightestGreen.r, g.colors.lightestGreen.g, g.colors.lightestGreen.b, 1)
     
-    if((g.screenTransition.active ~= true or debug) and g.state ~= "good ending" and g.state ~= "bad ending" and g.state ~= "alien ending" and g.state ~= "easter egg ending" and g.state ~= "red prince ending" and g.state ~= "shadow child" and g.state ~= "video bad ending" and g.state ~= "video intro" and g.state ~= "screen transition") then
+    if((g.screenTransition.active ~= true or debug) and g.state ~= "good ending" and g.state ~= "bad ending" and g.state ~= "alien ending" and g.state ~= "easter egg ending" and g.state ~= "red prince ending" and g.state ~= "shadow child" and g.state ~= "video bad ending" and g.state ~= "video intro" and g.state ~= "screen transition"
+        and g.state ~= "who are you running from?") then
         if(g.mouse.actionHover or g.mouse.textHover or (g.mouse.itemMenuHover and g.actionSelected ~= "Look") or g.mouse.scrollPageArrowHover) then
             love.graphics.draw(loadImages.cursorHand, g.mouse.x - 4, g.mouse.y)
         elseif(g.mouse.mapHover and g.showMessageBox ~= true) then
             love.graphics.draw(loadImages.cursorMove, g.mouse.x - 4, g.mouse.y - 4)
         elseif(g.mouse.itemMenuHoverItem and g.actionSelected == "Look") then
             love.graphics.draw(loadImages.cursorEye, g.mouse.x - 4, g.mouse.y - 3)
+            
+        -- If the mouse is hovering over an object, show what action is currently selected
         elseif(g.mouse.objectHover) then
             if(g.actionSelected == "Close") then
                 love.graphics.draw(loadImages.cursorClose, g.mouse.x - 3, g.mouse.y - 3)
@@ -35,7 +38,48 @@ function drawCursor.draw()
             elseif(g.actionSelected == "Use") then
                 love.graphics.draw(loadImages.cursorUse, g.mouse.x - 6, g.mouse.y - 6)
             else
-                love.graphics.draw(loadImages.cursorHand, g.mouse.x - 4, g.mouse.y)
+                
+                -- If an item is selected and no action is selected, show the current object
+                if(g.itemSelected == "B. Cutters") then
+                    love.graphics.draw(loadImages.boltCutters, g.mouse.x, g.mouse.y)
+                    
+                elseif(g.itemSelected == "Car Key") then
+                    love.graphics.draw(loadImages.carKey, g.mouse.x, g.mouse.y)
+                    
+                elseif(g.itemSelected == "Cog") then
+                    love.graphics.draw(loadImages.cog, g.mouse.x, g.mouse.y)
+                    
+                elseif(g.itemSelected == "E. Brooch") then
+                    love.graphics.draw(loadImages.eclipseBrooch, g.mouse.x, g.mouse.y)
+                    
+                elseif(g.itemSelected == "Gas Can") then
+                    love.graphics.draw(loadImages.gasCanister, g.mouse.x, g.mouse.y)
+
+                elseif(g.itemSelected == "G.S. Key") then
+                    love.graphics.draw(loadImages.carKey, g.mouse.x, g.mouse.y)
+
+                elseif(g.itemSelected == "Hacksaw") then
+                    love.graphics.draw(loadImages.hacksaw, g.mouse.x, g.mouse.y)
+
+                elseif(g.itemSelected == "Mallet") then
+                    love.graphics.draw(loadImages.hammer, g.mouse.x, g.mouse.y)
+                    
+                elseif(g.itemSelected == "Lighter") then
+                    love.graphics.draw(loadImages.lighter, g.mouse.x, g.mouse.y)
+
+                elseif(g.itemSelected == "Mirror") then
+                love.graphics.draw(loadImages.mirror, g.mouse.x, g.mouse.y)
+                
+                elseif(g.itemSelected == "Necklace") then
+                    love.graphics.draw(loadImages.necklace, g.mouse.x, g.mouse.y)
+                    
+                elseif(g.itemSelected == "Shadow Orb") then
+                    love.graphics.draw(loadImages.shadowOrb, g.mouse.x, g.mouse.y)
+                
+                -- If no item is selected, show default cursor
+                else
+                    love.graphics.draw(loadImages.cursorHand, g.mouse.x - 4, g.mouse.y)
+                end
             end
         else
             love.graphics.draw(loadImages.cursor, g.mouse.x, g.mouse.y)

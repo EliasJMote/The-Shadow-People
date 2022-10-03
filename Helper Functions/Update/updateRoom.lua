@@ -46,8 +46,30 @@ local updateRoom = {}
             end
         end
         
+        -- Secondary church room (with trap room)
+        if(g.curLocation.name == "Church Inside 2") then
+            if(g.mouse.objectPointedAt == g.curLocation.objects.trapDoor and g.actionSelected == "Move") then
+                if(g.curLocation.objects.trapDoor.state == "Closed") then
+                    g.mapTransitionIsLegal = false
+                    g.writeToTextDisplay({"The door is closed!"})
+                else
+                    updateRoom.transition("Church Basement")
+                    createEvent.create({name="Start Screen Transition", x=3, y=3, w=94, h=77,event={name="Play Music", music=g.curLocation.music}})
+                end
+            else
+                g.mapTransitionIsLegal = true
+            end
+        
+        elseif(g.curLocation.name == "Church Basement") then
+            if(g.curLocation.objects.ladder ~= nil and g.mouse.objectPointedAt == g.curLocation.objects.ladder and g.actionSelected == "Move") then
+                updateRoom.transition("Church Inside 2")
+                createEvent.create({name="Start Screen Transition", x=3, y=3, w=94, h=77,event={name="Play Music", music=g.curLocation.music}})
+            else
+                g.mapTransitionIsLegal = false
+            end
+        
         -- Stop the music when entering the shed
-        if(g.curLocation.name == "Park 3") then
+        elseif(g.curLocation.name == "Park 3") then
             if(g.movementDirection == "North" and g.curLocation.objects.door.state == "Open") then
                 if(g.music ~= nil) then
                     g.music:stop()
@@ -75,6 +97,7 @@ local updateRoom = {}
                 createEvent.create({name="Start Screen Transition", x=3, y=3, w=94, h=77,event={name="Play Music", music=g.curLocation.music}})
             end
            
+        -- Using the move action to enter the nightmare geometry
         elseif(g.curLocation.name == "Flooded Labyrinth 5") then
             if(g.mouse.objectPointedAt == g.curLocation.objects.pit and g.actionSelected == "Move") then
                 updateRoom.transition("Nightmare Geometry 1")

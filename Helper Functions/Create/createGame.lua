@@ -12,7 +12,8 @@ local createGame = {}
         -- Initialize current location
         g.curLocation = loadRooms.bedroom
         if(debug) then
-            g.curLocation = loadRooms.darkPassage1
+            --g.curLocation = loadRooms.churchInside2
+            g.curLocation = loadRooms.churchBasement
         end
         
         -- Initialize items currently held

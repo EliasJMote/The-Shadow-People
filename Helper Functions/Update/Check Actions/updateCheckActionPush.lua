@@ -11,14 +11,11 @@ function updateCheckActionPush.update()
             loadSFX.pickup:play()
         end
     
+    -- Pushing the grave at the graveyard
     elseif(g.curLocation == loadRooms.graveyard) then
         if(g.mouse.objectPointedAt == loadRooms.graveyard.objects.grave) then
             if(loadRooms.graveyard.objects.grave.state == "normal") then
-                loadRooms.graveyard.objects.stairs = {name="stairs",x=37,y=67,w=25,h=11,text={look={"Stairs. They lead down into the", "the earth. But what hides", "there?"},move=""},img=loadImages.graveStairs,move=""}
-                loadRooms.graveyard.objects.grave.state = "Pushed"
                 
-                -- Move the grave and update the map
-                loadRooms.graveyard.objects.grave.y = loadRooms.graveyard.objects.grave.y - 12
                 g.updateGrave()
                 
                 loadSFX.pickup:play()

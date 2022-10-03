@@ -1,8 +1,8 @@
 ﻿The Shadow People
-Version 1.0.1
+Version 1.1
 
-Copyright © 2020-2021 Elias Mote
-Copyright © 2020-2021 Roc Studios
+Copyright © 2020-2022 Elias Mote
+Copyright © 2020-2022 Roc Studios
 
 I. Disclaimer
 II. Version History
@@ -21,7 +21,27 @@ may not be placed on any web site or otherwise distributed publicly except at th
 II. Version History
 
 --------------------------
-V1.0.1 - Current Version
+V1.1 - Current Version
+--------------------------
+-- Changes --
+-- Candles in the church now have basic animation when lit.
+-- Added secondary room and basement to the church.
+-- When an item is equipped and usable, the cursor becomes the item icon.
+-- Added new jump scare.
+
+-- Bug Fixes --
+-- Fixed a bug where the school door still said to hurry to class when looking at it after class
+ends
+-- Fixed a bug where going north from the church inside 1 room when the mirror in front of the
+church secret room had been smashed would cause the player to move directly to the secret room and
+skip the mirror room.
+--Fixed a bug where the grave would not have moved properly upon loading into a game that already
+moved the grave.
+-- Fixed a bug where the door in the statue room would not have revealed itself upon loading a new
+game.
+
+--------------------------
+V1.0.1
 --------------------------
 -- Bug Fixes --
 -- Fixed a bug where the game would crash when returning to the game from the pause menu in the shed.

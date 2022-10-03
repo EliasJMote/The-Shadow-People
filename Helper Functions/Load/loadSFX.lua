@@ -9,5 +9,6 @@ loadSFX.lockedDoor = love.audio.newSource("SFX/Locked Door.wav", "static")
 loadSFX.numberRadioStationMessage = love.audio.newSource("SFX/Number Radio Station Message.wav", "static")
 loadSFX.pickup = love.audio.newSource("SFX/pickup.wav", "static")
 loadSFX.squiggleManScream = love.audio.newSource("SFX/Squiggle Man Scream.wav", "static")
+loadSFX.whoAreYouRunningFromScream = love.audio.newSource("SFX/Who are you running from (scream).wav", "static")
 
 return loadSFX
