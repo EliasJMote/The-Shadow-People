@@ -40,7 +40,7 @@ were met.
 -- Fixed a bug where a non-interactable switch in the gas station bathroom was left in.
 
 --------------------------
-V1.1 - Current Version
+V1.1
 --------------------------
 -- Changes --
 -- Candles in the church now have basic animation when lit.
