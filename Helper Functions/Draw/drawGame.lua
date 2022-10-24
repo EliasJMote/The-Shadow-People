@@ -120,6 +120,11 @@ local drawGame = {}
         
         love.graphics.setColor(g.colors.lightestGreen.r, g.colors.lightestGreen.g, g.colors.lightestGreen.b, 1)
         
+        -- Draw Gas Station Mirror Shadow Person
+        if(g.timers.gasStationBathroomMirrorShadow > 0 and g.timers.gasStationBathroomMirrorShadow < 60) then
+            love.graphics.draw(loadImages.bathroomShadowPerson,0,0)
+        end
+        
     end
 
 return drawGame

@@ -14,8 +14,33 @@ function updateCheckActionTake.update()
     elseif(g.curLocation == loadRooms.graveyardUnderground2) then
         if(g.mouse.objectPointedAt == g.curLocation.objects.shadowOrb) then
             g.playerState.hasShadowOrb = true
+            
+            loadRooms.churchOutside.state = "Evil"
+            
+            loadRooms.graveyard.state = "Evil"
+            
+            -- Update the highway
+            loadRooms.highway1.state = "Evil"
+            loadRooms.highway2.state = "Evil"
+            loadRooms.highway3.state = "Evil"
+            loadRooms.highway4.state = "Evil"
             loadRooms.highway5.state = "Evil"
+            
+            -- Update the shed
             loadRooms.shed.state = "Evil"
+            loadRooms.shed.objects.window.text.look = {"Is someone watching through the", "window?"}
+            
+            loadRooms.park1.state = "Evil"
+            loadRooms.park2.state = "Evil"
+            loadRooms.park3.state = "Evil"
+            
+            loadRooms.street1.state = "Evil"
+            loadRooms.street2.state = "Evil"
+            loadRooms.street3.state = "Evil"
+            loadRooms.street4.state = "Evil"
+            loadRooms.street5.state = "Evil"
+            
+            g.shiftWorldToEvil()
         end
         
     -- If the player takes the eclipse brooch, record this player state

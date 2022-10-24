@@ -28,6 +28,7 @@ function updateCheckActionPut.update()
         if(g.itemSelected == "Shadow Orb" and g.mouse.objectPointedAt == g.curLocation.objects.statue and g.curLocation.objects.statue.state == "Off") then
             g.curLocation.objects.statue.state = "On"
             g.writeToTextDisplay({"You place the Shadow Orb into", "the hands of the statue. It", "pulses with a strange energy.", "Somehow, in your head, you hear", "the words: THE RITUAL IS READY.", "LIE DOWN ON THE ALTAR TO BEGIN", "THE TRANSMOGRIFICATION."})
+            g.curLocation.objects.statue.text.look = {"A statue with a dark crystal", "ball."}
             g.curLocation.objects.statue.text.put = {"The orb has already been", "placed."}
             g.itemSelected = nil
             loadSFX.pickup:play()

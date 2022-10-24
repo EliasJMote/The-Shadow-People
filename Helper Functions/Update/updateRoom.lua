@@ -134,6 +134,7 @@ local updateRoom = {}
                     g.actionSelected = nil
                     g.textBuffer = {}
                     g.showMessageBox = false
+                    g.timers.global = 90
                     if(g.playerState.hasNecklace) then
                         if(g.playerState.hasShadowOrb and g.playerState.hasEclipseBrooch) then
                             createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="dream transition"}})

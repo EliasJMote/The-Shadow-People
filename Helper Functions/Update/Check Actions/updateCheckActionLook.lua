@@ -26,6 +26,7 @@ function updateCheckActionLook.update()
             end
             
             if(g.playerState.numOfTimesLookedAtSun >= 6) then
+                g.timers.global = 90
                 g.actionSelected = nil
                 g.textBuffer = {}
                 createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="easter egg ending"}})
@@ -39,8 +40,6 @@ function updateCheckActionLook.update()
             or g.mouse.objectPointedAt == loadRooms.classroom.objects.chalkboard2
             or g.mouse.objectPointedAt == loadRooms.classroom.objects.chalkboard3) then
             
-            loadRooms.school2.objects.door.text.look = {"It's the door to your class."}
-            
             -- Class at school is over
             g.playerState.classOver = true
             
@@ -49,6 +48,14 @@ function updateCheckActionLook.update()
             
             -- Go to the class transition screen
             g.fromGameToTransition("class transition")
+        end
+       
+    -- Activate a jump scare in the gas station bathroom when looking at the mirror
+    elseif(g.curLocation == loadRooms.gasStationBathroom) then
+        if(g.mouse.objectPointedAt == g.curLocation.objects.mirror and g.playerState.lookedAtGasStationBathroomMirror ~= true) then
+            loadSFX.gasStationMirrorShadowPersonNoise:play()
+            g.playerState.lookedAtGasStationBathroomMirror = true
+            loadRooms.gasStationBathroom.objects.mirror.text.look = {"It's a filthy gas station", "mirror."}
         end
        
     elseif(g.curLocation == loadRooms.churchBasement) then
@@ -97,6 +104,13 @@ function updateCheckActionLook.update()
                 
                 
             end
+        end
+       
+    -- The symbol of the prince wakes up on looking at it
+    elseif(g.curLocation == loadRooms.altarRoom) then
+        if(g.mouse.objectPointedAt == loadRooms.altarRoom.objects.symbolOfThePrince) then
+            loadRooms.altarRoom.objects.symbolOfThePrince.state = "Opened"
+            loadRooms.altarRoom.objects.symbolOfThePrince.text.look = {"A bloodthirsty eye stares at","you."}
         end
        
     -- Staring at the Imperfect

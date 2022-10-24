@@ -111,9 +111,13 @@ function updateCheckActionUse.update()
             
         elseif(g.curLocation == loadRooms.altarRoom) then
             if(g.mouse.objectPointedAt == loadRooms.altarRoom.objects.altar) then
+                g.timers.global = 90
                 createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="red prince ending"}})
                 g.music = loadMusic.nightmareGeometry
                 g.music:play()
+                
+                -- For testing only
+                --g.timers.endingText = g.timers.redPrinceEnding + 60 * 5
             end
             
         elseif(g.curLocation == loadRooms.shed) then
@@ -125,6 +129,7 @@ function updateCheckActionUse.update()
             
         elseif(g.curLocation == loadRooms.shadowLands9) then
             if(loadRooms.shadowLands9.objects.statue.state == "On") then
+                g.timers.global = 90
                 g.mapTransitionIsLegal = false
                 g.itemSelected = nil
                 g.actionSelected = nil

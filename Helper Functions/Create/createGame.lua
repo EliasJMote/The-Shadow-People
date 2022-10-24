@@ -12,8 +12,7 @@ local createGame = {}
         -- Initialize current location
         g.curLocation = loadRooms.bedroom
         if(debug) then
-            --g.curLocation = loadRooms.churchInside2
-            g.curLocation = loadRooms.churchBasement
+            --g.curLocation = loadRooms.patio
         end
         
         -- Initialize items currently held
@@ -34,6 +33,7 @@ local createGame = {}
         -- Horror related timers (with Shadow People)
         g.timers.squiggleMan = 0
         g.timers.shadowChild = 0
+        g.timers.gasStationBathroomMirrorShadow = 0
         
         --g.endingTextFadeOutTime = 60 * 0.01
         g.endingTextLine = 1
@@ -60,6 +60,7 @@ local createGame = {}
             hasNecklace = false,
             numOfTimesLookedAtSun = 0,
             numOfTimesLookedAtWallHole = 0,
+            lookedAtGasStationBathroomMirror = false,
         }
         
         g.mapTransitionIsLegal = false

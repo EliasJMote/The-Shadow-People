@@ -4,29 +4,19 @@ function love.load()
   
     -- Global space
     GLOBALS = {}
-    local g = GLOBALS
-    
-    loadGameSettings = require("Helper Functions/Load/loadGameSettings")
-    loadGameSettings.load()
-    
-    loadVariables = require("Helper Functions/Load/loadVariables")
-    loadVariables.load()
 
     loadLibraries = require("Helper Functions/Load/loadLibraries")
     loadLibraries.load()
     
-    -- Miscellaneous text boxes that can be highlighted and selected (start game, options, etc.)
-    -- These are loaded later since they depend on images
-    loadTextBoxes.load()
-    
+    -- Debug mode
     if(debug) then
         createGame.create()
-        g.state = "game"
+        GLOBALS.state = "game"
     end
 end
 
 function love.update(dt)
-    updateGame.update(dt)
+    updateGame.update(dt,GLOBALS)
 end
 
 function love.draw()

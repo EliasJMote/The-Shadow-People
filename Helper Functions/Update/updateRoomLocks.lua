@@ -64,7 +64,11 @@ function updateRoomLocks.update()
         elseif(g.curLocation.name == "Car 3" and g.movementDirection == "South") then
             g.mapTransitionIsLegal = false
             createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="car transition 3"}})
-                        
+                  
+        elseif(g.curLocation.name == "Highway 1" and g.curLocation.state == "Evil" and g.movementDirection == "East") then
+            g.mapTransitionIsLegal = false
+            g.writeToTextDisplay({"Your car is gone!"})
+                  
         elseif(g.curLocation.name == "Church Outside") then
             if(g.curLocation.objects["churchOutsideDoor"].state == "Closed" and g.movementDirection == "North") then
                 g.mapTransitionIsLegal = false

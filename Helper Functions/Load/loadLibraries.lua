@@ -2,6 +2,14 @@ local loadLibraries = {}
         
 function loadLibraries.load()
         
+    -- Load game settings
+    loadGameSettings = require("Helper Functions/Load/loadGameSettings")
+    loadGameSettings.load()
+    
+    -- Load game variables
+    loadVariables = require("Helper Functions/Load/loadVariables")
+    loadVariables.load()
+        
     -- External functions
     createEvent = require("Helper Functions/Create/createEvent")
     createGame = require("Helper Functions/Create/createGame")
@@ -34,6 +42,7 @@ function loadLibraries.load()
     -- Update check item functions
     updateCheckBoltCutters = require("Helper Functions/Update/Check Items/updateCheckBoltCutters")
     updateCheckCarKey = require("Helper Functions/Update/Check Items/updateCheckCarKey")
+    updateCheckCog = require("Helper Functions/Update/Check Items/updateCheckCog")
     updateCheckGasStationKey = require("Helper Functions/Update/Check Items/updateCheckGasStationKey")
     updateCheckHacksaw = require("Helper Functions/Update/Check Items/updateCheckHacksaw")
     updateCheckLighter = require("Helper Functions/Update/Check Items/updateCheckLighter")
@@ -98,6 +107,10 @@ function loadLibraries.load()
 
     -- JSON4Lua Module
     json = require("Helper Functions/JSON4Lua/json")
+    
+    -- Miscellaneous text boxes that can be highlighted and selected (start game, options, etc.)
+    -- These are loaded later since they depend on images
+    loadTextBoxes.load()
 end
 
 return loadLibraries

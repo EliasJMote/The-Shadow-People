@@ -30,7 +30,48 @@ function drawCursor.draw()
             elseif(g.actionSelected == "Push") then
                 love.graphics.draw(loadImages.cursorPush, g.mouse.x - 4, g.mouse.y - 4)
             elseif(g.actionSelected == "Put") then
+                
+                -- If an item is selected and no action is selected, show the current object
+                if(g.itemSelected == "B. Cutters") then
+                    love.graphics.draw(loadImages.boltCutters, g.mouse.x+8, g.mouse.y+8)
+                    
+                elseif(g.itemSelected == "Car Key") then
+                    love.graphics.draw(loadImages.carKey, g.mouse.x+8, g.mouse.y+8)
+                    
+                elseif(g.itemSelected == "Cog") then
+                    love.graphics.draw(loadImages.cog, g.mouse.x+8, g.mouse.y+8)
+                    
+                elseif(g.itemSelected == "E. Brooch") then
+                    love.graphics.draw(loadImages.eclipseBrooch, g.mouse.x+8, g.mouse.y+8)
+                    
+                elseif(g.itemSelected == "Gas Can") then
+                    love.graphics.draw(loadImages.gasCanister, g.mouse.x+8, g.mouse.y+8)
+
+                elseif(g.itemSelected == "G.S. Key") then
+                    love.graphics.draw(loadImages.carKey, g.mouse.x+8, g.mouse.y+8)
+
+                elseif(g.itemSelected == "Hacksaw") then
+                    love.graphics.draw(loadImages.hacksaw, g.mouse.x+8, g.mouse.y+8)
+
+                elseif(g.itemSelected == "Mallet") then
+                    love.graphics.draw(loadImages.hammer, g.mouse.x+8, g.mouse.y+8)
+                    
+                elseif(g.itemSelected == "Lighter") then
+                    love.graphics.draw(loadImages.lighter, g.mouse.x+8, g.mouse.y+8)
+
+                elseif(g.itemSelected == "Mirror") then
+                    love.graphics.draw(loadImages.mirror, g.mouse.x+8, g.mouse.y+5)
+                
+                elseif(g.itemSelected == "Necklace") then
+                    love.graphics.draw(loadImages.necklace, g.mouse.x+8, g.mouse.y+8)
+                    
+                elseif(g.itemSelected == "Shadow Orb") then
+                    love.graphics.draw(loadImages.shadowOrb, g.mouse.x+8, g.mouse.y+8)
+                
+                end
+                
                 love.graphics.draw(loadImages.cursorPut, g.mouse.x - 6, g.mouse.y - 7)
+                
             elseif(g.actionSelected == "Talk") then
                 love.graphics.draw(loadImages.cursorTalk, g.mouse.x - 4, g.mouse.y - 4)
             elseif(g.actionSelected == "Take") then
@@ -41,40 +82,52 @@ function drawCursor.draw()
                 
                 -- If an item is selected and no action is selected, show the current object
                 if(g.itemSelected == "B. Cutters") then
-                    love.graphics.draw(loadImages.boltCutters, g.mouse.x, g.mouse.y)
+                    love.graphics.draw(loadImages.cursor, g.mouse.x, g.mouse.y)
+                    love.graphics.draw(loadImages.boltCutters, g.mouse.x+8, g.mouse.y+8)
                     
                 elseif(g.itemSelected == "Car Key") then
-                    love.graphics.draw(loadImages.carKey, g.mouse.x, g.mouse.y)
+                    love.graphics.draw(loadImages.cursor, g.mouse.x, g.mouse.y)
+                    love.graphics.draw(loadImages.carKey, g.mouse.x+8, g.mouse.y+8)
                     
                 elseif(g.itemSelected == "Cog") then
-                    love.graphics.draw(loadImages.cog, g.mouse.x, g.mouse.y)
+                    love.graphics.draw(loadImages.cursor, g.mouse.x, g.mouse.y)
+                    love.graphics.draw(loadImages.cog, g.mouse.x+8, g.mouse.y+8)
                     
                 elseif(g.itemSelected == "E. Brooch") then
-                    love.graphics.draw(loadImages.eclipseBrooch, g.mouse.x, g.mouse.y)
+                    love.graphics.draw(loadImages.cursor, g.mouse.x, g.mouse.y)
+                    love.graphics.draw(loadImages.eclipseBrooch, g.mouse.x+8, g.mouse.y+8)
                     
                 elseif(g.itemSelected == "Gas Can") then
-                    love.graphics.draw(loadImages.gasCanister, g.mouse.x, g.mouse.y)
+                    love.graphics.draw(loadImages.cursor, g.mouse.x, g.mouse.y)
+                    love.graphics.draw(loadImages.gasCanister, g.mouse.x+8, g.mouse.y+8)
 
                 elseif(g.itemSelected == "G.S. Key") then
-                    love.graphics.draw(loadImages.carKey, g.mouse.x, g.mouse.y)
+                    love.graphics.draw(loadImages.cursor, g.mouse.x, g.mouse.y)
+                    love.graphics.draw(loadImages.carKey, g.mouse.x+8, g.mouse.y+8)
 
                 elseif(g.itemSelected == "Hacksaw") then
-                    love.graphics.draw(loadImages.hacksaw, g.mouse.x, g.mouse.y)
+                    love.graphics.draw(loadImages.cursor, g.mouse.x, g.mouse.y)
+                    love.graphics.draw(loadImages.hacksaw, g.mouse.x+8, g.mouse.y+8)
 
                 elseif(g.itemSelected == "Mallet") then
-                    love.graphics.draw(loadImages.hammer, g.mouse.x, g.mouse.y)
+                    love.graphics.draw(loadImages.cursor, g.mouse.x, g.mouse.y)
+                    love.graphics.draw(loadImages.hammer, g.mouse.x+8, g.mouse.y+8)
                     
                 elseif(g.itemSelected == "Lighter") then
-                    love.graphics.draw(loadImages.lighter, g.mouse.x, g.mouse.y)
+                    love.graphics.draw(loadImages.cursor, g.mouse.x, g.mouse.y)
+                    love.graphics.draw(loadImages.lighter, g.mouse.x+8, g.mouse.y+8)
 
                 elseif(g.itemSelected == "Mirror") then
-                love.graphics.draw(loadImages.mirror, g.mouse.x, g.mouse.y)
+                    love.graphics.draw(loadImages.cursor, g.mouse.x, g.mouse.y)
+                    love.graphics.draw(loadImages.mirror, g.mouse.x+8, g.mouse.y+8)
                 
                 elseif(g.itemSelected == "Necklace") then
-                    love.graphics.draw(loadImages.necklace, g.mouse.x, g.mouse.y)
+                    love.graphics.draw(loadImages.cursor, g.mouse.x, g.mouse.y)
+                    love.graphics.draw(loadImages.necklace, g.mouse.x+8, g.mouse.y+8)
                     
                 elseif(g.itemSelected == "Shadow Orb") then
-                    love.graphics.draw(loadImages.shadowOrb, g.mouse.x, g.mouse.y)
+                    love.graphics.draw(loadImages.cursor, g.mouse.x, g.mouse.y)
+                    love.graphics.draw(loadImages.shadowOrb, g.mouse.x+8, g.mouse.y+8)
                 
                 -- If no item is selected, show default cursor
                 else

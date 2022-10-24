@@ -2,6 +2,10 @@ local loadObjectImages = {}
 
 function loadObjectImages.load()
     loadImages.altar = love.graphics.newImage("Images/Objects/Shadow Lands/Altar.png")
+    
+    loadImages.altarEyeClosed = love.graphics.newImage("Images/Objects/Altar Room/Eye (Closed).png")
+    loadImages.altarEyeOpened = love.graphics.newImage("Images/Objects/Altar Room/Eye (Opened).png")
+    
     loadImages.bedroomDoorClosed = love.graphics.newImage("Images/Objects/Bedroom/Bedroom Door Closed.png")
     loadImages.bedroomDoorOpen = love.graphics.newImage("Images/Objects/Bedroom/Bedroom Door Open.png")
     loadImages.button = love.graphics.newImage("Images/Objects/Clock Tower Inside Second Floor/Button.png")

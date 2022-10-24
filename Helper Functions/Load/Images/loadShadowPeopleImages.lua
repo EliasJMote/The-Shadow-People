@@ -23,7 +23,7 @@ function loadShadowPeopleImages.load()
     loadImages.whoAreYouRunningFrom4 = love.graphics.newImage("Images/SHADOW PEOPLE/Who are you running from 4.png")
     
     -- Bathroom shadow person
-    --loadImages.bathroomShadowPerson = 
+    loadImages.bathroomShadowPerson = love.graphics.newImage("Images/SHADOW PEOPLE/Gas Station Bathroom Mirror.png")
 end
 
 return loadShadowPeopleImages

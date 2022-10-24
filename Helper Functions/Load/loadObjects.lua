@@ -17,7 +17,7 @@ loadObjects.lighter = {name="Lighter",x=75,y=70,w=8,h=10,text={look={"It's a met
 
 loadObjects.mallet = {name="Mallet",x=75,y=70,w=13,h=7,text={look={"A wooden mallet with a rubber", "head. Often used for flattening", "sheet metal but can be useful", "for smashing fragile objects."},take={"You take the mallet."}},item={name="Mallet",w=28,h=4,description={"A wooden mallet with a rubber", "head. Often used for flattening", "sheet metal but can be useful", "for smashing fragile objects."}},img=loadImages.hammer}
 
-loadObjects.mirror = {name="Mirror",x=19,y=30,w=6,h=9,text=loadGameText.bedroom.mirror,item={name="Mirror",w=28,h=4,description={"It's a small handheld mirror."}},img=loadImages.mirror}
+loadObjects.mirror = {name="Mirror",x=19,y=29,w=7,h=10,text=loadGameText.bedroom.mirror,item={name="Mirror",w=28,h=4,description={"It's a small handheld mirror."}},img=loadImages.mirror}
 
 loadObjects.necklace = {name="Necklace",x=45,y=29,w=10,h=11,text={look={"A silver necklace adorned with", "a small blue sapphire. It seems", "to have a strange but calming", "energy to it."},take={"You take the necklace."}},item={name="Necklace",w=37,h=4,description={"A silver necklace adorned with", "a small blue sapphire. It seems", "to have a strange but calming", "energy to it."}},img=loadImages.necklace}
 

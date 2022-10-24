@@ -69,6 +69,19 @@ function g.highlightText(textBox,textSize)
     love.graphics.setColor(g.colors.darkestGreen.r, g.colors.darkestGreen.g, g.colors.darkestGreen.b, 1)
 end
 
+function g.shiftWorldToEvil()
+    -- Update the shed if the shadow orb has been obtained
+    if(loadRooms.shed.state == "Evil") then
+        loadRooms.shed.objects.window.text.look = {"Is someone watching through the", "window?"}
+    end
+    
+    if(loadRooms.highway5.state == "Evil") then
+        loadRooms.highway5.objects.highwayEnd = {name="Highway End",x=3,y=24,w=94,h=56,text={look={"Something is in the distance...","Part of the road seems to have","come back? And what looks like","bizarre monstrosities from far","away? Floating eyes? Dark ","figures watching you? This is","all too much..."}}}
+        loadRooms.highway5.backgroundStatic = true
+        loadRooms.highway5.music=loadMusic.shadowLands
+    end
+end
+
 function g.checkClock()
     -- Manipulate the clock
     if(g.mouse.objectPointedAt == loadRooms.clockTowerInsideSecondFloor.objects.hourButton
@@ -162,6 +175,9 @@ function g.schoolEveningToNight()
     loadRooms.school2.objects.door.img.open = loadImages.classDoorOpenNight
     loadRooms.car2.state = "dark"
     loadRooms.car2.music = loadMusic.houseDark
+    loadRooms.school1.objects.sun = nil
+    loadRooms.school1.objects.shadow={name="Shadow",x=90+4,y=4+37,w=3,h=5,text={look={"There appears to be a person in the", "distance, but you can't make", "any detail out. They don't seem", "to be moving."}}}
+    loadRooms.school2.objects.door.text.look = {"It's the door to your class."}
 end
 
 function g.brokenNormalMirrorState(mirror)
@@ -348,10 +364,12 @@ function g.loadGame(loadFile)
         g.activateGasPumps()
     end
     
+    -- Update the sewer gate text if it's already broken
     if(loadRooms.street5.objects.sewerGate.state == "Broken") then
         g.updateSewerGateText()
     end
     
+    -- If the player already has gasoline, they don't need any more from the pump
     if(g.playerState.hasGas == true) then
         g.playerCarHasGasoline()
     end
@@ -421,6 +439,14 @@ function g.loadGame(loadFile)
     loadRooms.churchBasement.objects.wallCandelabra1.state = "Lit"
     loadRooms.churchBasement.objects.wallCandelabra2.state = "Lit"
     
+    -- Shift the world to evil if the shadow orb has been acquired
+    g.shiftWorldToEvil()
+    
+    if(loadRooms.shadowLands9.objects.statue.state == "On") then
+        loadRooms.shadowLands9.objects.statue.text.look = {"A statue with a dark crystal", "ball."}
+        loadRooms.shadowLands9.objects.statue.text.put = {"The orb has already been", "placed."}
+    end
+    
     -- Place the player at the current location
     for k,v in pairs(loadRooms) do
         if(v.name == loadTable.curLocation) then
@@ -449,6 +475,10 @@ function g.loadGame(loadFile)
         g.music:seek(0)
         g.music:play()
     end
+    
+    -- Reset player looking at the gas station mirror
+    g.playerState.lookedAtGasStationBathroomMirror = false
+    g.timers.gasStationBathroomMirrorShadow = 0
     
     -- Reset looking at the sun, the wall hole, and squiggle man
     g.playerState.numOfTimesLookedAtSun = 0

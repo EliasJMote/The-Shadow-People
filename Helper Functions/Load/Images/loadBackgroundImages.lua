@@ -20,6 +20,7 @@ function loadBackgroundImages.load()
     loadImages.churchInside = love.graphics.newImage("Images/Backgrounds/Church Inside.png")
     loadImages.churchInside2 = love.graphics.newImage("Images/Backgrounds/Church Inside 2.png")
     loadImages.churchOutside = love.graphics.newImage("Images/Backgrounds/Church Outside.png")
+    loadImages.churchOutsideEvil = love.graphics.newImage("Images/Backgrounds/Church Outside (Evil).png")
     loadImages.mirrorRoom = love.graphics.newImage("Images/Backgrounds/Mirror Room.png")
     
     -- Clock Tower area
@@ -48,9 +49,11 @@ function loadBackgroundImages.load()
     
     -- Highway area
     loadImages.highway = love.graphics.newImage("Images/Backgrounds/Highway.png")
+    loadImages.highwayEvil = love.graphics.newImage("Images/Backgrounds/Highway (Evil).png")
     loadImages.highwayNorthEnd = love.graphics.newImage("Images/Backgrounds/Highway North End.png")
     loadImages.highwayNorthEndEvil = love.graphics.newImage("Images/Backgrounds/Highway North End (Evil).png")
     loadImages.highwayTIntersection = love.graphics.newImage("Images/Backgrounds/Highway T Intersection.png")
+    loadImages.highwayTIntersectionEvil = love.graphics.newImage("Images/Backgrounds/Highway T Intersection (Evil).png")
     
     -- Nightmare Geometry
     loadImages.nightmareGeometry1 = love.graphics.newImage("Images/Backgrounds/Nightmare Geometry 1.png")
@@ -66,15 +69,22 @@ function loadBackgroundImages.load()
     
     -- Park
     loadImages.parkEntrance = love.graphics.newImage("Images/Backgrounds/Park Entrance.png")
+    loadImages.parkEntranceEvil = love.graphics.newImage("Images/Backgrounds/Park Entrance (Evil).png")
     loadImages.park2 = love.graphics.newImage("Images/Backgrounds/Park 2.png")
+    loadImages.park2Evil = love.graphics.newImage("Images/Backgrounds/Park 2 (Evil).png")
     loadImages.park3 = love.graphics.newImage("Images/Backgrounds/Park 3.png")
-    loadImages.patioLight = love.graphics.newImage("Images/Backgrounds/Patio (Light).png")
-    loadImages.patioDark = love.graphics.newImage("Images/Backgrounds/Patio (Dark).png")
+    loadImages.park3Evil = love.graphics.newImage("Images/Backgrounds/Park 3 (Evil).png")
     loadImages.graveyard = love.graphics.newImage("Images/Backgrounds/Graveyard.png")
+    loadImages.graveyardEvil = love.graphics.newImage("Images/Backgrounds/Graveyard (Evil).png")
     loadImages.statueRoom = love.graphics.newImage("Images/Backgrounds/Statue Room.png")
     loadImages.graveyardUnderground2 = love.graphics.newImage("Images/Backgrounds/Graveyard Underground 2.png")
     loadImages.shed = love.graphics.newImage("Images/Backgrounds/Shed.png")
     loadImages.shedEvil = love.graphics.newImage("Images/Backgrounds/Shed (Evil).png")
+    
+    -- Patio
+    loadImages.patioLight = love.graphics.newImage("Images/Backgrounds/Patio (Light).png")
+    loadImages.patioDark = love.graphics.newImage("Images/Backgrounds/Patio (Dark).png")
+    
     
     -- School
     loadImages.classroom = love.graphics.newImage("Images/Backgrounds/Classroom.png")
@@ -96,10 +106,15 @@ function loadBackgroundImages.load()
     
     -- Streets
     loadImages.street1 = love.graphics.newImage("Images/Backgrounds/Street 1.png")
+    loadImages.street1Evil = love.graphics.newImage("Images/Backgrounds/Street 1 (Evil).png")
     loadImages.street2 = love.graphics.newImage("Images/Backgrounds/Street 2.png")
+    loadImages.street2Evil = love.graphics.newImage("Images/Backgrounds/Street 2 (Evil).png")
     loadImages.street3 = love.graphics.newImage("Images/Backgrounds/Street 3.png")
+    loadImages.street3Evil = love.graphics.newImage("Images/Backgrounds/Street 3 (Evil).png")
     loadImages.street4 = love.graphics.newImage("Images/Backgrounds/Street 4.png")
+    loadImages.street4Evil = love.graphics.newImage("Images/Backgrounds/Street 4 (Evil).png")
     loadImages.street5 = love.graphics.newImage("Images/Backgrounds/Street 5.png")
+    loadImages.street5Evil = love.graphics.newImage("Images/Backgrounds/Street 5 (Evil).png")
 end
 
 return loadBackgroundImages

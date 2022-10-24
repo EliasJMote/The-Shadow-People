@@ -3,6 +3,7 @@ local loadUIImages = {}
 function loadUIImages.load()
     -- Cursors
     loadImages.cursor = love.graphics.newImage("Images/User Interface/Cursors/Cursor Pointer.png")
+    loadImages.cursorItemArrow = love.graphics.newImage("Images/User Interface/Cursors/Cursor Item Arrow.png")
     loadImages.cursorClose = love.graphics.newImage("Images/User Interface/Cursors/Cursor Close.png")
     loadImages.cursorEye = love.graphics.newImage("Images/User Interface/Cursors/Cursor Eye.png")
     loadImages.cursorHand = love.graphics.newImage("Images/User Interface/Cursors/Cursor Hand.png")

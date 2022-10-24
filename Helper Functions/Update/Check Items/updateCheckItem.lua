@@ -12,7 +12,8 @@ function updateCheckItem.update()
         updateCheckCarKey.update()
         
     elseif(g.itemSelected == "Cog") then
-        g.writeToTextDisplay({"You can't use the cog here."})
+        updateCheckCog.update()
+        --g.writeToTextDisplay({"You can't use the cog here."})
         
     elseif(g.itemSelected == "E. Brooch") then
         g.writeToTextDisplay({"You can't use the eclipse", "brooch here."})
@@ -44,7 +45,6 @@ function updateCheckItem.update()
         
     elseif(g.itemSelected == "Shadow Orb") then
         updateCheckShadowOrb.update()
-        --g.writeToTextDisplay({"You can't use the shadow orb", "here."})
     end
 end
 

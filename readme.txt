@@ -1,5 +1,5 @@
 ﻿The Shadow People
-Version 1.1
+Version 1.2
 
 Copyright © 2020-2022 Elias Mote
 Copyright © 2020-2022 Roc Studios
@@ -19,6 +19,25 @@ may not be placed on any web site or otherwise distributed publicly except at th
  display is strictly prohibited, and a violation of copyright.
 
 II. Version History
+
+--------------------------
+V1.2 - Current Version
+--------------------------
+-- Changes --
+-- Added content to the church basement.
+-- The world state changes when you get the Shadow Orb.
+-- Added some miscellaneous improvements around the game.
+-- Improved gas station bathroom content.
+-- Improved ending screens.
+
+-- Bug Fixes --
+-- Fixed a bug where the player could click on the sun outside the school at night.
+-- Fixed a bug where the player couldn't use the Cog or Shadow Orb directly where they could be
+placed.
+-- Fixed a bug where placing the shadow orb wouldn't update text apporopriately.
+-- Fixed a bug where you could move two rooms in the church at the same time when certain conditions
+were met.
+-- Fixed a bug where a non-interactable switch in the gas station bathroom was left in.
 
 --------------------------
 V1.1 - Current Version

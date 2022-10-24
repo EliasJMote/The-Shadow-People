@@ -23,7 +23,7 @@ function loadVariables.load()
     g.timers = {}
     g.timers.global = 0
     g.timers.titleScreenLogo = 210
-    g.timers.endingTextFadeOut = 60 * 12
+    g.timers.endingTextFadeOut = 60 * 10
     g.timers.endingTextTimeAddition = 60 * 2
     
     -- Divide the number of text lines by 4, then round up
@@ -59,7 +59,7 @@ function loadVariables.load()
     -- List of all states that objects can be in the game
     g.objectStates = {"On", "Off", "Open", "Closed", "Locked", "Stuck", "Rusted", "Lit", "Unlit"}
           
-    g.endingScreenMask = {x=0,y=0,w=160,h=144} 
+    g.endingScreenMask = {x=4,y=76,w=152,h=64} 
         
     -- game boy studio palette
     g.colors = {

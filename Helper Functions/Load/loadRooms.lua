@@ -14,7 +14,7 @@ loadRooms.altarRoom =   {
                                         poleSymbol2={name="Pole Symbol 2",x=24,y=42,w=4,h=28,text={look={"It's a pole with a strange", "symbol in the middle."}}},
                                         poleSymbol3={name="Pole Symbol 3",x=72,y=42,w=4,h=28,text={look={"It's a pole with a strange", "symbol in the middle."}}},
                                         poleSymbol4={name="Pole Symbol 4",x=86,y=39,w=4,h=37,text={look={"It's a pole with a strange", "symbol in the middle."}}},
-                                        symbolOfThePrince={name="Symbol of the Prince",x=18,y=17,w=16,h=16,text={look={"An image of a triangle with", "something on the inside..."}}},
+                                        symbolOfThePrince={name="Symbol of the Prince",x=18,y=17,w=16,h=16,state="Closed",img={closed=loadImages.altarEyeClosed,opened=loadImages.altarEyeOpened},text={look={"An image of a triangle with", "something on the inside..."}}},
                                     },
                             map=loadImages.oneWayDownMap,
                             exits={south="Puzzling Stone"},
@@ -183,7 +183,7 @@ loadRooms.churchOutside =   {
                                         },
                                 map=loadImages.twoWayVerticalMap,
                                 music=loadMusic.darkStreets,
-                                backgrounds={light=loadImages.churchOutside},
+                                backgrounds={light=loadImages.churchOutside,evil=loadImages.churchOutsideEvil},
                                 exits={north="Church Inside 1", south="Street 3"},
                             }
 
@@ -516,8 +516,8 @@ loadRooms.gasStationOutside =   {
                                                 pump1={name="Pump 1",x=13,y=59,w=7,h=10,state="Off",text={look={"It's a gas pump. It's currently", "shut off."}, use={"The pump is turned off."}}},
                                                 pump2={name="Pump 2",x=40,y=59,w=7,h=10,state="Off",text={look={"It's a gas pump. It's currently", "shut off."}, use={"The pump is turned off."}}},
                                                 window1={name="Window 1",x=63,y=57,w=5,h=5,text={look={"It's a window. It's too dark to", "see inside."}}},
-                                                window2={name="Window 2",x=69,y=57,w=5,h=5,text={look={"It's a window. It's too dark to", "see inside."}}},
-                                                window3={name="Window 3",x=83,y=57,w=5,h=5,text={look={"It's a window. It's too dark to", "see inside."}}},
+                                                --window2={name="Window 2",x=69,y=57,w=5,h=5,text={look={"It's a window. It's too dark to", "see inside."}}},
+                                                --window3={name="Window 3",x=83,y=57,w=5,h=5,text={look={"It's a window. It's too dark to", "see inside."}}},
                                                 window4={name="Window 4",x=89,y=57,w=5,h=5,text={look={"It's a window. It's too dark to", "see inside."}}},
                                             },
                                     exits={north="Gas Station Inside", south="Car 3",east="Gas Station Bathroom"},
@@ -527,7 +527,7 @@ loadRooms.graveyard =   {
                             name="Graveyard",
                             state="Light",
                             map=loadImages.oneWayDownMap,
-                            backgrounds={light=loadImages.graveyard},
+                            backgrounds={light=loadImages.graveyard,evil=loadImages.graveyardEvil},
                             music=loadMusic.darkStreets,
                             objects={
                                         grave={name="Grave",x=37,y=59,w=27,h=20,text=loadGameText.graveyard.grave,img={normal=loadImages.grave,pushed=loadImages.grave},state="normal"},
@@ -575,7 +575,7 @@ loadRooms.highway1 =    {
                             state="Light",
                             map=loadImages.twoWayLUpperRightMap,
                             music = loadMusic.darkStreets,
-                            backgrounds={light=loadImages.highway},
+                            backgrounds={light=loadImages.highway,evil=loadImages.highwayEvil},
                             objects={
                                         highway={name="Highway",x=41,y=45,w=19,h=12,move="North",text={look={"A highway lies in front of you."},move="North",}},
                                     },
@@ -588,7 +588,7 @@ loadRooms.highway2 =    {
                             displayName = "Highway",
                             state="Light",
                             map=loadImages.twoWayVerticalMap,
-                            backgrounds={light=loadImages.highway},
+                            backgrounds={light=loadImages.highway,evil=loadImages.highwayEvil},
                             music=loadMusic.darkStreets,
                             objects={
                                         highway={name="Highway",x=41,y=45,w=19,h=12,move="North",text={look={"A highway lies in front of you."},move="North",}},
@@ -602,7 +602,7 @@ loadRooms.highway3 =    {
                             displayName = "Highway",
                             state="Light",
                             map=loadImages.twoWayVerticalMap,
-                            backgrounds={light=loadImages.highway},
+                            backgrounds={light=loadImages.highway,evil=loadImages.highwayEvil},
                             music=loadMusic.darkStreets,
                             objects={
                                         highway={name="Highway",x=41,y=45,w=19,h=12,move="North",text={look={"A highway lies in front of you."},move="North",}},
@@ -616,7 +616,7 @@ loadRooms.highway4 =    {
                             displayName = "Highway",
                             state="Light",
                             map=loadImages.threeWayRightMap,
-                            backgrounds={light=loadImages.highwayTIntersection},
+                            backgrounds={light=loadImages.highwayTIntersection,evil=loadImages.highwayTIntersectionEvil},
                             music=loadMusic.darkStreets,
                             objects={
                                         highway={name="Highway",x=41,y=45,w=19,h=12,move="North",text={look={"A highway lies in front of you."},move="North",}},
@@ -634,7 +634,7 @@ loadRooms.highway5 =    {
                             backgrounds={light=loadImages.highwayNorthEnd,evil=loadImages.highwayNorthEndEvil},
                             music=loadMusic.darkStreets,
                             objects={
-                                        highwayEng={name="Highway End",x=3,y=60,w=94,h=20,text={look={"The highway simply ends..."}}},
+                                        highwayEnd={name="Highway End",x=3,y=60,w=94,h=20,text={look={"The highway simply ends..."}}},
                                     },
                             exits={south="Highway 4"},
                         }
@@ -696,7 +696,7 @@ loadRooms.nightmareGeometry1 =  {
                                     backgrounds={light=loadImages.nightmareGeometry1},
                                     objects={
                                                 shadowBody={name="Shadow Body",x=29,y=67,w=22,h=12,text={look={"Something is written next to", "an outline on the ground:", "THERE WAS A LIVING PERSON HERE.", "THEY ARE GONE NOW."}}},
-                                                shadowPeople={name="Shadow People",x=9,y=9,w=86,h=29,text={look={"Are those people waving?"},talk={"You call out to the shadowy", "figures, but receive no response."}}},
+                                                shadowPeople={name="Shadow People",x=9,y=9,w=86,h=29,text={look={"Are those people waving?"},talk={"You call out to the shadowy", "figures, but receive no", "response."}}},
                                             },
                                     exits={south="Dark Passage 2"},
                                     backgroundStatic = true,
@@ -812,7 +812,7 @@ loadRooms.park1 =    {
                         displayName = "Park Entrance",
                         state="Light",
                         map=loadImages.twoWayVerticalMap,
-                        backgrounds={light=loadImages.parkEntrance},
+                        backgrounds={light=loadImages.parkEntrance,evil=loadImages.parkEntranceEvil},
                         music=loadMusic.darkStreets,
                         objects={
                                     lighter = loadObjects.lighter,
@@ -826,7 +826,7 @@ loadRooms.park2 =    {
                         displayName = "Park Path",
                         state="Light",
                         map=loadImages.threeWayRightMap,
-                        backgrounds={light=loadImages.park2},
+                        backgrounds={light=loadImages.park2,evil=loadImages.park2Evil},
                         objects={
                                     graveyard={name="Graveyard",x=41,y=34,w=17,h=12,move="North",text={look={"It's a path forward. A", "graveyard lies quietly at the", "end."},move="North",}},
                                     pathEast={name="Path East",x=74,y=60,w=23,h=8,move="East",text={look={"It's a path to the east."},move="East",}},
@@ -840,7 +840,7 @@ loadRooms.park3 =    {
                         displayName = "Park Shed",
                         state="Light",
                         map=loadImages.twoWayLUpperLeftMap,
-                        backgrounds={light=loadImages.park3},
+                        backgrounds={light=loadImages.park3,evil=loadImages.park3Evil},
                         music=loadMusic.darkStreets,
                         objects={
                                     door={name="Door",x=45,y=34,w=9,h=12,state="Closed",move="North",img={closed=loadImages.shedDoorClosed,open=loadImages.shedDoorOpen},text={close={"You close the door."},look={"It's a door to an old, run-down", "shed. It looks as though it has", "not been serviced in a long", "time."},open={"You open the door."},move="North",}},
@@ -1175,7 +1175,7 @@ loadRooms.street1 =    {
                             name="Street 1",
                             displayName = "Street",
                             state="Light",
-                            backgrounds={light=loadImages.street1},
+                            backgrounds={light=loadImages.street1,evil=loadImages.street1Evil},
                             map=loadImages.threeWayUpMap,
                             music=loadMusic.darkStreets,
                             objects={
@@ -1191,7 +1191,7 @@ loadRooms.street2 =    {
                             name="Street 2",
                             displayName = "Street",
                             state="Light",
-                            backgrounds={light=loadImages.street2},
+                            backgrounds={light=loadImages.street2,evil=loadImages.street2Evil},
                             map=loadImages.threeWayUpMap,
                             music=loadMusic.darkStreets,
                             objects={
@@ -1207,7 +1207,7 @@ loadRooms.street3 =    {
                             name="Street 3",
                             displayName = "Street",
                             state="Light",
-                            backgrounds={light=loadImages.street3},
+                            backgrounds={light=loadImages.street3,evil=loadImages.street3Evil},
                             map=loadImages.threeWayUpMap,
                             music=loadMusic.darkStreets,
                             objects={
@@ -1223,7 +1223,7 @@ loadRooms.street4 =    {
                             displayName = "Street",
                             state="Light",
                             music=loadMusic.darkStreets,
-                            backgrounds={light=loadImages.street4},
+                            backgrounds={light=loadImages.street4,evil=loadImages.street4Evil},
                             map=loadImages.twoWayHorizontalMap,
                             music=loadMusic.darkStreets,
                             objects={
@@ -1239,7 +1239,7 @@ loadRooms.street5 =    {
                             name="Street 5",
                             displayName = "Street",
                             state="Light",
-                            backgrounds={light=loadImages.street5},
+                            backgrounds={light=loadImages.street5,evil=loadImages.street5Evil},
                             map=loadImages.twoWayLUpperLeftMap,
                             music = loadMusic.darkStreets,
                             objects={
