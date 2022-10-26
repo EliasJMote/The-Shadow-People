@@ -44,10 +44,12 @@ function updateLeftClickTitleEvents.update(event)
                 end
                 
                 createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="load game"}})
-            --[[elseif(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.titleScreen.options)) then
-                createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="options"}})]]
             elseif(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.titleScreen.credits)) then
                 createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="title credits"}})
+            elseif(g.textBoxes.titleScreen.extras ~= nil and g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.titleScreen.extras)) then
+                createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="extras"}})
+            --[[elseif(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.titleScreen.options)) then
+                createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="options"}})]]
             end
         end
         
@@ -66,7 +68,18 @@ function updateLeftClickTitleEvents.update(event)
             g.titleCreditsPage = 1
         end
         
-    elseif(event.state == "options") then
+    elseif(event.state == "extras") then
+        if(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.extrasScreen.back)) then
+            createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="title"}})
+            
+        --[[elseif(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.optionsScreen.increaseWindowScale)) then
+            if(scale < 6) then
+                scale = scale + 1
+                love.window.setMode(160*scale, 144*scale, {resizable = true})
+            end]]
+        end
+        
+    --[[elseif(event.state == "options") then
         if(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.optionsScreen.back)) then
             createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="title"}})
         elseif(g.mouseCollision(event.mouse.x,event.mouse.y,g.textBoxes.optionsScreen.increaseWindowScale)) then
@@ -79,7 +92,7 @@ function updateLeftClickTitleEvents.update(event)
                 scale = scale - 1
                 love.window.setMode(160*scale, 144*scale, {resizable = true})
             end
-        end
+        end]]
         
     -- On the instructions screen
     elseif(event.state == "instructions") then

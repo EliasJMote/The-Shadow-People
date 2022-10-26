@@ -84,6 +84,8 @@ function updateRoomLocks.update()
                     if(g.curLocation.objects.churchInsideDoor.state == "Closed") then
                         g.mapTransitionIsLegal = false
                         g.writeToTextDisplay({"The door is closed!"})
+                    else
+                        g.mapTransitionIsLegal = true
                     end
                 else
                     g.mapTransitionIsLegal = true

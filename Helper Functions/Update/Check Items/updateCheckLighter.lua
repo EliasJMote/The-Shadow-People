@@ -23,7 +23,7 @@ function updateCheckLighter.update()
                     and g.curLocation.objects.wallCandelabra1.state == "Lit") then
                     
                     -- The inside door in the church appears after lighting the candles
-                    g.curLocation.objects.churchInsideDoor={name="Door",x=13,y=30,w=10,h=37,img={closed=loadImages.churchDoorInsideClosed,open=loadImages.churchDoorInsideOpen},state="Closed",move="",text={close={"You close the door."},look={"It's a narrow door hidden in", "the wall."},open={"You open the door."},move="",}}
+                    g.curLocation.objects.churchInsideDoor={name="Door",x=13,y=30,w=10,h=37,img={closed=loadImages.churchDoorInsideClosed,open=loadImages.churchDoorInsideOpen},state="Closed",move="North",text={close={"You close the door."},look={"It's a narrow door hidden in", "the wall."},open={"You open the door."},move="",}}
                     table.insert(textArray, "Lighting the candles has")
                     table.insert(textArray, "revealed a hidden door in the")
                     table.insert(textArray, "wall.")

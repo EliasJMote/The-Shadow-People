@@ -243,8 +243,6 @@ function g.updateHiddenDoorInMirror()
     -- Update the map
     loadRooms.mirrorRoom.map = loadImages.twoWayVerticalMap
     loadRooms.mirrorRoom.exits.north = "Church Inside Secret Room"
-    --loadRooms.churchInside1.exits.east = "Mirror Room"
-    loadRooms.churchInside1.exits.north = nil
     loadRooms.churchInside1.exits.north = "Mirror Room"
 end
 function g.updateSpacePortalInMirror()
@@ -417,7 +415,7 @@ function g.loadGame(loadFile)
         and loadRooms.churchInside1.objects.wallCandelabra1.state == "Lit") then
         
         -- Reveal the hidden door
-        loadRooms.churchInside1.objects.churchInsideDoor={name="Door",x=13,y=30,w=10,h=37,img={closed=loadImages.churchDoorInsideClosed,open=loadImages.churchDoorInsideOpen},state="Closed",move="",text={close={"You close the door."},look={"It's a narrow door hidden in", "the wall."},open={"You open the door."},move="",}}
+        loadRooms.churchInside1.objects.churchInsideDoor={name="Door",x=13,y=30,w=10,h=37,img={closed=loadImages.churchDoorInsideClosed,open=loadImages.churchDoorInsideOpen},state="Closed",move="North",text={close={"You close the door."},look={"It's a narrow door hidden in", "the wall."},open={"You open the door."},move="",}}
         
         -- Update the map
         g.revealChurchHiddenDoorOnMap()

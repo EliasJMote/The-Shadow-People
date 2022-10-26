@@ -1,4 +1,4 @@
-The following text is from the JSON4Ula project and applies solely to json.lua:
+The following text is from the JSON4Lua project and applies solely to json.lua:
 
 The MIT License
 

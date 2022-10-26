@@ -1,5 +1,5 @@
 ﻿The Shadow People
-Version 1.2
+Version 1.2.1
 
 Copyright © 2020-2022 Elias Mote
 Copyright © 2020-2022 Roc Studios
@@ -15,13 +15,24 @@ I. Disclaimer
 
 This software may be not be reproduced under any circumstances except for personal, private use. It
 may not be placed on any web site or otherwise distributed publicly except at the sole discretion of
- the author. Placement of this readme or game on any other web site or as a part of any public
- display is strictly prohibited, and a violation of copyright.
+the author. Placement of this readme or game on any other web site or as a part of any public
+display is strictly prohibited, and a violation of copyright.
 
 II. Version History
 
 --------------------------
-V1.2 - Current Version
+V1.2.1 - Current Version
+--------------------------
+-- Changes --
+-- Capped frame rate at 60 fps.
+-- Added some file creation (will be used later for steam achievements).
+
+-- Bug Fixes --
+-- Fixed a bug where the player could not use the "Move" action to move through a particular door
+in the church.
+
+--------------------------
+V1.2
 --------------------------
 -- Changes --
 -- Added content to the church basement.

@@ -19,7 +19,7 @@ function updateWindowResize.update(w,h)
             newHeight = newHeight - nativeHeight
         end
         
-        love.window.setMode(newWidth,newHeight, {resizable = true,minwidth=nativeWidth,minheight=nativeHeight})
+        love.window.setMode(newWidth,newHeight, {resizable = true,minwidth=nativeWidth,minheight=nativeHeight,fullscreen=false})
         
     end
 end

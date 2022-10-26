@@ -64,9 +64,6 @@ function updateGame.update(dt,g)
     if(g.state ~= "warning" and g.state ~= "video intro") then
         g.timers.global = g.timers.global + 1
     end
-
-    
-
 end
 
 return updateGame

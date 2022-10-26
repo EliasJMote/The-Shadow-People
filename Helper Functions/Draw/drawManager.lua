@@ -17,8 +17,11 @@ function drawManager.draw()
     elseif(g.state == "title credits") then
         drawTitleCreditsScreen.draw()
       
-    elseif(g.state == "options") then
-        drawOptionsScreen.draw()
+    elseif(g.state == "extras") then
+        drawExtrasScreen.draw()
+      
+    --elseif(g.state == "options") then
+        --drawOptionsScreen.draw()
         
     elseif(g.state == "load game") then
         drawLoadScreen.draw()

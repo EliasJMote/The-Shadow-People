@@ -18,7 +18,10 @@ function loadTextBoxes.load()
                                             back = {x=72,y=128,w=19,h=6,text="Back"},
                                             increaseWindowScale = {x=152,y=24,w=3,h=6,text="+"},
                                             decreaseWindowScale = {x=120,y=24,w=3,h=6,text="-"},
-                                        },  
+                                        }, 
+                        extrasScreen = {
+                                            back = {x=72,y=128,w=19,h=6,text="Back"},
+                                        },
                         pauseScreen =   {
                                             resumeGame = {x=56,y=40,w=52,h=5,text="Resume Game"},
                                             checkItems = {x=56,y=56,w=52,h=5,text="Check Items"},
@@ -62,6 +65,7 @@ function loadTextBoxes.load()
                                             startGame = {x=52,y=82,w=59,h=6,text="Start Game"},
                                             loadGame = {x=52,y=96,w=53,h=6,text="Load Game"},
                                             credits = {x=52,y=110,w=41,h=6,text="Credits"},
+                                            --extras = {x=52,y=110+14,w=41,h=6,text="Extras"},
                                             --options = {x=52,y=110+14,w=41,h=6,text="Options"},
                                         },
                                         

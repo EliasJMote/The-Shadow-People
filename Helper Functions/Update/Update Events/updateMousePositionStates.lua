@@ -42,6 +42,13 @@ function updateMousePositionStates.update(event)
             end
         end
         
+    elseif(g.state == "extras") then
+        for k,v in pairs(g.textBoxes.extrasScreen) do
+            if(g.mouseCollision(g.mouse.x,g.mouse.y,v)) then
+                g.mouse.textHover = true
+            end
+        end
+        
     elseif(g.state == "pause") then
         local mouseHover = false
         for k,v in pairs(g.textBoxes.pauseScreen) do
