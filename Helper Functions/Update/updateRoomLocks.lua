@@ -10,6 +10,7 @@ function updateRoomLocks.update()
     if not (debug) then
     
         -- For each room, check the locks
+        -- Check bedroom locks
         if(g.curLocation.name == "Bedroom") then
             if(g.curLocation.objects["bedroomDoor"].state == "Closed") then
                 g.mapTransitionIsLegal = false
@@ -94,6 +95,19 @@ function updateRoomLocks.update()
                 g.mapTransitionIsLegal = true
             end
             
+        elseif(g.curLocation.name == "Church Inside 2") then
+            --[[if(g.curLocation.objects.trapDoor.state == "Closed") then
+                if((g.actionSelected == "Move" and g.mouse.objectPointedAt == g.curLocation.objects.trapDoor) or (g.movementDirection == "North")) then
+                    g.mapTransitionIsLegal = false
+                    g.writeToTextDisplay({"The door is closed!"})
+                else
+                    updateRoom.transition("Church Basement")
+                    createEvent.create({name="Start Screen Transition", x=3, y=3, w=94, h=77,event={name="Play Music", music=g.curLocation.music}})
+                end
+            else
+                g.mapTransitionIsLegal = true
+            end]]
+            
         elseif(g.curLocation.name == "Mirror Room") then
             if(loadRooms.mirrorRoom.objects.mirror2.state == "Open" and (g.mouse.objectPointedAt == loadRooms.mirrorRoom.objects.mirror2 or g.movementDirection == "North")) then
                 g.mapTransitionIsLegal = true
@@ -157,6 +171,20 @@ function updateRoomLocks.update()
             if(g.curLocation.objects["sewerGate"].state == "Rusted" and g.movementDirection == "North") then
                 g.mapTransitionIsLegal = false
                 g.writeToTextDisplay({"The door is rusted shut!"})
+            else
+                g.mapTransitionIsLegal = true
+            end
+            
+        -- Using the move action to enter the puzzling stone door (after it's open)
+        elseif(g.curLocation.name == "Puzzling Stone") then
+            if(g.mouse.objectPointedAt == g.curLocation.objects.door and (g.actionSelected == "Move" or g.movementDirection == "North")) then
+                if(g.curLocation.objects.door.state == "Open") then
+                    updateRoom.transition("Altar Room")
+                    createEvent.create({name="Start Screen Transition", x=3, y=3, w=94, h=77,event={name="Play Music", music=g.curLocation.music}})
+                else
+                    g.mapTransitionIsLegal = false
+                    g.writeToTextDisplay({"The door is closed!"})
+                end
             else
                 g.mapTransitionIsLegal = true
             end

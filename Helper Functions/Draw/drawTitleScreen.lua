@@ -26,7 +26,7 @@ function drawTitleScreen.draw()
         end
         love.graphics.setColor(g.colors.lightGreen.r, g.colors.lightGreen.g, g.colors.lightGreen.b, 1)
         --love.graphics.print("V" .. gameVersion, 112-4, 134, 0, 0.5, 0.5)
-        love.graphics.printf("V" .. gameVersion, -8, 134, 160*2, "right", 0, 0.5, 0.5)
+        love.graphics.printf("V" .. gameVersion, -8, 134-3, 160*2, "right", 0, 0.5, 0.5)
     end
 end
 

@@ -4,7 +4,17 @@ local g = GLOBALS
 
 function updateCheckActionPut.update()
     
-    if(g.curLocation == loadRooms.clockTowerInsideFirstFloor) then
+    if(g.curLocation == loadRooms.gasStationOutside) then
+        if(g.itemSelected == "G.S. Key" and g.curLocation.objects.door.state == "Locked" and g.mouse.objectPointedAt == g.curLocation.objects.door) then
+            g.curLocation.objects.door.state = "Closed"
+            g.writeToTextDisplay({"You unlock the door with the", "key."})
+            g.curLocation.objects.door.text.look={"It's a double glass door. It's", "dark on the inside."}
+            g.curLocation.objects.door.text.open={"You open the door."}
+            g.curLocation.objects.door.text.pull={"You open the door."}
+            loadSFX.pickup:play()
+        end
+    
+    elseif(g.curLocation == loadRooms.clockTowerInsideFirstFloor) then
         if(g.itemSelected == "Cog" and g.mouse.objectPointedAt == g.curLocation.objects.cogHole and g.curLocation.objects.cogHole.state == "Empty") then
             g.playerState.gearPlaced = true
             g.curLocation.objects.cogHole.state = "Full"

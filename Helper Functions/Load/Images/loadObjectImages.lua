@@ -18,6 +18,7 @@ function loadObjectImages.load()
     loadImages.churchBasementShadow4 = love.graphics.newImage("Images/Objects/Church Basement/Shadow 4.png")
     loadImages.churchBasementShadow5 = love.graphics.newImage("Images/Objects/Church Basement/Shadow 5.png")
     loadImages.churchBasementMirror = love.graphics.newImage("Images/Objects/Church Basement/Mirror.png")
+    loadImages.churchBasementMirrorBroken = love.graphics.newImage("Images/Objects/Church Basement/Mirror (Broken).png")
     
     loadImages.churchDoorOutsideClosed = love.graphics.newImage("Images/Objects/Church Outside/Church Outside Door Closed.png")
     loadImages.churchDoorOutsideOpen = love.graphics.newImage("Images/Objects/Church Outside/Church Outside Door Open.png")
@@ -35,6 +36,8 @@ function loadObjectImages.load()
     loadImages.clockTowerOutsideDoorClosed = love.graphics.newImage("Images/Objects/Clock Tower Outside/Clock Tower Outside Door Closed.png")
     loadImages.clockTowerOutsideDoorOpen = love.graphics.newImage("Images/Objects/Clock Tower Outside/Clock Tower Outside Door Open.png")
     loadImages.cogHole = love.graphics.newImage("Images/Objects/Clock Tower Inside First Floor/Cog Hole.png") 
+    
+    loadImages.floodedLabyrinthLadder = love.graphics.newImage("Images/Objects/Sewers/Ladder.png")
     
     -- Load gas station objects
     loadImages.gasStationButtonOff = love.graphics.newImage("Images/Objects/Gas Station/Gas Station Inside Button (Off).png")
@@ -94,8 +97,12 @@ function loadObjectImages.load()
     loadImages.puzzlingStoneDoorOpen = love.graphics.newImage("Images/Objects/Puzzling Stone/Door Open.png")
     loadImages.sewerGate = love.graphics.newImage("Images/Objects/Streets/Sewer Gate.png")
     loadImages.sewerGateBroken = love.graphics.newImage("Images/Objects/Streets/Sewer Gate (Broken).png")
+    
     loadImages.shedDoorClosed = love.graphics.newImage("Images/Objects/Park/Shed Door (Closed).png")
     loadImages.shedDoorOpen = love.graphics.newImage("Images/Objects/Park/Shed Door (Open).png")
+    loadImages.shedWindow = love.graphics.newImage("Images/Objects/Shed/Window.png")
+    loadImages.shedWindowBroken = love.graphics.newImage("Images/Objects/Shed/Window (Broken).png")
+    
     --loadImages.shedTable = love.graphics.newImage("Images/Objects/Shed/Table.png")
     loadImages.statueWithDarkCrystalBall = love.graphics.newImage("Images/Objects/Graveyard Underground/Statue with Dark Crystal Ball.png")
     loadImages.statueWithLightCrystalBall = love.graphics.newImage("Images/Objects/Graveyard Underground/Statue with Light Crystal Ball.png")

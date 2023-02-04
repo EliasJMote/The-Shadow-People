@@ -28,6 +28,13 @@ function updateMousePositionStates.update(event)
             end
         end
         
+    elseif(g.state == "pause instructions") then
+        for k,v in pairs(g.textBoxes.pauseInstructionsScreen) do
+            if(g.mouseCollision(g.mouse.x,g.mouse.y,v)) then
+                g.mouse.textHover = true
+            end
+        end
+        
     elseif(g.state == "title credits") then
         for k,v in pairs(g.textBoxes.titleCreditsScreen) do
             if(g.mouseCollision(g.mouse.x,g.mouse.y,v)) then
@@ -50,6 +57,7 @@ function updateMousePositionStates.update(event)
         end
         
     elseif(g.state == "pause") then
+        g.mouse.pauseMenuHover = false
         local mouseHover = false
         for k,v in pairs(g.textBoxes.pauseScreen) do
             if(g.mouseCollision(g.mouse.x,g.mouse.y,v)) then
@@ -60,20 +68,32 @@ function updateMousePositionStates.update(event)
         
     elseif(g.state == "save game") then
         local mouseHover = false
-        for k,v in pairs(g.textBoxes.saveGameScreen) do
+        for k,v in ipairs(g.textBoxes.saveGameScreen.saveGame) do
             if(g.mouseCollision(g.mouse.x,g.mouse.y,v)) then
                 g.mouse.textHover = true
                 mouseHover = true
             end
         end
+        if(g.mouseCollision(g.mouse.x,g.mouse.y,g.textBoxes.saveGameScreen.back)) then
+            g.mouse.textHover = true
+            mouseHover = true
+        end
         
     elseif(g.state == "load game") then
         local mouseHover = false
-        for k,v in pairs(g.textBoxes.loadGameScreen) do
+        if(g.mouseCollision(g.mouse.x,g.mouse.y,g.textBoxes.loadGameScreen.loadGameAuto)) then
+            g.mouse.textHover = true
+            mouseHover = true
+        end
+        for k,v in ipairs(g.textBoxes.loadGameScreen.loadGame) do
             if(g.mouseCollision(g.mouse.x,g.mouse.y,v)) then
                 g.mouse.textHover = true
                 mouseHover = true
             end
+        end
+        if(g.mouseCollision(g.mouse.x,g.mouse.y,g.textBoxes.loadGameScreen.back)) then
+            g.mouse.textHover = true
+            mouseHover = true
         end
         
     elseif(g.state == "inventory") then
@@ -154,6 +174,11 @@ function updateMousePositionStates.update(event)
         g.clearMouseCursorState()
     
     elseif(g.state == "game") then
+        g.mouse.pauseMenuHover = false
+        if(g.mouseCollision(g.mouse.x, g.mouse.y, g.pauseButton) and not g.showMessageBox) then
+            g.mouse.pauseMenuHover = true
+        end
+    
         g.mouse.objectHover = false
         g.mouse.objectPointedAt = nil
         

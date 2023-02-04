@@ -19,6 +19,7 @@ function loadUIImages.load()
     -- GUI boxes
     loadImages.userInterfaceTextBox = love.graphics.newImage("Images/User Interface/User Interface (Text).png")
     loadImages.userInterfaceActions = love.graphics.newImage("Images/User Interface/User Interface (Actions).png")
+    loadImages.userInterfacePauseIconLitUp = love.graphics.newImage("Images/User Interface/Pause Icon Lit Up.png")
 end
 
 return loadUIImages

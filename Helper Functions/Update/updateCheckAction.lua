@@ -9,8 +9,8 @@ local updateCheckAction = {}
             -- If the cursor is pointing to an object
             if(g.mouse.objectPointedAt ~= nil) then
 
-                -- Check if the player is selecting an action
-                if(g.actionSelected ~= nil) then
+                -- Check if the player is selecting an action (and not selecting an item)
+                if(g.actionSelected ~= nil and g.itemSelected == nil) then
 
                     -- If it's an illegal action
                     if(g.mouse.objectPointedAt.text[g.actionSelected:lower()] == nil) then

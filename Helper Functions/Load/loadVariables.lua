@@ -16,6 +16,8 @@ function loadVariables.load()
     -- Initialize scale of the game
     g.scale = {}
     
+    g.translate = {x=0,y=0}
+    
     -- Initialize game state
     g.state = "warning"
     
@@ -44,17 +46,22 @@ function loadVariables.load()
     g.screenTransition = {x=0,y=0,w=160,h=144,active=false}
         
     g.actionButtons =   {
-                            {text="Close",x=54,y=103,w=23,h=4},
-                            {text="Look",x=120,y=103,w=18,h=4},
-                            {text="Move",x=15,y=90,w=18,h=4},
-                            {text="Open",x=120,y=90,w=18,h=4},
-                            {text="Pull",x=120,y=116,w=18,h=4},
-                            {text="Push",x=87,y=116,w=18,h=4},
-                            {text="Put",x=54,y=90,w=13,h=4},
-                            {text="Take",x=87,y=90,w=18,h=4},
-                            {text="Talk",x=54,y=116,w=18,h=4},
-                            {text="Use",x=87,y=103,w=13,h=4},
+                            {text="Move",x=7,y=90,w=28,h=4+2},
+                            
+                            {text="Put",x=54+1,y=90,w=13,h=4+2},
+                            {text="Take",x=87+1,y=90,w=18,h=4+2},
+                            {text="Open",x=120+1,y=90,w=18,h=4+2},
+                            
+                            {text="Close",x=54+1,y=103,w=23,h=4+2},
+                            {text="Use",x=87+1,y=103,w=13,h=4+2},
+                            {text="Look",x=120+1,y=103,w=18,h=4+2},
+                            
+                            {text="Talk",x=54+1,y=116,w=18,h=4+2},
+                            {text="Push",x=87+1,y=116,w=18,h=4+2},
+                            {text="Pull",x=120+1,y=116,w=18,h=4+2},
                         }
+                        
+    g.pauseButton = {x=143,y=127,w=15,h=15}
                    
     -- List of all states that objects can be in the game
     g.objectStates = {"On", "Off", "Open", "Closed", "Locked", "Stuck", "Rusted", "Lit", "Unlit"}

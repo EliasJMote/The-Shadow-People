@@ -4,7 +4,7 @@ local g = GLOBALS
 
 function updateCheckActionOpen.update()
     
-    if(g.mouse.objectPointedAt.state == "Closed") then
+    if(g.mouse.objectPointedAt.state == "Closed" and g.mouse.objectPointedAt ~= loadRooms.livingRoom.objects.patioEntrance) then
         g.mouse.objectPointedAt.state = "Open"
         loadSFX.doorOpen:play()
 

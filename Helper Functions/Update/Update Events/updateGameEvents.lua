@@ -22,6 +22,24 @@ function updateGameEvents.update(event)
         end
     else
         
+        if(g.mouse.pauseMenuHover) then
+            -- Pause the music if it's currently playing
+            if(g.music ~= nil) then
+                g.music:pause()
+            end
+            
+            -- Clear the mouse cursor states
+            g.clearMouseCursorState()
+            
+            -- Stop all SFX
+            for k,v in pairs(loadSFX) do
+                v:stop()
+            end
+            
+            -- Transition to the pause state
+            createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="pause"}})
+        end
+        
         -- If we have clicked on the map in a legal direction, set the direction to move
         if(g.mouse.mapHover ~= nil) then
             g.movementDirection = g.mouse.mapHover
@@ -29,13 +47,26 @@ function updateGameEvents.update(event)
             
         -- Select/deselect an item to use
         if(g.mouse.itemMenuHoverItem) then
+            
+            -- If we don't have an item selected or we aren't currently hovering over one
             if(g.itemSelected == nil or g.itemSelected ~= g.mouse.itemMenuHoverItem) then
+                
+                -- If we aren't using the "look" action currently, select the item
                 if(g.actionSelected ~= "Look") then
                     g.itemSelected = g.mouse.itemMenuHoverItem
+                    
+                    -- Also select the "use" action if we aren't using "put" already
+                    if(g.actionSelected ~= "Put") then
+                        g.actionSelected = "Use"
+                    end
                 end
-                if(g.actionSelected ~= "Put" and g.actionSelected ~= "Look") then
+                
+                -- If we are not using the "put", "look", or "use" action, deselect the currently selected action
+                if(g.actionSelected ~= "Put" and g.actionSelected ~= "Look" and g.actionSelected ~= "Use") then
                     g.actionSelected = nil
                 end
+                
+                -- Look at an item in the inventory
                 if(g.actionSelected == "Look") then
                     for k,v in pairs(loadObjects) do
                         if(v.item ~= nil) then
@@ -57,6 +88,8 @@ function updateGameEvents.update(event)
                     end
                     --g.writeToTextDisplay(loadObjects[g.mouse.itemMenuHoverItem].item.description)
                 end
+                
+            -- If we click the same item again, deselect it
             elseif(g.itemSelected == g.mouse.itemMenuHoverItem) then
                 g.itemSelected = nil
             end

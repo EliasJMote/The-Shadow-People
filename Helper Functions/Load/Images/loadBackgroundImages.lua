@@ -6,6 +6,7 @@ function loadBackgroundImages.load()
     loadImages.bedroomDark = love.graphics.newImage("Images/Backgrounds/Bedroom (Dark).png")
     loadImages.bedroomLight = love.graphics.newImage("Images/Backgrounds/Bedroom (Light).png")
     loadImages.houseOutside = love.graphics.newImage("Images/Backgrounds/House Outside.png")
+    loadImages.houseOutsideEvil = love.graphics.newImage("Images/Backgrounds/House Outside (Evil).png")
     loadImages.livingRoomDark = love.graphics.newImage("Images/Backgrounds/Living Room (Dark).png")
     loadImages.livingRoomLight = love.graphics.newImage("Images/Backgrounds/Living Room (Light).png")
     

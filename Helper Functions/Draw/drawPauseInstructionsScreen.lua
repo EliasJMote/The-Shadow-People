@@ -1,8 +1,8 @@
-local drawInstructionsScreen = {}
+local drawPauseInstructionsScreen = {}
 
     local g = GLOBALS
     
-    function drawInstructionsScreen.draw()
+    function drawPauseInstructionsScreen.draw()
         
         -- draw the background screen
         love.graphics.setColor(g.colors.darkestGreen.r, g.colors.darkestGreen.g, g.colors.darkestGreen.b, 1)
@@ -30,8 +30,8 @@ local drawInstructionsScreen = {}
         love.graphics.print("map or using the \"Move\" action.", 4, 8*14, 0, size, size)
         
         -- Print the "Start Game" button
-        g.highlightText(g.textBoxes.instructionsScreen.startGame,size)
+        g.highlightText(g.textBoxes.pauseInstructionsScreen.back,size)
         
     end
 
-return drawInstructionsScreen
+return drawPauseInstructionsScreen

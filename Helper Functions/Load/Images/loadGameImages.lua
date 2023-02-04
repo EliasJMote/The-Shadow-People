@@ -6,6 +6,8 @@ function loadGameImages.load()
     loadImages.titleScreen = love.graphics.newImage("Images/Intro Screens/Title Screen.png")
     loadImages.rocStudiosLogo = love.graphics.newImage("Images/Intro Screens/Roc Studios Logo.png")
 
+    loadAchievementImages.load()
+
     -- User interface
     loadUIImages.load()
 

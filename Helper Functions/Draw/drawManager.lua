@@ -4,9 +4,13 @@ function drawManager.draw()
 
     local g = GLOBALS
   
+    love.graphics.translate(g.translate.x,g.translate.y)
+  
     -- scale the window
     love.graphics.scale(g.scale.x,g.scale.y)
-  
+    --love.graphics.scale(1,1)
+    
+    
     if(g.state == "warning") then
         drawWarningScreen.draw()
   
@@ -20,8 +24,8 @@ function drawManager.draw()
     elseif(g.state == "extras") then
         drawExtrasScreen.draw()
       
-    --elseif(g.state == "options") then
-        --drawOptionsScreen.draw()
+    elseif(g.state == "options") then
+        drawOptionsScreen.draw()
         
     elseif(g.state == "load game") then
         drawLoadScreen.draw()
@@ -32,6 +36,9 @@ function drawManager.draw()
     -- draw the instructions screen
     elseif(g.state == "instructions") then
         drawInstructionsScreen.draw()
+        
+    elseif(g.state == "pause instructions") then
+        drawPauseInstructionsScreen.draw()
   
     elseif(g.state == "game") then
         drawGame.draw()

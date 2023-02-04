@@ -30,6 +30,9 @@ local drawGame = {}
                 break
             end
         end
+        
+        --love.graphics.print(g.itemPage .. "/" .. math.floor((g.itemCount-1)/4)+1, 126-5, 72, 0, 0.4, 0.4)
+        love.graphics.print(g.itemPage, 126, 72, 0, 0.4, 0.4)
 
         -- draw the game's text
         for k,v in ipairs(g.textBuffer) do

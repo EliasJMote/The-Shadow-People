@@ -9,8 +9,20 @@ function drawOptionsScreen.draw()
     love.graphics.setColor(g.colors.lightGreen.r, g.colors.lightGreen.g, g.colors.lightGreen.b, 1)
     
     love.graphics.print("Options", 68, 8, 0, 0.4, 0.4)
-    love.graphics.print("Window Scale", 56, 24, 0, 0.4, 0.4)
-    love.graphics.print(scale .. "X", 133, 24, 0, 0.4, 0.4)
+    love.graphics.print("Window Scale", 56, 24+12, 0, 0.4, 0.4)
+    love.graphics.print(scale .. "X", 133, 24+12, 0, 0.4, 0.4)
+    love.graphics.print("Volume", 56, 24, 0, 0.4, 0.4)
+    
+    if(GLOBALS.volume.master == 0) then
+        love.graphics.print(" " .. math.floor(GLOBALS.volume.master*10) .. "%", 133, 24, 0, 0.4, 0.4)
+    elseif(GLOBALS.volume.master >= 1 and GLOBALS.volume.master <= 9) then
+        love.graphics.print(math.floor(GLOBALS.volume.master*10) .. "%", 133, 24, 0, 0.4, 0.4)
+    else
+        love.graphics.print(math.floor(GLOBALS.volume.master*10) .. "%", 133-5, 24, 0, 0.4, 0.4)
+    end
+    
+    love.graphics.print("Fullscreen", 56, 24+12*2, 0, 0.4, 0.4)
+    
     
     for k,v in pairs(g.textBoxes.optionsScreen) do
         g.highlightText(v,0.4)

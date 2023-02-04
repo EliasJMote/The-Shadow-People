@@ -8,26 +8,42 @@ function loadTextBoxes.load()
                         instructionsScreen =    {
                                                     startGame = {x=58,y=128,w=47,h=6,text="Start Game"},
                                                 },
+                        pauseInstructionsScreen =   {
+                                                        back = {x=72,y=128,w=47,h=6,text="Back"},
+                                                    },
                         loadGameScreen =    {
-                                                loadGame1 = {x=6,y=32,w=52,h=5,text="Load Game 1"},
-                                                loadGame2 = {x=6,y=64,w=52,h=5,text="Load Game 2"},
-                                                loadGame3 = {x=6,y=96,w=52,h=5,text="Load Game 3"},
-                                                back = {x=20,y=128,w=18,h=5,text="Back"},
+                                                loadGameAuto = {x=6,y=32-16+8+4,w=52,h=5,text="Auto Save"},
+                                                loadGame =  {
+                                                                {x=6,y=32+16*0+8+4,w=52,h=5,text="Load Game 1"},
+                                                                {x=6,y=32+16*1+8+4,w=52,h=5,text="Load Game 2"},
+                                                                {x=6,y=32+16*2+8+4,w=52,h=5,text="Load Game 3"},
+                                                                {x=6,y=32+16*3+8+4,w=52,h=5,text="Load Game 4"},
+                                                                {x=6,y=32+16*4+8+4,w=52,h=5,text="Load Game 5"},
+                                                                --{x=6,y=32+16*5+8,w=52,h=5,text="Load Game 6"},
+                                                            },
+                                                back = {x=20,y=128+4,w=18,h=5,text="Back"},
                                             },
                         optionsScreen = {
                                             back = {x=72,y=128,w=19,h=6,text="Back"},
-                                            increaseWindowScale = {x=152,y=24,w=3,h=6,text="+"},
-                                            decreaseWindowScale = {x=120,y=24,w=3,h=6,text="-"},
+                                            increaseVolume = {x=152,y=24,w=3,h=6,text="+"},
+                                            decreaseVolume = {x=120,y=24,w=3,h=6,text="-"},
+                                            increaseWindowScale = {x=152,y=24+12,w=3,h=6,text="+"},
+                                            decreaseWindowScale = {x=120,y=24+12,w=3,h=6,text="-"},
+                                            fullscreenButton = {x=131,y=24+12*2,w=14,h=6,text="Off"},
+                                            credits = {x=56,y=24+12*3,w=33,h=6,text="Credits"},
+                                            extras = {x=56,y=24+12*4,w=28,h=6,text="Extras"},
                                         }, 
                         extrasScreen = {
-                                            back = {x=72,y=128,w=19,h=6,text="Back"},
+                                            --back = {x=72,y=128,w=19,h=6,text="Back"},
+                                            back = {x=4,y=134,w=19,h=6,text="Back"}, 
                                         },
                         pauseScreen =   {
-                                            resumeGame = {x=56,y=40,w=52,h=5,text="Resume Game"},
-                                            checkItems = {x=56,y=56,w=52,h=5,text="Check Items"},
-                                            loadGame = {x=56,y=72,w=42,h=5,text="Load Game"},
-                                            saveGame = {x=56,y=88,w=42,h=5,text="Save Game"},
-                                            quitGame = {x=56,y=104,w=42,h=5,text="Quit Game"},
+                                            resumeGame = {x=56,y=40-8,w=52,h=5,text="Resume Game"},
+                                            checkItems = {x=56,y=56-8,w=52,h=5,text="Check Items"},
+                                            loadGame = {x=56,y=72-8,w=42,h=5,text="Load Game"},
+                                            saveGame = {x=56,y=88-8,w=42,h=5,text="Save Game"},
+                                            instructions = {x=56,y=88+8,w=42,h=5,text="Instructions"},
+                                            quitGame = {x=56,y=104+8,w=42,h=5,text="Quit Game"},
                                         },
                         itemScreen =    {
                                             back = {x=3,y=136,w=18,h=6,text="Back"},
@@ -51,10 +67,15 @@ function loadTextBoxes.load()
                                                     }
                                         },
                         saveGameScreen =    {
-                                                saveGame1 = {x=6,y=32,w=52,h=5,text="Save Game 1"},
-                                                saveGame2 = {x=6,y=64,w=52,h=5,text="Save Game 2"},
-                                                saveGame3 = {x=6,y=96,w=52,h=5,text="Save Game 3"},
-                                                back = {x=20,y=128,w=18,h=5,text="Back"},
+                                                saveGame =  {
+                                                                {x=6,y=32+16*0+8+4,w=52,h=5,text="Save Game 1"},
+                                                                {x=6,y=32+16*1+8+4,w=52,h=5,text="Save Game 2"},
+                                                                {x=6,y=32+16*2+8+4,w=52,h=5,text="Save Game 3"},
+                                                                {x=6,y=32+16*3+8+4,w=52,h=5,text="Save Game 4"},
+                                                                {x=6,y=32+16*4+8+4,w=52,h=5,text="Save Game 5"},
+                                                                --{x=6,y=32+16*5+8,w=52,h=5,text="Save Game 6"},
+                                                            },
+                                                back = {x=20,y=128+4,w=18,h=5,text="Back"},
                                             },
                         titleCreditsScreen =    {
                                                     downArrow = {x=134,y=120,w=18,h=6,text="Down"},
@@ -62,11 +83,10 @@ function loadTextBoxes.load()
                                                     upArrow = {x=134,y=16,w=9,h=6,text="Up"},
                                                 },
                         titleScreen =   {
-                                            startGame = {x=52,y=82,w=59,h=6,text="Start Game"},
-                                            loadGame = {x=52,y=96,w=53,h=6,text="Load Game"},
-                                            credits = {x=52,y=110,w=41,h=6,text="Credits"},
-                                            --extras = {x=52,y=110+14,w=41,h=6,text="Extras"},
-                                            --options = {x=52,y=110+14,w=41,h=6,text="Options"},
+                                            startGame = {x=52,y=82-7,w=59,h=6,text="Start Game"},
+                                            loadGame = {x=52,y=96-7,w=53,h=6,text="Load Game"},
+                                            options = {x=52,y=110-7,w=41,h=6,text="Options"},
+                                            quitGame = {x=52,y=110+14-7,w=53,h=6,text="Quit Game"},
                                         },
                                         
                         transitionScreens = {

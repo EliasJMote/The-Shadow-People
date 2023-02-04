@@ -44,6 +44,8 @@ function g.mouseCollision(mouseX, mouseY,obj)
     end
 end
 
+
+-- Text that we want to highlight
 function g.highlightText(textBox,textSize)
     if(g.state ~= "game") then
         love.graphics.setColor(g.colors.lightGreen.r, g.colors.lightGreen.g, g.colors.lightGreen.b, 1)
@@ -52,12 +54,28 @@ function g.highlightText(textBox,textSize)
     end
     -- Highlight moused-over text or selected actions
     if not(g.screenTransition.active) then
-        if(g.mouseCollision(g.mouse.x, g.mouse.y,textBox) or g.actionSelected == textBox.text or g.itemSelected == textBox.text) then
+        
+        -- If the mouse is hovering over the text box outside the game
+        if(g.mouseCollision(g.mouse.x, g.mouse.y,textBox)) then
             if(g.state ~= "game") then
+                love.graphics.setColor(g.colors.lightestGreen.r, g.colors.lightestGreen.g, g.colors.lightestGreen.b, 1)
+            end
+        end
+    end
+    
+    if(g.state == "game") then
+        if(g.actionSelected == textBox.text or g.itemSelected == textBox.text) then
+            
+            -- Create a dark backing
+            love.graphics.setColor(g.colors.darkestGreen.r, g.colors.darkestGreen.g, g.colors.darkestGreen.b, 1)
+            love.graphics.rectangle("fill", textBox.x-1, textBox.y-2, textBox.w+2, textBox.h+3)
+            
+            if(g.timers.global % 60 < 30) then
                 love.graphics.setColor(g.colors.lightestGreen.r, g.colors.lightestGreen.g, g.colors.lightestGreen.b, 1)
             else
                 love.graphics.setColor(g.colors.lightGreen.r, g.colors.lightGreen.g, g.colors.lightGreen.b, 1)
             end
+            
         end
     end
 
@@ -69,7 +87,57 @@ function g.highlightText(textBox,textSize)
     love.graphics.setColor(g.colors.darkestGreen.r, g.colors.darkestGreen.g, g.colors.darkestGreen.b, 1)
 end
 
+--[[function g.flashText(textBox,textSize)
+
+    --love.graphics.setColor(g.colors.darkestGreen.r, g.colors.darkestGreen.g, g.colors.darkestGreen.b, 1)
+
+    -- Highlight selected text
+    if not(g.screenTransition.active) then
+        if(g.actionSelected == textBox.text or g.itemSelected == textBox.text) then
+            if(g.timers.global % 120 <= 60) then
+                love.graphics.setColor(g.colors.lightGreen.r, g.colors.lightGreen.g, g.colors.lightGreen.b, 1)
+            else
+                love.graphics.setColor(g.colors.darkestGreen.r, g.colors.darkestGreen.g, g.colors.darkestGreen.b, 1)
+            end
+        end
+    end
+
+    love.graphics.print(textBox.text, textBox.x, textBox.y, 0, textSize or 0.5, textSize or 0.5)
+    if(debug) then
+        love.graphics.setColor(1, 0, 0, 1)
+        love.graphics.rectangle("line", textBox.x, textBox.y, textBox.w, textBox.h) -- draw red rectangles over clickable objects
+    end
+    love.graphics.setColor(g.colors.darkestGreen.r, g.colors.darkestGreen.g, g.colors.darkestGreen.b, 1)
+end]]
+
 function g.shiftWorldToEvil()
+    loadRooms.churchOutside.state = "Evil"
+            
+    loadRooms.graveyard.state = "Evil"
+    
+    -- Update the highway
+    loadRooms.highway1.state = "Evil"
+    loadRooms.highway2.state = "Evil"
+    loadRooms.highway3.state = "Evil"
+    loadRooms.highway4.state = "Evil"
+    loadRooms.highway5.state = "Evil"
+    
+    -- Update the shed
+    loadRooms.shed.state = "Evil"
+    loadRooms.shed.objects.window.text.look = {"Is someone watching through the", "window?"}
+    
+    loadRooms.park1.state = "Evil"
+    loadRooms.park2.state = "Evil"
+    loadRooms.park3.state = "Evil"
+    
+    loadRooms.street1.state = "Evil"
+    loadRooms.street2.state = "Evil"
+    loadRooms.street3.state = "Evil"
+    loadRooms.street4.state = "Evil"
+    loadRooms.street5.state = "Evil"
+    
+    loadRooms.houseOutside.state = "Evil"
+    
     -- Update the shed if the shadow orb has been obtained
     if(loadRooms.shed.state == "Evil") then
         loadRooms.shed.objects.window.text.look = {"Is someone watching through the", "window?"}
@@ -109,6 +177,9 @@ function g.checkClock()
                 loadRooms.clockTowerInsideSecondFloor.objects.panel.state = "Open"
                 loadRooms.clockTowerInsideSecondFloor.objects.panel.text = {look={"It's a hidden panel. It's", "currently open."},open={"It's already open!"},pull={"It's already open!"}}
                 loadRooms.clockTowerInsideSecondFloor.objects.hacksaw = loadObjects.hacksaw
+                loadObjects.hacksaw.state = "item"
+                loadObjects.hacksaw.x=70
+                loadObjects.hacksaw.y=70
                 g.writeToTextDisplay({"As you press the button, a", "secret panel in the wall opens.", "A hacksaw falls out of the", "panel and clatters to the", "floor."})
                 loadSFX.pickup:play()
             else
@@ -134,25 +205,36 @@ function g.updateGrave()
     loadRooms.graveyard.map = loadImages.twoWayVerticalMap
     loadRooms.graveyard.exits.north = "Statue Room"
 end
+function g.updateGasStationDoor()
+    loadRooms.gasStationOutside.objects.door.text.look={"It's a double glass door. It's", "dark on the inside."}
+    loadRooms.gasStationOutside.objects.door.text.open={"You open the door."}
+    loadRooms.gasStationOutside.objects.door.text.pull={"You open the door."}
+    loadRooms.gasStationOutside.objects.door.text.push={"The door can only be pulled","open, not pushed."}
+    loadRooms.gasStationOutside.objects.door.text.put = nil
+end
 function g.activateGasPumps()
     loadRooms.gasStationInside.objects.button.text.look={"It's a button to turn on the", "gas pumps. The pumps are", "receiving power."}
     loadRooms.gasStationInside.objects.button.text.push={"The pumps are already on!"}
     loadRooms.gasStationInside.objects.button.text.use={"The pumps are already on!"}
     loadRooms.gasStationOutside.objects.pump1.state = "On"
     loadRooms.gasStationOutside.objects.pump1.text.look={"It's a gas pump. It's receiving", "power."}
+    loadRooms.gasStationOutside.objects.pump1.text.take={"You fill your car up with gas."}
     loadRooms.gasStationOutside.objects.pump1.text.use={"You fill your car up with gas."}
     loadRooms.gasStationOutside.objects.pump2.state = "On"
     loadRooms.gasStationOutside.objects.pump2.text.look={"It's a gas pump. It's receiving", "power."}
+    loadRooms.gasStationOutside.objects.pump2.text.take={"You fill your car up with gas."}
     loadRooms.gasStationOutside.objects.pump2.text.use={"You fill your car up with gas."}
 end
 function g.playerCarHasGasoline()
+    loadRooms.gasStationOutside.objects.pump1.text.take= {"Your car is already filled."}
     loadRooms.gasStationOutside.objects.pump1.text.use = {"Your car is already filled."}
+    loadRooms.gasStationOutside.objects.pump2.text.take= {"Your car is already filled."}
     loadRooms.gasStationOutside.objects.pump2.text.use = {"Your car is already filled."}
 end
 function g.revealStatueRoomHiddenDoorOnMap()
     
     -- Reveal the hidden door in the statue room
-        loadRooms.graveyardUnderground1.objects.door = {name="Door",x=45,y=30,w=10,h=37,img={closed=loadImages.graveyardDoorClosed,open=loadImages.graveyardDoorOpen},state="Closed",move="",text={close={"You close the door."},look={"It's a narrow door hidden in", "the wall."},open={"You open the door."},move="",}}
+        loadRooms.graveyardUnderground1.objects.door = {name="Door",x=45,y=30,w=10,h=37,img={closed=loadImages.graveyardDoorClosed,open=loadImages.graveyardDoorOpen},state="Closed",move="",text={close={"You close the door."},look={"It's a narrow door hidden in", "the wall."},open={"You open the door."},pull={"You open the door."},move="",}}
     
     -- The statue holding a dark crystal ball opens a door when the light reflects off the mirror and hits the dark crystal ball
     loadRooms.graveyardUnderground1.objects.statueHoldingDarkCrystalBall.text.look = {"A statue holding a lit crystal", "ball."}
@@ -235,6 +317,7 @@ end
 function g.updateHiddenDoorInMirror()
     loadRooms.mirrorRoom.objects.mirror2.text.close = {"You close the secret door."}
     loadRooms.mirrorRoom.objects.mirror2.text.open = {"You open the secret door."}
+    loadRooms.mirrorRoom.objects.mirror2.text.pull = {"You open the secret door."}
     loadRooms.mirrorRoom.objects.mirror2.text.move=""
     loadRooms.mirrorRoom.objects.mirror2.move = ""
     loadRooms.mirrorRoom.objects.mirror2.text.look = {"A hidden room lies beyond the", "broken mirror."}
@@ -253,6 +336,9 @@ function g.updateSpacePortalInMirror()
     -- Update the map
     loadRooms.dreamMirrorRoom.map = loadImages.oneWayUpMap
     loadRooms.dreamMirrorRoom.exits.north = ""
+end
+function g.deleteSaveGame(saveFile)
+    love.filesystem.remove(saveFile)
 end
 function g.loadGame(loadFile)
     
@@ -317,6 +403,11 @@ function g.loadGame(loadFile)
                 end
             end
         end
+    end
+    
+    -- Check if the gas station door has already been unlocked
+    if(loadRooms.gasStationOutside.objects.door.state == "Open" or loadRooms.gasStationOutside.objects.door.state == "Closed") then
+        g.updateGasStationDoor()
     end
     
     -- Check if the grave has already been moved
@@ -415,7 +506,7 @@ function g.loadGame(loadFile)
         and loadRooms.churchInside1.objects.wallCandelabra1.state == "Lit") then
         
         -- Reveal the hidden door
-        loadRooms.churchInside1.objects.churchInsideDoor={name="Door",x=13,y=30,w=10,h=37,img={closed=loadImages.churchDoorInsideClosed,open=loadImages.churchDoorInsideOpen},state="Closed",move="North",text={close={"You close the door."},look={"It's a narrow door hidden in", "the wall."},open={"You open the door."},move="",}}
+        loadRooms.churchInside1.objects.churchInsideDoor={name="Door",x=13,y=30,w=10,h=37,img={closed=loadImages.churchDoorInsideClosed,open=loadImages.churchDoorInsideOpen},state="Closed",move="North",text={close={"You close the door."},look={"It's a narrow door hidden in", "the wall."},open={"You open the door."},pull={"You open the door."},move="",}}
         
         -- Update the map
         g.revealChurchHiddenDoorOnMap()
@@ -438,7 +529,9 @@ function g.loadGame(loadFile)
     loadRooms.churchBasement.objects.wallCandelabra2.state = "Lit"
     
     -- Shift the world to evil if the shadow orb has been acquired
-    g.shiftWorldToEvil()
+    if(g.playerState.hasShadowOrb) then
+        g.shiftWorldToEvil()
+    end
     
     if(loadRooms.shadowLands9.objects.statue.state == "On") then
         loadRooms.shadowLands9.objects.statue.text.look = {"A statue with a dark crystal", "ball."}
@@ -521,6 +614,7 @@ function g.clearMouseCursorState()
     g.mouse.actionHover = nil
     g.mouse.itemMenuHoverItem = nil
     g.mouse.scrollPageArrowHover = nil
+    g.mouse.pauseMenuHover = nil
 end
 function g.fromGameToTransition(state)
     g.mapTransitionIsLegal = false

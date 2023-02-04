@@ -23,15 +23,16 @@ function updateCheckLighter.update()
                     and g.curLocation.objects.wallCandelabra1.state == "Lit") then
                     
                     -- The inside door in the church appears after lighting the candles
-                    g.curLocation.objects.churchInsideDoor={name="Door",x=13,y=30,w=10,h=37,img={closed=loadImages.churchDoorInsideClosed,open=loadImages.churchDoorInsideOpen},state="Closed",move="North",text={close={"You close the door."},look={"It's a narrow door hidden in", "the wall."},open={"You open the door."},move="",}}
-                    table.insert(textArray, "Lighting the candles has")
-                    table.insert(textArray, "revealed a hidden door in the")
-                    table.insert(textArray, "wall.")
-                    
-                    -- Update the map for the room
-                    loadRooms.churchInside1.map = loadImages.threeWayLeftMap
-                    loadRooms.churchInside1.exits.north = "Mirror Room"
-                    
+                    if(g.curLocation.objects.churchInsideDoor == nil) then
+                        g.curLocation.objects.churchInsideDoor={name="Door",x=13,y=30,w=10,h=37,img={closed=loadImages.churchDoorInsideClosed,open=loadImages.churchDoorInsideOpen},state="Closed",move="North",text={close={"You close the door."},look={"It's a narrow door hidden in", "the wall."},open={"You open the door."},pull={"You open the door."},move="",}}
+                        table.insert(textArray, "Lighting the candles has")
+                        table.insert(textArray, "revealed a hidden door in the")
+                        table.insert(textArray, "wall.")
+                        
+                        -- Update the map for the room
+                        loadRooms.churchInside1.map = loadImages.threeWayLeftMap
+                        loadRooms.churchInside1.exits.north = "Mirror Room"
+                    end
                 end
                 g.writeToTextDisplay(textArray)
             else
@@ -52,6 +53,8 @@ function updateCheckLighter.update()
                 else
                     g.writeToTextDisplay({"It's too late for that."})
                 end
+            elseif(g.curLocation.objects.shadow ~= nil and g.mouse.objectPointedAt == g.curLocation.objects.shadow) then
+                g.writeToTextDisplay({"It won't light..."})
             else
                 g.writeToTextDisplay({"You can't use the lighter here."})
             end

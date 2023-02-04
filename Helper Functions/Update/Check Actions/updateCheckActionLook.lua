@@ -31,6 +31,9 @@ function updateCheckActionLook.update()
                 g.textBuffer = {}
                 createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="easter egg ending"}})
                 createEvent.create({name="Play Music", music=loadMusic.darkStreets})
+                GLOBALS.endingsFound[4] = true
+                local endingsFoundJson = json.encode(GLOBALS.endingsFound)
+                love.filesystem.write("Endings_Found.lua", endingsFoundJson)
             end
         end
         
@@ -112,6 +115,12 @@ function updateCheckActionLook.update()
             loadRooms.altarRoom.objects.symbolOfThePrince.state = "Opened"
             loadRooms.altarRoom.objects.symbolOfThePrince.text.look = {"A bloodthirsty eye stares at","you."}
         end
+        
+    elseif(g.curLocation == loadRooms.nightmareGeometry1) then
+        if(g.mouse.objectPointedAt == loadRooms.nightmareGeometry1.objects.shadowPeople) then
+            loadRooms.nightmareGeometry1.exits={west="Dark Passage 2",east="Dark Passage 2",south="Dark Passage 2"}
+            loadRooms.nightmareGeometry1.map = loadImages.threeWayDownMap
+        end
        
     -- Staring at the Imperfect
     elseif(g.curLocation == loadRooms.nightmareGeometry2) then
@@ -125,11 +134,15 @@ function updateCheckActionLook.update()
                 loadRooms.nightmareGeometry2.objects.beast.w = 58
                 loadRooms.nightmareGeometry2.objects.beast.h = 57
                 loadRooms.nightmareGeometry2.objects.beast.text.look = {"..."}
+                
+            -- The player must look at least 2 times before they can escape
             elseif(loadRooms.nightmareGeometry2.backgrounds.light==loadImages.nightmareGeometry2_2) then
                 loadRooms.nightmareGeometry2.backgrounds.light=loadImages.nightmareGeometry2_3
                 loadRooms.nightmareGeometry2.objects.beast.y = 3
                 loadRooms.nightmareGeometry2.objects.beast.h = 63
                 loadRooms.nightmareGeometry2.objects.beast.text.look = {"Just run."}
+                loadRooms.nightmareGeometry2.exits={west="Dark Passage 4",south="Dark Passage 4",east="Dark Passage 4"}
+                loadRooms.nightmareGeometry2.map=loadImages.threeWayDownMap
             end
         end
         
@@ -149,6 +162,8 @@ function updateCheckActionLook.update()
             loadSFX.squiggleManScream:setVolume(0.1)
             loadSFX.squiggleManScream:setPitch(0.8)
             loadSFX.squiggleManScream:play()
+            loadRooms.nightmareGeometry3.exits = {west="Dark Passage 6",south="Dark Passage 6",east="Dark Passage 6"}
+            loadRooms.nightmareGeometry3.map = loadImages.threeWayDownMap
         end
     
     -- Staring at the snaking wall
@@ -184,6 +199,8 @@ function updateCheckActionLook.update()
                 loadSFX.squiggleManScream:stop()
                 loadSFX.squiggleManScream:setVolume(0.8)
                 loadSFX.squiggleManScream:play()
+                loadRooms.nightmareGeometry4.exits = {west="Dark Passage 8",south="Dark Passage 8",east="Dark Passage 8"}
+                loadRooms.nightmareGeometry4.map = loadImages.threeWayDownMap
                 
             -- If the player looks at least 5 times, the monster will appear and shriek (jump scare!!!)
             elseif(g.playerState.numOfTimesLookedAtWallHole == 5) then 

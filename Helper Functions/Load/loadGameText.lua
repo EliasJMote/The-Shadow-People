@@ -7,15 +7,17 @@ loadGameText.opening =  {
                           "You had trouble sleeping last",
                           "night, and you know that you",
                           "have a difficult day ahead of",
-                          "you. Today marks the third day",
-                          "of finals week, and you know",
-                          "there's no rest for the wicked.",
+                          "you. Today marks Wednesday,",
+                          "next week is finals, and you",
+                          "know there's no rest for the",
+                          "wicked.",
                         }
                         
 loadGameText.bedroom =  {
                             door =  {
                                         close={"You close the door."},
                                         open={"You open the door."},
+                                        pull={"You open the door."},
                                         look={"It's your bedroom door."},
                                         move="North"
                                     },
@@ -32,6 +34,7 @@ loadGameText.churchOutside =    {
                                     door =  {
                                                 close={"You close the door."},
                                                 open={"You open the door."},
+                                                pull={"You open the door."},
                                                 look={"It's a small church door."},
                                                 move="North"
                                             },
@@ -46,7 +49,8 @@ loadGameText.graveyard =    {
                                                     "UNYIELDING IMMORTALITY."
                                                 },
                                             pull={"It's too heavy to pull, but you", "may be able to push it."},
-                                            push={"You push the grave, revealing", "an underground stairwell."}
+                                            push={"You push the grave, revealing", "an underground stairwell."},
+                                            take={"It's too heavy to take, but you", "may be able to push it."},
                                         },
                             }
                             

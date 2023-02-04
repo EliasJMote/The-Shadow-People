@@ -1,3 +1,19 @@
+function fullscreenToggle()
+    local _, _, flags = love.window.getMode()
+    local windowWidth, windowHeight = love.graphics.getDimensions( )
+    local desktopWidth, desktopHeight = love.window.getDesktopDimensions(flags.display)
+    local maximized = love.window.isMaximized()
+    local fullscreen, fstype = love.window.getFullscreen()
+    
+    if(fullscreen) then
+        flags.fullscreen = false
+        love.window.setMode(160*scale, 144*scale,flags)
+        love.window.setPosition((desktopWidth-(160*scale))/2, (desktopHeight-(144*scale))/2, flags.displayindex )
+    else
+        love.window.setMode(desktopWidth, desktopHeight,flags)
+        love.window.setFullscreen(true, "exclusive")
+    end
+end
 function love.load()
   
     --require("mobdebug").start()
@@ -8,10 +24,18 @@ function love.load()
     loadLibraries = require("Helper Functions/Load/loadLibraries")
     loadLibraries.load()
     
+    GLOBALS.loadGameDateTime = {}
+    
+    GLOBALS.volume = {}
+    GLOBALS.volume.master = 4
+    love.audio.setVolume(GLOBALS.volume.master/10)
+    
+    --debug = true
+    
     -- Debug mode
     if(debug) then
-        --createGame.create()
-        --GLOBALS.state = "game"
+        createGame.create()
+        GLOBALS.state = "game"
     end
     
     -- Check if "Endings_Found.lua" exists
@@ -42,6 +66,8 @@ function love.load()
         --print("\"Shadow_People_Found.lua\" already exists!")
     end
     
+    GLOBALS.fullscreen = false
+    
     -- Cap frame rate to 60 fps
     min_dt = 1/60 --fps
     next_time = love.timer.getTime()
@@ -54,9 +80,18 @@ function love.update(dt)
     --print(love.timer.getFPS( ))
     --print(math.floor(1.0 / dt))
     
+    local g = GLOBALS
+    local fullscreen, fstype = love.window.getFullscreen( )
+    if(fullscreen) then
+        g.textBoxes.optionsScreen.fullscreenButton = {x=131,y=24+12*2,w=14-5,h=6,text="On"}
+    else
+        g.textBoxes.optionsScreen.fullscreenButton = {x=131,y=24+12*2,w=14,h=6,text="Off"}
+    end
+    
+    --g.textBoxes.optionsScreen.
 end
 
-function love.draw()
+function love.draw() 
     drawManager.draw()
     
     -- Cap frame rate to 60 fps
@@ -68,8 +103,19 @@ function love.draw()
     love.timer.sleep(next_time - cur_time)
 end
 
+function love.keypressed(key,scancode,isrepeat)
+    
+    -- Alt + Enter toggles fullscreen
+    if((love.keyboard.isDown('lalt') or love.keyboard.isDown('ralt')) and love.keyboard.isDown('return')) then
+        fullscreenToggle()
+    end
+end
+
 function love.mousepressed(x, y, button, istouch, presses)
     updateMousePress.update(x,y,button)
+end
+function love.wheelmoved(x,y)
+    updateMouseWheelEvents.update(x,y)
 end
 
 function love.resize(w,h)

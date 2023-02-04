@@ -1,8 +1,8 @@
 ﻿The Shadow People
-Version 1.2.1
+Version 1.2.3
 
-Copyright © 2020-2022 Elias Mote
-Copyright © 2020-2022 Roc Studios
+Copyright © 2020-2023 Elias Mote
+Copyright © 2020-2023 Roc Studios
 
 I. Disclaimer
 II. Version History
@@ -19,9 +19,47 @@ the author. Placement of this readme or game on any other web site or as a part 
 display is strictly prohibited, and a violation of copyright.
 
 II. Version History
+--------------------------
+V1.2.3 - Current Version
+--------------------------
+-- Changes --
+-- Updated the flooded labyrinth again to make it even less confusing. Also can travel from the flooded labyrinth
+back to the sewers using a ladder.
+-- The mouse wheel can be used to switch between each action.
+-- A pause menu button was added to the gameplay interface.
+-- The player can check the instructions screen again from the pause menu.
+-- The player can increase/decrease the master volume by 10% increments. The game now starts at 40% by default.
+-- Added two extra save files plus auto-save. Auto-save triggers each room (not counting transition events).
+-- Added more descriptions and feedback from action usage.
+-- Doors now automatically open when unlocked.
+-- Added a puzzle note for the statue room.
+-- When selecting an item, the "use" action is automatically also selected (assuming the "put" action isn't selected).
+-- Actions are highlighted when selected.
+-- The current inventory page is now displayed.
+
+-- Bug Fixes --
+-- Fixed a bug where the hacksaw wouldn't appear if the player played through the game a second time without
+closing the application or loading the game.
+-- Fixed the opening dialogue to acknowledge that finals is NEXT week, not this week.
+-- Fixed some text not appearing when using certain actions in certain places.
+-- Fixed a bug where relighting the candles in the church's first room will retrigger the puzzle solution.
 
 --------------------------
-V1.2.1 - Current Version
+V1.2.2
+--------------------------
+-- Changes --
+-- Updated the flooded labyrinth to make it less confusing.
+-- Added more mallet usage.
+-- "Pull" can now be used to open doors, not just "open". 
+-- The gas station can now be "put" into the gas station door to unlock it, not just "used".
+-- Added fullscreen and maximize capabilities.
+
+-- Bug Fixes --
+-- Fixed a bug where the player could move through the door in the puzzling stone room before solving the puzzle.
+
+
+--------------------------
+V1.2.1
 --------------------------
 -- Changes --
 -- Capped frame rate at 60 fps.
@@ -516,6 +554,7 @@ Programmer: Elias Mote
 Musicians: Taylor Fielder, Elias Mote
 Testers: Dred4170, Raistlarn, Taylor Fielder, Aluminati, BeanWagon, David Harper, Elias Mote
 Special Thanks: My loving and supportive family.
+More special thanks: YoshGamesLive, @starson777, @Llama_Blair
 
 Software:
 Engine: Love2d

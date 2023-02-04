@@ -17,6 +17,7 @@ function updateCheckActionUse.update()
         end
     else
         
+        -- Getting gas from the pump
         if(g.curLocation == loadRooms.gasStationOutside) then
             if(((g.mouse.objectPointedAt == loadRooms.gasStationOutside.objects.pump1 and loadRooms.gasStationOutside.objects.pump1.state == "On")
                 or (g.mouse.objectPointedAt == loadRooms.gasStationOutside.objects.pump2 and loadRooms.gasStationOutside.objects.pump2.state == "On"))
@@ -64,6 +65,7 @@ function updateCheckActionUse.update()
             if((g.mouse.objectPointedAt.name == "Candelabra" or g.mouse.objectPointedAt.name == "Candle")
                 and g.mouse.objectPointedAt.state == "Lit") then
                 g.mouse.objectPointedAt.state = "Unlit"
+                g.textBuffer = {"You extinguish the flame."}
                 g.mouse.objectPointedAt.text.use = {"It's already out."}
             end
             
@@ -84,16 +86,17 @@ function updateCheckActionUse.update()
                 g.music:play()
                 
                 g.curLocation.objects.inscription.text.look = {"YOU SHOULDN'T HAVE DONE THAT"}
+                g.curLocation.displayName = "No escape..."
                 
                 g.curLocation.objects.mirror = nil
-                g.curLocation.objects.shadow = {name="shadow",x=42,y=43,w=13,h=22,state="One",img={one=loadImages.churchBasementShadow,two=loadImages.churchBasementShadow2,three=loadImages.churchBasementShadow3,four=loadImages.churchBasementShadow4,five=loadImages.churchBasementShadow5},text={look={""}}}
+                g.curLocation.objects.shadow = {name="shadow",x=42,y=43,w=13,h=22,state="One",img={one=loadImages.churchBasementShadow,two=loadImages.churchBasementShadow2,three=loadImages.churchBasementShadow3,four=loadImages.churchBasementShadow4,five=loadImages.churchBasementShadow5},text={look={""},pull={"It's too heavy to pull."},push={"It's too heavy to push around."},talk={"It laughs erratically to","itself."}}}
             end
         
             if(g.curLocation.objects.wallCandelabra1.state == "Lit" and g.mouse.objectPointedAt == g.curLocation.objects.wallCandelabra1) then
                 g.curLocation.objects.wallCandelabra1.state = "Unlit"
                 g.curLocation.objects.wallCandelabra1.text.use = {"It's already out."}
                 --loadSFX.pickup:play()
-                if(g.curLocation.objects.wallCandelabra2.state == "Unlit") then
+                if(g.curLocation.objects.wallCandelabra2.state == "Unlit" and g.curLocation.objects.mirror.state == "Unbroken") then
                     darkness()
                 end
                 
@@ -101,7 +104,7 @@ function updateCheckActionUse.update()
                 g.curLocation.objects.wallCandelabra2.state = "Unlit"
                 g.curLocation.objects.wallCandelabra2.text.use = {"It's already out."}
                 --loadSFX.pickup:play()
-                if(g.curLocation.objects.wallCandelabra1.state == "Unlit") then
+                if(g.curLocation.objects.wallCandelabra1.state == "Unlit" and g.curLocation.objects.mirror.state == "Unbroken") then
                     darkness()
                 end
             end
@@ -113,6 +116,9 @@ function updateCheckActionUse.update()
             if(g.mouse.objectPointedAt == loadRooms.altarRoom.objects.altar) then
                 g.timers.global = 90
                 createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="red prince ending"}})
+                GLOBALS.endingsFound[5] = true
+                local endingsFoundJson = json.encode(GLOBALS.endingsFound)
+                love.filesystem.write("Endings_Found.lua", endingsFoundJson)
                 g.music = loadMusic.nightmareGeometry
                 g.music:play()
                 
@@ -136,6 +142,9 @@ function updateCheckActionUse.update()
                 g.textBuffer = {}
                 g.showMessageBox = false
                 createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="alien ending"}})
+                GLOBALS.endingsFound[3] = true
+                local endingsFoundJson = json.encode(GLOBALS.endingsFound)
+                love.filesystem.write("Endings_Found.lua", endingsFoundJson)
             end
         end
     end

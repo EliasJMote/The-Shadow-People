@@ -6,6 +6,9 @@ local updateRoom = {}
         for k,v in pairs(loadRooms) do
             if(v.name == roomName) then
                 g.curLocation = v
+                
+                -- Auto save the game upon reaching the new room
+                g.saveGame("Auto_Save_File.lua")
                 break
             end
         end
@@ -45,10 +48,10 @@ local updateRoom = {}
                 end
             end
         end
-        
+
         -- Secondary church room (with trap room)
         if(g.curLocation.name == "Church Inside 2") then
-            if(g.mouse.objectPointedAt == g.curLocation.objects.trapDoor and g.actionSelected == "Move") then
+            if(g.actionSelected == "Move" and g.mouse.objectPointedAt == g.curLocation.objects.trapDoor) then
                 if(g.curLocation.objects.trapDoor.state == "Closed") then
                     g.mapTransitionIsLegal = false
                     g.writeToTextDisplay({"The door is closed!"})
@@ -56,8 +59,17 @@ local updateRoom = {}
                     updateRoom.transition("Church Basement")
                     createEvent.create({name="Start Screen Transition", x=3, y=3, w=94, h=77,event={name="Play Music", music=g.curLocation.music}})
                 end
-            else
+            elseif(g.movementDirection == "North") then
+                if(g.curLocation.objects.trapDoor.state == "Open") then
+                    g.mapTransitionIsLegal = true
+                else
+                    g.mapTransitionIsLegal = false
+                    g.writeToTextDisplay({"The door is closed!"})
+                end
+            elseif(g.movementDirection == "East") then
                 g.mapTransitionIsLegal = true
+            else
+                g.mapTransitionIsLegal = false
             end
         
         elseif(g.curLocation.name == "Church Basement") then
@@ -89,12 +101,34 @@ local updateRoom = {}
                 updateRoom.transition("Flooded Labyrinth 1")
                 createEvent.create({name="Start Screen Transition", x=3, y=3, w=94, h=77,event={name="Play Music", music=g.curLocation.music}})
             end
-           
-        -- Using the move action to enter the puzzling stone door after it's open
-        elseif(g.curLocation.name == "Puzzling Stone") then
-            if(g.mouse.objectPointedAt == g.curLocation.objects.door and g.actionSelected == "Move") then
-                updateRoom.transition("Altar Room")
+            
+        elseif(g.curLocation.name == "Flooded Labyrinth 1") then
+            if(g.curLocation.objects.ladder ~= nil and g.mouse.objectPointedAt == g.curLocation.objects.ladder and g.actionSelected == "Move") then
+                updateRoom.transition("Sewer 9")
                 createEvent.create({name="Start Screen Transition", x=3, y=3, w=94, h=77,event={name="Play Music", music=g.curLocation.music}})
+            end
+        -- Using the move action to enter the puzzling stone door (after it's open)
+        --[[elseif(g.curLocation.name == "Puzzling Stone") then
+            if(g.mouse.objectPointedAt == g.curLocation.objects.door and g.actionSelected == "Move") then
+                if(g.curLocation.objects.door.state == "Open") then
+                    updateRoom.transition("Altar Room")
+                    createEvent.create({name="Start Screen Transition", x=3, y=3, w=94, h=77,event={name="Play Music", music=g.curLocation.music}})
+                else
+                    g.mapTransitionIsLegal = false
+                    g.writeToTextDisplay({"The door is closed!"})
+                end
+            end]]
+            
+        -- Moving to the altar triggers the ending
+        elseif(g.curLocation == loadRooms.altarRoom) then
+            if(g.mouse.objectPointedAt == loadRooms.altarRoom.objects.altar and g.actionSelected == "Move") then
+                g.timers.global = 90
+                createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="red prince ending"}})
+                GLOBALS.endingsFound[5] = true
+                local endingsFoundJson = json.encode(GLOBALS.endingsFound)
+                love.filesystem.write("Endings_Found.lua", endingsFoundJson)
+                g.music = loadMusic.nightmareGeometry
+                g.music:play()
             end
            
         -- Using the move action to enter the nightmare geometry
@@ -104,6 +138,11 @@ local updateRoom = {}
                 createEvent.create({name="Start Screen Transition", x=3, y=3, w=94, h=77,event={name="Play Music", music=g.curLocation.music}})
             end
             
+        elseif(g.curLocation.name == "Nightmare Geometry 3") then
+            if(g.mouse.objectPointedAt == g.curLocation.objects.humanHoleInWall and g.actionSelected == "Move") then
+                g.writeToTextDisplay({"You can't fit inside the space.", "It wasn't made for you."})
+            end
+        
         elseif(g.curLocation.name == "Nightmare Geometry 7") then
             if(g.mouse.objectPointedAt == g.curLocation.objects.endlessHallway and (g.actionSelected == "Move" or g.actionSelected == "Look")) then
                 g.mapTransitionIsLegal = false
@@ -141,10 +180,16 @@ local updateRoom = {}
                         else
                             createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="good ending"}})
                             createEvent.create({name="Play Music", music=loadMusic.undertheStars})
+                            GLOBALS.endingsFound[1] = true
+                            local endingsFoundJson = json.encode(GLOBALS.endingsFound)
+                            love.filesystem.write("Endings_Found.lua", endingsFoundJson)
                         end
                     else
                         -- Go the the night transition
                         createEvent.create({name="Start Screen Transition", x=0, y=0, w=160, h=144,event={name="State Transition", state="night transition"}})
+                        GLOBALS.endingsFound[2] = true
+                        local endingsFoundJson = json.encode(GLOBALS.endingsFound)
+                        love.filesystem.write("Endings_Found.lua", endingsFoundJson)
                     end
                 end
             else

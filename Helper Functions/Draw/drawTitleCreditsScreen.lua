@@ -32,11 +32,14 @@ local drawTitleCreditsScreen = {}
             love.graphics.print("Special Thanks:", 4, 64, 0, 0.4, 0.4)
             love.graphics.print("My loving and", 60, 72, 0, 0.4, 0.4)
             love.graphics.print("supportive family.", 60, 80, 0, 0.4, 0.4)
-            
+            love.graphics.print("YoshGamesLive", 60, 80+8, 0, 0.4, 0.4)
+            love.graphics.print("@starson777", 60, 80+8*2, 0, 0.4, 0.4)
+            love.graphics.print("@Llama_Blair", 60, 80+8*3, 0, 0.4, 0.4)
         end
         --
-        love.graphics.print("(C) Elias Mote  2020-2022", 36, 128, 0, 0.4, 0.4)
-        love.graphics.print("(C) Roc Studios 2020-2022", 36, 136, 0, 0.4, 0.4)
+        love.graphics.print("@Roc_Studios", 36, 128-8, 0, 0.4, 0.4)
+        love.graphics.print("(C) Elias Mote  2020-2023", 36, 128, 0, 0.4, 0.4)
+        love.graphics.print("(C) Roc Studios 2020-2023", 36, 136, 0, 0.4, 0.4)
         
         for k,v in pairs(g.textBoxes.titleCreditsScreen) do
             g.highlightText(v,0.4)

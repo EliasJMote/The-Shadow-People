@@ -2,18 +2,51 @@ local updateGame = {}
 
 function updateGame.update(dt,g)
 
+    local maximized = love.window.isMaximized( )
+    local fullscreen, fstype = love.window.getFullscreen( )
+    local nativeWidth = 160
+    local nativeHeight = 144
+
 
     -- Update the next time we want to hit based on the minimum delta time
     g.nextTime = g.nextTime + g.minDT
 
     -- Update the window scaling (since the player can adjust this window at anytime)
-    g.scale.x = love.graphics.getWidth()/160
-    g.scale.y = love.graphics.getHeight()/144
+    
+    --[[if not(maximized or fullscreen) then
+        
+        g.scale.x = love.graphics.getWidth()/160
+        g.scale.y = love.graphics.getHeight()/144
+        
+        g.translate.x = 0
+        g.translate.y = 0]]
+    --else
+        
+        local windowWidth, windowHeight = love.graphics.getDimensions( )
+        
+        g.scale.y = math.floor(windowHeight/144)
+        g.scale.x = g.scale.y
+        
+        g.translate.x = (windowWidth - g.scale.x * 160) / 2
+        g.translate.y = (windowHeight - g.scale.y * 144) / 2
+    --end
 
     -- Update the mouse
     g.mouse.x, g.mouse.y = love.mouse.getPosition()
-    g.mouse.x = g.mouse.x / g.scale.x
-    g.mouse.y = g.mouse.y / g.scale.y
+    g.mouse.x = (g.mouse.x - g.translate.x) / g.scale.x
+    g.mouse.y = (g.mouse.y - g.translate.y) / g.scale.y
+    
+    if(g.mouse.x < 0) then
+        g.mouse.x = 0
+    elseif(g.mouse.x > 160) then
+        g.mouse.x = 160
+    end
+    
+    if(g.mouse.y < 0) then
+        g.mouse.y = 0
+    elseif(g.mouse.y > 144) then
+        g.mouse.y = 144
+    end
     
     -- Check the current position of the mouse as an event
     createEvent.create{name="Check Mouse Position", state=g.state, mouse={x=g.mouse.x,y=g.mouse.y}}

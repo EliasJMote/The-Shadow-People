@@ -11,6 +11,16 @@ function updateCheckActionPush.update()
             loadSFX.pickup:play()
         end
     
+    -- Opening the gate
+    elseif(g.curLocation == loadRooms.park1) then
+        if(g.mouse.objectPointedAt == g.curLocation.objects.parkGate) then
+            if(g.curLocation.objects.parkGate.state == "Closed") then
+                g.curLocation.objects.parkGate.state = "Open"
+                loadSFX.doorOpen:play()
+                g.writeToTextDisplay({"You open the gate."})
+            end
+        end
+    
     -- Pushing the grave at the graveyard
     elseif(g.curLocation == loadRooms.graveyard) then
         if(g.mouse.objectPointedAt == loadRooms.graveyard.objects.grave) then

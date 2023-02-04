@@ -8,7 +8,7 @@ function drawCursor.draw()
     
     if((g.screenTransition.active ~= true or debug) and g.state ~= "good ending" and g.state ~= "bad ending" and g.state ~= "alien ending" and g.state ~= "easter egg ending" and g.state ~= "red prince ending" and g.state ~= "shadow child" and g.state ~= "video bad ending" and g.state ~= "video intro" and g.state ~= "screen transition"
         and g.state ~= "who are you running from?") then
-        if(g.mouse.actionHover or g.mouse.textHover or (g.mouse.itemMenuHover and g.actionSelected ~= "Look") or g.mouse.scrollPageArrowHover) then
+        if(g.mouse.actionHover or g.mouse.textHover or (g.mouse.itemMenuHover and g.actionSelected ~= "Look") or g.mouse.scrollPageArrowHover or g.mouse.pauseMenuHover) then
             love.graphics.draw(loadImages.cursorHand, g.mouse.x - 4, g.mouse.y)
         elseif(g.mouse.mapHover and g.showMessageBox ~= true) then
             love.graphics.draw(loadImages.cursorMove, g.mouse.x - 4, g.mouse.y - 4)
@@ -76,7 +76,7 @@ function drawCursor.draw()
                 love.graphics.draw(loadImages.cursorTalk, g.mouse.x - 4, g.mouse.y - 4)
             elseif(g.actionSelected == "Take") then
                 love.graphics.draw(loadImages.cursorTake, g.mouse.x - 4, g.mouse.y - 4)
-            elseif(g.actionSelected == "Use") then
+            elseif(g.actionSelected == "Use" and g.itemSelected == nil) then
                 love.graphics.draw(loadImages.cursorUse, g.mouse.x - 6, g.mouse.y - 6)
             else
                 
